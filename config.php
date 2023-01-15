@@ -1,0 +1,25 @@
+<?php
+    $config_included="Y";
+    $maxCons=25;
+    $serverName='localhost:8889';
+    $userName='root';
+    $password='root';
+    $dbName='Scouting_2023';
+    $charSet='utf8';
+
+    $teamTable='Team';
+    $teamDetailsTable='Team_Detail';
+    $robotTable='Robot';
+    $robotDetailsTable='Robot_Detail';
+    $tournmentTable='Tournment';
+    $tournmentDetailsTable='Tournment_Detail';
+    $matchTable='Match';
+    $matchscoutingdetailsTable='MatchScoutingDetails';
+    $matchresultbaTable='MatchResultBA';
+    $matchresultscTable='MatchResultSC';
+    $matchresultvaTable='MatchResultVA';
+    $matchstrategyTable='MatchStrategy';
+    $teamrankerTable='TeamRanker';
+    $leadscoutTable='LeadScout';
+    $betTable='Bet';
+?>
