@@ -30,34 +30,5 @@ echo "After readteamRankerData on team\n";
 echo $team->get_teamNumber();
 echo $team->get_score();
 
-/*
-Team::createTeamTable();
-echo "After createTable on team\n";
-
-final class teamTest extends TestCase
-{
-    // Tests will go here
-
-    public function testClassConstructor() {
-
-        echo "In teamTest::testClassConstructor\n";
-
-        $team = new Team();
-
-        echo "After creation of team\n";
-
-        $team->set_teamNumber(3476);
-        $team->set_teamName('Code Orange');
-
-        $this->assertSame(3476, $team->get_teamNumber());
-        $this->assertSame('Code Orange', $team->get_teamName());
-
-        echo "After assertions on team\n";
-    }
-}
-
-$teamTest = new teamTest();
-$teamTest->testClassConstructor;
-*/
 
 ?>
