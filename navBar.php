@@ -13,6 +13,9 @@
         <li class="nav-item">
           <a class="nav-link" href="admin.php">Admin</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="simpleMatchForm.php">Simple Match Form</a>
+        </li>
       </ul>
     </div>
   </div>

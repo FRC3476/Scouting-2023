@@ -19,7 +19,7 @@ class dbHandler
         'scout' => 'VARCHAR(60) NOT NULL',
         'matchNumber' => 'VARCHAR(10) NOT NULL',
         'teamNumber' => 'VARCHAR(10) NOT NULL',
-        'autoMobility' => 'VARCHAR(60) NOT NULL',
+        'autoMobility' => 'BOOLEAN NOT NULL',
         'autoConeLevel1' => 'SMALLINT NOT NULL',
         'autoConeLevel2' => 'SMALLINT NOT NULL',
         'autoConeLevel3' => 'SMALLINT NOT NULL',
@@ -100,6 +100,7 @@ class dbHandler
     $sql .= ')';
     
     $sql = 'INSERT INTO ' . $tableName . '(' . $keySql . ') VALUES(' . $valueSql . ')';
+    error_log($sql);
     $prepared_statement = $this->conn->prepare($sql);
     $prepared_statement->execute($data);
   }
@@ -145,9 +146,9 @@ class dbHandler
     $sql = 'CREATE TABLE ' . $this->settings->get('db') . '.' . $this->settings->get($tableType) . ' (' . $createSql . ')';
     error_log($sql);
     $statement = $conn->prepare($sql);
-    // if (!$statement->execute()){
-    //  throw new Exception('createTable Error: CREATE TABLE ' . $this->settings->get('db') . '.' . $this->settings->get($tableType) . ' query failed.');
-    // }
+    if (!$statement->execute()){
+      throw new Exception('createTable Error: CREATE TABLE ' . $this->settings->get('db') . '.' . $this->settings->get($tableType) . ' query failed.');
+    }
   }
   
   function createAllTables(){
