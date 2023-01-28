@@ -105,7 +105,8 @@ class dbHandler
     $prepared_statement->execute($data);
   }
 
-  function readAllData($tableName){
+  function readAllData($tableType){
+    $tableName = $this->settings->get($tableType);
     $this->connectToDB();
     $sql = 'SELECT * FROM ' . $tableName;
     $prepared_statement = $this->conn->prepare($sql);
@@ -114,7 +115,8 @@ class dbHandler
     return $result;
   }
   
-  function readSomeData($tableName, $whereSql){
+  function readSomeData($tableType, $whereSql){
+    $tableName = $this->settings->get($tableType);
     $this->connectToDB();
     $sql = 'SELECT * FROM ' . $tableName . ' WHERE ' . $whereSql;
     $prepared_statement = $this->conn->prepare($sql);
@@ -179,8 +181,8 @@ class dbHandler
     return true;
   }
   
-  function getTableExists($tableName){
-    try{$this->readAllData($tableName);}
+  function getTableExists($tableType){
+    try{$this->readAllData($tableType);}
     catch (Exception $e){return false;}
     return true;
   }
@@ -189,7 +191,7 @@ class dbHandler
     $status = $this->settings->getSanitizedConfig();
     foreach ($this->tableMapping as $key => $value){
       $statusKey = $key . 'Exists';
-      $status[$statusKey] = $this->getTableExists($this->settings->get($key));
+      $status[$statusKey] = $this->getTableExists($key);
     }
     $status['serverExists'] = $this->getServerExists();
     $status['dbExists'] = $this->getDatabaseExists();

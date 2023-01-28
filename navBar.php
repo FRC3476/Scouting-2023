@@ -16,6 +16,9 @@
         <li class="nav-item">
           <a class="nav-link" href="simpleMatchForm.php">Simple Match Form</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tableMatchData.php">Match Data</a>
+        </li>
       </ul>
     </div>
   </div>
