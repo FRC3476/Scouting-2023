@@ -1,30 +1,19 @@
 <?php include("header.php"); ?>
 
-<!-- Image and text -->
-<nav class="navbar navbar-expand-lg navbar-dark orange" role="navigation">
-  <a class="navbar-brand" href="#">
-    <img src="images/Logo.png" height="40" class="d-inline-block align-top" alt="">
-
-  </a>
-  <div class="container">
-    <!-- Drop down button for small screens -->
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
+<nav class="navbar navbar-expand-lg custom-nav">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="images/Logo.png" height="40" class="d-inline-block align-top" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <!-- Left justified logo/text -->
-    <div class="navbar-header">
-      <a class="navbar-brand" href="index.php" style="color:Black;">
-        Scouting 2023
-      </a>
-    </div>
-    <!-- What goes under the drop down button/rest of navbar -->
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-left">
-        <li><a href="admin.php" style="color:Black;">Admin</a></li>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="admin.php">Admin</a>
+        </li>
       </ul>
-    </div> 
+    </div>
   </div>
 </nav>

@@ -10,13 +10,12 @@ class dbHandler
   private $conn = null;
   private $alreadyConnected = false;
   
-  private $settings = new siteSettings();
-  
+  public $settings;
   
   private $tableMapping = array(
     'datatable' => array(
       'keys' => array(
-        'key' => 'VARCHAR(60) NOT NULL PRIMARY KEY',
+        'matchKey' => 'VARCHAR(60) NOT NULL PRIMARY KEY',
         'scout' => 'VARCHAR(60) NOT NULL',
         'matchNumber' => 'VARCHAR(10) NOT NULL',
         'teamNumber' => 'VARCHAR(10) NOT NULL',
@@ -47,23 +46,31 @@ class dbHandler
       )
     )
   );
+  
+  function __construct(){
+    $this->settings = new siteSettings();
+  }
+  
+  function refreshSettings(){
+    $this->settings = new siteSettings();
+  }
 
   function connectToDB(){
     if (!$this->alreadyConnected){
-      $dsn = 'mysql:host=' . $this->get('server') . ';dbname=' . $this->get('db') . ';charset=' . $this->charset;
+      $dsn = 'mysql:host=' . $this->settings->get('server') . ';dbname=' . $this->settings->get('db') . ';charset=' . $this->charset;
       $opt = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES   => false
       ];
-      $this->conn = new PDO($dsn, $this->get('username'), $this->get('password'), $opt);
+      $this->conn = new PDO($dsn, $this->settings->get('username'), $this->settings->get('password'), $opt);
       $this->alreadyConnected = true;
     }
     return ($this->conn);
   }
 
   function connectToServer(){
-    $dsn = 'mysql:host=' . $this->get('server') . ';charset=' . $this->charset;
+    $dsn = 'mysql:host=' . $this->settings->get('server') . ';charset=' . $this->charset;
     $opt = [
       PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
       PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -71,18 +78,19 @@ class dbHandler
     ];
     $this->alreadyConnected = true;
 
-    return (new PDO($dsn, $this->get('username'), $this->get('password'), $opt));
+    return (new PDO($dsn, $this->settings->get('username'), $this->settings->get('password'), $opt));
   }
   
   function writeRowToTable($tableType, $data){
-    $tableName = $this->get($tableType);
+    $this->connectToDB();
+    $tableName = $this->settings->get($tableType);
     $keySql = '';
     $valueSql = '';
     $first = true;
     foreach ($this->tableMapping[$tableType]['keys'] as $dataName => $dataType){
       if (!$first){
-        $keySql .= ', '
-        $valueSql .= ', '
+        $keySql .= ', ';
+        $valueSql .= ', ';
       }
       $first = false;
       
@@ -96,25 +104,27 @@ class dbHandler
     $prepared_statement->execute($data);
   }
 
-  function readAllData($tableType){
-    $sql = 'SELECT * FROM ' . $this->get($tableType);
+  function readAllData($tableName){
+    $this->connectToDB();
+    $sql = 'SELECT * FROM ' . $tableName;
     $prepared_statement = $this->conn->prepare($sql);
     $prepared_statement->execute();
     $result = $prepared_statement->fetchAll();
-    return $this->enforceDataTyping($result);
+    return $result;
   }
   
-  function readSomeData($tableType, $whereSql){
-    $sql = 'SELECT * FROM ' . $this->get($tableType) . ' WHERE ' . $whereSql;
+  function readSomeData($tableName, $whereSql){
+    $this->connectToDB();
+    $sql = 'SELECT * FROM ' . $tableName . ' WHERE ' . $whereSql;
     $prepared_statement = $this->conn->prepare($sql);
     $prepared_statement->execute();
     $result = $prepared_statement->fetchAll();
-    return $this->enforceDataTyping($result);
+    return $result;
   }
 
   function createDB(){
     $connection = $this->connectToServer();
-    $statement = $connection->prepare('CREATE DATABASE IF NOT EXISTS ' . $this->get('db'));
+    $statement = $connection->prepare('CREATE DATABASE IF NOT EXISTS ' . $this->settings->get('db'));
     if (!$statement->execute()){
       throw new Exception('createDB Error: CREATE DATABASE query failed.');
     }
@@ -132,45 +142,56 @@ class dbHandler
       
       $createSql .= $dataName . ' ' . $dataType;
     }
-    $sql = 'CREATE TABLE ' . $this->get('db') . '.' . $this->get($tableType) . ' (' . $createSql . ')';
-    $statement = $conn->prepare($query);
-    if (!$statement->execute()){
-      throw new Exception('createTable Error: CREATE TABLE ' . $this->get('db') . '.' . $this->get($tableType) . ' query failed.');
-    }
+    $sql = 'CREATE TABLE ' . $this->settings->get('db') . '.' . $this->settings->get($tableType) . ' (' . $createSql . ')';
+    error_log($sql);
+    $statement = $conn->prepare($sql);
+    // if (!$statement->execute()){
+    //  throw new Exception('createTable Error: CREATE TABLE ' . $this->settings->get('db') . '.' . $this->settings->get($tableType) . ' query failed.');
+    // }
   }
   
   function createAllTables(){
     foreach ($this->tableMapping as $tableType => $tableValues){
-      $this->createTable($tableType);
+      try{
+        try {
+          $this->createTable($tableType);
+        }
+        catch (Exception $e){
+          error_log($e);
+        }
+      }
+      catch (Error $f){
+        error_log($f);
+      }
     }
   }
   
   function getServerExists(){
-    try{$this->connectToServer($tableName);}
-    catch (PDOException $e){return false;}
+    try{$this->connectToServer();}
+    catch (Exception $e){return false;}
     return true;
   }
   
   function getDatabaseExists(){
-    try{$this->connectToDB($tableName);}
-    catch (PDOException $e){return false;}
+    try{$this->connectToDB();}
+    catch (Exception $e){return false;}
     return true;
   }
   
   function getTableExists($tableName){
     try{$this->readAllData($tableName);}
-    catch (PDOException $e){return false;}
+    catch (Exception $e){return false;}
     return true;
   }
   
   function getStatus(){
     $status = $this->settings->getSanitizedConfig();
-    foreach ($this->tableMapping[$tableType] as $key => $value){
+    foreach ($this->tableMapping as $key => $value){
       $statusKey = $key . 'Exists';
-      $status[$statusKey] = $this->getTableExists($this->get($key));
+      $status[$statusKey] = $this->getTableExists($this->settings->get($key));
     }
     $status['serverExists'] = $this->getServerExists();
-    $status['dbExists'] = $this->getDatabaseExists;
+    $status['dbExists'] = $this->getDatabaseExists();
     return $status;
   }
 }

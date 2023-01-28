@@ -8,10 +8,10 @@ class siteSettings{
     'eventcode', 'tbakey',
     'datatable', 'tbatable'
   );
-  public settings;
+  public $settings;
   
   function __construct(){
-    $settings = $this->readSettings();
+    $this->settings = $this->readDbConfig();
   }
   
   function readDbConfig(){
@@ -42,7 +42,7 @@ class siteSettings{
     // Build ini file string
     $data = '';
     foreach ($currDBConfig as $key => $value){
-      $data = $data . $key . '=' . $value . '\r\n';
+      $data = $data . $key . '=' . $value . PHP_EOL;
     }
     // Write ini file string to actual file
     if ($fp = fopen($this->dbIniFile, 'w')){
@@ -68,13 +68,13 @@ class siteSettings{
   
   function getSanitizedConfig(){
     $out = array();
-    $out['server']          = $dbConfig['server'];
-    $out['db']              = $dbConfig['db'];
-    $out['username']        = $dbConfig['username'];
-    $out['eventcode']       = $dbConfig['eventcode'];
-    $out['tbakey']          = substr($dbConfig['tbakey'], 0, 3) . '******';
-    $out['datatable']       = $dbConfig['datatable'];
-    $out['tbatable']        = $dbConfig['tbatable'];
+    $out['server']          = $this->settings['server'];
+    $out['db']              = $this->settings['db'];
+    $out['username']        = $this->settings['username'];
+    $out['eventcode']       = $this->settings['eventcode'];
+    $out['tbakey']          = substr($this->settings['tbakey'], 0, 3) . '******';
+    $out['datatable']       = $this->settings['datatable'];
+    $out['tbatable']        = $this->settings['tbatable'];
     return $out;
   }
 }
