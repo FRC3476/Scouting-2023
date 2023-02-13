@@ -97,9 +97,31 @@ class dbHandler
       $keySql .= $dataName;
       $valueSql .= ':' . $dataName;
     }
-    $sql .= ')';
     
     $sql = 'INSERT INTO ' . $tableName . '(' . $keySql . ') VALUES(' . $valueSql . ')';
+    error_log($sql);
+    $prepared_statement = $this->conn->prepare($sql);
+    $prepared_statement->execute($data);
+  }
+
+  function replaceRowInTable($tableType, $data){
+    $this->connectToDB();
+    $tableName = $this->settings->get($tableType);
+    $keySql = '';
+    $valueSql = '';
+    $first = true;
+    foreach ($this->tableMapping[$tableType]['keys'] as $dataName => $dataType){
+      if (!$first){
+        $keySql .= ', ';
+        $valueSql .= ', ';
+      }
+      $first = false;
+      
+      $keySql .= $dataName;
+      $valueSql .= ':' . $dataName;
+    }
+    
+    $sql = 'REPLACE INTO ' . $tableName . '(' . $keySql . ') VALUES(' . $valueSql . ')';
     error_log($sql);
     $prepared_statement = $this->conn->prepare($sql);
     $prepared_statement->execute($data);
