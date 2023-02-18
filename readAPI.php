@@ -18,5 +18,17 @@ if (isset($_POST['readAllMatchData'])){
   echo(json_encode($match_data));
 }
 
+if (isset($_POST['readAllPitScoutData'])){
+  $db = new dbHandler();
+  $match_data = $db->readAllData('pitScouttable');
+  echo(json_encode($match_data));
+}
+
+if (isset($_POST['readAllLSData'])){
+  $db = new dbHandler();
+  $match_data = $db->readAllData('LSTable');
+  echo(json_encode($match_data));
+}
+
 
 ?>

@@ -17,6 +17,8 @@
               <h4>Database Status: <span id="databaseStatus" class="badge bg-warning">Not Connected</span></h4>
               <h4>Data Table Status: <span id="dataTableStatus" class="badge bg-warning">Not Connected</span></h4>
               <h4>TBA Table Status: <span id="tbaTableStatus" class="badge bg-warning">Not Connected</span></h4>
+              <h4>Pit Table Status: <span id="pitScoutTableStatus" class="badge bg-warning">Not Connected</span></h4>
+              <h4>LS Table Status: <span id="LSTableStatus" class="badge bg-warning">Not Connected</span></h4>
               <h4>Server: <span id="serverName" class="badge bg-primary">????</span></h4>
               <h4>Database: <span id="databaseName" class="badge bg-primary">????</span></h4>
               <h4>Username: <span id="userName" class="badge bg-primary">????</span></h4>
@@ -24,6 +26,8 @@
               <h4>Event Code: <span id="eventCode" class="badge bg-primary">????</span></h4>
               <h4>Data Table: <span id="dataTableName" class="badge bg-primary">????</span></h4>
               <h4>TBA Table: <span id="tbaTableName" class="badge bg-primary">????</span></h4>
+              <h4>Pit Scout Table: <span id="pitScoutTableName" class="badge bg-primary">????</span></h4>
+              <h4>LS Table: <span id="LSTableName" class="badge bg-primary">????</span></h4>
             </div>
           </div>
         </div>
@@ -48,6 +52,14 @@
               <div class="mb-3">
                 <label for="writeTBATable" class="form-label">TBA Table Name</label>
                 <input type="text" class="form-control" id="writeTBATable" aria-describedby="writeTBATable">
+              </div>
+              <div class="mb-3">
+                <label for="writePitScoutTable" class="form-label">Pit Scout Table Name</label>
+                <input type="text" class="form-control" id="writePitScoutTable" aria-describedby="writePitScoutTable">
+              </div>
+              <div class="mb-3">
+                <label for="writeLSTable" class="form-label">LS Table Name</label>
+                <input type="text" class="form-control" id="writeLSTable" aria-describedby="writeLSTable">
               </div>
               <div class="mb-3">
                 <label for="writeUsername" class="form-label">User Name</label>
@@ -101,11 +113,15 @@
     $("#eventCode").text(statusArray["eventcode"]);
     $("#dataTableName").text(statusArray["datatable"]);
     $("#tbaTableName").text(statusArray["tbatable"]);
+    $("#pitScoutTableName").text(statusArray["pitScouttable"]);
+    $("#LSTableName").text(statusArray["LSTable"]);
     
     setStatusBadge(statusArray["dbExists"], "databaseStatus");
     setStatusBadge(statusArray["serverExists"], "serverStatus");
     setStatusBadge(statusArray["datatableExists"], "dataTableStatus");
     setStatusBadge(statusArray["tbatableExists"], "tbaTableStatus");
+    setStatusBadge(statusArray["pitScouttableExists"], "pitScoutTableStatus");
+    setStatusBadge(statusArray["LSTableExists"], "LSTableStatus");
     
     console.log(statusArray);
   }
@@ -118,7 +134,9 @@
                         'eventcode' : $('#writeEventCode').val(),
                         'tbakey' : $('#writeTBAKey').val(),
                         'datatable' : $('#writeDataTable').val(),
-                        'tbatable' : $('#writeTBATable').val()};
+                        'tbatable' : $('#writeTBATable').val(),
+                        'pitScouttable' : $('#writePitScoutTable').val(),
+                        'LSTable' : $('#writeLSTable').val()};
     var writeData = {};
     for (const prop in allWriteData){
       if (allWriteData[prop] != ''){

@@ -1,6 +1,7 @@
 <?php
 require('dbHandler.php');
 
+//ADD PIT SCOUT AND LEAD SCOUT TO DOCUMENTATION
 /*
   Valid POST API Requests:
     getConfig - Responds with human readable JSON settings for the site and database.

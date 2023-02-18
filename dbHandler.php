@@ -38,6 +38,29 @@ class dbHandler
         'textComments' => 'TEXT NOT NULL'
       )
     ),
+    'LSTable' => array(
+      'keys' => array(
+        'matchNum' => 'VARCHAR(20) NOT NULL PRIMARY KEY',
+        'team1' => 'SMALLINT NOT NULL',
+        'team2' => 'SMALLINT NOT NULL',
+        'team3' => 'SMALLINT NOT NULL',
+        'team4' => 'SMALLINT NOT NULL',
+        'team5' => 'SMALLINT NOT NULL',
+        'team6' => 'SMALLINT NOT NULL'
+      )
+    ),
+    'pitScouttable' => array(
+      'keys' => array(
+        'autoPath' => 'VARCHAR(60) NOT NULL',
+        'framePerimeterDimensions' => 'VARCHAR(60) NOT NULL',
+        'numBatteries' => 'SMALLINT NOT NULL',
+        'codeLanguage' => 'VARCHAR(10) NOT NULL',
+        'pitComments' => 'VARCHAR(60) NOT NULL',
+        'pitTeamNumber' => 'VARCHAR(5) NOT NULL PRIMARY KEY',
+        'pitTeamName' => 'VARCHAR(60) NOT NULL',
+        'chargedBatteries' => 'SMALLINT NOT NULL'
+      )
+    ),
     'tbatable' => array(
       'keys' => array(
         'requestURI' => 'VARCHAR(100) NOT NULL PRIMARY KEY',

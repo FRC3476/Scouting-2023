@@ -31,5 +31,35 @@ if (isset($_POST['writeSingleMatchData'])){
   echo(json_encode($success));
 }
 
+if (isset($_POST['writePitScoutData'])){
+  $db = new dbHandler();
+  $matchData = json_decode($_POST['writePitScoutData'], true);
+  $success = true;
+  try{
+    $db->writeRowToTable('pitScouttable', $matchData);
+  }
+  catch(Exception $e){
+    error_log($e);
+    $success = false;
+  }
+
+  echo(json_encode($success));
+}
+
+if (isset($_POST['writeLSData'])){
+  $db = new dbHandler();
+  $matchData = json_decode($_POST['writeLSData'], true);
+  $success = true;
+  try{
+    $db->writeRowToTable('LSTable', $matchData);
+  }
+  catch(Exception $e){
+    error_log($e);
+    $success = false;
+  }
+
+  echo(json_encode($success));
+}
+
 
 ?>
