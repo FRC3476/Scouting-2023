@@ -60,6 +60,8 @@
             data.rows.push(temp);
         }
 
+        data.rows.sort(function(a, b){return a[2] - b[2]});
+
         //create table
         function createTable() {
             var table = document.createElement("table");
@@ -84,6 +86,9 @@
             return table;
         }
         document.getElementById("table").appendChild(createTable());
+
+        //figure out if there is data missing
+
     </script>
 </body>
 
