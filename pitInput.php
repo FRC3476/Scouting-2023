@@ -13,6 +13,7 @@
 						<div class="card-header">Pit Scout Form</div>
 						<div class="card-body">
 
+						<div id="alertPlaceholder"></div>
 
 							<a href='pitCheck.php'>
 								<button class="btn btn-primary">
@@ -38,14 +39,11 @@
 							<div class="mb-3">
 								<text class="form-label">Pit organization</text>
 							</div>
-							<div class="col-lg-10">
-								<input type="radio" id="disorganized" name="organization" value="disorganized">
-								<label for="disorganized">1 - Disorganized</label><br>
-								<input type="radio" id="average" name="organization" value="average">
-								<label for="disorganized">3 - Average</label><br>
-								<input type="radio" id="pristine" name="organization" value="pristine">
-								<label for="disorganized">5 - Pristine</label><br>
-							</div>
+							<select name="organized" id="disorganized">
+								<option value="disorganized">1- Disorganized</option>
+								<option value="average">3 - Average</option>
+								<option value="pristine">5 - Pristine</option>
+							</select>
 
 							<div class="mb-3">
 								<br><text class="form-label">How many working batteries did you bring?</text>
@@ -88,7 +86,7 @@
 							</div>
 
 							<div class="col-lg-12 col-sm-12 col-xs-12">
-								<input id="PitScouting" type="submit" class="btn btn-primary" value="Submit Data" onclick="submitButton()">
+								<input id="submit" type="submit" class="btn btn-primary" value="Submit Data" onclick="">
 
 							</div>
 							<br>
@@ -99,26 +97,125 @@
 
 		</div>
 
-		<script>
-			function submitButton() {
-				let data = {};
-				data.pitTeamNumber = document.getElementById("pitTeamNumber").value;
-				data.pitComments = document.getElementById("pitComments").value;
+		<?php include("footer.php"); ?>
 
-				fetch('./writeAPI.php', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/x-www-form-urlencoded'
-					},
-					body: 'writeSingleMatchData='+JSON.stringify(data)
-				})
-				.then(response => response.text())
-				.then(data => console.log(data));
+		<script>
+			function submitData(){
+				/* Gets data from form, validates it, and creates appropriate error messages. 
+
+				Returns:
+				True if successful, false if not.
+				*/
+				clearAlerts();
+				var data = getpitInputData();
+				console.log(data);
+				var validData = validateFormData(data);
+				if (validData){
+					// Create POST request.
+					$.post("writeAPI.php", {
+						"writePitScoutData": JSON.stringify(data)
+					}, function(success) {
+						success = JSON.parse(success);
+						if (success){
+						createSuccessAlert('Form Submitted. Clearing form.');
+						location.reload();
+						}
+						else {
+						createErrorAlert('Form submitted to server but failed to process. Please try again or contact admin.');
+						}
+					})
+					.fail(function (){
+						createErrorAlert('Form submitted but failure on server side. Please try again or contact admin.');
+					});
+				}
 			}
+
+			function createErrorAlert(errorMessage) {
+				/* Creats a Error alert. 
+				
+				Args:
+				  successMessage: String of message to send.
+				*/
+				var alertValue = [`<div class="alert alert-danger alert-dismissible" role="alert">`,
+					`  <div>${errorMessage}</div>`,
+					`  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
+					`</div>`
+				].join('');
+				$('#alertPlaceholder').append(alertValue);
+			}
+
+			function createSuccessAlert(successMessage) {
+				/* Creats a success alert. 
+				
+				Args:
+				  successMessage: String of message to send.
+				*/
+				var alertValue = [`<div class="alert alert-success alert-dismissible" role="alert">`,
+					`  <div>${successMessage}</div>`,
+					`  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
+					`</div>`
+				].join('');
+				$('#alertPlaceholder').append(alertValue);
+			}
+
+			function clearAlerts() {
+				/* Clears all allerts in the placeholder. */
+				$('#alertPlaceholder').empty();
+			}
+
+			function validateFormData(data) {
+				/* Return false and send error if not valid form data.
+				
+				Args:
+				  data: dictionary of values from form.
+				*/
+				var valid = true;
+				if (!data['pitTeamNumber']) {
+					createErrorAlert('Team number not valid.');
+					valid = false;
+				}
+				if (!data['pitTeamName']) {
+					createErrorAlert('Team name not valid.');
+					valid = false;
+				}
+
+				return valid;
+			}
+
+			function clearForm() {
+				$('#pitTeamName').val('');
+				$('#pitTeamNumber').val('');
+				$('#numBatteries').val('');
+				$('#chargedBatteries').val('');
+				$('#codeLanguage').val('Java');
+				$('#autoPath').val('');
+				$('#framePerimeterDimensions').val('');
+				$('#pitComments').val('');
+				$('#disorganized').val('');
+			}
+
+			function getpitInputData() {
+				/* Gets values from HTML form and formats as dictionary. */
+				var data = {};
+				data['pitTeamNumber'] = $('#pitTeamNumber').val();
+				data['pitTeamName'] = $('#pitTeamName').val();
+				data['disorganized'] = $('#disorganized').val();
+				data['numBatteries'] = parseInt($('#numBatteries').val())  || 0;
+				data['chargedBatteries'] = parseInt($('#chargedBatteries').val()) || 0; // Either form input or 0 if no form input
+				data['codeLanguage'] = $('#codeLanguage').val(); // Either form input or 0 if no form input
+				data['autoPath'] = $('#autoPath').val(); // Either form input or 0 if no form input
+				data['framePerimeterDimensions'] = $('#framePerimeterDimensions').val(); // Either form input or 0 if no form input
+				data['pitComments'] = $('#pitComments').val() || ""; // Either form input or 0 if no form input
+				return data;
+			}
+
+			$("#submit").on('click', function(event) {
+    		submitData();
+  			});
 		</script>
 
 
-		<style>
+<style>
 			/* The container */
 			.container2 {
 				display: inline-block;
@@ -187,88 +284,4 @@
 				transform: rotate(45deg);
 			}
 		</style>
-
-
-
-
-
-		<?php include("footer.php"); ?>
-
-		<script>
-			function createErrorAlert(errorMessage) {
-				/* Creats a Error alert. 
-				
-				Args:
-				  successMessage: String of message to send.
-				*/
-				var alertValue = [`<div class="alert alert-danger alert-dismissible" role="alert">`,
-					`  <div>${errorMessage}</div>`,
-					`  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
-					`</div>`
-				].join('');
-				$('#alertPlaceholder').append(alertValue);
-			}
-
-			function createSuccessAlert(successMessage) {
-				/* Creats a success alert. 
-				
-				Args:
-				  successMessage: String of message to send.
-				*/
-				var alertValue = [`<div class="alert alert-success alert-dismissible" role="alert">`,
-					`  <div>${successMessage}</div>`,
-					`  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
-					`</div>`
-				].join('');
-				$('#alertPlaceholder').append(alertValue);
-			}
-
-			function clearAlerts() {
-				/* Clears all allerts in the placeholder. */
-				$('#alertPlaceholder').empty();
-			}
-
-			function validateFormData(data) {
-				/* Return false and send error if not valid form data.
-				
-				Args:
-				  data: dictionary of values from form.
-				*/
-				var valid = true;
-				if (!data['pitTeamNumber']) {
-					createErrorAlert('Team number not valid.');
-					valid = false;
-				}
-				return valid;
-			}
-
-			function clearForm() {
-				$('#pitTeamName').val('');
-				$('#pitTeamNumber').val('');
-				$('#numBatteries').val('');
-				$('#chargedBatteries').val('');
-				$('#codeLanguage').val('Java');
-				$('#autoPath').val('');
-				$('#framePerimeterDimensions').val('');
-				$('#pitComments').val('');
-			}
-
-
-
-			function getpitInputData() {
-				/* Gets values from HTML form and formats as dictionary. */
-				var data = {};
-				data['pitTeamName'] = $('#pitTeamName').val();
-				data['pitTeamNumber'] = parseInt($('#pitTeamNumber').val());
-				data['numBatteries'] = parseInt($('#numBatteries').val());
-				data['chargedBatteries'] = parseInt($('#chargedBatteries').val()) || 0; // Either form input or 0 if no form input
-				data['codeLanguage'] = parseInt($('#codeLanguage').val()) || 0; // Either form input or 0 if no form input
-				data['autoPath'] = parseInt($('#autoPath').val()) || 0; // Either form input or 0 if no form input
-				data['framePerimeterDimensions'] = parseInt($('#framePerimeterDimensions').val()) || 0; // Either form input or 0 if no form input
-				data['pitComments'] = parseInt($('#pitComments').val()) || 0; // Either form input or 0 if no form input
-				return data;
-			}
-			console.log(pitTeamName);
-		</script>
-
 </html>
