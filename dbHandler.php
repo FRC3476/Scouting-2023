@@ -26,16 +26,16 @@ class dbHandler
         'autoCubeLevel1' => 'SMALLINT NOT NULL',
         'autoCubeLevel2' => 'SMALLINT NOT NULL',
         'autoCubeLevel3' => 'SMALLINT NOT NULL',
-        'autoChargeStation' => 'VARCHAR(60) NOT NULL',
+        'autoChargeStation' => 'VARCHAR(60) NULL',
         'teleopConeLevel1' => 'SMALLINT NOT NULL',
         'teleopConeLevel2' => 'SMALLINT NOT NULL',
         'teleopConeLevel3' => 'SMALLINT NOT NULL',
         'teleopCubeLevel1' => 'SMALLINT NOT NULL',
         'teleopCubeLevel2' => 'SMALLINT NOT NULL',
         'teleopCubeLevel3' => 'SMALLINT NOT NULL',
-        'teleopChargeStation' => 'VARCHAR(60) NOT NULL',
-        'cannedComments' => 'TEXT NOT NULL',
-        'textComments' => 'TEXT NOT NULL'
+        'teleopChargeStation' => 'VARCHAR(60) NULL',
+        'cannedComments' => 'TEXT NULL',
+        'textComments' => 'TEXT NULL'
       )
     ),
     'LSTable' => array(
