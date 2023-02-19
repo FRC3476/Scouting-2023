@@ -19,6 +19,15 @@
         <li class="nav-item">
           <a class="nav-link" href="tableMatchData.php">Match Data</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pitInput.php">Pit Input</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pictureUpload.php">Picture Upload</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pitCheck.php">Pit Check</a>
+        </li>
       </ul>
     </div>
   </div>
