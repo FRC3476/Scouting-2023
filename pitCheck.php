@@ -41,8 +41,8 @@
 					<th>Pit Scouted?</th>
 					<th>Picture Taken?</th>		
 				</tr>
-				<tr>
-					<td>team number</td>
+				<tr id="template" hidden>
+					<td id="number"></td>
 					<td><select name="pitScoutedDropDown" id="pitScoutedDropDown">
 								<option value="yes">Yes</option>
 								<option value="no">No</option>
@@ -56,4 +56,21 @@
 		</div>
 	</div>
 </body>
+<script>
+		fetch('http://localhost/tbaAPI.php?getTeamList=1')
+		.then(response => response.json())
+            .then((teams) => {
+				var temp = document.getElementById("template").innerHTML;
+				for (var i in teams) {
+					var row = document.createElement("tr");
+					row.innerHTML = temp;
+					console.log(row);
+					row.getElementsByTagName("td")[0].innerText = teams[i];
+					document.getElementById("RawData").appendChild(row);
+				}
+			});
+	
+	
+</script>
+
 <?php include("footer.php") ?>
