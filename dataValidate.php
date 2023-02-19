@@ -50,12 +50,15 @@
         ?>
 
         let data = {};
-        data.headers = [];
-
-        console.log(raw[0].keys);
-
-        data.rows = raw;
-
+        data.headers = Object.keys(raw[0]);
+        data.rows = [];
+        for (var row = 0; row < raw.length; row++) {
+            var temp = [];
+            for (var col = 0; col < data.headers.length; col++) {
+                temp.push(raw[row][data.headers[col]]);
+            }
+            data.rows.push(temp);
+        }
 
         //create table
         function createTable() {
