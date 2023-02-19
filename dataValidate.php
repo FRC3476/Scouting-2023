@@ -47,7 +47,7 @@
         }
         curl_close($ch);
 
-        echo "raw = ".$result."";
+        echo "raw = " . $result . "";
         ?>
 
         let data = {};
@@ -62,7 +62,9 @@
             data.rows.push(temp);
         }
 
-        data.rows.sort(function(a, b){return a[orderBy] - b[orderBy]});
+        data.rows.sort(function(a, b) {
+            return a[orderBy] - b[orderBy]
+        });
 
         //check if rows are missing
         let matches = {};
@@ -128,10 +130,34 @@
             div.appendChild(document.createElement("br"));
             box.appendChild(div);
         }
+
+        function httpRequest(adr) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", adr, false);
+            xhttp.send();
+            return xhttp.responseText;
+        }
+
+        var teams = httpRequest("/tbaAPI.php?getTeamList=1");
+        if (!teams) createError("Error with TBA API");
+        teams = JSON.parse(teams);
+        
+
         for (var r in data.rows) {
-            if(matches[data.rows[r][orderBy]] < 0) {
+            if (matches[data.rows[r][orderBy]] < 0) {
                 createError(`Match #${data.rows[r][orderBy]} has more than 6 scouting inputs`);
             }
+
+            var team = data.rows[r][3];
+            var found = false;
+            for (var t in teams) {
+                if (teams[t] == team) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found && data.rows[r][1] != "MISSING") createError("Team "+team+" not in Event in match "+data.rows[r][orderBy]);
+
         }
     </script>
 </body>
