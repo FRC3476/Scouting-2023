@@ -25,17 +25,14 @@
 								</button>
 							</a>
 
-
 							<div class="mb-3">
 								<text class="form-label">Team Number: </text>
-								<input type="text" class="form-control" id="pitTeamNumber" name="pitTeamNumber"
-									placeholder=" ">
+								<input type="text" class="form-control" id="pitTeamNumber" name="pitTeamNumber" placeholder=" ">
 							</div>
 
 							<div class="mb-3">
 								<text class="form-label">Team Name: </text>
-								<input type="text" class="form-control" id="pitTeamName" name="pitTeamName"
-									placeholder=" ">
+								<input type="text" class="form-control" id="pitTeamName" name="pitTeamName" placeholder=" ">
 							</div>
 
 							<div class="mb-3">
@@ -52,14 +49,12 @@
 
 							<div class="mb-3">
 								<br><text class="form-label">How many working batteries did you bring?</text>
-								<input type="text" class="form-control" id="numBatteries" name="numBatteries"
-									placeholder=" ">
+								<input type="text" class="form-control" id="numBatteries" name="numBatteries" placeholder=" ">
 							</div>
 
 							<div class="mb-3">
 								<text class="form-label">How many batteries can you charge at once?</text>
-								<input type="number" class="form-control" id="chargedBatteries" name="chargedBatteries"
-									placeholder=" ">
+								<input type="number" class="form-control" id="chargedBatteries" name="chargedBatteries" placeholder=" ">
 								<br>
 							</div>
 
@@ -82,21 +77,18 @@
 							<div class="col-lg-2">
 								<br><text class="form-label">What are your frame perimeter dimensions with your bumper
 									on?</text>
-								<input type="text" class="form-control" id="framePerimeterDimensions"
-									name="framePerimeterDimensions" placeholder=" ">
+								<input type="text" class="form-control" id="framePerimeterDimensions" name="framePerimeterDimensions" placeholder=" ">
 								<br>
 							</div>
 
 							<div class="col-lg-2">
 								<br><text class="form-label">Other Comments:</text>
-								<input type="text" class="form-control" id="pitComments" name="pitComments"
-									placeholder=" ">
+								<input type="text" class="form-control" id="pitComments" name="pitComments" placeholder=" ">
 								<br>
 							</div>
 
 							<div class="col-lg-12 col-sm-12 col-xs-12">
-								<input id="PitScouting" type="submit" class="btn btn-primary" value="Submit Data"
-									onclick="">
+								<input id="PitScouting" type="submit" class="btn btn-primary" value="Submit Data" onclick="submitButton()">
 
 							</div>
 							<br>
@@ -107,7 +99,23 @@
 
 		</div>
 
+		<script>
+			function submitButton() {
+				let data = {};
+				data.pitTeamNumber = document.getElementById("pitTeamNumber").value;
+				data.pitComments = document.getElementById("pitComments").value;
 
+				fetch('./writeAPI.php', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					},
+					body: 'writeSingleMatchData='+JSON.stringify(data)
+				})
+				.then(response => response.text())
+				.then(data => console.log(data));
+			}
+		</script>
 
 
 		<style>
@@ -187,10 +195,7 @@
 		<?php include("footer.php"); ?>
 
 		<script>
-
-			
-
-function createErrorAlert(errorMessage) {
+			function createErrorAlert(errorMessage) {
 				/* Creats a Error alert. 
 				
 				Args:
@@ -199,7 +204,8 @@ function createErrorAlert(errorMessage) {
 				var alertValue = [`<div class="alert alert-danger alert-dismissible" role="alert">`,
 					`  <div>${errorMessage}</div>`,
 					`  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
-					`</div>`].join('');
+					`</div>`
+				].join('');
 				$('#alertPlaceholder').append(alertValue);
 			}
 
@@ -212,7 +218,8 @@ function createErrorAlert(errorMessage) {
 				var alertValue = [`<div class="alert alert-success alert-dismissible" role="alert">`,
 					`  <div>${successMessage}</div>`,
 					`  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
-					`</div>`].join('');
+					`</div>`
+				].join('');
 				$('#alertPlaceholder').append(alertValue);
 			}
 
@@ -245,7 +252,7 @@ function createErrorAlert(errorMessage) {
 				$('#framePerimeterDimensions').val('');
 				$('#pitComments').val('');
 			}
-			
+
 
 
 			function getpitInputData() {
@@ -262,7 +269,6 @@ function createErrorAlert(errorMessage) {
 				return data;
 			}
 			console.log(pitTeamName);
-
 		</script>
 
 </html>
