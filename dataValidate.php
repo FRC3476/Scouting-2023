@@ -24,6 +24,7 @@
 
 <body>
     <h1>Data Validation Page</h1>
+    <div id="errors"></div><br>
     <div id="table"></div>
     <script>
         //get JSON data from ./readAPI.php
@@ -51,6 +52,7 @@
 
         let data = {};
         data.headers = Object.keys(raw[0]);
+        orderBy = data.headers.indexOf("matchNumber"); //item by which rows are ordered
         data.rows = [];
         for (var row = 0; row < raw.length; row++) {
             var temp = [];
@@ -60,7 +62,32 @@
             data.rows.push(temp);
         }
 
-        data.rows.sort(function(a, b){return a[2] - b[2]});
+        data.rows.sort(function(a, b){return a[orderBy] - b[orderBy]});
+
+        //check if rows are missing
+        let matches = {};
+        for (var r in data.rows) {
+            matches[data.rows[r][orderBy]] = 6;
+        }
+        for (var r in data.rows) {
+            matches[data.rows[r][orderBy]]--;
+        }
+
+        function getRow(matchNum) {
+            var result = -1;
+            for (var i in data.rows) {
+                if (data.rows[i][orderBy] == matchNum) return i;
+            }
+            return result;
+        }
+
+        for (var m in matches) {
+            for (var i = 0; i < matches[m]; i++) {
+                var temp = [m, "MISSING"];
+                data.rows.splice(getRow(m), 0, temp);
+            }
+        }
+        //console.log(data.rows);
 
         //create table
         function createTable() {
@@ -76,8 +103,9 @@
 
             for (var r = 0; r < data.rows.length; r++) {
                 var row = document.createElement("tr");
-                for (var c = 0; c < data.rows[0].length; c++) {
+                for (var c = 0; c < data.rows[r].length; c++) {
                     var column = document.createElement("td");
+
                     column.innerText = data.rows[r][c];
                     row.appendChild(column);
                 }
@@ -88,7 +116,23 @@
         document.getElementById("table").appendChild(createTable());
 
         //figure out if there is data missing
-
+        function createError(str) {
+            var div = document.createElement("div");
+            var box = document.getElementById("errors");
+            var button = document.createElement("button");
+            button.innerText = str;
+            button.onclick = function() {
+                this.parentElement.remove();
+            }
+            div.appendChild(button);
+            div.appendChild(document.createElement("br"));
+            box.appendChild(div);
+        }
+        for (var r in data.rows) {
+            if(matches[data.rows[r][orderBy]] < 0) {
+                createError(`Match #${data.rows[r][orderBy]} has more than 6 scouting inputs`);
+            }
+        }
     </script>
 </body>
 
