@@ -15,6 +15,7 @@
             <div class="card-body">
             
               <div id="alertPlaceholder"></div>
+              
               <ul class="nav nav-tabs" id="matchTabs" role="tablist"> 
                 <li class="nav-item" role="presentation">
                   <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="true">Info</button>
@@ -72,10 +73,12 @@
                       <br>
                       <br>
                       <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeUpper()" id="bigFont">Level 3 <a id="buttonAConeUpper" class="enlargedtext"></a></button>
+                      <br>
+                      <br></br>
                     </div>
                     <br>
                     <br>
-                    <div class="col-md-2">
+                    <div class="col-md-5">
                     <a> Cube </a>
                       <br></br>
                       <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeLower()" id="bigFont">Level 1 <a id="buttonACubeLower" class="enlargedtext"></a></button>
@@ -116,7 +119,7 @@
                   <br>
                   <div class="row">
                     <div class="col-md-5">
-                      <h2 style="text-align: center"> Cone </a>
+                      <h2 style="text-align: center"> Cone </h2>
                       <br></br>
                       <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeLower()" id="bigFont">Level 1 <a id="buttonTConeLower" class="enlargedtext"></a></button>
                       <br>
@@ -125,11 +128,14 @@
                       <br>
                       <br>
                       <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeUpper()" id="bigFont">Level 3 <a id="buttonTConeUpper" class="enlargedtext"></a></button>
+                      <br>
+                      <br>
+                      <button class="disable-dbl-tap-zoom-danger" type="button" onClick="makeTIncrementFalse()" id="bigFont">Subtract: <a id="negativeTIncrementButton" class="enlargedtext"></a></button>
                     </div>
                     <br>
                     <br>
                     <div class="col-md-5">
-                      <a style="text-align: center"> Cube </a>
+                      <h2 style="text-align: center"> Cube </h2>                      
                       <br></br>
                       <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeLower()" id="bigFont">Level 1 <a id="buttonTCubeLower" class="enlargedtext"></a></button>
                       <br>
@@ -138,11 +144,9 @@
                       <br>
                       <br>
                       <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeUpper()" id="bigFont">Level 3 <a id="buttonTCubeUpper" class="enlargedtext"></a></button>
-                      <br>
-                      <br>
                     </div>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-2">
                     <br>
                     <br>
                     <button class="disable-dbl-tap-zoom-danger" type="button" onClick="makeTIncrementFalse()" id="bigFont">Subtract: <a id="negativeTIncrementButton" class="enlargedtext"></a></button>
@@ -611,7 +615,7 @@
 		touch-action: manipulation;
 		background-color: rgb(255,223,0);
 		color: white;
-		border-radius: 2px;
+		border-radius: 2px solid black;
 		font-family: Helvetica;
 		font-weight: bold;
 		/*To get rid of weird 3D affect in some browsers*/
