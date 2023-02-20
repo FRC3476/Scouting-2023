@@ -54,6 +54,7 @@
 <script>
 	var tba = false;
 	var scoutData = false;
+	var picData = false;
 
 	//get team list from TBA
 	var tbaTeams;
@@ -79,18 +80,43 @@
 				scoutData = true;
 			});
 
+					//get pit scout pictures
+		var pictures;
+		fetch('./readAPI.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'getAllPictureFilenames'
+            }).then(response => response.json())
+            .then((pics) => {
+				pictures = pics;
+				picData = true;
+			});
+
 			var loop = setInterval(() => {
-				if (tba && scoutData) {
+				if (tba && scoutData && picData) {
 					clearInterval(loop);
 					buildHTML();
 				}
 			}, 500)
 
-			function getScouted(id) {
+			function isScouted(id) {
 				for (var i in pitTeams) {
 					if (pitTeams[i].pitTeamNumber == id) {
 						return "Yes";
 					}
+				}
+				return "No";
+			}
+
+			function tookPictures(id) {
+				var list = [];
+				for (var i in pictures) {
+					list.push(pictures[i].split(".")[0]);
+				}
+				for (var i in list) {
+					if (list[i] == id) return "Yes";
 				}
 				return "No";
 			}
@@ -101,8 +127,8 @@
 				var row = document.createElement("tr");
 				row.innerHTML = temp;
 				row.getElementsByTagName("td")[0].innerText = tbaTeams[i];
-				row.getElementsByTagName("td")[1].innerText = getScouted(tbaTeams[i]);
-				row.getElementsByTagName("td")[2].innerText = "???";
+				row.getElementsByTagName("td")[1].innerText = isScouted(tbaTeams[i]);
+				row.getElementsByTagName("td")[2].innerText = tookPictures(tbaTeams[i]);
 				document.getElementById("RawData").appendChild(row);
 			}
 		}
