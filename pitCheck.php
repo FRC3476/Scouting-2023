@@ -41,19 +41,46 @@
 					<th>Pit Scouted?</th>
 					<th>Picture Taken?</th>		
 				</tr>
-				<tr>
-					<td>team number</td>
-					<td><select name="pitScoutedDropDown" id="pitScoutedDropDown">
-								<option value="yes">Yes</option>
-								<option value="no">No</option>
-							</select></td>
-							<td><select name="pictureTakenDropDown" id="pictureTakenDropDown">
-								<option value="yes">Yes</option>
-								<option value="no">No</option>
-							</select></td>
+				<tr id="template" hidden>
+					<td id="number" class="team"></td>
+					<td id="Scouted"></td>
+					<td id="Picture"></td>
 				</tr>
         
 		</div>
 	</div>
+	<div id="script"></div>
 </body>
+<script>
+		fetch('http://localhost/tbaAPI.php?getTeamList=1')
+		.then(response => response.json())
+            .then((teams) => {
+				var temp = document.getElementById("template").innerHTML;
+				for (var i in teams) {
+					var row = document.createElement("tr");
+					row.innerHTML = temp;
+					console.log(row);
+					row.getElementsByTagName("td")[0].innerText = teams[i];
+					row.getElementsByTagName("td")[1].innerText = getScouted(teams[i]);
+					row.getElementsByTagName("td")[2].innerText = getPicture(teams[i]);
+					document.getElementById("RawData").appendChild(row);
+				}
+			});
+	function getScouted(teamNumber){
+		const request = new XMLHttpRequest();
+		request.open('POST', '/readAPI.php?readAllPitScoutData', false);  // `false` makes the request synchronous
+		request.send(null);
+		if(teamNumber == 3476){
+			return "Yes";
+		}else{
+			return "No";
+		}
+	}
+	function getPicture(teamNumber){
+		return "No";
+	}
+	
+	
+</script>
+
 <?php include("footer.php") ?>
