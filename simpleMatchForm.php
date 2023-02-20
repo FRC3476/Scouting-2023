@@ -15,7 +15,7 @@
             <div class="card-body">
             
               <div id="alertPlaceholder"></div>
-              
+
               <ul class="nav nav-tabs" id="matchTabs" role="tablist"> 
                 <li class="nav-item" role="presentation">
                   <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="true">Info</button>
@@ -25,6 +25,9 @@
                 </li>
                 <li class="nav-item" role="presentation">
                   <button class="nav-link" id="teleop-tab" data-bs-toggle="tab" data-bs-target="#teleop-tab-pane" type="button" role="tab" aria-controls="teleop-tab-pane" aria-selected="false">Teleop Scouting</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="teleop-tab" data-bs-toggle="tab" data-bs-target="#endgame-tab-pane" type="button" role="tab" aria-controls="endgame-tab-pane" aria-selected="false">Endgame</button>
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
@@ -46,8 +49,6 @@
                     <label for="teamNumber" class="form-label">Team Number</label>
                     <input type="text" class="form-control" id="teamNumber" aria-describedby="teamNumber">
                   </div>
-                  <br>
-                  <br>
                 </div>
 
                 <!--Auto Scouting-->
@@ -64,7 +65,7 @@
                   <br>
                   <div class="row">
                     <div class="col-md-5">
-                    <a> Cone </a>
+                      <h2 style="text-align: center"> Cone </h2>
                       <br></br>
                       <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeLower()" id="bigFont">Level 1 <a id="buttonAConeLower" class="enlargedtext"></a></button>
                       <br>
@@ -74,12 +75,12 @@
                       <br>
                       <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeUpper()" id="bigFont">Level 3 <a id="buttonAConeUpper" class="enlargedtext"></a></button>
                       <br>
-                      <br></br>
+                      <br>
                     </div>
                     <br>
                     <br>
                     <div class="col-md-5">
-                    <a> Cube </a>
+                      <h2 style="text-align: center"> Cube </h2>                      
                       <br></br>
                       <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeLower()" id="bigFont">Level 1 <a id="buttonACubeLower" class="enlargedtext"></a></button>
                       <br>
@@ -109,8 +110,6 @@
                       <option value="ENGAGED">Engaging with Charge Station</option>
                     </select>
                   </div>
-                  <br>
-                  <br>
                 </div>
 
                 <!--Teleop Scouting-->
@@ -130,7 +129,6 @@
                       <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeUpper()" id="bigFont">Level 3 <a id="buttonTConeUpper" class="enlargedtext"></a></button>
                       <br>
                       <br>
-                      <button class="disable-dbl-tap-zoom-danger" type="button" onClick="makeTIncrementFalse()" id="bigFont">Subtract: <a id="negativeTIncrementButton" class="enlargedtext"></a></button>
                     </div>
                     <br>
                     <br>
@@ -150,11 +148,10 @@
                     <br>
                     <br>
                     <button class="disable-dbl-tap-zoom-danger" type="button" onClick="makeTIncrementFalse()" id="bigFont">Subtract: <a id="negativeTIncrementButton" class="enlargedtext"></a></button>
-                    <br>
-                    <br>
                   </div>
-                  <br>
-                  <br>
+                </div>
+                <!--Endgame Scouting-->
+                <div class="tab-pane fade" id="endgame-tab-pane" role="tabpanel" aria-labelledby="endgame-tab" tabindex="0">
                   <div class="mb-3">
                     <label for="teleopChargeStation" class="form-label">Teleop Charge Station State</label>
                     <select id="teleopChargeStation" class="form-select" aria-label="Asd">
@@ -182,7 +179,7 @@
                     <span class="badge rounded-pill text-bg-primary cannedComments">Can Pick Up Fallen Cones</span>
                     <span class="badge rounded-pill text-bg-primary cannedComments">Good Defense</span>
                     <span class="badge rounded-pill text-bg-primary cannedComments">Bad Defense</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Can Auto-Balance</span>
+                    <span class="badge rounded-pill text-bg-primary cannedComments">Can Balance in Auto</span>
                     <span class="badge rounded-pill text-bg-primary cannedComments">Floor Pickup</span>
                     <span class="badge rounded-pill text-bg-primary cannedComments">Human Player Pick</span>
                     <span class="badge rounded-pill text-bg-primary cannedComments">DNP</span>
@@ -199,8 +196,7 @@
                   <div class="col-md-3">
                     <button id="submit" class="btn btn-primary">Submit</button>
                   </div>
-                  <br>
-                  <br>
+                </div> 
                 </div>
               </div>
             </div>
@@ -633,7 +629,7 @@
 		/*To get rid of weird 3D affect in some browsers*/
 		border: solid rgb(245, 108, 108);
 		height: 50px;
-		width: 1000px;
+		width: 500px;
 	}
   
 </style>
