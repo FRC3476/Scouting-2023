@@ -38,13 +38,13 @@
                                     <div class="form-group">
                                         <text class="col-lg-2 control-label">Team Number: </text>
                                         <div class="col-lg-10">
-                                            <input type="text" class="form-control" id="teamNumber" name="teamNumber" placeholder=" ">
+                                            <input type="number" class="form-control" id="teamNumber" name="teamNumber" placeholder=" " required>
                                         </div>
                                     </div>
                                     <br>
                                     <div class="col-lg-12 col-sm-12 col-xs-12">
                                         Select images to upload:
-                                        <input type="file" name="fileToUpload" multiple id="fileToUpload">
+                                        <input type="file" name="fileToUpload" multiple id="fileToUpload" required>
                                         <input type="text" name="pitPictureUpload" value="1" hidden>
                                         <input id="PitScouting" type="submit" class="btn btn-primary" value="Submit Data" onclick="">
                                 </form>
