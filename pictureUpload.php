@@ -10,7 +10,8 @@
 <body class="bg-body">
   <script>
     const url = new URLSearchParams(window.location.search);
-    alert(url.get("message"));
+    var message = url.get("message");
+    if (message) alert(message);
     </script>
     <div class="container row-offcanvas row-offcanvas-left">
         <div class="well column col-lg-12 col-sm-12 col-xs-12" id="content">
