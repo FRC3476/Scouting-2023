@@ -10,7 +10,15 @@
 	<script src="sorttable.js"></script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		.red {
+			background-color: #ff6969;
+		}
 
+		.green {
+			background-color: #92f763;
+		}
+	</style>
 
 </head>
 
@@ -61,77 +69,83 @@
 	fetch('http://localhost/tbaAPI.php?getTeamList=1')
 		.then(response => response.json())
 		.then((teams) => {
-			teams.sort(function(a, b) { return a - b; });
+			teams.sort(function(a, b) {
+				return a - b;
+			});
 			tbaTeams = teams;
 			tba = true;
 		});
 
-		//get pit scout data
-		var pitTeams;
-		fetch('./readAPI.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: 'readAllPitScoutData'
-            }).then(response => response.json())
-            .then((teams) => {
-				pitTeams = teams;
-				scoutData = true;
-			});
+	//get pit scout data
+	var pitTeams;
+	fetch('./readAPI.php', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: 'readAllPitScoutData'
+		}).then(response => response.json())
+		.then((teams) => {
+			pitTeams = teams;
+			scoutData = true;
+		});
 
-					//get pit scout pictures
-		var pictures;
-		fetch('./readAPI.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: 'getAllPictureFilenames'
-            }).then(response => response.json())
-            .then((pics) => {
-				pictures = pics;
-				picData = true;
-			});
+	//get pit scout pictures
+	var pictures;
+	fetch('./readAPI.php', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: 'getAllPictureFilenames'
+		}).then(response => response.json())
+		.then((pics) => {
+			pictures = pics;
+			picData = true;
+		});
 
-			var loop = setInterval(() => {
-				if (tba && scoutData && picData) {
-					clearInterval(loop);
-					buildHTML();
-				}
-			}, 500)
+	var loop = setInterval(() => {
+		if (tba && scoutData && picData) {
+			clearInterval(loop);
+			buildHTML();
+		}
+	}, 500)
 
-			function isScouted(id) {
-				for (var i in pitTeams) {
-					if (pitTeams[i].pitTeamNumber == id) {
-						return "Yes";
-					}
-				}
-				return "No";
-			}
-
-			function tookPictures(id) {
-				var list = [];
-				for (var i in pictures) {
-					list.push(pictures[i].split(".")[0]);
-				}
-				for (var i in list) {
-					if (list[i] == id) return "Yes";
-				}
-				return "No";
-			}
-
-		function buildHTML() {
-			var temp = document.getElementById("template").innerHTML;
-			for (var i in tbaTeams) {
-				var row = document.createElement("tr");
-				row.innerHTML = temp;
-				row.getElementsByTagName("td")[0].innerText = tbaTeams[i];
-				row.getElementsByTagName("td")[1].innerText = isScouted(tbaTeams[i]);
-				row.getElementsByTagName("td")[2].innerText = tookPictures(tbaTeams[i]);
-				document.getElementById("RawData").appendChild(row);
+	function isScouted(id) {
+		for (var i in pitTeams) {
+			if (pitTeams[i].pitTeamNumber == id) {
+				return "Yes";
 			}
 		}
+		return "No";
+	}
+
+	function tookPictures(id) {
+		var list = [];
+		for (var i in pictures) {
+			list.push(pictures[i].split(".")[0]);
+		}
+		for (var i in list) {
+			if (list[i] == id) return "Yes";
+		}
+		return "No";
+	}
+
+	function buildHTML() {
+		var temp = document.getElementById("template").innerHTML;
+		for (var i in tbaTeams) {
+			var isRed = false;
+			if (isScouted(tbaTeams[i]) == "No" || tookPictures(tbaTeams[i]) == "No") isRed = true;
+			var row = document.createElement("tr");
+			row.innerHTML = temp;
+			row.getElementsByTagName("td")[0].innerText = tbaTeams[i];
+			row.getElementsByTagName("td")[1].innerText = isScouted(tbaTeams[i]);
+			row.getElementsByTagName("td")[2].innerText = tookPictures(tbaTeams[i]);
+			if (isRed) row.className = "red";
+			else row.className = "green";
+			document.getElementById("RawData").appendChild(row);
+		}
+	}
 </script>
 
 <?php include("footer.php") ?>
