@@ -60,6 +60,7 @@
 	fetch('http://localhost/tbaAPI.php?getTeamList=1')
 		.then(response => response.json())
 		.then((teams) => {
+			teams.sort(function(a, b) { return a - b; });
 			tbaTeams = teams;
 			tba = true;
 		});
@@ -72,7 +73,7 @@
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 body: 'readAllPitScoutData'
-            }).then(response => response)
+            }).then(response => response.json())
             .then((teams) => {
 				pitTeams = teams;
 				scoutData = true;
@@ -85,17 +86,23 @@
 				}
 			}, 500)
 
+			function getScouted(id) {
+				for (var i in pitTeams) {
+					if (pitTeams[i].pitTeamNumber == id) {
+						return "Yes";
+					}
+				}
+				return "No";
+			}
+
 		function buildHTML() {
-			console.log(tbaTeams);
-			console.log(pitTeams);
 			var temp = document.getElementById("template").innerHTML;
-			for (var i in teams) {
+			for (var i in tbaTeams) {
 				var row = document.createElement("tr");
 				row.innerHTML = temp;
-				console.log(row);
-				row.getElementsByTagName("td")[0].innerText = teams[i];
-				row.getElementsByTagName("td")[1].innerText = getScouted(teams[i]);
-				row.getElementsByTagName("td")[2].innerText = getPicture(teams[i]);
+				row.getElementsByTagName("td")[0].innerText = tbaTeams[i];
+				row.getElementsByTagName("td")[1].innerText = getScouted(tbaTeams[i]);
+				row.getElementsByTagName("td")[2].innerText = "???";
 				document.getElementById("RawData").appendChild(row);
 			}
 		}
