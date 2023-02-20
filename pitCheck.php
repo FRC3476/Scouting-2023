@@ -35,52 +35,70 @@
 								</button>
 							</a>
 
-			<table class="sortable table table-hover" id="RawData">
-				<tr>
-					<th>Team Number</th>
-					<th>Pit Scouted?</th>
-					<th>Picture Taken?</th>		
-				</tr>
-				<tr id="template" hidden>
-					<td id="number" class="team"></td>
-					<td id="Scouted"></td>
-					<td id="Picture"></td>
-				</tr>
-        
-		</div>
-	</div>
-	<div id="script"></div>
+							<table class="sortable table table-hover" id="RawData">
+								<tr>
+									<th>Team Number</th>
+									<th>Pit Scouted?</th>
+									<th>Picture Taken?</th>
+								</tr>
+								<tr id="template" hidden>
+									<td id="number" class="team"></td>
+									<td id="Scouted"></td>
+									<td id="Picture"></td>
+								</tr>
+
+						</div>
+					</div>
+					<div id="script"></div>
 </body>
 <script>
-		fetch('http://localhost/tbaAPI.php?getTeamList=1')
+	var tba = false;
+	var scoutData = false;
+
+	//get team list from TBA
+	var tbaTeams;
+	fetch('http://localhost/tbaAPI.php?getTeamList=1')
 		.then(response => response.json())
+		.then((teams) => {
+			tbaTeams = teams;
+			tba = true;
+		});
+
+		//get pit scout data
+		var pitTeams;
+		fetch('./readAPI.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'readAllPitScoutData'
+            }).then(response => response)
             .then((teams) => {
-				var temp = document.getElementById("template").innerHTML;
-				for (var i in teams) {
-					var row = document.createElement("tr");
-					row.innerHTML = temp;
-					console.log(row);
-					row.getElementsByTagName("td")[0].innerText = teams[i];
-					row.getElementsByTagName("td")[1].innerText = getScouted(teams[i]);
-					row.getElementsByTagName("td")[2].innerText = getPicture(teams[i]);
-					document.getElementById("RawData").appendChild(row);
-				}
+				pitTeams = teams;
+				scoutData = true;
 			});
-	function getScouted(teamNumber){
-		const request = new XMLHttpRequest();
-		request.open('POST', '/readAPI.php?readAllPitScoutData', false);  // `false` makes the request synchronous
-		request.send(null);
-		if(teamNumber == 3476){
-			return "Yes";
-		}else{
-			return "No";
+
+			var loop = setInterval(() => {
+				if (tba && scoutData) {
+					clearInterval(loop);
+					buildHTML();
+				}
+			}, 500)
+
+		function buildHTML() {
+			console.log(tbaTeams);
+			console.log(pitTeams);
+			var temp = document.getElementById("template").innerHTML;
+			for (var i in teams) {
+				var row = document.createElement("tr");
+				row.innerHTML = temp;
+				console.log(row);
+				row.getElementsByTagName("td")[0].innerText = teams[i];
+				row.getElementsByTagName("td")[1].innerText = getScouted(teams[i]);
+				row.getElementsByTagName("td")[2].innerText = getPicture(teams[i]);
+				document.getElementById("RawData").appendChild(row);
+			}
 		}
-	}
-	function getPicture(teamNumber){
-		return "No";
-	}
-	
-	
 </script>
 
 <?php include("footer.php") ?>
