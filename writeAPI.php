@@ -33,6 +33,10 @@ if (isset($_POST['writeSingleMatchData'])){
 
 if (isset($_POST['writePitScoutData'])){
   $db = new dbHandler();
+  //create pitScouttable if it doesn't exist
+  if (!$db->getTableExists("pitScouttable")) {
+    $db->createTable("pitScouttable");
+  }
   $matchData = json_decode($_POST['writePitScoutData'], true);
   $success = true;
   try{
