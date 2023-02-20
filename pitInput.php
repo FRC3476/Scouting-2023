@@ -131,6 +131,7 @@
 			}
 
 			function createErrorAlert(errorMessage) {
+				alert(errorMessage);
 				/* Creats a Error alert. 
 				
 				Args:
