@@ -30,5 +30,12 @@ if (isset($_POST['readAllLSData'])){
   echo(json_encode($match_data));
 }
 
+if (isset($_POST['getAllPictureFilenames'])){
+  $path = "uploads";
+  $names = array_diff(scandir($path), array('.', '..'));
+  $result = implode('", "', $names);
+  $result = '["'.$result.'"]';
+  echo $result;
+}
 
 ?>
