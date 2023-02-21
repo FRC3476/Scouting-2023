@@ -1,6 +1,17 @@
 <?php
 require('dbHandler.php');
 
+function getOrPost($key){
+  /* If GET key or POST key exists, return the value. If not, return null. */
+  if (isset($_GET[$key])){
+    return $_GET[$key];
+  }
+  if (isset($_POST[$key])){
+    return $_POST[$key];
+  }
+  return null;
+}
+
 /*
   Valid POST API Requests:
     readAllMatchData:
@@ -12,25 +23,25 @@ require('dbHandler.php');
           'textComments' : ''}]
 */
 
-if (isset($_POST['readAllMatchData'])){
+if (getOrPost('readAllMatchData')){
   $db = new dbHandler();
   $match_data = $db->readAllData('datatable');
   echo(json_encode($match_data));
 }
 
-if (isset($_POST['readAllPitScoutData'])){
+if (getOrPost('readAllPitScoutData')){
   $db = new dbHandler();
   $match_data = $db->readAllData('pitScouttable');
   echo(json_encode($match_data));
 }
 
-if (isset($_POST['readAllLSData'])){
+if (getOrPost('readAllLSData')){
   $db = new dbHandler();
   $match_data = $db->readAllData('LSTable');
   echo(json_encode($match_data));
 }
 
-if (isset($_POST['getAllPictureFilenames'])){
+if (getOrPost('getAllPictureFilenames')){
   $path = "uploads";
   $names = array_diff(scandir($path), array('.', '..'));
   $result = implode('", "', $names);

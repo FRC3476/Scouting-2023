@@ -3,12 +3,6 @@
 
 <head>
 
-	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="bootstrap-material-design-master/dist/css/ripples.min.css" rel="stylesheet">
-	<link href="bootstrap-material-design-master/dist/css/material-wfont.min.css" rel="stylesheet">
-	<script src="jquery-1.11.2.min.js"></script>
-	<script src="sorttable.js"></script>
-
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
 		.red {
@@ -66,7 +60,7 @@
 
 	//get team list from TBA
 	var tbaTeams;
-	fetch('http://localhost/tbaAPI.php?getTeamList=1')
+	fetch('./tbaAPI.php?getTeamList=1')
 		.then(response => response.json())
 		.then((teams) => {
 			teams.sort(function(a, b) {
@@ -78,13 +72,8 @@
 
 	//get pit scout data
 	var pitTeams;
-	fetch('./readAPI.php', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body: 'readAllPitScoutData'
-		}).then(response => response.json())
+	fetch('./readAPI.php?readAllPitScoutData=1')
+		.then(response => response.json())
 		.then((teams) => {
 			pitTeams = teams;
 			scoutData = true;
@@ -92,13 +81,8 @@
 
 	//get pit scout pictures
 	var pictures;
-	fetch('./readAPI.php', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body: 'getAllPictureFilenames'
-		}).then(response => response.json())
+	fetch('./readAPI.php?getAllPictureFilenames=1')
+		.then(response => response.json())
 		.then((pics) => {
 			pictures = pics;
 			picData = true;
