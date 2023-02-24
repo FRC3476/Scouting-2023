@@ -18,7 +18,7 @@
 
               <ul class="nav nav-tabs" id="matchTabs" role="tablist"> 
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="true">Info</button>
+                  <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-tab-pane" type="button" role="tab" aria-controls="login-tab-pane" aria-selected="true">Log-in</button>
                 </li>
                 <li class="nav-item" role="presentation">
                   <button class="nav-link" id="auto-tab" data-bs-toggle="tab" data-bs-target="#auto-tab-pane" type="button" role="tab" aria-controls="auto-tab-pane" aria-selected="false">Auto Scouting</button>
@@ -31,8 +31,8 @@
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
-                <!--Info Tab-->
-                <div class="tab-pane fade show active" id="info-tab-pane" role="tabpanel" aria-labelledby="info-tab" tabindex="0"> 
+                <!--Login Tab-->
+                <div class="tab-pane fade show active" id="login-tab-pane" role="tabpanel" aria-labelledby="login-tab" tabindex="0"> 
                   <br>
                   <br>
                   <div class="mb-3">
@@ -54,7 +54,6 @@
                 <!--Auto Scouting-->
                 <div class="tab-pane fade" id="auto-tab-pane" role="tabpanel" aria-labelledby="auto-tab" tabindex="0">
                   <br>
-                  <br>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="autoMobility">
                     <label class="form-check-label" for="autoMobility">
@@ -62,45 +61,30 @@
                     </label>
                   </div>
                   <br>
-                  <br>
                   <div class="row">
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cone </h2>
-                      <br></br>
                       <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeLower()" id="bigFont">Level 1 <a id="buttonAConeLower" class="enlargedtext"></a></button>
-                      <br>
                       <br>
                       <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeMid()" id="bigFont">Level 2 <a id="buttonAConeMid" class="enlargedtext"></a></button>
                       <br>
-                      <br>
                       <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeUpper()" id="bigFont">Level 3 <a id="buttonAConeUpper" class="enlargedtext"></a></button>
                       <br>
-                      <br>
                     </div>
-                    <br>
-                    <br>
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cube </h2>                      
-                      <br></br>
                       <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeLower()" id="bigFont">Level 1 <a id="buttonACubeLower" class="enlargedtext"></a></button>
-                      <br>
                       <br>
                       <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeMid()" id="bigFont">Level 2 <a id="buttonACubeMid" class="enlargedtext"></a></button>
                       <br>
-                      <br>
                       <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeUpper()" id="bigFont">Level 3 <a id="buttonACubeUpper" class="enlargedtext"></a></button>
-                      <br>
                       <br>
                     </div>
                   </div>
                   <div class="col-md-3">
                     <br>
-                    <br>
                     <button class="disable-dbl-tap-zoom-danger" type="button" onClick="makeIncrementFalse()" id="bigFont">Subtract: <a id="negativeAIncrementButton" class="enlargedtext"></a></button>
-                    <br>
-                    <br>
                   </div>
-                  <br>
                   <br>
                   <div class="mb-3">
                     <label for="autoChargeStation" class="form-label">Auto Charge Station State</label>
@@ -119,39 +103,31 @@
                   <div class="row">
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cone </h2>
-                      <br></br>
                       <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeLower()" id="bigFont">Level 1 <a id="buttonTConeLower" class="enlargedtext"></a></button>
-                      <br>
                       <br>
                       <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeMid()" id="bigFont">Level 2 <a id="buttonTConeMid" class="enlargedtext"></a></button>
                       <br>
-                      <br>
                       <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeUpper()" id="bigFont">Level 3 <a id="buttonTConeUpper" class="enlargedtext"></a></button>
-                      <br>
                       <br>
                     </div>
                     <br>
-                    <br>
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cube </h2>                      
-                      <br></br>
                       <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeLower()" id="bigFont">Level 1 <a id="buttonTCubeLower" class="enlargedtext"></a></button>
                       <br>
-                      <br>
                       <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeMid()" id="bigFont">Level 2 <a id="buttonTCubeMid" class="enlargedtext"></a></button>
-                      <br>
                       <br>
                       <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeUpper()" id="bigFont">Level 3 <a id="buttonTCubeUpper" class="enlargedtext"></a></button>
                     </div>
                   </div>
-                  <div class="col-md-2">
-                    <br>
+                  <div class="center">
                     <br>
                     <button class="disable-dbl-tap-zoom-danger" type="button" onClick="makeTIncrementFalse()" id="bigFont">Subtract: <a id="negativeTIncrementButton" class="enlargedtext"></a></button>
                   </div>
                 </div>
                 <!--Endgame Scouting-->
                 <div class="tab-pane fade" id="endgame-tab-pane" role="tabpanel" aria-labelledby="endgame-tab" tabindex="0">
+                  <br>
                   <div class="mb-3">
                     <label for="teleopChargeStation" class="form-label">Teleop Charge Station State</label>
                     <select id="teleopChargeStation" class="form-select" aria-label="Asd">
@@ -160,7 +136,6 @@
                       <option value="ENGAGED">Engaging with Charge Station</option>
                     </select>
                   </div>
-                  <br>
                   <br>
                   <a>Comments</a>
                   <div class="col-md-12">
@@ -186,12 +161,10 @@
                     <br><br>
                   </div>
                   <br>
-                  <br>
                   <div class="form-floating">
                     <textarea class="form-control" placeholder="Misc" id="miscComments"></textarea>
                     <label for="miscComments">Comments</label>
                   </div>
-                  <br>
                   <br>
                   <div class="col-md-3">
                     <button id="submit" class="btn btn-primary">Submit</button>
@@ -609,13 +582,13 @@
 	}
   .disable-dbl-tap-zoom-yellow {
 		touch-action: manipulation;
-		background-color: rgb(255,223,0);
+		background-color: rgb(222, 169, 24);
 		color: white;
 		border-radius: 2px solid black;
 		font-family: Helvetica;
 		font-weight: bold;
 		/*To get rid of weird 3D affect in some browsers*/
-		border: solid rgb(255,223,0);
+		border: solid rgb(222, 169, 24);
 		height: 100px;
 		width: 500px;
 	}
@@ -625,6 +598,7 @@
 		color: white;
 		border-radius: 2px;
 		font-family: Helvetica;
+    margin-left: 250px;
 		font-weight: bold;
 		/*To get rid of weird 3D affect in some browsers*/
 		border: solid rgb(245, 108, 108);
