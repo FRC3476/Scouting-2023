@@ -129,7 +129,7 @@
 			row.getElementsByTagName("td")[0].getElementsByTagName("a")[0].href = "/matchStrategy.php?team=" + tbaTeams[i];
 			row.getElementsByTagName("td")[1].innerText = isScouted(tbaTeams[i]);
 			row.getElementsByTagName("td")[2].innerText = tookPictures(tbaTeams[i]);
-			if (isRed) row.className = "red";
+			if (isRed) row.className = "white";
 			else row.className = "green";
 			document.getElementById("RawData").appendChild(row);
 		}
