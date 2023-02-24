@@ -28,6 +28,9 @@
         <li class="nav-item">
           <a class="nav-link" href="pitCheck.php">Pit Check</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="leadScoutForm.php">Lead Scout Form</a>
+        </li>
       </ul>
     </div>
   </div>

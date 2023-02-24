@@ -64,20 +64,20 @@
                   <div class="row">
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cone </h2>
-                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeLower()" id="bigFont">Level 1 <a id="buttonAConeLower" class="enlargedtext"></a></button>
+                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeUpper()" id="bigFont">Top <a id="buttonAConeUpper" class="enlargedtext"></a></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeMid()" id="bigFont">Level 2 <a id="buttonAConeMid" class="enlargedtext"></a></button>
+                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeMid()" id="bigFont">Middle <a id="buttonAConeMid" class="enlargedtext"></a></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeUpper()" id="bigFont">Level 3 <a id="buttonAConeUpper" class="enlargedtext"></a></button>
+                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeLower()" id="bigFont">Bottom <a id="buttonAConeLower" class="enlargedtext"></a></button>
                       <br>
                     </div>
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cube </h2>                      
-                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeLower()" id="bigFont">Level 1 <a id="buttonACubeLower" class="enlargedtext"></a></button>
+                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeUpper()" id="bigFont">Top <a id="buttonACubeUpper" class="enlargedtext"></a></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeMid()" id="bigFont">Level 2 <a id="buttonACubeMid" class="enlargedtext"></a></button>
+                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeMid()" id="bigFont">Middle <a id="buttonACubeMid" class="enlargedtext"></a></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeUpper()" id="bigFont">Level 3 <a id="buttonACubeUpper" class="enlargedtext"></a></button>
+                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeLower()" id="bigFont">Bottom <a id="buttonACubeLower" class="enlargedtext"></a></button>
                       <br>
                     </div>
                   </div>
@@ -103,21 +103,21 @@
                   <div class="row">
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cone </h2>
-                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeLower()" id="bigFont">Level 1 <a id="buttonTConeLower" class="enlargedtext"></a></button>
+                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeUpper()" id="bigFont">Top <a id="buttonTConeUpper" class="enlargedtext"></a></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeMid()" id="bigFont">Level 2 <a id="buttonTConeMid" class="enlargedtext"></a></button>
+                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeMid()" id="bigFont">Middle <a id="buttonTConeMid" class="enlargedtext"></a></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeUpper()" id="bigFont">Level 3 <a id="buttonTConeUpper" class="enlargedtext"></a></button>
+                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeLower()" id="bigFont">Bottom <a id="buttonTConeLower" class="enlargedtext"></a></button>
                       <br>
                     </div>
                     <br>
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cube </h2>                      
-                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeLower()" id="bigFont">Level 1 <a id="buttonTCubeLower" class="enlargedtext"></a></button>
+                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeUpper()" id="bigFont">Top <a id="buttonTCubeUpper" class="enlargedtext"></a></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeMid()" id="bigFont">Level 2 <a id="buttonTCubeMid" class="enlargedtext"></a></button>
+                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeMid()" id="bigFont">Middle <a id="buttonTCubeMid" class="enlargedtext"></a></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeUpper()" id="bigFont">Level 3 <a id="buttonTCubeUpper" class="enlargedtext"></a></button>
+                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeLower()" id="bigFont">Bottom <a id="buttonTCubeLower" class="enlargedtext"></a></button>
                     </div>
                   </div>
                   <div class="center">
