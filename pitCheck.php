@@ -44,7 +44,10 @@
 									<th>Picture Taken?</th>
 								</tr>
 								<tr id="template" hidden>
-									<td id="number" class="team"></td>
+									<td id="number" class="team">
+										<a href="">
+										</a>
+									</td>
 									<td id="Scouted"></td>
 									<td id="Picture"></td>
 								</tr>
@@ -122,7 +125,8 @@
 			if (isScouted(tbaTeams[i]) == "No" || tookPictures(tbaTeams[i]) == "No") isRed = true;
 			var row = document.createElement("tr");
 			row.innerHTML = temp;
-			row.getElementsByTagName("td")[0].innerText = tbaTeams[i];
+			row.getElementsByTagName("td")[0].getElementsByTagName("a")[0].innerText = tbaTeams[i];
+			row.getElementsByTagName("td")[0].getElementsByTagName("a")[0].href = "/matchStrategy.php?team=" + tbaTeams[i];
 			row.getElementsByTagName("td")[1].innerText = isScouted(tbaTeams[i]);
 			row.getElementsByTagName("td")[2].innerText = tookPictures(tbaTeams[i]);
 			if (isRed) row.className = "red";
