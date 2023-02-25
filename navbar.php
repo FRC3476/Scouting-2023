@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg custom-nav">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="index.php">
       <img src="images/Logo.png" height="40" class="d-inline-block align-top" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
@@ -11,13 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="admin.php">Admin</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="simpleMatchForm.php">Match Form</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="tableMatchData.php">Match Data</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="pitInput.php">Pit Input</a>
@@ -30,6 +24,25 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="leadScoutForm.php">Lead Scout Form</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="coprs.php">COPRS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="admin.php">Admin</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Raw Data
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="tableMatchData.php">Match Data</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="pitData.php">Pit Data</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

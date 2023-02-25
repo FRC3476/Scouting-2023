@@ -1,10 +1,5 @@
 <html lang="en">
-<?php
-include('header.php');
-include('navbar.php'); 
-?>
-
-<script src="js/bootstrap.min.js"></script>
+<?php include('navbar.php'); ?>
 
 <style>
 body {
@@ -22,3 +17,5 @@ body {
     </header>
 </body>
 </html>
+
+<?php include('footer.php'); ?>
