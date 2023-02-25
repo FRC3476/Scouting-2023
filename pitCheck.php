@@ -1,5 +1,5 @@
 <html>
-<?php include("navBar.php"); ?>
+<?php include("navbar.php"); ?>
 
 <head>
 
