@@ -33,7 +33,7 @@
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: 'readAllMatchData'
+                body: 'readAllMatchData=1'
             }).then(response => response.json())
             .then((raw) => {
                 let data = {};
