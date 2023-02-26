@@ -75,14 +75,15 @@
 					// Create POST request.
 					$.post("writeAPI.php", {
 						"writeLSData": JSON.stringify(data)
-					}, function (success) {
-						success = JSON.parse(success);
-						if (success) {
+					}, function (data) {
+						data = JSON.parse(data);
+						if (data["success"]) {
 							createSuccessAlert('Form Submitted. Clearing form.');
 							location.reload();
 						}
 						else {
 							createErrorAlert('Form submitted to server but failed to process. Please try again or contact admin.');
+							createErrorAlert(JSON.stringify(data["error"]));
 						}
 					})
 						.fail(function () {
@@ -133,7 +134,7 @@
 				var valid = true;
 				if (data) {
 					createErrorAlert('Missing data');
-					valid = false;
+					valid = true;
 
 
 

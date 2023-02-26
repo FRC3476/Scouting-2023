@@ -56,17 +56,25 @@ if (isset($_POST['writePitScoutData'])) {
 }
 
 if (isset($_POST['writeLSData'])) {
+  $result = new stdClass();
+  $result -> success = true;
   $db = new dbHandler();
   $matchData = json_decode($_POST['writeLSData'], true);
   $success = true;
+    //create LSTable if it doesn't exist
+    if (!$db->getTableExists("LSTable")) {
+      $db->createTable("LSTable");
+    }
   try {
     $db->writeRowToTable('LSTable', $matchData);
   } catch (Exception $e) {
     error_log($e);
-    $success = false;
+    $e = json_decode(json_encode($e));
+    $result->error = $e -> errorInfo;
+    $result -> success = false;
   }
 
-  echo (json_encode($success));
+  echo (json_encode($result));
 }
 
 if (isset($_POST["pitPictureUpload"])) {
