@@ -18,7 +18,6 @@ require('dbHandler.php');
 if (isset($_POST['writeSingleMatchData'])) {
   $result = new stdClass();
   $result->success = true;
-  $result->error = false;
   $db = new dbHandler();
   try {
     $matchData = json_decode($_POST['writeSingleMatchData'], true);
@@ -26,8 +25,7 @@ if (isset($_POST['writeSingleMatchData'])) {
     $db->writeRowToTable('datatable', $matchData);
   } catch (Exception $e) {
     error_log($e);
-    $e = json_encode($e);
-    $e = json_decode($e);
+    $e = json_decode(json_encode($e));
     $result->error = $e -> errorInfo;
     $result->success = false;
   }
@@ -36,6 +34,8 @@ if (isset($_POST['writeSingleMatchData'])) {
 }
 
 if (isset($_POST['writePitScoutData'])) {
+  $result = new stdClass();
+  $result -> success = true;
   $db = new dbHandler();
   //create pitScouttable if it doesn't exist
   if (!$db->getTableExists("pitScouttable")) {
@@ -47,10 +47,12 @@ if (isset($_POST['writePitScoutData'])) {
     $db->writeRowToTable('pitScouttable', $matchData);
   } catch (Exception $e) {
     error_log($e);
-    $success = false;
+    $e = json_decode(json_encode($e));
+    $result->error = $e -> errorInfo;
+    $result -> success = false;
   }
 
-  echo (json_encode($success));
+  echo (json_encode($result));
 }
 
 if (isset($_POST['writeLSData'])) {

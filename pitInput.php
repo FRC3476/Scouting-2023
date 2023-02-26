@@ -169,14 +169,15 @@
 					// Create POST request.
 					$.post("writeAPI.php", {
 							"writePitScoutData": JSON.stringify(data)
-						}, function(success) {
-							console.log(success);
-							success = JSON.parse(success);
-							if (success) {
+						}, function(data) {
+							data = JSON.parse(data);
+							console.log(data);
+							if (data["success"]) {
 								createSuccessAlert('Form Submitted. Clearing form.');
 								clearForm();
 							} else {
 								createErrorAlert('Form submitted to server but failed to process. Please try again or contact admin.');
+								createErrorAlert(JSON.stringify(data["error"]));
 							}
 						})
 						.fail(function() {
