@@ -81,11 +81,27 @@ if (isset($_POST["pitPictureUpload"])) {
   $result = new stdClass();
   $settings = new siteSettings();
   $result -> error = "";
-  $target_dir = $settings -> get("pictureFolder");
+  $result -> success = true;
+  $path = $settings -> get("pictureFolder");
+  $target_dir = $path;
   $target_dir .= "/";
   $target_file = $target_dir . $_POST["teamNumber"] . "." . time() . "." . basename($_FILES["fileToUpload"]["name"]);
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+  //check if $path is set
+  if (!$path) {
+    $result -> error = "pictureFolder is not set in config";
+    $uploadOk = 0;
+    $result -> success = false;
+  }
+
+  //check if directory exists;
+  if ($path && !is_dir($path)) {
+    $result -> error = "pictureFolder does not exist";
+    $uploadOk = 0;
+    $result -> success = false;
+  }
 
   // Check if image file is a actual image or fake image
   if (isset($_POST["teamNumber"])) {
@@ -120,7 +136,6 @@ if (isset($_POST["pitPictureUpload"])) {
     $uploadOk = 0;
   }
   $message = "";
-  $result -> success = true;
   // Check if $uploadOk is set to 0 by an error
   if ($uploadOk == 0) {
     $result -> success = false;
@@ -128,16 +143,21 @@ if (isset($_POST["pitPictureUpload"])) {
   } else {
     try {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-      $result -> $error = "The file " . htmlspecialchars($target_file) . " has been uploaded";
+      $temp = "The file " . htmlspecialchars($target_file) . " has been uploaded";
+      if (file_exists($target_file)) {
+        $result -> error = $temp;
+      } else {
+        $result -> error = "The file " . htmlspecialchars($target_file) . " could not be found on the server";
+      }
     }
   } catch (Exception $e) {
     $result -> $error = $e;
   }
   }
 
-  $message = $result -> error;
   $redirect = "pictureUpload.php";
-  var_dump($result);
-//  header("Location: " . $redirect . "?message=" . $message);
-//  die();
+  $message = json_encode($result);
+
+  header("Location: " . $redirect . "?message=" . $message);
+  die();
 }

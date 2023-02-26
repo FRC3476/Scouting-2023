@@ -46,29 +46,30 @@ if (getOrPost('getAllPictureFilenames')){
   $settings = new siteSettings();
   $settings -> readDbConfig();
   $path = $settings -> get("pictureFolder");
-  $path = $path . "/";
+  
+  $error = "";
+  if ($path) $path = $path . "/";
+  else $error = "pictureFolder is not set in the config file";
 
   $result = new stdClass();
   $result -> success = true;
   $result -> path = $path;
   $result -> files = false;
-  $result -> error = false;
+  $result -> error = $error;
   
   //check if the folder exists
   if (!is_dir($path)) {
     //if $path doesn't exist
     $result -> success = false;
-    $result -> error = "pictureFolder is not set in the config file";
+    if (!$error) $result -> error = "The pictureFolder has not been created";
+    
   } else {
     //if $path exists
     $temp = array_diff(scandir($path), array('.', '..'));
     $result -> files = $temp;
   }
 
-  //converts the php object to string, then from a string to a json object, then to a string.
-  //Essentially converts a php object to a json string.
-  //It works, so I'm not touching it lol.
-  $result = json_encode(json_decode(json_encode($result)));
+  $result = (json_encode($result));
   echo $result;
 }
 

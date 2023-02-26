@@ -11,7 +11,8 @@
   <script>
     const url = new URLSearchParams(window.location.search);
     var message = url.get("message");
-    if (message) alert(message);
+    message = JSON.parse(message);
+    if (message["success"]) alert(message.error);
     </script>
     <div class="container row-offcanvas row-offcanvas-left">
         <div class="well column col-lg-12 col-sm-12 col-xs-12" id="content">
