@@ -15,23 +15,27 @@ require('dbHandler.php');
         true OR false
 */
 
-if (isset($_POST['writeSingleMatchData'])){
+if (isset($_POST['writeSingleMatchData'])) {
+  $result = new stdClass();
+  $result->success = true;
+  $result->error = false;
   $db = new dbHandler();
-  $matchData = json_decode($_POST['writeSingleMatchData'], true);
-  $matchData['matchKey'] = $matchData['matchNumber'] . '-' . $matchData['teamNumber'];
-  $success = true;
-  try{
+  try {
+    $matchData = json_decode($_POST['writeSingleMatchData'], true);
+    $matchData['matchKey'] = $matchData['matchNumber'] . '-' . $matchData['teamNumber'];
     $db->writeRowToTable('datatable', $matchData);
-  }
-  catch(Exception $e){
+  } catch (Exception $e) {
     error_log($e);
-    $success = false;
+    $e = json_encode($e);
+    $e = json_decode($e);
+    $result->error = $e -> errorInfo;
+    $result->success = false;
   }
 
-  echo(json_encode($success));
+  echo (json_encode($result));
 }
 
-if (isset($_POST['writePitScoutData'])){
+if (isset($_POST['writePitScoutData'])) {
   $db = new dbHandler();
   //create pitScouttable if it doesn't exist
   if (!$db->getTableExists("pitScouttable")) {
@@ -39,42 +43,40 @@ if (isset($_POST['writePitScoutData'])){
   }
   $matchData = json_decode($_POST['writePitScoutData'], true);
   $success = true;
-  try{
+  try {
     $db->writeRowToTable('pitScouttable', $matchData);
-  }
-  catch(Exception $e){
+  } catch (Exception $e) {
     error_log($e);
     $success = false;
   }
 
-  echo(json_encode($success));
+  echo (json_encode($success));
 }
 
-if (isset($_POST['writeLSData'])){
+if (isset($_POST['writeLSData'])) {
   $db = new dbHandler();
   $matchData = json_decode($_POST['writeLSData'], true);
   $success = true;
-  try{
+  try {
     $db->writeRowToTable('LSTable', $matchData);
-  }
-  catch(Exception $e){
+  } catch (Exception $e) {
     error_log($e);
     $success = false;
   }
 
-  echo(json_encode($success));
+  echo (json_encode($success));
 }
 
 if (isset($_POST["pitPictureUpload"])) {
   $target_dir = "uploads/";
   $target_file = $target_dir . $_POST["teamNumber"] . "." . time() . "." . basename($_FILES["fileToUpload"]["name"]);
   $uploadOk = 1;
-  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-  
+  $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
   // Check if image file is a actual image or fake image
-  if(isset($_POST["teamNumber"])) {
+  if (isset($_POST["teamNumber"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if($check !== false) {
+    if ($check !== false) {
       echo "File is an image - " . $check["mime"] . ".";
       $uploadOk = 1;
     } else {
@@ -82,22 +84,24 @@ if (isset($_POST["pitPictureUpload"])) {
       $uploadOk = 0;
     }
   }
-  
+
   // Check if file already exists
   if (file_exists($target_file)) {
     echo "Sorry, file already exists.";
     $uploadOk = 0;
   }
-  
+
   // Check file size
   if ($_FILES["fileToUpload"]["size"] > 500000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
   }
-  
+
   // Allow certain file formats
-  if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-  && $imageFileType != "gif" ) {
+  if (
+    $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif"
+  ) {
     echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     $uploadOk = 0;
   }
@@ -105,16 +109,16 @@ if (isset($_POST["pitPictureUpload"])) {
   // Check if $uploadOk is set to 0 by an error
   if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
-  // if everything is ok, try to upload file
+    // if everything is ok, try to upload file
   } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-       $message = "The file ". htmlspecialchars($target_file). " has been uploaded";
+      $message = "The file " . htmlspecialchars($target_file) . " has been uploaded";
     } else {
       $message = "Sorry, there was an error uploading your file.";
     }
   }
 
   $redirect = "pictureUpload.php";
-  header("Location: ".$redirect."?message=".$message);
+  header("Location: " . $redirect . "?message=" . $message);
   die();
 }

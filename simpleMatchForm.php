@@ -13,10 +13,10 @@
           <div class="card">
             <div class="card-header">Match Form</div>
             <div class="card-body">
-            
+
               <div id="alertPlaceholder"></div>
 
-              <ul class="nav nav-tabs" id="matchTabs" role="tablist"> 
+              <ul class="nav nav-tabs" id="matchTabs" role="tablist">
                 <li class="nav-item" role="presentation">
                   <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-tab-pane" type="button" role="tab" aria-controls="login-tab-pane" aria-selected="true">Log-in</button>
                 </li>
@@ -32,19 +32,19 @@
               </ul>
               <div class="tab-content" id="myTabContent">
                 <!--Login Tab-->
-                <div class="tab-pane fade show active" id="login-tab-pane" role="tabpanel" aria-labelledby="login-tab" tabindex="0"> 
+                <div class="tab-pane fade show active" id="login-tab-pane" role="tabpanel" aria-labelledby="login-tab" tabindex="0">
                   <br>
                   <br>
                   <div class="mb-3">
                     <label for="scoutName" class="form-label">Scout Name</label>
                     <input type="text" class="form-control" id="scoutName" aria-describedby="scoutName">
                   </div>
-                
+
                   <div class="mb-3">
                     <label for="matchNumber" class="form-label">Match Number</label>
                     <input type="text" class="form-control" id="matchNumber" aria-describedby="matchNumber">
                   </div>
-                
+
                   <div class="mb-3">
                     <label for="teamNumber" class="form-label">Team Number</label>
                     <input type="text" class="form-control" id="teamNumber" aria-describedby="teamNumber">
@@ -72,7 +72,7 @@
                       <br>
                     </div>
                     <div class="col-md-5">
-                      <h2 style="text-align: center"> Cube </h2>                      
+                      <h2 style="text-align: center"> Cube </h2>
                       <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeUpper()" id="bigFont">Top <a id="buttonACubeUpper" class="enlargedtext"></a></button>
                       <br>
                       <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeMid()" id="bigFont">Middle <a id="buttonACubeMid" class="enlargedtext"></a></button>
@@ -112,7 +112,7 @@
                     </div>
                     <br>
                     <div class="col-md-5">
-                      <h2 style="text-align: center"> Cube </h2>                      
+                      <h2 style="text-align: center"> Cube </h2>
                       <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeUpper()" id="bigFont">Top <a id="buttonTCubeUpper" class="enlargedtext"></a></button>
                       <br>
                       <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeMid()" id="bigFont">Middle <a id="buttonTCubeMid" class="enlargedtext"></a></button>
@@ -139,37 +139,37 @@
                   <br>
                   <a>Comments</a>
                   <div class="col-md-12">
-                  <div class="well column  col-lg-12  col-sm-12 col-xs-12" id="cannedComments">
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Slow Drive</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Fast Drive</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Good Defense</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Bad Defense</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Fast Cycle</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Slow Cycle</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Tipped</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Drops Game Pieces</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Bad Driving</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Good Driving</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Stuck on Charge Station</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Can Pick Up Fallen Cones</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Good Defense</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Bad Defense</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Can Balance in Auto</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Floor Pickup</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">Human Player Pick</span>
-                    <span class="badge rounded-pill text-bg-primary cannedComments">DNP</span>
-                    <br><br>
+                    <div class="well column  col-lg-12  col-sm-12 col-xs-12" id="cannedComments">
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Slow Drive</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Fast Drive</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Good Defense</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Bad Defense</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Fast Cycle</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Slow Cycle</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Tipped</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Drops Game Pieces</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Bad Driving</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Good Driving</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Stuck on Charge Station</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Can Pick Up Fallen Cones</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Good Defense</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Bad Defense</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Can Balance in Auto</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Floor Pickup</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Human Player Pick</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">DNP</span>
+                      <br><br>
+                    </div>
+                    <br>
+                    <div class="form-floating">
+                      <textarea class="form-control" placeholder="Misc" id="miscComments"></textarea>
+                      <label for="miscComments">Comments</label>
+                    </div>
+                    <br>
+                    <div class="col-md-3">
+                      <button id="submit" class="btn btn-primary">Submit</button>
+                    </div>
                   </div>
-                  <br>
-                  <div class="form-floating">
-                    <textarea class="form-control" placeholder="Misc" id="miscComments"></textarea>
-                    <label for="miscComments">Comments</label>
-                  </div>
-                  <br>
-                  <div class="col-md-3">
-                    <button id="submit" class="btn btn-primary">Submit</button>
-                  </div>
-                </div> 
                 </div>
               </div>
             </div>
@@ -202,14 +202,14 @@
   makeIncrementTrue();
 
   // Auto Functions
-  function updateAConeLower(){
-    if(isIncrement == true){
-      aConeLower++;  
-    }else{
-      if(aConeLower != 0){
+  function updateAConeLower() {
+    if (isIncrement == true) {
+      aConeLower++;
+    } else {
+      if (aConeLower != 0) {
         aConeLower--;
         makeIncrementTrue();
-      }else{
+      } else {
         makeIncrementTrue();
       }
     }
@@ -217,14 +217,14 @@
     console.log(aConeLower);
   }
 
-  function updateAConeMid(){
-    if(isIncrement == true){
-      aConeMid++;  
-    }else{
-      if(aConeMid != 0){
+  function updateAConeMid() {
+    if (isIncrement == true) {
+      aConeMid++;
+    } else {
+      if (aConeMid != 0) {
         aConeMid--;
         makeIncrementTrue();
-      }else{
+      } else {
         makeIncrementTrue();
       }
     }
@@ -232,14 +232,14 @@
     console.log(aConeMid);
   }
 
-  function updateAConeUpper(){
-    if(isIncrement == true){
-      aConeUpper++;  
-    }else{
-      if(aConeUpper != 0){
+  function updateAConeUpper() {
+    if (isIncrement == true) {
+      aConeUpper++;
+    } else {
+      if (aConeUpper != 0) {
         aConeUpper--;
         makeIncrementTrue();
-      }else{
+      } else {
         makeIncrementTrue();
       }
     }
@@ -247,14 +247,14 @@
     console.log(aConeUpper);
   }
 
-  function updateACubeLower(){
-    if(isIncrement == true){
-      aCubeLower++;  
-    }else{
-      if(aCubeLower != 0){
+  function updateACubeLower() {
+    if (isIncrement == true) {
+      aCubeLower++;
+    } else {
+      if (aCubeLower != 0) {
         aCubeLower--;
         makeIncrementTrue();
-      }else{
+      } else {
         makeIncrementTrue();
       }
     }
@@ -262,14 +262,14 @@
     console.log(aCubeLower);
   }
 
-  function updateACubeMid(){
-    if(isIncrement == true){
-      aCubeMid++;  
-    }else{
-      if(aCubeMid != 0){
+  function updateACubeMid() {
+    if (isIncrement == true) {
+      aCubeMid++;
+    } else {
+      if (aCubeMid != 0) {
         aCubeMid--;
         makeIncrementTrue();
-      }else{
+      } else {
         makeIncrementTrue();
       }
     }
@@ -277,14 +277,14 @@
     console.log(aCubeMid);
   }
 
-  function updateACubeUpper(){
-    if(isIncrement == true){
-      aCubeUpper++;  
-    }else{
-      if(aCubeUpper != 0){
+  function updateACubeUpper() {
+    if (isIncrement == true) {
+      aCubeUpper++;
+    } else {
+      if (aCubeUpper != 0) {
         aCubeUpper--;
         makeIncrementTrue();
-      }else{
+      } else {
         makeIncrementTrue();
       }
     }
@@ -292,14 +292,14 @@
     console.log(aCubeUpper);
   }
   // Teleop Functions
-  function updateTConeLower(){
-    if(isIncrement == true){
-      tConeLower++;  
-    }else{
-      if(tConeLower != 0){
+  function updateTConeLower() {
+    if (isIncrement == true) {
+      tConeLower++;
+    } else {
+      if (tConeLower != 0) {
         tConeLower--;
         makeTIncrementTrue();
-      }else{
+      } else {
         makeTIncrementTrue();
       }
     }
@@ -307,14 +307,14 @@
     console.log(tConeLower);
   }
 
-  function updateTConeMid(){
-    if(isIncrement == true){
-      tConeMid++;  
-    }else{
-      if(tConeMid != 0){
+  function updateTConeMid() {
+    if (isIncrement == true) {
+      tConeMid++;
+    } else {
+      if (tConeMid != 0) {
         tConeMid--;
         makeTIncrementTrue();
-      }else{
+      } else {
         makeTIncrementTrue();
       }
     }
@@ -322,14 +322,14 @@
     console.log(tConeMid);
   }
 
-  function updateTConeUpper(){
-    if(isIncrement == true){
-      tConeUpper++;  
-    }else{
-      if(tConeUpper != 0){
+  function updateTConeUpper() {
+    if (isIncrement == true) {
+      tConeUpper++;
+    } else {
+      if (tConeUpper != 0) {
         tConeUpper--;
         makeTIncrementTrue();
-      }else{
+      } else {
         makeTIncrementTrue();
       }
     }
@@ -337,14 +337,14 @@
     console.log(tConeUpper);
   }
 
-  function updateTCubeLower(){
-    if(isIncrement == true){
-      tCubeLower++;  
-    }else{
-      if(tCubeLower != 0){
+  function updateTCubeLower() {
+    if (isIncrement == true) {
+      tCubeLower++;
+    } else {
+      if (tCubeLower != 0) {
         tCubeLower--;
         makeTIncrementTrue();
-      }else{
+      } else {
         makeTIncrementTrue();
       }
     }
@@ -352,14 +352,14 @@
     console.log(tCubeLower);
   }
 
-  function updateTCubeMid(){
-    if(isIncrement == true){
-      tCubeMid++;  
-    }else{
-      if(tCubeMid != 0){
+  function updateTCubeMid() {
+    if (isIncrement == true) {
+      tCubeMid++;
+    } else {
+      if (tCubeMid != 0) {
         tCubeMid--;
         makeTIncrementTrue();
-      }else{
+      } else {
         makeTIncrementTrue();
       }
     }
@@ -367,14 +367,14 @@
     console.log(tCubeMid);
   }
 
-  function updateTCubeUpper(){
-    if(isIncrement == true){
-      tCubeUpper++;  
-    }else{
-      if(tCubeUpper != 0){
+  function updateTCubeUpper() {
+    if (isIncrement == true) {
+      tCubeUpper++;
+    } else {
+      if (tCubeUpper != 0) {
         tCubeUpper--;
         makeTIncrementTrue();
-      }else{
+      } else {
         makeTIncrementTrue();
       }
     }
@@ -382,46 +382,45 @@
     console.log(tCubeUpper);
   }
   // Increment Functions
-  function makeIncrementFalse(){
+  function makeIncrementFalse() {
     isIncrement = false;
     document.getElementById("negativeAIncrementButton").innerHTML = -1;
   }
 
-  function makeIncrementTrue(){
+  function makeIncrementTrue() {
     isIncrement = true;
     document.getElementById("negativeAIncrementButton").innerHTML = 1;
   }
 
-  function makeTIncrementFalse(){
+  function makeTIncrementFalse() {
     isIncrement = false;
     document.getElementById("negativeTIncrementButton").innerHTML = -1;
   }
 
-  function makeTIncrementTrue(){
+  function makeTIncrementTrue() {
     isIncrement = true;
     document.getElementById("negativeTIncrementButton").innerHTML = 1;
   }
 
 
   // Comment Functions
-  function getCannedComments(){
+  function getCannedComments() {
     /* Return list of canned comments based on if they have the 'selected' class. */
     var comments = [];
-    $('.selected').each(function(i, obj) {  // Iterates through each object with element 'selected'.
+    $('.selected').each(function(i, obj) { // Iterates through each object with element 'selected'.
       comments.push($(this).text()); // this returns to the current element with class 'selected'.
     });
     return comments.toString();
   }
 
   // Binds all HTML dom objects with class 'cannedComments' to run the function when clicked
-  $('.cannedComments').on('click', function(event){
+  $('.cannedComments').on('click', function(event) {
     var isSelected = $(this).hasClass('selected'); // Check if clicked badge has 'selected' class.
     if (isSelected) {
       // If previously selected, remove the class and make primary.
       $(this).removeClass('text-bg-success selected');
       $(this).addClass('text-bg-primary');
-    }
-    else {
+    } else {
       // If not selected, make selected and add class + change color.
       $(this).removeClass('text-bg-primary');
       $(this).addClass('text-bg-success selected');
@@ -430,44 +429,49 @@
 
 
   // Backend Functions
-  function createErrorAlert(errorMessage){
+  function createErrorAlert(errorMessage) {
     /* Creats a Error alert. 
     
     Args:
       successMessage: String of message to send.
     */
     var alertValue = [`<div class="alert alert-danger alert-dismissible" role="alert">`,
-                      `  <div>${errorMessage}</div>`,
-                      `  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
-                      `</div>`].join('');
+      `  <div>${errorMessage}</div>`,
+      `  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
+      `</div>`
+    ].join('');
     $('#alertPlaceholder').append(alertValue);
   }
 
-  function createSuccessAlert(successMessage){
+  function createSuccessAlert(successMessage) {
     /* Creats a success alert. 
     
     Args:
       successMessage: String of message to send.
     */
     var alertValue = [`<div class="alert alert-success alert-dismissible" role="alert">`,
-                      `  <div>${successMessage}</div>`,
-                      `  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
-                      `</div>`].join('');
+      `  <div>${successMessage}</div>`,
+      `  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
+      `</div>`
+    ].join('');
     $('#alertPlaceholder').append(alertValue);
   }
 
-  function clearAlerts(){
+  function clearAlerts() {
     /* Clears all allerts in the placeholder. */
     $('#alertPlaceholder').empty();
   }
 
-  function getMatchFormData(){
+  function getMatchFormData() {
     /* Gets values from HTML form and formats as dictionary. */
     var data = {};
     data['scout'] = $('#scoutName').val();
     data['matchNumber'] = parseInt($('#matchNumber').val());
     data['teamNumber'] = parseInt($('#teamNumber').val());
-    data['autoMobility'] = ($('#autoMobility').is(':checked'));
+    var mobile = $('#autoMobility').is(':checked');
+    //data['autoMobility'] needs to be an integer when not checked.
+    if (!mobile) mobile = 0;
+    data['autoMobility'] = mobile;
     data['autoConeLevel1'] = aConeLower; // Either form input or 0 if no form input
     data['autoConeLevel2'] = aConeMid; // Either form input or 0 if no form input
     data['autoConeLevel3'] = aConeUpper; // Either form input or 0 if no form input
@@ -487,29 +491,29 @@
     return data;
   }
 
-  function validateFormData(data){
+  function validateFormData(data) {
     /* Return false and send error if not valid form data.
     
     Args:
       data: dictionary of values from form.
     */
     var valid = true;
-    if (data['scout'] == ''){
+    if (data['scout'] == '') {
       createErrorAlert('Scout name empty.');
       valid = false;
     }
-    if (! data['matchNumber']){
+    if (!data['matchNumber']) {
       createErrorAlert('Match number not valid.');
       valid = false;
     }
-    if (! data['teamNumber']){
+    if (!data['teamNumber']) {
       createErrorAlert('Team number not valid.');
       valid = false;
     }
     return valid;
   }
 
-  function clearForm(){
+  function clearForm() {
     $('#scoutName').val('');
     $('#matchNumber').val('');
     $('#teamNumber').val('');
@@ -532,7 +536,7 @@
     $('#miscComments').val('');
   }
 
-  function submitData(){
+  function submitData() {
     /* Gets data from form, validates it, and creates appropriate error messages. 
 
     Returns:
@@ -542,69 +546,73 @@
     var data = getMatchFormData();
     console.log(data);
     var validData = validateFormData(data);
-    if (validData){
+    if (validData) {
       // Create POST request.
       $.post("writeAPI.php", {
-        "writeSingleMatchData": JSON.stringify(data)
-      }, function(success) {
-        success = JSON.parse(success);
-        if (success){
-          createSuccessAlert('Form Submitted. Clearing form.');
-          location.reload();
-        }
-        else {
-          createErrorAlert('Form submitted to server but failed to process. Please try again or contact admin.');
-        }
-      })
-      .fail(function (){
-        createErrorAlert('Form submitted but failure on server side. Please try again or contact admin.');
-      });
+          "writeSingleMatchData": JSON.stringify(data)
+        }, function(data) {
+          data = JSON.parse(data);
+          console.log(data);
+          const success = data["success"];
+          if (success) {
+            createSuccessAlert('Form Submitted. Clearing form.');
+            location.reload();
+          } else {
+            createErrorAlert('Form submitted to server but failed to process. Please try again or contact admin.');
+            createErrorAlert(JSON.stringify(data["error"]));
+          }
+        })
+        .fail(function() {
+          createErrorAlert('Form submitted but failure on server side. Please try again or contact admin.');
+        });
+
     }
   }
 
   $("#submit").on('click', function(event) {
     submitData();
   });
-
 </script>
 <style>
-	.disable-dbl-tap-zoom-purple {
-		touch-action: manipulation;
-		background-color: rgb(159, 43, 104);
-		color: white;
+  .disable-dbl-tap-zoom-purple {
+    touch-action: manipulation;
+    background-color: rgb(159, 43, 104);
+    color: white;
     border: 2px solid black;
-		font-family: Helvetica;
-		font-weight: bold;
-		/*To get rid of weird 3D affect in some browsers*/
-		border: solid rgb(159, 43, 104);
-		height: 100px;
-		width: 500px;
-	}
+    font-family: Helvetica;
+    font-weight: bold;
+    /*To get rid of weird 3D affect in some browsers*/
+    border: solid rgb(159, 43, 104);
+    height: 100px;
+    width: 500px;
+  }
+
   .disable-dbl-tap-zoom-yellow {
-		touch-action: manipulation;
-		background-color: rgb(222, 169, 24);
-		color: white;
-		border-radius: 2px solid black;
-		font-family: Helvetica;
-		font-weight: bold;
-		/*To get rid of weird 3D affect in some browsers*/
-		border: solid rgb(222, 169, 24);
-		height: 100px;
-		width: 500px;
-	}
+    touch-action: manipulation;
+    background-color: rgb(222, 169, 24);
+    color: white;
+    border-radius: 2px solid black;
+    font-family: Helvetica;
+    font-weight: bold;
+    /*To get rid of weird 3D affect in some browsers*/
+    border: solid rgb(222, 169, 24);
+    height: 100px;
+    width: 500px;
+  }
+
   .disable-dbl-tap-zoom-danger {
-		touch-action: manipulation;
-		background-color: rgb(245, 108, 108);
-		color: white;
-		border-radius: 2px;
-		font-family: Helvetica;
+    touch-action: manipulation;
+    background-color: rgb(245, 108, 108);
+    color: white;
+    border-radius: 2px;
+    font-family: Helvetica;
     margin-left: 250px;
-		font-weight: bold;
-		/*To get rid of weird 3D affect in some browsers*/
-		border: solid rgb(245, 108, 108);
-		height: 50px;
-		width: 500px;
-	}
-  
+    font-weight: bold;
+    /*To get rid of weird 3D affect in some browsers*/
+    border: solid rgb(245, 108, 108);
+    height: 50px;
+    width: 500px;
+  }
 </style>
+
 </html>
