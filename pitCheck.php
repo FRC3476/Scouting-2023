@@ -86,11 +86,17 @@
 	var pictures;
 	fetch('./readAPI.php?getAllPictureFilenames=1')
 		.then(response => response.json())
-		.then((pics) => {
-			pictures = pics;
-			picData = true;
+		.then((data) => {
+			console.log(data);
+			if (data.success) {
+				pictures = data.files;
+				picData = true;
+			} else {
+				alert(data.error);
+			}
 		});
 
+	//start loop which handles data after both fetch requests are completed
 	var loop = setInterval(() => {
 		if (tba && scoutData && picData) {
 			clearInterval(loop);
@@ -98,6 +104,7 @@
 		}
 	}, 500)
 
+	//function to check if a team has pit scout data
 	function isScouted(id) {
 		for (var i in pitTeams) {
 			if (pitTeams[i].pitTeamNumber == id) {
@@ -107,6 +114,7 @@
 		return "No";
 	}
 
+	//function to check if a team has had pit scout pictures taken
 	function tookPictures(id) {
 		var list = [];
 		for (var i in pictures) {
@@ -118,6 +126,7 @@
 		return "No";
 	}
 
+	//build the html table to display data
 	function buildHTML() {
 		var temp = document.getElementById("template").innerHTML;
 		for (var i in tbaTeams) {

@@ -136,7 +136,8 @@
                         'datatable' : $('#writeDataTable').val(),
                         'tbatable' : $('#writeTBATable').val(),
                         'pitScouttable' : $('#writePitScoutTable').val(),
-                        'LSTable' : $('#writeLSTable').val()};
+                        'LSTable' : $('#writeLSTable').val(),
+                        'pictureFolder' : "uploads"};
     var writeData = {};
     for (const prop in allWriteData){
       if (allWriteData[prop] != ''){
