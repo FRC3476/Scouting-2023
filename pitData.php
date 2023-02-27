@@ -20,8 +20,8 @@
                     <th scope="col">Number</th>
                     <th scope="col">Name</th>
                     <th scope="col">Organization</th>
-                    <th scope="col"># Batteries</th>
-                    <th scope="col"># Chargers</th>
+                    <th scope="col">Batteries</th>
+                    <th scope="col">Chargers</th>
                     <th scope="col">Language</th>
                     <th scope="col">Auto Path</th>
                     <th scope="col">Frame Perimeter</th>
