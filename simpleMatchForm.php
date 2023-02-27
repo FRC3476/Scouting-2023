@@ -27,7 +27,10 @@
                   <button class="nav-link" id="teleop-tab" data-bs-toggle="tab" data-bs-target="#teleop-tab-pane" type="button" role="tab" aria-controls="teleop-tab-pane" aria-selected="false">Teleop Scouting</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="teleop-tab" data-bs-toggle="tab" data-bs-target="#endgame-tab-pane" type="button" role="tab" aria-controls="endgame-tab-pane" aria-selected="false">Endgame</button>
+                  <button class="nav-link" id="endgame-tab" data-bs-toggle="tab" data-bs-target="#endgame-tab-pane" type="button" role="tab" aria-controls="endgame-tab-pane" aria-selected="false">Endgame</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="qrcode-tab" data-bs-toggle="tab" data-bs-target="#qrcode-tab-pane" type="button" role="tab" aria-controls="qrcode-tab-pane" aria-selected="false">QR Code</button>
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
@@ -172,6 +175,11 @@
                     </div>
                   </div>
                 </div>
+                <!--QR Code Scouting-->
+                <div class="tab-pane fade" id="qrcode-tab-pane" role="tabpanel" aria-labelledby="qrcode-tab" tabindex="0">
+                  <br>
+                  <div id="data-qr-code"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -182,6 +190,7 @@
 </body>
 
 <?php include("footer.php"); ?>
+<script type="text/javascript" src="js/qrcode.min.js"></script>
 
 <script>
   // Var
@@ -201,6 +210,8 @@
 
   isIncrement = true;
   makeIncrementTrue();
+
+  var qrcode = null;
 
   // Auto Functions
   function updateAConeLower() {
@@ -537,6 +548,29 @@
     $('#miscComments').val('');
   }
 
+  function createInitialQR(){
+    qrcode = new QRCode("data-qr-code", {
+      text: JSON.stringify([]),
+      width: 512,
+      height: 512,
+      colorDark : "#000000",
+      colorLight : "#ffffff",
+      correctLevel : QRCode.CorrectLevel.H
+    });
+  }
+
+  function updateQRCode(){
+    if(qrcode == null){
+      createInitialQR();
+    }
+    qrcode.clear();
+    var data = getMatchFormData();
+    var validData = validateFormData(data);
+    if (validData){
+      qrcode.makeCode(JSON.stringify(data));
+    }
+  }
+
   function submitData() {
     /* Gets data from form, validates it, and creates appropriate error messages. 
 
@@ -573,6 +607,11 @@
   $("#submit").on('click', function(event) {
     submitData();
   });
+  
+  $('#qrcode-tab').on('click', function(event) {
+    updateQRCode();
+  });
+
 </script>
 <style>
   .disable-dbl-tap-zoom-purple {
