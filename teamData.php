@@ -27,13 +27,12 @@
     </div>
 </body>
 
+<?php include("footer.php"); ?>
+
 <script>
     function readAllTeamMatchData(){
-        console.log('hi');
-        console.log('#teamNumber');
         $.get('readAPI.php', {
             'readAllTeamMatchData' : $('#teamNumber').val()
-
         }, function(data) {
             data = JSON.parse(data);
             console.log(data);
