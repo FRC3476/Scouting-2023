@@ -53,11 +53,6 @@
 </head>
 
 <body class="bg-body">
-	<div id="errorBox" class="modal">
-		<div id="alert-template" class="modal-content">
-			<span class="close" onclick="closeError(this)">&times;</span>
-		</div>
-	</div>
 	<div class="container row-offcanvas row-offcanvas-left">
 		<div class="well column col-lg-12 col-sm-12 col-xs-12" id="content">
 			<div class="row pt-3 pb-3 mb-3">
@@ -185,19 +180,6 @@
 						});
 				}
 			}
-
-			var error = document.getElementById("errorBox");
-
-			window.onclick = function(event) {
-				if (event.target == error) {
-					error.style.display = "none";
-				}
-			}
-
-			function closeError(button) {
-				error.style.display = "none";
-			}
-
 			function createAlert(p) {
 				var template = document.getElementById("alert-template");
 				if (p.className == "error") template.style = "background-color: #ff6e6e;";
