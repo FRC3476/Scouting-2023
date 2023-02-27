@@ -18,33 +18,32 @@
 
 							<div class="mb-3">
 								<text class="form-label">Match Number</text>
-								<input type="text" class="form-control" id="matchNum" name="matchNum" placeholder=" ">
+								<input type="number" class="form-control" id="matchNum" name="matchNum" placeholder=" ">
+								<button class="btn btn-primary" onclick="loadTeams(document.getElementById('matchNum').value)">Load Teams</button>
 							</div>
-							<div class="mb-3">
+							<div class="mb-3" id="box1" ondrop="drop(event)" ondragover="allowDrop(event)">
 								<text class="form-label">Team 1</text>
-								<input type="text" class="form-control" id="team1" name="team1" placeholder=" ">
+								<button id="team1" draggable="true" ondragstart="drag(event)"></button>
 							</div>
-
-							<div class="mb-3">
+							<div class="mb-3" id="box2" ondrop="drop(event)" ondragover="allowDrop(event)">
 								<text class="form-label">Team 2</text>
-								<input type="text" class="form-control" id="team2" name="team2" placeholder=" ">
+								<button id="team2" draggable="true" ondragstart="drag(event)"></button>
 							</div>
-
-							<div class="mb-3">
+							<div class="mb-3" id="box3" ondrop="drop(event)" ondragover="allowDrop(event)">
 								<text class="form-label">Team 3</text>
-								<input type="text" class="form-control" id="team3" name="team3" placeholder=" ">
+								<button id="team3" draggable="true" ondragstart="drag(event)"></button>
 							</div>
-							<div class="mb-3">
+							<div class="mb-3" id="box4" ondrop="drop(event)" ondragover="allowDrop(event)">
 								<text class="form-label">Team 4</text>
-								<input type="text" class="form-control" id="team4" name="team4" placeholder=" ">
+								<button id="team4" draggable="true" ondragstart="drag(event)"></button>
 							</div>
-							<div class="mb-3">
+							<div class="mb-3" id="box5" ondrop="drop(event)" ondragover="allowDrop(event)">
 								<text class="form-label">Team 5</text>
-								<input type="text" class="form-control" id="team5" name="team5" placeholder=" ">
+								<button id="team5" draggable="true" ondragstart="drag(event)"></button>
 							</div>
-							<div class="mb-3">
+							<div class="mb-3" id="box6" ondrop="drop(event)" ondragover="allowDrop(event)">
 								<text class="form-label">Team 6</text>
-								<input type="text" class="form-control" id="team6" name="team6" placeholder=" ">
+								<button id="team6" draggable="true" ondragstart="drag(event)"></button>
 							</div>
 							<div class="col-lg-12 col-sm-12 col-xs-12">
 								<input id="submit" type="submit" class="btn btn-primary" value="Submit Data" onclick="">
@@ -61,6 +60,41 @@
 		<?php include("footer.php"); ?>
 
 		<script>
+			function loadTeams(match) {
+				console.log(match);
+				fetch("./readAPI.php?readAllMatchData=1").then(response => response.json())
+					.then((data) => {
+						var result = [];
+						for (var i in data)
+							if (data[i].matchNumber == match) result.push(data[i].teamNumber);
+						console.log(result);
+						function setField(name, value) {
+							document.getElementById(name).innerText = value;
+						}
+						setField("team1", result[0]);
+						setField("team2", result[1]);
+						setField("team3", result[2]);
+						setField("team4", result[3]);
+						setField("team5", result[4]);
+						setField("team6", result[5]);
+					});
+			}
+
+			function allowDrop(ev) {
+				ev.preventDefault();
+			}
+
+			function drag(ev) {
+				ev.dataTransfer.setData("text", ev.target.id);
+			}
+
+			function drop(ev) {
+				ev.preventDefault();
+				console.log(ev.target);
+				var data = ev.dataTransfer.getData("text");
+				ev.target.appendChild(document.getElementById(data));
+			}
+
 			function submitData() {
 				/* Gets data from form, validates it, and creates appropriate error messages. 
 
@@ -74,19 +108,18 @@
 				if (validData) {
 					// Create POST request.
 					$.post("writeAPI.php", {
-						"writeLSData": JSON.stringify(data)
-					}, function (data) {
-						data = JSON.parse(data);
-						if (data["success"]) {
-							createSuccessAlert('Form Submitted. Clearing form.');
-							location.reload();
-						}
-						else {
-							createErrorAlert('Form submitted to server but failed to process. Please try again or contact admin.');
-							createErrorAlert(JSON.stringify(data["error"]));
-						}
-					})
-						.fail(function () {
+							"writeLSData": JSON.stringify(data)
+						}, function(data) {
+							data = JSON.parse(data);
+							if (data["success"]) {
+								createSuccessAlert('Form Submitted. Clearing form.');
+								location.reload();
+							} else {
+								createErrorAlert('Form submitted to server but failed to process. Please try again or contact admin.');
+								createErrorAlert(JSON.stringify(data["error"]));
+							}
+						})
+						.fail(function() {
 							createErrorAlert('Form submitted but failure on server side. Please try again or contact admin.');
 						});
 				}
@@ -152,6 +185,13 @@
 				$('#team6').val('');
 			}
 
+			function getValue(id) {
+				var box = document.getElementById(id);
+				var result = box.getElementsByTagName("button");
+				if (result.length != 1) return false;
+				else return result[0].innerText;
+			}
+
 			function getLeadScoutFormData() {
 				/* Gets values from HTML form and formats as dictionary. */
 				var data = {};
@@ -165,8 +205,8 @@
 				return data;
 			}
 
-			$("#submit").on('click', function (event) {
-				submitData();
+			$("#submit").on('click', function(event) {
+				//submitData();
 			});
 		</script>
 
