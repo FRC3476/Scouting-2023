@@ -153,6 +153,7 @@
                       <span class="badge rounded-pill text-bg-primary cannedComments">Stuck on Charge Station</span>
                       <span class="badge rounded-pill text-bg-primary cannedComments">Can Pick Up Fallen Cones</span>
                       <span class="badge rounded-pill text-bg-primary cannedComments">Good Defense</span>
+                      <span class="badge rounded-pill text-bg-primary cannedComments">Lots of Fouls</span>
                       <span class="badge rounded-pill text-bg-primary cannedComments">Bad Defense</span>
                       <span class="badge rounded-pill text-bg-primary cannedComments">Can Balance in Auto</span>
                       <span class="badge rounded-pill text-bg-primary cannedComments">Floor Pickup</span>

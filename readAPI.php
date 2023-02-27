@@ -29,6 +29,20 @@ if (getOrPost('readAllMatchData')){
   echo(json_encode($match_data));
 }
 
+if (getOrPost('readAllTeamMatchData')){
+  $db = new dbHandler();
+  $sql = 'teamNumber = "'. getOrPost("readAllTeamMatchData") .'"';
+  $team_match_data = $db->readSomeData('datatable', $sql);
+  echo(json_encode($team_match_data));
+}
+
+if (getOrPost('readAllTeamPitData')){
+  $db = new dbHandler();
+  $sql = 'teamNumber = "' . getOrPost("readAllTeamPitData") .'"';
+  $team_pit_data = $db->readSomeData('pitScouttable', $sql);
+  echo(json_encode($team_pit_data));
+}
+
 if (getOrPost('readAllPitScoutData')){
   $db = new dbHandler();
   $match_data = $db->readAllData('pitScouttable');

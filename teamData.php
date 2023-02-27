@@ -1,8 +1,7 @@
 <title>Team Data</title>
 <html lang="en">
 
-<?php include('navbar.php'); 
-require('dbHandler.php') ?>
+<?php include('navbar.php');?>
 
 
 <body class="bg-body">
@@ -16,13 +15,9 @@ require('dbHandler.php') ?>
 
                             <div id="alertPlaceholder"></div>
 
-                            <div class="mb-3">
-                                <label for="teamNumber" class="form-label">Enter Team Number</label>
-                                <input type="text" class="form-control" id="teamNumber" aria-describedby="teamNumber">
-                            </div>
-
-                            <div class="col-md-3">
-                                <button id="submit" class="btn btn-primary">Submit</button>
+                            <div class="input-group mb-3">
+                                <input id="teamNumber" type="text" class="form-control" placeholder="Enter Team Number">
+                                <button id="teamMatchData" type="button" class="btn btn-primary" onclick="readAllTeamMatchData()">Load Team Data</button>
                             </div>
                         </div>
                     </div>
@@ -33,12 +28,16 @@ require('dbHandler.php') ?>
 </body>
 
 <script>
-    function submitTeamNumber(){
+    function readAllTeamMatchData(){
         console.log('hi');
-    }
-    $("#submit").on('click', function(event) {
-        submitTeamNumber();
-    });
-</script>
+        console.log('#teamNumber');
+        $.get('readAPI.php', {
+            'readAllTeamMatchData' : $('#teamNumber').val()
 
+        }, function(data) {
+            data = JSON.parse(data);
+            console.log(data);
+        });
+    }
+</script>
 </html>
