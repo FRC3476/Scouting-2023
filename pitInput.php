@@ -110,10 +110,11 @@
 								<text class="form-label">What is your coding language?</text>
 							</div>
 							<select name="codeLanguage" id="codeLanguage">
-								<option value="javascript">Java</option>
-								<option value="python">C++</option>
-								<option value="c++">LabVIEW</option>
-								<option value="java">Other</option>
+								<option value="Java">Java</option>
+								<option value="C++">C++</option>
+								<option value="LabvVIEW">LabVIEW</option>
+								<option value="Python">Python</option>
+								<option value="Other">Other</option>
 							</select>
 
 							<div class="col-lg-2">
@@ -192,17 +193,31 @@
 			}
 
 			function createErrorAlert(errorMessage) {
-				var p = document.createElement("p");
-				p.innerText = errorMessage;
-				p.className = "error";
-				createAlert(p);
+				/* Creats a Error alert. 
+				
+				Args:
+					successMessage: String of message to send.
+				*/
+				var alertValue = [`<div class="alert alert-danger alert-dismissible" role="alert">`,
+					`  <div>${errorMessage}</div>`,
+					`  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
+					`</div>`
+				].join('');
+				$('#alertPlaceholder').append(alertValue);
 			}
 
 			function createSuccessAlert(successMessage) {
-				var p = document.createElement("p");
-				p.innerText = successMessage;
-				p.className = "success";
-				createAlert(p);
+				/* Creats a success alert. 
+				
+				Args:
+					successMessage: String of message to send.
+				*/
+				var alertValue = [`<div class="alert alert-success alert-dismissible" role="alert">`,
+					`  <div>${successMessage}</div>`,
+					`  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
+					`</div>`
+				].join('');
+				$('#alertPlaceholder').append(alertValue);
 			}
 
 			function clearAlerts() {
