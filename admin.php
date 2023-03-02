@@ -22,6 +22,7 @@
               <h4>Server: <span id="serverName" class="badge bg-primary">????</span></h4>
               <h4>Database: <span id="databaseName" class="badge bg-primary">????</span></h4>
               <h4>Username: <span id="userName" class="badge bg-primary">????</span></h4>
+              <h4>Team Number: <span id="teamNumber" class="badge bg-primary">????</span></h4>
               <h4>TBA Key: <span id="tbaKey" class="badge bg-primary">????</span></h4>
               <h4>Event Code: <span id="eventCode" class="badge bg-primary">????</span></h4>
               <h4>Data Table: <span id="dataTableName" class="badge bg-primary">????</span></h4>
@@ -70,6 +71,10 @@
                 <input type="password" class="form-control" id="writePassword" aria-describedby="password">
               </div>
               <div class="mb-3">
+                <label for="writeTeamNumber" class="form-label">Team Number</label>
+                <input type="text" class="form-control" id="writeTeamNumber" aria-describedby="writeTeamNumber">
+              </div>
+              <div class="mb-3">
                 <label for="writeTBAKey" class="form-label">TBA Key</label>
                 <input type="text" class="form-control" id="writeTBAKey" aria-describedby="tbaKey">
               </div>
@@ -109,6 +114,7 @@
     $("#serverName").text(statusArray["server"]);
     $("#databaseName").text(statusArray["db"]);
     $("#userName").text(statusArray["username"]);
+    $("#teamNumber").text(statusArray["teamnumber"]);
     $("#tbaKey").text(statusArray["tbakey"]);
     $("#eventCode").text(statusArray["eventcode"]);
     $("#dataTableName").text(statusArray["datatable"]);
@@ -131,6 +137,7 @@
                         'db' : $('#writeDatabase').val(),
                         'username' : $('#writeUsername').val(),
                         'password' : $('#writePassword').val(),
+                        'teamnumber' : $('#writeTeamNumber').val(),
                         'eventcode' : $('#writeEventCode').val(),
                         'tbakey' : $('#writeTBAKey').val(),
                         'datatable' : $('#writeDataTable').val(),
