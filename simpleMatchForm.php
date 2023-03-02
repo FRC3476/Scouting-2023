@@ -1,4 +1,4 @@
-<title>Simple Match Form</title>
+<title>Match Form</title>
 <html lang="en">
 
 <?php include('navbar.php'); ?>
@@ -37,7 +37,6 @@
                 <!--Login Tab-->
                 <div class="tab-pane fade show active" id="login-tab-pane" role="tabpanel" aria-labelledby="login-tab" tabindex="0">
                   <br>
-                  <br>
                   <div class="mb-3">
                     <label for="scoutName" class="form-label">Scout Name</label>
                     <input type="text" class="form-control" id="scoutName" aria-describedby="scoutName">
@@ -63,7 +62,6 @@
                       Mobility Completed?
                     </label>
                   </div>
-                  <br>
                   <div class="row">
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cone </h2>
@@ -88,7 +86,6 @@
                     <br>
                     <button class="disable-dbl-tap-zoom-danger" type="button" onClick="makeIncrementFalse()" id="bigFont">Subtract: <a id="negativeAIncrementButton" class="enlargedtext"></a></button>
                   </div>
-                  <br>
                   <div class="mb-3">
                     <label for="autoChargeStation" class="form-label">Auto Charge Station State</label>
                     <select id="autoChargeStation" class="form-select" aria-label="Asd">
