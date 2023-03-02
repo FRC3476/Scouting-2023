@@ -38,7 +38,7 @@ if (getOrPost('readAllTeamMatchData')){
 
 if (getOrPost('readAllTeamPitData')){
   $db = new dbHandler();
-  $sql = 'teamNumber = "' . getOrPost("readAllTeamPitData") .'"';
+  $sql = 'pitTeamNumber = "' . getOrPost("readAllTeamPitData") .'"';
   $team_pit_data = $db->readSomeData('pitScouttable', $sql);
   echo(json_encode($team_pit_data));
 }
