@@ -19,7 +19,6 @@
               <h4>TBA Table Status: <span id="tbaTableStatus" class="badge bg-warning">Not Connected</span></h4>
               <h4>Pit Table Status: <span id="pitScoutTableStatus" class="badge bg-warning">Not Connected</span></h4>
               <h4>LS Table Status: <span id="LSTableStatus" class="badge bg-warning">Not Connected</span></h4>
-              <h4>Pit Scout Pictures Folder Name: <span id="pictureFolderStatus" class="badge bg-warning">Not Created</span></h4>
               <h4>Server: <span id="serverName" class="badge bg-primary">????</span></h4>
               <h4>Database: <span id="databaseName" class="badge bg-primary">????</span></h4>
               <h4>Username: <span id="userName" class="badge bg-primary">????</span></h4>
@@ -29,7 +28,6 @@
               <h4>TBA Table: <span id="tbaTableName" class="badge bg-primary">????</span></h4>
               <h4>Pit Scout Table: <span id="pitScoutTableName" class="badge bg-primary">????</span></h4>
               <h4>LS Table: <span id="LSTableName" class="badge bg-primary">????</span></h4>
-              <h4>Pit Scout Pictures Folder Name: <span id="pictureFolderName" class="badge bg-primary">????</span></h4>
             </div>
           </div>
         </div>
@@ -79,10 +77,6 @@
                 <label for="writeEventCode" class="form-label">Event Code</label>
                 <input type="text" class="form-control" id="writeEventCode" aria-describedby="tbaEventCode">
               </div>
-              <div class="mb-3">
-                <label for="writePictureFolder" class="form-label">Pit Scout Pictures Folder Name</label>
-                <input type="text" class="form-control" id="writePictureFolder" aria-describedby="tbaEventCode">
-              </div>
               
               <button id="writeConfig" class="btn btn-primary">Write Config</button>
               <button id="createDB" class="btn btn-primary">Create DB</button>
@@ -104,8 +98,7 @@
       $("#" + id).removeClass("bg-warning");
       $("#" + id).removeClass("bg-danger");
     } else {
-      if (id == "pictureFolderStatus") $("#" + id).text("Not Created");
-      else $("#" + id).text("Not Connected");
+      $("#" + id).text("Not Connected");
       $("#" + id).addClass("bg-danger");
       $("#" + id).removeClass("bg-warning");
       $("#" + id).removeClass("bg-success");
@@ -122,7 +115,6 @@
     $("#tbaTableName").text(statusArray["tbatable"]);
     $("#pitScoutTableName").text(statusArray["pitScouttable"]);
     $("#LSTableName").text(statusArray["LSTable"]);
-    $("#pictureFolderName").text(statusArray["pictureFolder"]);
     
     setStatusBadge(statusArray["dbExists"], "databaseStatus");
     setStatusBadge(statusArray["serverExists"], "serverStatus");
@@ -130,7 +122,6 @@
     setStatusBadge(statusArray["tbatableExists"], "tbaTableStatus");
     setStatusBadge(statusArray["pitScouttableExists"], "pitScoutTableStatus");
     setStatusBadge(statusArray["LSTableExists"], "LSTableStatus");
-    setStatusBadge(statusArray["pictureFolderExists"], "pictureFolderStatus");
     
     console.log(statusArray);
   }
@@ -145,8 +136,7 @@
                         'datatable' : $('#writeDataTable').val(),
                         'tbatable' : $('#writeTBATable').val(),
                         'pitScouttable' : $('#writePitScoutTable').val(),
-                        'LSTable' : $('#writeLSTable').val(),
-                        'pictureFolder' : $('#writePictureFolder').val()};
+                        'LSTable' : $('#writeLSTable').val()};
     var writeData = {};
     for (const prop in allWriteData){
       if (allWriteData[prop] != ''){

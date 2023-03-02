@@ -55,15 +55,27 @@ if (getOrPost('readAllLSData')){
   echo(json_encode($match_data));
 }
 
+if (getOrPost('getTeamPictureFilenames')){
+  $base_path = './uploads/';
+  $team = getOrPost('getTeamPictureFilenames');
+  $team_length = strlen($team);
+  $out = array();
+  foreach (scandir($base_path) as &$pic_path){
+    if ($team_length >= strlen($pic_path)){
+      continue;
+    }
+    if (substr($pic_path, 0, $team_length) === $team){
+      array_push($out, $base_path . $pic_path);
+    }
+  }
+  echo(json_encode($out));
+}
+
 if (getOrPost('getAllPictureFilenames')){
   //get the pit scouting pictures folder
   $settings = new siteSettings();
   $settings -> readDbConfig();
-  $path = $settings -> get("pictureFolder");
-  
-  $error = "";
-  if ($path) $path = $path . "/";
-  else $error = "pictureFolder is not set in the config file";
+  $path = './uploads/';
 
   $result = new stdClass();
   $result -> success = true;

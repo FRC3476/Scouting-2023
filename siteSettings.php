@@ -6,8 +6,7 @@ class siteSettings{
   private $configKeys = array(
     'server', 'db', 'username', 'password',
     'eventcode', 'tbakey',
-    'datatable', 'tbatable', 'pitScouttable', 'LSTable',
-    'pictureFolder'
+    'datatable', 'tbatable', 'pitScouttable', 'LSTable'
   );
   public $settings;
   
@@ -78,7 +77,6 @@ class siteSettings{
     $out['tbatable']        = $this->settings['tbatable'];
     $out['pitScouttable']   = $this->settings['pitScouttable'];
     $out['LSTable']        = $this->settings['LSTable'];
-    $out['pictureFolder']        = $this->settings['pictureFolder'];
     return $out;
   }
 }

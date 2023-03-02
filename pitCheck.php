@@ -43,58 +43,55 @@
 									<th>Pit Scouted?</th>
 									<th>Picture Taken?</th>
 								</tr>
-								<tr id="template" hidden>
-									<td id="number" class="team">
-										<a href="">
-										</a>
-									</td>
-									<td id="Scouted"></td>
-									<td id="Picture"></td>
-								</tr>
-
 						</div>
 					</div>
 					<div id="script"></div>
 </body>
+
+<?php include("footer.php") ?>
+
 <script>
 	var tba = false;
 	var scoutData = false;
 	var picData = false;
-
-	//get team list from TBA
 	var tbaTeams;
-	fetch('./tbaAPI.php?getTeamList=1')
-		.then(response => response.json())
-		.then((teams) => {
-			teams.sort(function(a, b) {
-				return a - b;
-			});
-			tbaTeams = teams;
-			tba = true;
-		});
-
-	//get pit scout data
 	var pitTeams;
-	fetch('./readAPI.php?readAllPitScoutData=1')
-		.then(response => response.json())
-		.then((teams) => {
-			pitTeams = teams;
-			scoutData = true;
-		});
-
-	//get pit scout pictures
 	var pictures;
-	fetch('./readAPI.php?getAllPictureFilenames=1')
-		.then(response => response.json())
-		.then((data) => {
-			console.log(data);
-			if (data.success) {
-				pictures = data.files;
-				picData = true;
-			} else {
-				alert(data.error);
-			}
-		});
+	
+	
+	$(document).ready(function () {
+		//get team list from TBA
+		fetch('./tbaAPI.php?getTeamList=1')
+			.then(response => response.json())
+			.then((teams) => {
+				teams.sort(function(a, b) {
+					return a - b;
+				});
+				tbaTeams = teams;
+				tba = true;
+			});
+	
+		//get pit scout data
+		fetch('./readAPI.php?readAllPitScoutData=1')
+			.then(response => response.json())
+			.then((teams) => {
+				pitTeams = teams;
+				scoutData = true;
+			});
+			
+		//get pit scout pictures
+		fetch('./readAPI.php?getAllPictureFilenames=1')
+			.then(response => response.json())
+			.then((data) => {
+				console.log(data);
+				if (data.success) {
+					pictures = data.files;
+					picData = true;
+				} else {
+					alert(data.error);
+				}
+			});
+	});
 
 	//start loop which handles data after both fetch requests are completed
 	var loop = setInterval(() => {
@@ -108,41 +105,56 @@
 	function isScouted(id) {
 		for (var i in pitTeams) {
 			if (pitTeams[i].pitTeamNumber == id) {
-				return "Yes";
+				return true;
 			}
 		}
-		return "No";
+		return false;
 	}
 
 	//function to check if a team has had pit scout pictures taken
 	function tookPictures(id) {
 		var list = [];
 		for (var i in pictures) {
-			list.push(pictures[i].split(".")[0]);
+			list.push(pictures[i].split("-")[0]);
 		}
 		for (var i in list) {
-			if (list[i] == id) return "Yes";
+			if (list[i] == id) return true;
 		}
-		return "No";
+		return false;
 	}
 
 	//build the html table to display data
 	function buildHTML() {
-		var temp = document.getElementById("template").innerHTML;
 		for (var i in tbaTeams) {
-			var isRed = false;
-			if (isScouted(tbaTeams[i]) == "No" || tookPictures(tbaTeams[i]) == "No") isRed = true;
-			var row = document.createElement("tr");
-			row.innerHTML = temp;
-			row.getElementsByTagName("td")[0].getElementsByTagName("a")[0].innerText = tbaTeams[i];
-			row.getElementsByTagName("td")[0].getElementsByTagName("a")[0].href = "/matchStrategy.php?team=" + tbaTeams[i];
-			row.getElementsByTagName("td")[1].innerText = isScouted(tbaTeams[i]);
-			row.getElementsByTagName("td")[2].innerText = tookPictures(tbaTeams[i]);
-			if (isRed) row.className = "white";
-			else row.className = "green";
-			document.getElementById("RawData").appendChild(row);
+			addRow(tbaTeams[i]);
+
 		}
 	}
+
+	function addRow(team){
+		var pitString = 'Yes';
+		var pitColor = 'text-bg-success';
+		if (!isScouted(team)){
+			pitString = 'No';
+			pitColor = '';
+		}
+
+		var picString = 'Yes';
+		var picColor = 'text-bg-success';
+		if (!tookPictures(team)){
+			picString = 'No';
+			picColor = '';
+		}
+
+		var row = [
+			`<tr>`,
+			`	<th><a href='./teamData?team=${team}'>${team}</a></th>`,
+			`	<td scope='row' class='${pitColor}'>${pitString}</td>`,
+			`	<td scope='row' class='${picColor}'>${picString}</td>`,
+			`</tr>`
+		].join('');
+		$('#RawData').append(row);
+	}
+
 </script>
 
-<?php include("footer.php") ?>

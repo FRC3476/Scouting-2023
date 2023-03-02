@@ -82,12 +82,11 @@ if (isset($_POST["pitPictureUpload"])) {
   $settings = new siteSettings();
   $result -> error = "";
   $result -> success = true;
-  $path = $settings -> get("pictureFolder");
+  $path = './uploads/';
   $target_dir = $path;
-  $target_dir .= "/";
-  $target_file = $target_dir . $_POST["teamNumber"] . "." . time() . "." . basename($_FILES["fileToUpload"]["name"]);
+  $target_file = $target_dir . $_POST["teamNumber"];
   $uploadOk = 1;
-  $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+  $imageFileType = strtolower(pathinfo(basename($_FILES["fileToUpload"]["name"]), PATHINFO_EXTENSION));
 
   //check if $path is set
   if (!$path) {
@@ -115,14 +114,31 @@ if (isset($_POST["pitPictureUpload"])) {
     }
   }
 
-  // Check if file already exists
-  if (file_exists($target_file)) {
-    $result -> error = "Sorry, file already exists.";
-    $uploadOk = 0;
+  // Append number monotonic number to end of image and check if it exists.
+  $i = 0;
+  $valid = false;
+  while($i < 20){  // Only allow 20 pics per team.
+    $new_file_name = strtolower($target_file . '-' . $i . '.' . $imageFileType);
+    if (file_exists($new_file_name)){
+      $i++;
+    }
+    else {
+      $valid = true;
+      break;
+    }
   }
 
+  if ($valid){
+    $target_file = $new_file_name;
+  }
+  else {
+    $result -> error = "Sorry, too many files under that team.";
+    $uploadOk = 0;
+  }
+  
+
   // Check file size
-  if ($_FILES["fileToUpload"]["size"] > 500000) {
+  if ($_FILES["fileToUpload"]["size"] > 100000000) {
     $result -> error = "Sorry, your file is too large.";
     $uploadOk = 0;
   }
