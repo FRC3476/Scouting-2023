@@ -53,4 +53,19 @@ else if (getOrPost('getCOPR')){
   echo (json_encode($tba->getComponentOPRS(getEventCode($tba))));
 }
 
+if (getOrPost('getTeamsInMatch')){
+  $tba = new tbaHandler();
+  $queryMatchNumber = getOrPost('getTeamsInMatch');
+  $teamList = array('red' => array(), 'blue' => array());
+  $rawMatches = $tba->getSimpleMatches(getEventCode($tba));
+  foreach($rawMatches as &$matchRow){
+    if ($matchRow['comp_level'] === 'qm' && $matchRow['match_number'] == $queryMatchNumber){
+      $teamList['red'] = $matchRow['alliances']['red']['team_keys'];
+      $teamList['blue'] = $matchRow['alliances']['red']['team_keys'];
+      break;
+    }
+  } 
+  echo(json_encode($teamList));
+}
+
 ?>

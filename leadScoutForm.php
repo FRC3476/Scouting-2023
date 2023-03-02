@@ -62,21 +62,16 @@
 		<script>
 			function loadTeams(match) {
 				console.log(match);
-				fetch("./readAPI.php?readAllMatchData=1").then(response => response.json())
+				fetch("./tbaAPI.php?readURIFromTBA=" + match).then(response => response.json())
 					.then((data) => {
-						var result = [];
-						for (var i in data)
-							if (data[i].matchNumber == match) result.push(data[i].teamNumber);
-						console.log(result);
-						function setField(name, value) {
-							document.getElementById(name).innerText = value;
+						if (data['red'].length != 0){
+							setField("team1", true, data['red'][0]);
+							setField("team2", true, data['red'][1]);
+							setField("team3", true, data['red'][2]);
+							setField("team4", false, data['blue'][3]);
+							setField("team5", false, data['blue'][4]);
+							setField("team6", false, data['blue'][5]);
 						}
-						setField("team1", result[0]);
-						setField("team2", result[1]);
-						setField("team3", result[2]);
-						setField("team4", result[3]);
-						setField("team5", result[4]);
-						setField("team6", result[5]);
 					});
 			}
 

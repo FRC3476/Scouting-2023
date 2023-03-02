@@ -30,10 +30,13 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="leadScoutForm.php">Lead Scout Form</a>
+          <a class="nav-link" href="teamData.php">Team Data</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="teamData.php">Team Data</a>
+          <a class="nav-link" href="matchData.php">Match Data</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="rankings.php">Rankings</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="coprs.php">COPRS</a>
