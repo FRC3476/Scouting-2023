@@ -148,7 +148,7 @@
 
 		var row = [
 			`<tr>`,
-			`	<th><a href='./teamData?team=${team}'>${team}</a></th>`,
+			`	<th><a href='./teamData.php?team=${team}'>${team}</a></th>`,
 			`	<td scope='row' class='${pitColor}'>${pitString}</td>`,
 			`	<td scope='row' class='${picColor}'>${picString}</td>`,
 			`</tr>`

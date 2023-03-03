@@ -33,7 +33,7 @@
           <a class="nav-link" href="teamData.php">Team Data</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="matchData.php">Match Data</a>
+          <a class="nav-link" href="matchStrategy.php">Match Strategy</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="rankings.php">Rankings</a>

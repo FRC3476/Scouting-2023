@@ -1,3 +1,6 @@
+function roundInt(val) {
+  return Math.round((val + Number.EPSILON) * 100) / 100;
+}
 
 function getCannedCommentsDictionary(data){
   /* Returns a mapping of comment to times appeared in input data. */

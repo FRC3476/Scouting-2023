@@ -68,4 +68,43 @@ if (getOrPost('getTeamsInMatch')){
   echo(json_encode($teamList));
 }
 
+if (getOrPost('getMatchData')){
+  $matchNumber = getOrPost('number');
+  $matchLevel = getOrPost('level');
+  $tba = new tbaHandler();
+  $rawMatches = $tba->getSimpleMatches(getEventCode($tba));
+  foreach($rawMatches as &$matchRow){
+    if ($matchRow['comp_level'] == $matchLevel && $matchRow['match_number'] == $matchNumber){
+      echo(json_encode($matchRow));
+      return;
+    }
+  }
+  echo(json_encode(array()));
+}
+
+if (getOrPost('getUserMatches')){
+  $tba = new tbaHandler();
+  $matches = array();
+  $team = 'frc' . $tba->db->settings->get('teamnumber');
+  $rawMatches = $tba->getSimpleMatches(getEventCode($tba));
+  foreach($rawMatches as &$matchRow){
+    if ($matchRow['alliances']['red']['team_keys'][0] == $team || 
+        $matchRow['alliances']['red']['team_keys'][1] == $team ||
+        $matchRow['alliances']['red']['team_keys'][2] == $team || 
+        $matchRow['alliances']['blue']['team_keys'][0] == $team || 
+        $matchRow['alliances']['blue']['team_keys'][1] == $team || 
+        $matchRow['alliances']['blue']['team_keys'][2] == $team){
+      array_push($matches, array($matchRow['comp_level'], $matchRow['match_number']));
+    }
+  }
+  usort($matches, function($a, $b){
+    if ($a[0] == $b[0]){
+      return $a[1] <=> $b[1];
+    }
+    $lookup = array('p' => 0, 'qm' => 1, 'qf' => 2, 'sf' => 3, 'f' => 4);
+    return $lookup[$a[0]] <=> $lookup[$b[0]];
+  });
+  echo(json_encode($matches));
+}
+
 ?>

@@ -231,22 +231,36 @@
     // Only add data if over 0.
     if (matchCount > 0){
       // Calculate avg.
+      aTotal = roundInt(aTotal / matchCount);
       aCones /= matchCount;
       aCubes /= matchCount;
       aTop /= matchCount;
       aMiddle /= matchCount;
       aBottom /= matchCount;
-      aDock = 100 * (aDock/matchCount);
-      aEngage = 100 * (aEngage/matchCount);
-      aMobility = 100 * (aMobility/matchCount);
+      aDock = 100 * roundInt(aDock/matchCount);
+      aEngage = 100 * roundInt(aEngage/matchCount);
+      aMobility = 100 * roundInt(aMobility/matchCount);
 
+      tTotal = roundInt(tTotal / matchCount);
       tCones /= matchCount;
       tCubes /= matchCount;
       tTop /= matchCount;
       tMiddle /= matchCount;
       tBottom /= matchCount;
-      tDock = 100 * (tDock/matchCount);
-      tEngage = 100 * (tEngage/matchCount);
+      tDock = 100 * roundInt(tDock/matchCount);
+      tEngage = 100 * roundInt(tEngage/matchCount);
+
+      aCones = roundInt(aCones);
+      aCubes = roundInt(aCubes);
+      aTop = roundInt(aTop);
+      aMiddle = roundInt(aMiddle);
+      aBottom = roundInt(aBottom);
+
+      tCones = roundInt(tCones);
+      tCubes = roundInt(tCubes);
+      tTop = roundInt(tTop);
+      tMiddle = roundInt(tMiddle);
+      tBottom = roundInt(tBottom);
 
       // Auto summary.
       var autoSummaryRows = [
