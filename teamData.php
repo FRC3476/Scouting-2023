@@ -131,6 +131,7 @@
 
 <?php include("footer.php"); ?>
 <script type="text/javascript" src="js/charts.js"></script>
+<script type="text/javascript" src="js/matchDataProcessor.js"></script>
 
 <script>
   var dataChart = null;
@@ -188,89 +189,43 @@
     for (var i = 0; i != data.length; i++){
       var row = data[i];
       matchCount++;
-
-      var matchPoints = 0;
-      var matchPieces = 0;
-
-      matchPieces += row['autoConeLevel1'] +  row['autoConeLevel2'] +  row['autoConeLevel3'] + row['autoCubeLevel1'] +  row['autoCubeLevel2'] +  row['autoCubeLevel3'];
-      matchPieces += row['teleopConeLevel1'] +  row['teleopConeLevel2'] +  row['teleopConeLevel3'] + row['teleopCubeLevel1'] +  row['teleopCubeLevel2'] +  row['teleopCubeLevel3'];
-
-      matchPoints += 3 * (row['autoMobility']);
-      if(row['autoChargeStation'] == 'ENGAGED'){
-        matchPoints += 12;
-      }
-      if(row['autoChargeStation'] == 'DOCKED'){
-        matchPoints += 8;
-      }
-      matchPoints += (6 * (row['autoConeLevel3'] + row['autoCubeLevel3']));
-      matchPoints += (4 * (row['autoConeLevel2'] + row['autoCubeLevel2']));
-      matchPoints += (3 * (row['autoConeLevel1'] + row['autoCubeLevel1']));
-      matchPoints += (6 * (row['teleopConeLevel3'] + row['teleopCubeLevel3']));
-      matchPoints += (4 * (row['teleopConeLevel2'] + row['teleopCubeLevel2']));
-      matchPoints += (3 * (row['teleopConeLevel1'] + row['teleopCubeLevel1']));
-      if(row['teleopChargeStation'] == 'ENGAGED'){
-        matchPoints += 10;
-      }
-      if(row['teleopChargeStation'] == 'DOCKED'){
-        matchPoints += 6;
-      }
-
-      points += matchPoints;
-      pieces += matchPieces;
-      pointsMax = Math.max(pointsMax, matchPoints);
-      piecesMax = Math.max(piecesMax, matchPieces);
-
-      aTotal += row['autoConeLevel1'] +  row['autoConeLevel2'] +  row['autoConeLevel3'] + row['autoCubeLevel1'] +  row['autoCubeLevel2'] +  row['autoCubeLevel3'];
-      aTotalMax = Math.max(aTotalMax, row['autoConeLevel1'] +  row['autoConeLevel2'] +  row['autoConeLevel3'] + row['autoCubeLevel1'] +  row['autoCubeLevel2'] +  row['autoCubeLevel3']);
-
-      aCones += row['autoConeLevel1'] +  row['autoConeLevel2'] +  row['autoConeLevel3'];
-      aConesMax = Math.max(aConesMax, row['autoConeLevel1'] +  row['autoConeLevel2'] +  row['autoConeLevel3']);
-
-      aCubes += row['autoCubeLevel1'] +  row['autoCubeLevel2'] +  row['autoCubeLevel3'];
-      aCubesMax = Math.max(aCubesMax, row['autoCubeLevel1'] +  row['autoCubeLevel2'] +  row['autoCubeLevel3']);
-
-      aTop += row['autoConeLevel3'] + row['autoCubeLevel3'];
-      aTopMax = Math.max(aTopMax, row['autoConeLevel3'] + row['autoCubeLevel3']);
-
-      aMiddle += row['autoConeLevel2'] + row['autoCubeLevel2'];
-      aMiddleMax = Math.max(aMiddleMax, row['autoConeLevel2'] + row['autoCubeLevel2']);
-
-      aBottom += row['autoConeLevel1'] + row['autoCubeLevel1'];
-      aBottomMax = Math.max(aBottomMax, row['autoConeLevel1'] + row['autoCubeLevel1']);
-
-      if(row['autoChargeStation'] == 'ENGAGED'){
-        aEngage++;
-      }
-      if(row['autoChargeStation'] == 'DOCKED'){
-        aDock++;
-      }
-
-      aMobility += row['autoMobility'];
-
-      tTotal += row['teleopConeLevel1'] +  row['teleopConeLevel2'] +  row['teleopConeLevel3'] + row['teleopCubeLevel1'] +  row['teleopCubeLevel2'] +  row['teleopCubeLevel3'];
-      tTotalMax = Math.max(tTotalMax, row['teleopConeLevel1'] +  row['teleopConeLevel2'] +  row['teleopConeLevel3'] + row['teleopCubeLevel1'] +  row['teleopCubeLevel2'] +  row['teleopCubeLevel3']);
       
-      tCones += row['teleopConeLevel1'] +  row['teleopConeLevel2'] +  row['teleopConeLevel3'];
-      tConesMax = Math.max(tConesMax, row['teleopConeLevel1'] +  row['teleopConeLevel2'] +  row['teleopConeLevel3']);
-      
-      tCubes += row['teleopCubeLevel1'] +  row['teleopCubeLevel2'] +  row['teleopCubeLevel3'];
-      tCubesMax = Math.max(tCubesMax, row['teleopCubeLevel1'] +  row['teleopCubeLevel2'] +  row['teleopCubeLevel3']);
-      
-      tTop += row['teleopConeLevel3'] + row['teleopCubeLevel3'];
-      tTopMax = Math.max(tTopMax, row['teleopConeLevel3'] + row['teleopCubeLevel3']);
-      
-      tMiddle += row['teleopConeLevel2'] + row['teleopCubeLevel2'];
-      tMiddleMax = Math.max(tMiddleMax, row['teleopConeLevel2'] + row['teleopCubeLevel2']);
-      
-      tBottom += row['teleopConeLevel1'] + row['teleopCubeLevel1'];
-      tBottomMax = Math.max(tBottomMax, row['teleopConeLevel1'] + row['teleopCubeLevel1']);
+      points += getMatchPoints(row);
+      pieces += getMatchGamePiece(row);
+      pointsMax = Math.max(pointsMax, getMatchPoints(row));
+      piecesMax = Math.max(piecesMax, getMatchGamePiece(row));
 
-      if(row['teleopChargeStation'] == 'ENGAGED'){
-        tEngage++;
-      }
-      if(row['teleopChargeStation'] == 'DOCKED'){
-        tDock++;
-      }
+      aTotal += getPiecesAuto(row);
+      aCones += getConesAuto(row);
+      aCubes += getCubesAuto(row)
+      aTop += getTopAuto(row);
+      aMiddle += getMiddleAuto(row);
+      aBottom += getBottomAuto(row);
+      aEngage += getEngageAuto(row) ? 1 : 0;
+      aDock += getDockAuto(row) ? 1 : 0;
+      aMobility += getMobilityAuto(row) ? 1 : 0;
+      aTotalMax = Math.max(aTotalMax, getPiecesAuto(row));
+      aConesMax = Math.max(aConesMax, getConesAuto(row));
+      aCubesMax = Math.max(aCubesMax, getCubesAuto(row));
+      aTopMax = Math.max(aTopMax, getTopAuto(row));
+      aMiddleMax = Math.max(aMiddleMax, getMiddleAuto(row));
+      aBottomMax = Math.max(aBottomMax, getBottomAuto(row));
+
+      tTotal += getPiecesTeleop(row);
+      tCones += getConesTeleop(row);
+      tCubes += getCubesTeleop(row)
+      tTop += getTopTeleop(row);
+      tMiddle += getMiddleTeleop(row);
+      tBottom += getBottomTeleop(row);
+      tEngage += getEngageTeleop(row) ? 1 : 0;
+      tDock += getDockTeleop(row) ? 1 : 0;
+      tTotalMax = Math.max(tTotalMax, getPiecesTeleop(row));
+      tConesMax = Math.max(tConesMax, getConesTeleop(row));
+      tCubesMax = Math.max(tCubesMax, getCubesTeleop(row));
+      tTopMax = Math.max(tTopMax, getTopTeleop(row));
+      tMiddleMax = Math.max(tMiddleMax, getMiddleTeleop(row));
+      tBottomMax = Math.max(tBottomMax, getBottomTeleop(row));
+      
     }
 
     // Only add data if over 0.
@@ -333,41 +288,20 @@
     var totalPoints = [];
     var totalCones = []
     var totalCubes = [];
+    var totalPieces = [];
     for (var i = 0; i != data.length; i++){
       var row = data[i];
       matchList.push(row['matchNumber']);
 
-      var matchPoints = 3 * (row['autoMobility']);
-      if(row['autoChargeStation'] == 'ENGAGED'){
-        matchPoints += 12;
-      }
-      if(row['autoChargeStation'] == 'DOCKED'){
-        matchPoints += 8;
-      }
-      matchPoints += (6 * (row['autoConeLevel3'] + row['autoCubeLevel3']));
-      matchPoints += (4 * (row['autoConeLevel2'] + row['autoCubeLevel2']));
-      matchPoints += (3 * (row['autoConeLevel1'] + row['autoCubeLevel1']));
-      matchPoints += (6 * (row['teleopConeLevel3'] + row['teleopCubeLevel3']));
-      matchPoints += (4 * (row['teleopConeLevel2'] + row['teleopCubeLevel2']));
-      matchPoints += (3 * (row['teleopConeLevel1'] + row['teleopCubeLevel1']));
-      if(row['teleopChargeStation'] == 'ENGAGED'){
-        matchPoints += 10;
-      }
-      if(row['teleopChargeStation'] == 'DOCKED'){
-        matchPoints += 6;
-      }
+      var matchPoints = getMatchPoints(row);
 
-      var cones = 0;
-      cones += row['autoConeLevel1'] +  row['autoConeLevel2'] +  row['autoConeLevel3'];
-      cones += row['teleopConeLevel1'] +  row['teleopConeLevel2'] +  row['teleopConeLevel3'];
-      
-      var cubes = 0;
-      cubes += row['autoCubeLevel1'] +  row['autoCubeLevel2'] +  row['autoCubeLevel3'];
-      cubes += row['teleopCubeLevel1'] +  row['teleopCubeLevel2'] +  row['teleopCubeLevel3'];
+      var cones = getConesAuto(row) + getConesTeleop(row);
+      var cubes = getCubesAuto(row) + getCubesTeleop(row);
 
       totalPoints.push(matchPoints);
       totalCones.push(cones);
       totalCubes.push(cubes);
+      totalPieces.push(cones + cubes)
 
     }
 
@@ -378,11 +312,11 @@
       data: {
         labels: matchList,
         datasets: [{
-        //  label: 'Points',
-        //  data: totalPoints,
-        //  fill: false,
-        //  borderColor: 'rgb(75, 192, 192)'
-        //},{
+          label: 'Total Pieces',
+          data: totalPieces,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)'
+        },{
           label: 'Total Cubes',
           data: totalCubes,
           fill: false,
@@ -414,21 +348,7 @@
   }
 
   function createCannedComments(data){
-    var commentLookup = {};
-    for (var i = 0; i != data.length; i++){
-      var row = data[i];
-      if (row['cannedComments'] === ''){
-        continue;
-      }
-      var cannedSplit = row['cannedComments'].split(',');
-      for (var j = 0; j != cannedSplit.length; j++){
-        var comment = cannedSplit[j];
-        if (!(comment in commentLookup)){
-          commentLookup[comment] = 0;
-        }
-        commentLookup[comment]++;
-      }
-    }
+    var commentLookup = getCannedCommentsDictionary(data);
 
     for(let comment in commentLookup){
       createCannedBadge(comment, commentLookup[comment]);
