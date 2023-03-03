@@ -26,33 +26,33 @@ function getOrPost($key){
 if (getOrPost('readAllMatchData')){
   $db = new dbHandler();
   $match_data = $db->readAllData('datatable');
-  echo(json_encode($match_data));
+  echo(json_encode($match_data, JSON_NUMERIC_CHECK));
 }
 
 if (getOrPost('readAllTeamMatchData')){
   $db = new dbHandler();
   $sql = 'teamNumber = "'. getOrPost("readAllTeamMatchData") .'"';
   $team_match_data = $db->readSomeData('datatable', $sql);
-  echo(json_encode($team_match_data));
+  echo(json_encode($team_match_data, JSON_NUMERIC_CHECK));
 }
 
 if (getOrPost('readAllTeamPitData')){
   $db = new dbHandler();
   $sql = 'pitTeamNumber = "' . getOrPost("readAllTeamPitData") .'"';
   $team_pit_data = $db->readSomeData('pitScouttable', $sql);
-  echo(json_encode($team_pit_data));
+  echo(json_encode($team_pit_data, JSON_NUMERIC_CHECK));
 }
 
 if (getOrPost('readAllPitScoutData')){
   $db = new dbHandler();
   $match_data = $db->readAllData('pitScouttable');
-  echo(json_encode($match_data));
+  echo(json_encode($match_data, JSON_NUMERIC_CHECK));
 }
 
 if (getOrPost('readAllLSData')){
   $db = new dbHandler();
   $match_data = $db->readAllData('LSTable');
-  echo(json_encode($match_data));
+  echo(json_encode($match_data, JSON_NUMERIC_CHECK));
 }
 
 if (getOrPost('getTeamPictureFilenames')){
@@ -68,7 +68,7 @@ if (getOrPost('getTeamPictureFilenames')){
       array_push($out, $base_path . $pic_path);
     }
   }
-  echo(json_encode($out));
+  echo(json_encode($out, JSON_NUMERIC_CHECK));
 }
 
 if (getOrPost('getAllPictureFilenames')){
@@ -95,7 +95,7 @@ if (getOrPost('getAllPictureFilenames')){
     $result -> files = $temp;
   }
 
-  $result = (json_encode($result));
+  $result = (json_encode($result, JSON_NUMERIC_CHECK));
   echo $result;
 }
 
