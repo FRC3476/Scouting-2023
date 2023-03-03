@@ -523,7 +523,6 @@
   }
 
   function clearForm() {
-    $('#scoutName').val('');
     $('#matchNumber').val('');
     $('#teamNumber').val('');
     $('#autoMobility').prop('checked', false);
