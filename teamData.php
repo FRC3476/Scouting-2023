@@ -18,7 +18,9 @@
                 <!-- Number + Pictures -->
                 <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
                     <div class="card">
-                        <div class="card-header"><h2 id='teamNumber'>Team</h2></div>
+                        <div class="card-header">
+                          <h2 id='teamHeading'></h2>
+                        </div>
                         <div class="card-body">
 
                           <div id="robotPicsCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -137,6 +139,7 @@
   var dataChart = null;
 
   function clearData(){
+    $('#teamHeading').html('');
     $('#robotPics').html('');
     $('#pitData').html('');
     $('#autoSummaryData').html('');
@@ -387,6 +390,7 @@
       var pit = JSON.parse(data);
       if (pit.length > 0){
         pit = pit[0];
+        $('#teamHeading').html(`Team ${teamNumber} - ${pit['pitTeamName']}`);
         var row = [
           `<tr>`,
           ` <td scope='row'>${pit['disorganized']}</td>`,
@@ -427,7 +431,7 @@
     clearData();
 
     // Set Team Number
-    $('#teamNumber').html('Team ' + teamNumber);
+    $('#teamHeading').html('Team ' + teamNumber);
 
     loadTeamPictures(teamNumber);
     loadPitData(teamNumber);

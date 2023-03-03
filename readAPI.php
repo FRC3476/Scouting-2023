@@ -57,7 +57,7 @@ if (getOrPost('readAllLSData')){
 
 if (getOrPost('getTeamPictureFilenames')){
   $base_path = './uploads/';
-  $team = getOrPost('getTeamPictureFilenames');
+  $team = getOrPost('getTeamPictureFilenames') . '-';
   $team_length = strlen($team);
   $out = array();
   foreach (scandir($base_path) as &$pic_path){
