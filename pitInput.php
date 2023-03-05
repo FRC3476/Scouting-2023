@@ -72,10 +72,11 @@
 								<br>
 							</div>
 
-							<div class="col-lg-2">
+							<div class="col-lg-2" style="width: 60%">
 								<br><text class="form-label">What are your frame perimeter dimensions with your bumper
 									on?</text>
-								<input type="text" class="form-control" id="framePerimeterDimensions" name="framePerimeterDimensions" placeholder="Frame Perimeter">
+								<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsLength" name="framePerimeterDimensionsLength" placeholder="Frame Length (inches)"></div>
+								<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsWidth" name="framePerimeterDimensionsWidth" placeholder="Frame Width (inches)"></div>
 								<br>
 							</div>
 
@@ -200,6 +201,8 @@
 				$('#codeLanguage').val('Java');
 				$('#autoPath').val('');
 				$('#framePerimeterDimensions').val('');
+				$('#framePerimeterDimensionsLength').val('');
+				$('#framePerimeterDimensionsWidth').val('');
 				$('#pitComments').val('');
 				$('#disorganized').val('');
 			}
@@ -214,7 +217,12 @@
 				data['chargedBatteries'] = parseInt($('#chargedBatteries').val()) || 0; // Either form input or 0 if no form input
 				data['codeLanguage'] = $('#codeLanguage').val(); // Either form input or 0 if no form input
 				data['autoPath'] = $('#autoPath').val(); // Either form input or 0 if no form input
-				data['framePerimeterDimensions'] = $('#framePerimeterDimensions').val(); // Either form input or 0 if no form input
+				var frame = "";
+				var frameLength = $('#framePerimeterDimensionsLength').val();
+				var frameWidth = $('#framePerimeterDimensionsWidth').val();
+				if (frameLength || frameWidth) frame = `${frameLength} X ${frameWidth}`;
+				data['framePerimeterDimensions'] = frame;
+				//data['framePerimeterDimensions'] = $('#framePerimeterDimensions').val(); // Either form input or 0 if no form input
 				data['pitComments'] = $('#pitComments').val() || ""; // Either form input or 0 if no form input
 				return data;
 			}
