@@ -1,57 +1,6 @@
 <html>
 <?php include("navbar.php"); ?>
 
-<head>
-	<style>
-		.modal {
-			display: none;
-			/* Hidden by default */
-			position: fixed;
-			/* Stay in place */
-			z-index: 1;
-			/* Sit on top */
-			padding-top: 100px;
-			/* Location of the box */
-			left: 0;
-			top: 0;
-			width: 100%;
-			/* Full width */
-			height: 100%;
-			/* Full height */
-			overflow: auto;
-			/* Enable scroll if needed */
-			background-color: rgb(0, 0, 0);
-			/* Fallback color */
-			background-color: rgba(0, 0, 0, 0.4);
-			/* Black w/ opacity */
-		}
-
-		/* Modal Content */
-		.modal-content {
-			background-color: #fefefe;
-			margin: auto;
-			padding: 20px;
-			border: 1px solid #888;
-			width: 80%;
-		}
-
-		/* The Close Button */
-		.close {
-			color: #aaaaaa;
-			float: right;
-			font-size: 28px;
-			font-weight: bold;
-		}
-
-		.close:hover,
-		.close:focus {
-			color: #000;
-			text-decoration: none;
-			cursor: pointer;
-		}
-	</style>
-</head>
-
 <body class="bg-body">
 	<div class="container row-offcanvas row-offcanvas-left">
 		<div class="well column col-lg-12 col-sm-12 col-xs-12" id="content">
@@ -126,19 +75,18 @@
 							<div class="col-lg-2">
 								<br><text class="form-label">What are your frame perimeter dimensions with your bumper
 									on?</text>
-								<input type="text" class="form-control" id="framePerimeterDimensions" name="framePerimeterDimensions" placeholder=" ">
+								<input type="text" class="form-control" id="framePerimeterDimensions" name="framePerimeterDimensions" placeholder="Frame Perimeter">
 								<br>
 							</div>
 
 							<div class="col-lg-2">
 								<br><text class="form-label">Other Comments:</text>
-								<input type="text" class="form-control" id="pitComments" name="pitComments" placeholder=" ">
+								<input type="text" class="form-control" id="pitComments" name="pitComments" placeholder="Comments">
 								<br>
 							</div>
 
 							<div class="col-lg-12 col-sm-12 col-xs-12">
 								<input id="submit" type="submit" class="btn btn-primary" value="Submit Data" onclick="">
-
 							</div>
 							<br>
 						</div>
@@ -344,6 +292,52 @@
 				-webkit-transform: rotate(45deg);
 				-ms-transform: rotate(45deg);
 				transform: rotate(45deg);
+			}
+			.modal {
+				display: none;
+				/* Hidden by default */
+				position: fixed;
+				/* Stay in place */
+				z-index: 1;
+				/* Sit on top */
+				padding-top: 100px;
+				/* Location of the box */
+				left: 0;
+				top: 0;
+				width: 100%;
+				/* Full width */
+				height: 100%;
+				/* Full height */
+				overflow: auto;
+				/* Enable scroll if needed */
+				background-color: rgb(0, 0, 0);
+				/* Fallback color */
+				background-color: rgba(0, 0, 0, 0.4);
+				/* Black w/ opacity */
+			}
+
+			/* Modal Content */
+			.modal-content {
+				background-color: #fefefe;
+				margin: auto;
+				padding: 20px;
+				border: 1px solid #888;
+				width: 80%;
+			}
+
+			/* The Close Button */
+			.close {
+				color: #aaaaaa;
+				float: right;
+				font-size: 28px;
+				font-weight: bold;
+			}
+
+			.close:hover,
+			.close:focus {
+				color: #000;
+				text-decoration: none;
+				cursor: pointer;
 			}
 		</style>
 
