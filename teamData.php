@@ -13,17 +13,17 @@
                 <button id="readAllTeamMatchData" type="button" class="btn btn-primary">Load Team Data</button>
             </div>
   
-            <div class="row pt-3 pb-3 mb-3">
+            <div class="row">
                 
                 <!-- Number + Pictures -->
                 <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
-                    <div class="card">
+                    <div class="card mb-3 mt-3">
                         <div class="card-header">
                           <h2 id='teamHeading'></h2>
                         </div>
                         <div class="card-body">
 
-                          <div id="robotPicsCarousel" class="carousel slide" data-bs-ride="carousel">
+                          <div id="robotPicsCarousel" class="carousel slide" data-interval="false">
                             <div id="robotPics" class="carousel-inner">
 
                             </div>
@@ -40,9 +40,9 @@
                         </div>
                     </div>
 
-                    <br>
+                    
 
-                    <div class="card">
+                    <div class="card mb-3 mt-3">
                         <div class="card-header">Pit Data</div>
                         <div class="card-body overflow-auto">
 
@@ -65,7 +65,7 @@
 
                 <!-- Summary -->
                 <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
-                    <div class="card">
+                    <div class="card mb-3 mt-3">
                         <div class="card-header">Summary</div>
                         <div class="card-body">
 
@@ -102,11 +102,10 @@
                     </div>
                 </div>
 
-            </div>
-            <div class="row pt-3 pb-3 mb-3">
+            
                 <!-- Pit Data -->
                 <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
-                  <div class="card">
+                  <div class="card mb-3 mt-3">
                         <div class="card-header">Comments</div>
                         <div class="card-body overflow-auto">
 
@@ -119,7 +118,7 @@
 
                 <!-- Charts -->
                 <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
-                    <div class="card">
+                    <div class="card mb-3 mt-3">
                         <div class="card-header">Charts</div>
                         <div class="card-body">
                           <canvas id="dataChart"></canvas>
@@ -234,6 +233,8 @@
     // Only add data if over 0.
     if (matchCount > 0){
       // Calculate avg.
+      pieces = roundInt(pieces / matchCount);
+      points = roundInt(points / matchCount);
       aTotal = roundInt(aTotal / matchCount);
       aCones /= matchCount;
       aCubes /= matchCount;
