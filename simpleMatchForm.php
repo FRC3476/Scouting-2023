@@ -210,6 +210,16 @@
 
   var qrcode = null;
 
+  var teamList = new Set();
+
+  function loadTeamList(){
+    $.get("tbaAPI.php", {
+      "getTeamList": 1
+    }, function(data) {
+      teamList = new Set(JSON.parse(data));
+    });
+  }
+
   // Auto Functions
   function updateAConeLower() {
     if (isIncrement == true) {
@@ -519,6 +529,10 @@
       createErrorAlert('Team number not valid.');
       valid = false;
     }
+    if ((teamList.size > 0) && ! teamList.has(data['teamNumber'])){
+      createErrorAlert('Team number not in TBA team list!');
+      valid = false;
+    }
     return valid;
   }
 
@@ -606,6 +620,10 @@
   
   $('#qrcode-tab').on('click', function(event) {
     updateQRCode();
+  });
+
+  $(document).ready(function() {
+    loadTeamList();
   });
 
 </script>
