@@ -122,6 +122,7 @@
                         <div class="card-header">Charts</div>
                         <div class="card-body">
                           <canvas id="dataChart"></canvas>
+                          <canvas id="pieceChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -136,6 +137,7 @@
 
 <script>
   var dataChart = null;
+  var pieceChart = null;
 
   function clearData(){
     $('#teamHeading').html('');
@@ -146,6 +148,9 @@
     $('#totalSummary').html('');
     if(dataChart != null){
       dataChart.destroy();
+    }
+    if(pieceChart != null){
+      pieceChart.destroy();
     }
     $('#cannedComments').html('');
   }
@@ -307,6 +312,57 @@
     var totalCones = []
     var totalCubes = [];
     var totalPieces = [];
+    for (var i = 0; i != data.length; i++){
+      var row = data[i];
+      matchList.push(row['matchNumber']);
+
+      var matchPoints = getMatchPoints(row);
+
+      var cones = getConesAuto(row) + getConesTeleop(row);
+      var cubes = getCubesAuto(row) + getCubesTeleop(row);
+
+      totalPoints.push(matchPoints);
+      totalCones.push(cones);
+      totalCubes.push(cubes);
+      totalPieces.push(cones + cubes)
+
+    }
+
+    var ctx = document.getElementById('dataChart');
+
+    dataChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: matchList,
+        datasets: [{
+          label: 'Total Pieces',
+          data: totalPieces,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)'
+        },{
+          label: 'Total Cubes',
+          data: totalCubes,
+          fill: false,
+          borderColor: 'rgb(75, 0, 130)'
+        },{
+          label: 'Total Cones',
+          data: totalCones,
+          fill: false,
+          borderColor: 'rgb(212, 175, 55)'
+        }]
+      },
+      options: {
+
+      }
+    });
+  }
+
+  function createPieceChart(data){
+    var matchList = [];
+    var totalAConesTop = []
+    var totalAConesMiddle = []
+    var totalAConesBottom = []
+
     for (var i = 0; i != data.length; i++){
       var row = data[i];
       matchList.push(row['matchNumber']);

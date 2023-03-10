@@ -1,7 +1,5 @@
 <html>
 <?php include("navbar.php"); ?>
-
-
 <body class="bg-body">
 	<div class="container row-offcanvas row-offcanvas-left">
 		<div class="well column col-lg-12 col-sm-12 col-xs-12" id="content">
@@ -16,7 +14,8 @@
 							<div id="alertPlaceholder"></div>
 
 
-							<div class="mb-3">
+
+							<div class="input-group mb-3">
 								<text class="form-label">Match Number</text>
 								<input type="number" class="form-control" id="matchNum" name="matchNum" placeholder=" ">
 								<button class="btn btn-primary" onclick="loadTeams(document.getElementById('matchNum').value)">Load Teams</button>
@@ -25,26 +24,7 @@
 								<text class="form-label">Team 1</text>
 								<button id="team1" draggable="true" ondragstart="drag(event)"></button>
 							</div>
-							<div class="mb-3" id="box2" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<text class="form-label">Team 2</text>
-								<button id="team2" draggable="true" ondragstart="drag(event)"></button>
-							</div>
-							<div class="mb-3" id="box3" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<text class="form-label">Team 3</text>
-								<button id="team3" draggable="true" ondragstart="drag(event)"></button>
-							</div>
-							<div class="mb-3" id="box4" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<text class="form-label">Team 4</text>
-								<button id="team4" draggable="true" ondragstart="drag(event)"></button>
-							</div>
-							<div class="mb-3" id="box5" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<text class="form-label">Team 5</text>
-								<button id="team5" draggable="true" ondragstart="drag(event)"></button>
-							</div>
-							<div class="mb-3" id="box6" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<text class="form-label">Team 6</text>
-								<button id="team6" draggable="true" ondragstart="drag(event)"></button>
-							</div>
+
 							<div class="col-lg-12 col-sm-12 col-xs-12">
 								<input id="submit" type="submit" class="btn btn-primary" value="Submit Data" onclick="">
 
@@ -59,6 +39,7 @@
 
 		<?php include("footer.php"); ?>
 
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 		<script>
 			function loadTeams(match) {
 				console.log(match);
