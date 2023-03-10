@@ -26,9 +26,7 @@
                 <li class="nav-item" role="presentation">
                   <button class="nav-link" id="teleop-tab" data-bs-toggle="tab" data-bs-target="#teleop-tab-pane" type="button" role="tab" aria-controls="teleop-tab-pane" aria-selected="false">Teleop Scouting</button>
                 </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="endgame-tab" data-bs-toggle="tab" data-bs-target="#endgame-tab-pane" type="button" role="tab" aria-controls="endgame-tab-pane" aria-selected="false">Endgame</button>
-                </li>
+
                 <li class="nav-item" role="presentation">
                   <button class="nav-link" id="qrcode-tab" data-bs-toggle="tab" data-bs-target="#qrcode-tab-pane" type="button" role="tab" aria-controls="qrcode-tab-pane" aria-selected="false">QR Code</button>
                 </li>
@@ -65,26 +63,26 @@
                   <div class="row">
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cone </h2>
-                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeUpper()" id="bigFont">Top <a id="buttonAConeUpper" class="enlargedtext"></a></button>
+                      <button class="border disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeUpper()" id="bigFont">Top <div id="buttonAConeUpper" class="enlargedtext"></div></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeMid()" id="bigFont">Middle <a id="buttonAConeMid" class="enlargedtext"></a></button>
+                      <button class="border disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeMid()" id="bigFont">Middle <div id="buttonAConeMid" class="enlargedtext"></div></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeLower()" id="bigFont">Bottom <a id="buttonAConeLower" class="enlargedtext"></a></button>
+                      <button class="border disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeLower()" id="bigFont">Bottom <div id="buttonAConeLower" class="enlargedtext"></div></button>
                       <br>
                     </div>
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cube </h2>
-                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeUpper()" id="bigFont">Top <a id="buttonACubeUpper" class="enlargedtext"></a></button>
+                      <button class="border disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeUpper()" id="bigFont">Top <div id="buttonACubeUpper" class="enlargedtext"></div></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeMid()" id="bigFont">Middle <a id="buttonACubeMid" class="enlargedtext"></a></button>
+                      <button class="border disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeMid()" id="bigFont">Middle <div id="buttonACubeMid" class="enlargedtext"></div></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeLower()" id="bigFont">Bottom <a id="buttonACubeLower" class="enlargedtext"></a></button>
+                      <button class="border disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeLower()" id="bigFont">Bottom <div id="buttonACubeLower" class="enlargedtext"></div></button>
                       <br>
                     </div>
                   </div>
                   <div class="col-md-3">
                     <br>
-                    <button class="disable-dbl-tap-zoom-danger" type="button" onClick="makeIncrementFalse()" id="bigFont">Subtract: <a id="negativeAIncrementButton" class="enlargedtext"></a></button>
+                    <button class="disable-dbl-tap-zoom-danger" type="button" onClick="makeIncrementFalse()" id="bigFont">Subtract: <div id="negativeAIncrementButton" class="enlargedtext"></div></button>
                   </div>
                   <div class="mb-3">
                     <label for="autoChargeStation" class="form-label">Auto Charge Station State</label>
@@ -103,75 +101,79 @@
                   <div class="row">
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cone </h2>
-                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeUpper()" id="bigFont">Top <a id="buttonTConeUpper" class="enlargedtext"></a></button>
+                      <button class="border disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeUpper()" id="bigFont">Top <div id="buttonTConeUpper" class="enlargedtext"></div></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeMid()" id="bigFont">Middle <a id="buttonTConeMid" class="enlargedtext"></a></button>
+                      <button class="border disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeMid()" id="bigFont">Middle <div id="buttonTConeMid" class="enlargedtext"></div></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeLower()" id="bigFont">Bottom <a id="buttonTConeLower" class="enlargedtext"></a></button>
+                      <button class="border disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeLower()" id="bigFont">Bottom <div id="buttonTConeLower" class="enlargedtext"></div></button>
                       <br>
                     </div>
                     <br>
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cube </h2>
-                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeUpper()" id="bigFont">Top <a id="buttonTCubeUpper" class="enlargedtext"></a></button>
+                      <button class="border disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeUpper()" id="bigFont">Top <div id="buttonTCubeUpper" class="enlargedtext"></div></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeMid()" id="bigFont">Middle <a id="buttonTCubeMid" class="enlargedtext"></a></button>
+                      <button class="border disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeMid()" id="bigFont">Middle <div id="buttonTCubeMid" class="enlargedtext"></div></button>
                       <br>
-                      <button class="disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeLower()" id="bigFont">Bottom <a id="buttonTCubeLower" class="enlargedtext"></a></button>
+                      <button class="border disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeLower()" id="bigFont">Bottom <div id="buttonTCubeLower" class="enlargedtext"></div></button>
                     </div>
                   </div>
                   <div class="center">
                     <br>
-                    <button class="disable-dbl-tap-zoom-danger" type="button" onClick="makeTIncrementFalse()" id="bigFont">Subtract: <a id="negativeTIncrementButton" class="enlargedtext"></a></button>
-                  </div>
-                </div>
-                <!--Endgame Scouting-->
-                <div class="tab-pane fade" id="endgame-tab-pane" role="tabpanel" aria-labelledby="endgame-tab" tabindex="0">
-                  <br>
-                  <div class="mb-3">
-                    <label for="teleopChargeStation" class="form-label">Teleop Charge Station State</label>
-                    <select id="teleopChargeStation" class="form-select" aria-label="Asd">
-                      <option value="NONE" selected>Not on Charge Station</option>
-                      <option value="DOCKED">Docking with Charge Station</option>
-                      <option value="ENGAGED">Engaging with Charge Station</option>
-                    </select>
+                    <button class="disable-dbl-tap-zoom-danger" type="button" onClick="makeTIncrementFalse()" id="bigFont">Subtract: <div id="negativeTIncrementButton" class="enlargedtext"></div></button>
                   </div>
                   <br>
-                  <a>Comments</a>
-                  <div class="col-md-12">
-                    <div class="well column  col-lg-12  col-sm-12 col-xs-12" id="cannedComments">
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Slow Drive</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Fast Drive</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Good Defense</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Bad Defense</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Fast Cycle</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Slow Cycle</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Tipped</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Drops Game Pieces</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Bad Driving</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Good Driving</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Stuck on Charge Station</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Can Pick Up Fallen Cones</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Good Defense</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Lots of Fouls</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Bad Defense</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Can Balance in Auto</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Floor Pickup</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">Human Player Pick</span>
-                      <span class="badge rounded-pill text-bg-primary cannedComments">DNP</span>
-                      <br><br>
+                  <br>
+                  <!--Endgame Scouting-->
+                  <div>
+                    <h3>Endgame</h3>
+                    <div class="mb-3">
+                      <label for="teleopChargeStation" class="form-label">Teleop Charge Station State</label>
+                      <select id="teleopChargeStation" class="form-select" aria-label="Asd">
+                        <option value="NONE" selected>Not on Charge Station</option>
+                        <option value="DOCKED">Docking with Charge Station</option>
+                        <option value="ENGAGED">Engaging with Charge Station</option>
+                        <option value="COMMUNITY">In the Community</option>
+                      </select>
                     </div>
                     <br>
-                    <div class="form-floating">
-                      <textarea class="form-control" placeholder="Misc" id="miscComments"></textarea>
-                      <label for="miscComments">Comments</label>
-                    </div>
-                    <br>
-                    <div class="col-md-3">
-                      <button id="submit" class="btn btn-primary">Submit</button>
+                    <a>Comments</a>
+                    <div class="col-md-12">
+                      <div class="well column  col-lg-12  col-sm-12 col-xs-12" id="cannedComments">
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Slow Drive</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Fast Drive</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Good Defense</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Bad Defense</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Fast Cycle</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Slow Cycle</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Tipped</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Drops Game Pieces</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Bad Driving</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Good Driving</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Stuck on Charge Station</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Can Pick Up Fallen Cones</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Good Defense</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Lots of Fouls</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Bad Defense</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Can Balance in Auto</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Floor Pickup</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Human Player Pick</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">DNP</span>
+                        <br><br>
+                      </div>
+                      <br>
+                      <div class="form-floating">
+                        <textarea class="form-control" placeholder="Misc" id="miscComments"></textarea>
+                        <label for="miscComments">Comments</label>
+                      </div>
+                      <br>
+                      <div class="col-md-3">
+                        <button id="submit" class="btn btn-primary">Submit</button>
+                      </div>
                     </div>
                   </div>
                 </div>
+
                 <!--QR Code Scouting-->
                 <div class="tab-pane fade" id="qrcode-tab-pane" role="tabpanel" aria-labelledby="qrcode-tab" tabindex="0">
                   <br>
@@ -212,7 +214,7 @@
 
   var teamList = new Set();
 
-  function loadTeamList(){
+  function loadTeamList() {
     $.get("tbaAPI.php", {
       "getTeamList": 1
     }, function(data) {
@@ -529,7 +531,7 @@
       createErrorAlert('Team number not valid.');
       valid = false;
     }
-    if ((teamList.size > 0) && ! teamList.has(data['teamNumber'])){
+    if ((teamList.size > 0) && !teamList.has(data['teamNumber'])) {
       createErrorAlert('Team number not in TBA team list!');
       valid = false;
     }
@@ -558,25 +560,25 @@
     $('#miscComments').val('');
   }
 
-  function createInitialQR(){
+  function createInitialQR() {
     qrcode = new QRCode("data-qr-code", {
       text: JSON.stringify([]),
       width: 512,
       height: 512,
-      colorDark : "#000000",
-      colorLight : "#ffffff",
-      correctLevel : QRCode.CorrectLevel.H
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
     });
   }
 
-  function updateQRCode(){
-    if(qrcode == null){
+  function updateQRCode() {
+    if (qrcode == null) {
       createInitialQR();
     }
     qrcode.clear();
     var data = getMatchFormData();
     var validData = validateFormData(data);
-    if (validData){
+    if (validData) {
       qrcode.makeCode(JSON.stringify(data));
     }
   }
@@ -617,7 +619,7 @@
   $("#submit").on('click', function(event) {
     submitData();
   });
-  
+
   $('#qrcode-tab').on('click', function(event) {
     updateQRCode();
   });
@@ -625,7 +627,6 @@
   $(document).ready(function() {
     loadTeamList();
   });
-
 </script>
 <style>
   .disable-dbl-tap-zoom-purple {
