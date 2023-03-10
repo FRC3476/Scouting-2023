@@ -63,20 +63,20 @@
                   <div class="row">
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cone </h2>
-                      <button class="border disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeUpper()" id="bigFont">Top <div id="buttonAConeUpper" class="enlargedtext"></div></button>
+                      <button class="border border-dark disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeUpper()" id="bigFont">Top <div id="buttonAConeUpper" class="enlargedtext"></div></button>
                       <br>
-                      <button class="border disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeMid()" id="bigFont">Middle <div id="buttonAConeMid" class="enlargedtext"></div></button>
+                      <button class="border border-dark disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeMid()" id="bigFont">Middle <div id="buttonAConeMid" class="enlargedtext"></div></button>
                       <br>
-                      <button class="border disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeLower()" id="bigFont">Bottom <div id="buttonAConeLower" class="enlargedtext"></div></button>
+                      <button class="border border-dark disable-dbl-tap-zoom-yellow" type="button" onClick="updateAConeLower()" id="bigFont">Bottom <div id="buttonAConeLower" class="enlargedtext"></div></button>
                       <br>
                     </div>
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cube </h2>
-                      <button class="border disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeUpper()" id="bigFont">Top <div id="buttonACubeUpper" class="enlargedtext"></div></button>
+                      <button class="border border-dark disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeUpper()" id="bigFont">Top <div id="buttonACubeUpper" class="enlargedtext"></div></button>
                       <br>
-                      <button class="border disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeMid()" id="bigFont">Middle <div id="buttonACubeMid" class="enlargedtext"></div></button>
+                      <button class="border border-dark disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeMid()" id="bigFont">Middle <div id="buttonACubeMid" class="enlargedtext"></div></button>
                       <br>
-                      <button class="border disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeLower()" id="bigFont">Bottom <div id="buttonACubeLower" class="enlargedtext"></div></button>
+                      <button class="border border-dark disable-dbl-tap-zoom-purple" type="button" onClick="updateACubeLower()" id="bigFont">Bottom <div id="buttonACubeLower" class="enlargedtext"></div></button>
                       <br>
                     </div>
                   </div>
@@ -101,21 +101,21 @@
                   <div class="row">
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cone </h2>
-                      <button class="border disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeUpper()" id="bigFont">Top <div id="buttonTConeUpper" class="enlargedtext"></div></button>
+                      <button class="border border-dark disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeUpper()" id="bigFont">Top <div id="buttonTConeUpper" class="enlargedtext"></div></button>
                       <br>
-                      <button class="border disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeMid()" id="bigFont">Middle <div id="buttonTConeMid" class="enlargedtext"></div></button>
+                      <button class="border border-dark disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeMid()" id="bigFont">Middle <div id="buttonTConeMid" class="enlargedtext"></div></button>
                       <br>
-                      <button class="border disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeLower()" id="bigFont">Bottom <div id="buttonTConeLower" class="enlargedtext"></div></button>
+                      <button class="border border-dark disable-dbl-tap-zoom-yellow" type="button" onClick="updateTConeLower()" id="bigFont">Bottom <div id="buttonTConeLower" class="enlargedtext"></div></button>
                       <br>
                     </div>
                     <br>
                     <div class="col-md-5">
                       <h2 style="text-align: center"> Cube </h2>
-                      <button class="border disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeUpper()" id="bigFont">Top <div id="buttonTCubeUpper" class="enlargedtext"></div></button>
+                      <button class="border border-dark disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeUpper()" id="bigFont">Top <div id="buttonTCubeUpper" class="enlargedtext"></div></button>
                       <br>
-                      <button class="border disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeMid()" id="bigFont">Middle <div id="buttonTCubeMid" class="enlargedtext"></div></button>
+                      <button class="border border-dark disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeMid()" id="bigFont">Middle <div id="buttonTCubeMid" class="enlargedtext"></div></button>
                       <br>
-                      <button class="border disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeLower()" id="bigFont">Bottom <div id="buttonTCubeLower" class="enlargedtext"></div></button>
+                      <button class="border border-dark disable-dbl-tap-zoom-purple" type="button" onClick="updateTCubeLower()" id="bigFont">Bottom <div id="buttonTCubeLower" class="enlargedtext"></div></button>
                     </div>
                   </div>
                   <div class="center">
