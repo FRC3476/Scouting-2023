@@ -55,6 +55,9 @@
             <li>
               <a class="dropdown-item" href="pitData.php">Pit Data</a>
             </li>
+            <li>
+              <a class="dropdown-item" href="leadScoutData.php">Lead Scout Data</a>
+            </li>
           </ul>
         </li>
       </ul>

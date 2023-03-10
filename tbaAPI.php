@@ -61,7 +61,7 @@ if (getOrPost('getTeamsInMatch')){
   foreach($rawMatches as &$matchRow){
     if ($matchRow['comp_level'] === 'qm' && $matchRow['match_number'] == $queryMatchNumber){
       $teamList['red'] = $matchRow['alliances']['red']['team_keys'];
-      $teamList['blue'] = $matchRow['alliances']['red']['team_keys'];
+      $teamList['blue'] = $matchRow['alliances']['blue']['team_keys'];
       break;
     }
   } 

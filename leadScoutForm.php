@@ -5,275 +5,183 @@
 <body class="bg-body">
 	<div class="container row-offcanvas row-offcanvas-left">
 		<div class="well column col-lg-12 col-sm-12 col-xs-12" id="content">
-			<div class="row pt-3 pb-3 mb-3">
 
+			<div class="row pt-3 pb-3 mb-3 justify-content-md-center">
+        <div class="col-md-6 col-sm-12 col-xs-12 gx-3">
+          <div class="card">
+            <div class="card-body">
+                <div class="input-group mb-3">
+                  <input id="writeMatchNumber" type="text" class="form-control" placeholder="Match Number" aria-label="writeMatchNumber">
+                  <button id="loadMatch" type="button" class="btn btn-primary">Load Match</button>
+                </div>
+                <h3 id='matchBanner'>Match:</h3>
+            </div>
+          </div>
+        </div>
+      </div>
 
-				<div class="col-lg-12 col-sm-12 col-xs-12 gx-3">
+			<div class="row pt-3 pb-3 mb-3 justify-content-md-center">
+
+				<div class="col-6 gx-3">
 					<div class="card">
-						<div class="card-header">Lead Scout Form</div>
-						<div class="card-body">
-
-							<div id="alertPlaceholder"></div>
-
-
-							<div class="mb-3">
-								<text class="form-label">Match Number</text>
-								<input type="number" class="form-control" id="matchNum" name="matchNum" placeholder=" ">
-								<button class="btn btn-primary" onclick="loadTeams(document.getElementById('matchNum').value)">Load Teams</button>
-							</div>
-							<div class="mb-3" id="box1" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<text class="form-label">Team 1</text>
-								<button id="team1" draggable="true" ondragstart="drag(event)"></button>
-							</div>
-							<div class="mb-3" id="box2" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<text class="form-label">Team 2</text>
-								<button id="team2" draggable="true" ondragstart="drag(event)"></button>
-							</div>
-							<div class="mb-3" id="box3" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<text class="form-label">Team 3</text>
-								<button id="team3" draggable="true" ondragstart="drag(event)"></button>
-							</div>
-							<div class="mb-3" id="box4" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<text class="form-label">Team 4</text>
-								<button id="team4" draggable="true" ondragstart="drag(event)"></button>
-							</div>
-							<div class="mb-3" id="box5" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<text class="form-label">Team 5</text>
-								<button id="team5" draggable="true" ondragstart="drag(event)"></button>
-							</div>
-							<div class="mb-3" id="box6" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<text class="form-label">Team 6</text>
-								<button id="team6" draggable="true" ondragstart="drag(event)"></button>
-							</div>
-							<div class="col-lg-12 col-sm-12 col-xs-12">
-								<input id="submit" type="submit" class="btn btn-primary" value="Submit Data" onclick="">
-
-							</div>
-							<br>
+            <div class="card-body">
+							<h3>Team List</h3>
+							<table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Team #</th>
+                  </tr>
+                </thead>
+                <tbody id="rawAllianceRows">
+                </tbody>
+              </table>
 						</div>
 					</div>
 				</div>
+
+				<div class="col-6 gx-3">
+					<div class="card">
+            <div class="card-body">
+							<h3>Rank</h3>
+							<table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Team #</th>
+                  </tr>
+                </thead>
+                <tbody id="sortedAllianceRank">
+                </tbody>
+              </table>
+						</div>
+					</div>
+				</div>
+
 			</div>
 
+			<div class="row pt-78 pb-3 mb-3 justify-content-md-center">
+      	<button id="submitData" type="button" class="btn btn-success">Submit Ranking</button>
+    	</div>
+
+
 		</div>
+	</div>
 
-		<?php include("footer.php"); ?>
+	<?php include("footer.php"); ?>
 
-		<script>
-			function loadTeams(match) {
-				console.log(match);
-				fetch("./tbaAPI.php?readURIFromTBA=" + match).then(response => response.json())
-					.then((data) => {
-						if (data['red'].length != 0){
-							setField("team1", true, data['red'][0]);
-							setField("team2", true, data['red'][1]);
-							setField("team3", true, data['red'][2]);
-							setField("team4", false, data['blue'][3]);
-							setField("team5", false, data['blue'][4]);
-							setField("team6", false, data['blue'][5]);
-						}
-					});
+	<script type="text/javascript" src="js/sortable.min.js"></script>
+
+	<script>
+		var icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/></svg>';
+		var currentMatch = 0;
+
+		function clearData(){
+			$('#rawAllianceRows').html('');
+			$('#sortedAllianceRank').html('');
+			$('#matchBanner').html('Match:');
+		}
+
+		function stripTeamTags(teamList) {
+			var out = []
+			for (let i = 0; i != teamList.length; i++) {
+				var team = teamList[i];
+				team = team.toUpperCase();
+				team = team.replace("FRC", "");
+				out.push(parseInt(team, 10));
 			}
+			return out;
+		}
 
-			function allowDrop(ev) {
-				ev.preventDefault();
-			}
+		function addRawRow(color, team){
+			var classItem = color == 'Red' ? 'table-danger' : 'table-info';
+			var rows = [
+				`<tr data-team='${team}' class='${classItem}'>`,
+				`	<td scope='row' class='pickHandle'>${icon_svg}</td>`,
+				`	<td scope='row'>${color}</td>`,
+				`	<td scope='row'>${team}</td>`,
+				`</tr>`
+			].join('');
+			$('#rawAllianceRows').append(rows);
+		}
 
-			function drag(ev) {
-				ev.dataTransfer.setData("text", ev.target.id);
-			}
+		function loadMatch(number){
+			currentMatch = number;
+			clearData();
 
-			function drop(ev) {
-				ev.preventDefault();
-				console.log(ev.target);
-				var data = ev.dataTransfer.getData("text");
-				ev.target.appendChild(document.getElementById(data));
-			}
+			$.get("tbaAPI.php", {
+				getTeamsInMatch: 1
+			}).done(function(data) {
+				$('#matchBanner').html(`Match: ${number}`);
+				data = JSON.parse(data);
+				var redTeams = stripTeamTags(data['red']);
+				var blueTeams = stripTeamTags(data['blue']);
 
-			function submitData() {
-				/* Gets data from form, validates it, and creates appropriate error messages. 
-
-				Returns:
-				True if successful, false if not.
-				*/
-				clearAlerts();
-				var data = getLeadScoutFormData();
-				console.log(data);
-				var validData = validateFormData(data);
-				if (validData) {
-					// Create POST request.
-					$.post("writeAPI.php", {
-							"writeLSData": JSON.stringify(data)
-						}, function(data) {
-							data = JSON.parse(data);
-							if (data["success"]) {
-								createSuccessAlert('Form Submitted. Clearing form.');
-								location.reload();
-							} else {
-								createErrorAlert('Form submitted to server but failed to process. Please try again or contact admin.');
-								createErrorAlert(JSON.stringify(data["error"]));
-							}
-						})
-						.fail(function() {
-							createErrorAlert('Form submitted but failure on server side. Please try again or contact admin.');
-						});
-				}
-			}
-
-			function createErrorAlert(errorMessage) {
-				/* Creats a Error alert. 
-				
-				Args:
-				  successMessage: String of message to send.
-				*/
-				var alertValue = [`<div class="alert alert-danger alert-dismissible" role="alert">`,
-					`  <div>${errorMessage}</div>`,
-					`  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
-					`</div>`
-				].join('');
-				$('#alertPlaceholder').append(alertValue);
-			}
-
-			function createSuccessAlert(successMessage) {
-				/* Creats a success alert. 
-				
-				Args:
-				  successMessage: String of message to send.
-				*/
-				var alertValue = [`<div class="alert alert-success alert-dismissible" role="alert">`,
-					`  <div>${successMessage}</div>`,
-					`  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
-					`</div>`
-				].join('');
-				$('#alertPlaceholder').append(alertValue);
-			}
-
-			function clearAlerts() {
-				/* Clears all allerts in the placeholder. */
-				$('#alertPlaceholder').empty();
-			}
-
-			function validateFormData(data) {
-				/* Return false and send error if not valid form data.
-				
-				Args:
-				  data: dictionary of values from form.
-				*/
-				var valid = true;
-				if (data) {
-					createErrorAlert('Missing data');
-					valid = true;
-
-
-
-				}
-				return valid;
-			}
-
-			function clearForm() {
-				$('#matchNum').val('');
-				$('#team1').val('');
-				$('#team2').val('');
-				$('#team3').val('');
-				$('#team4').val('');
-				$('#team5').val('');
-				$('#team6').val('');
-			}
-
-			function getValue(id) {
-				var box = document.getElementById(id);
-				var result = box.getElementsByTagName("button");
-				if (result.length != 1) return false;
-				else return result[0].innerText;
-			}
-
-			function getLeadScoutFormData() {
-				/* Gets values from HTML form and formats as dictionary. */
-				var data = {};
-				data['matchNum'] = parseInt($('#matchNum').val());
-				data['team1'] = parseInt($('#team1').val());
-				data['team2'] = parseInt($('#team2').val());
-				data['team3'] = parseInt($('#team3').val());
-				data['team4'] = parseInt($('#team4').val());;
-				data['team5'] = parseInt($('#team5').val());;
-				data['team6'] = parseInt($('#team6').val());;
-				return data;
-			}
-
-			$("#submit").on('click', function(event) {
-				//submitData();
+				for (let i = 0; i != redTeams.length; i++){addRawRow('Red', redTeams[i]);}
+				for (let i = 0; i != blueTeams.length; i++){addRawRow('Blue', blueTeams[i]);}
 			});
-		</script>
+		}
 
-
-		<style>
-			/* The container */
-			.container2 {
-				display: inline-block;
-				position: relative;
-				cursor: pointer;
-				font-size: 22px;
-				bottom: 10px;
-				-webkit-user-select: none;
-				-moz-user-select: none;
-				-ms-user-select: none;
-				user-select: none;
+		function getSortedTeams() {
+			var teamList = [];
+			for (let tr of $("#sortedAllianceRank tr")) {
+				teamList.push(Number($(tr).attr("data-team")));
 			}
+			return teamList;
+		}
 
-			/* Hide the browser's default checkbox */
-			.container2 input {
-				position: absolute;
-				opacity: 0;
-				cursor: pointer;
-				height: 0;
-				width: 0;
-				margin-left: 100%;
+		function saveRanking(){
+			$.get("writeAPI.php", {
+				match: currentMatch,
+				saveAllianceRank: JSON.stringify(getSortedTeams())
+			}).done(function(data) {
+				data = JSON.parse(data);
+				console.log(data);
+				if (data['success'] != true){
+					alert('Data did not submit!');
+				}
+				else {
+					alert("Data successfully submitted!");
+					clearData();
+				}
+			});
+		}
 
-			}
+		$('#loadMatch').on('click', function(){
+			loadMatch($('#writeMatchNumber').val());
+		});
 
-			/* Create a custom checkbox */
-			.checkmark {
-				position: absolute;
-				top: 0;
-				left: 0;
-				height: 25px;
-				width: 25px;
-				background-color: #eee;
-				border-radius: 5px;
-			}
+		$('#submitData').on('click', function(){
+			saveRanking();
+		});
 
-			.container:hover input~.checkmark {
-				background-color: orange;
-			}
 
-			.container2 input:checked~.checkmark {
-				background-color: rgb(15, 129, 120);
-			}
+		$(document).ready(function() {
 
-			/* Create the checkmark/indicator (hidden when not checked) */
-			.checkmark:after {
-				content: "";
-				position: absolute;
-				display: none;
-			}
+			unsortedTable = new Sortable(document.getElementById('rawAllianceRows'), {
+				group: 'shared',
+				animation: 150,
+				sort: true,
+				delayOnTouchOnly: true,
+				fallbackTolerance: 3,
+				scroll: true,
+				handle: '.pickHandle'
+			});
 
-			/* Show the checkmark when checked */
-			.container2 input:checked~.checkmark:after {
-				display: block;
-			}
+			sortedTable = new Sortable(document.getElementById('sortedAllianceRank'), {
+				group: 'shared',
+				animation: 150,
+				sort: true,
+				delayOnTouchOnly: true,
+				fallbackTolerance: 3,
+				scroll: true,
+				handle: '.pickHandle'
+			});
 
-			/* Style the checkmark/indicator */
-			.container2 .checkmark:after {
-				left: 9px;
-				top: 5px;
-				width: 5px;
-				height: 10px;
-				border: solid white;
-				border-width: 0 3px 3px 0;
-				-webkit-transform: rotate(45deg);
-				-ms-transform: rotate(45deg);
-				transform: rotate(45deg);
-			}
-		</style>
+		});
+
+	</script>
 
 </html>

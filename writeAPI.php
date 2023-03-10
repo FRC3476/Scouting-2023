@@ -55,24 +55,31 @@ if (isset($_POST['writePitScoutData'])) {
   echo (json_encode($result));
 }
 
-if (isset($_POST['writeLSData'])) {
-  $result = new stdClass();
-  $result -> success = true;
+if (isset($_GET['saveAllianceRank'])){
   $db = new dbHandler();
-  $matchData = json_decode($_POST['writeLSData'], true);
-  $success = true;
-    //create LSTable if it doesn't exist
-    if (!$db->getTableExists("LSTable")) {
-      $db->createTable("LSTable");
+  $teamList = json_decode($_GET['saveAllianceRank'], true);
+  $match = $_GET['match'];
+
+  $result = array();
+  $result['success'] = true;
+
+  # Fill array.
+  if (count($teamList) < 6){
+    for($i = count($teamList); $i < 6; $i++){
+      array_push($teamList, 0);
     }
-  try {
-    $db->writeRowToTable('LSTable', $matchData);
-  } catch (Exception $e) {
-    error_log($e);
-    $e = json_decode(json_encode($e));
-    $result->error = $e -> errorInfo;
-    $result -> success = false;
   }
+
+  $leadScoutData = array();
+  $leadScoutData['matchNum'] = $match;
+  $leadScoutData['team1'] = $teamList[0];
+  $leadScoutData['team2'] = $teamList[1];
+  $leadScoutData['team3'] = $teamList[2];
+  $leadScoutData['team4'] = $teamList[3];
+  $leadScoutData['team5'] = $teamList[4];
+  $leadScoutData['team6'] = $teamList[5];
+
+  $db->writeRowToTable('LSTable', $leadScoutData);
 
   echo (json_encode($result));
 }
