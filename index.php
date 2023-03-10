@@ -21,7 +21,7 @@ body {
 
               <h1>2023 Scouting System</h1>
               
-              Please reach out to 3476 for any urgent support!
+              Please reach out to Head Scout for any urgent support!
             
             </div>
           </div>
