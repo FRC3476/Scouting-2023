@@ -16,6 +16,7 @@
               <div class="row">
                 <select id="cameraSelect" class="form-select form-select mb-3" aria-label=".form-select-lg example">
                 </select>
+                <button id="submitData" type="button" class="btn btn-success">Upload Data</button>
               </div>
 
               <br>
@@ -57,6 +58,9 @@
 
 <script>
 
+var scannedData = {};
+var scannedCount = 0;
+
 function alertSuccessfulScan() {
   try {window.navigator.vibrate(200);}
   catch (exception) {}
@@ -82,15 +86,68 @@ function validateQrList(dataList) {
   return true;
 }
 
-function addQrData(dataObj) {
+function qrListToKey(dataObj) {
+  return dataObj["matchNumber"] + "_" + dataObj["teamNumber"];
+}
 
+function addQrData(dataObj) {
+  var matchKey = qrListToKey(dataObj);
+  if (!scannedData.hasOwnProperty(matchKey)){
+    scannedData[matchKey] = dataObj;
+    scannedCount++;
+    $('#submitData').html(`Submit Data: ${scannedCount}`);
+    var rows = ``.join(
+      `<tr id='${dataKey}_row'>`,
+      ` <td>${dataObj[matchNumber]}</td>`,
+      ` <td>${dataObj[teamNumber]}</td>`,
+      ` <td>${dataObj[scoutName]}</td>`,
+      ` <button id='${matchKey}_delete' type='button' class='btn btn-danger deleteRowButton'>Delete</button>`,
+      `</tr>`
+    );
+    $('#verificationTableBody').append(rows);
+    $(`#${matchKey}_delete`).on('click', function(event){
+      removeQrData($(this).val());
+    });
+  }
+}
+
+function removeQrData(dataKey) {
+  if (scannedData.hasOwnProperty(dataKey)) {
+    delete scannedData[dataKey];
+    --scannedCount;
+    $("#submitData").html(`Submit Data: ${scannedCount}`);
+    $(`#${dataKey}_row`).remove();
+  }
+}
+
+function clearData(){
+  $("#verificationTableBody").html("");
+  scannedCount = 0;
+  scannedData = {};
+}
+
+function submitData(){
+  var dataList = []
+  for (const [key, value] of Object.entries(scannedData)){
+    dataList.push(value);
+  }
+  $.get('writeAPI.php', {
+    'writeDataList': JSON.stringify(dataList)
+  }, function(data){
+    data = JSON.parse(data);
+    if (data['success']){
+      alert('Data Successfully Submitted! Clearing Data.')
+      clearData();
+    }
+    else {
+      alert('Data not submitted!');
+    }
+  })
 }
 
 function scanCamera(reader, id) {
   reader.decodeFromInputVideoDeviceContinuously(id, 'camera', (result, err) => {
     if (result) {
-      console.log(result.text);
-      return;
       var dataList = JSON.parse(result.text);
       console.log("scanCamera: dataList = "+dataList);
       if (validateQrList(dataList)) {
@@ -133,6 +190,10 @@ function createCameraSelect(reader) {
 $(document).ready(function () {
   const reader = new ZXing.BrowserQRCodeReader();
   createCameraSelect(reader);
+});
+
+$('#submitData').on('click', function(){
+  submitData();
 });
 
 </script>

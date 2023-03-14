@@ -64,7 +64,19 @@ if (getOrPost('LSRank')){
     $lead_scout_row = $lead_scout_data[$i];
     array_push($ranking_list, array($lead_scout_row['team1'], $lead_scout_row['team2'], $lead_scout_row['team3'], $lead_scout_row['team4'], $lead_scout_row['team5'] ,$lead_scout_row['team6']));
   }
-  $ls_rank = exec('python teamSkill.py ' . json_encode($ranking_list, JSON_NUMERIC_CHECK));
+  // Namecheap doesn't source Python3 normally, so try 1 then the other.
+  $python_script = 'python teamSkill.py ' . json_encode($ranking_list, JSON_NUMERIC_CHECK);
+  $ls_rank = array();
+  $successful = True;
+  try {
+    $command = 'source /home/wadech/virtualenv/api/3.8/bin/activate;';
+    $ls_rank = exec($command . $python_script);
+  } catch (Exception $e) {
+    $successful = False;
+  }
+  if (!$successful || strcmp($ls_rank, '') == 0){
+    $ls_rank = exec($python_script);
+  }
   echo(json_encode($ls_rank, JSON_NUMERIC_CHECK));
 }
 
