@@ -33,12 +33,12 @@ if (isset($_POST['writeSingleMatchData'])) {
   echo (json_encode($result));
 }
 
-if (isset($_POST['writeDataList'])){
+if (isset($_GET['writeDataList'])){
   $result = new stdClass();
   $result->success = true;
   $db = new dbHandler();
 
-  foreach($_POST['writeDataList'] as &$dataList){
+  foreach($_GET['writeDataList'] as &$dataList){
     try {
       $matchData = json_decode($dataList, true);
       $matchData['matchKey'] = $matchData['matchNumber'] . '-' . $matchData['teamNumber'];

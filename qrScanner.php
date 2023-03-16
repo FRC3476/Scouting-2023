@@ -62,8 +62,8 @@ var scannedData = {};
 var scannedCount = 0;
 
 function alertSuccessfulScan() {
-  try {window.navigator.vibrate(200);}
-  catch (exception) {}
+  // try {window.navigator.vibrate(200);}
+  // catch (exception) {}
   $("#content").addClass("bg-success");
   var timeoutFunction = setTimeout(function () { $("#content").removeClass("bg-success"); }, 500);
 }
@@ -91,19 +91,19 @@ function qrListToKey(dataObj) {
 }
 
 function addQrData(dataObj) {
+  console.log(dataObj);
   var matchKey = qrListToKey(dataObj);
   if (!scannedData.hasOwnProperty(matchKey)){
     scannedData[matchKey] = dataObj;
     scannedCount++;
     $('#submitData').html(`Submit Data: ${scannedCount}`);
-    var rows = ``.join(
-      `<tr id='${dataKey}_row'>`,
-      ` <td>${dataObj[matchNumber]}</td>`,
-      ` <td>${dataObj[teamNumber]}</td>`,
-      ` <td>${dataObj[scoutName]}</td>`,
-      ` <button id='${matchKey}_delete' type='button' class='btn btn-danger deleteRowButton'>Delete</button>`,
-      `</tr>`
-    );
+    var rows =
+      [`<tr id='${matchKey}_row'>`,
+      ` <td>${dataObj['scout']}</td>`,
+      ` <td>${dataObj['matchNumber']}</td>`,
+      ` <td>${dataObj['teamNumber']}</td>`,
+      ` <td><button id='${matchKey}_delete' value='${matchKey}' type='button' class='btn btn-danger deleteRowButton'>Delete</button></td>`,
+      `</tr>`].join('');
     $('#verificationTableBody').append(rows);
     $(`#${matchKey}_delete`).on('click', function(event){
       removeQrData($(this).val());
@@ -112,6 +112,7 @@ function addQrData(dataObj) {
 }
 
 function removeQrData(dataKey) {
+  console.log(dataKey);
   if (scannedData.hasOwnProperty(dataKey)) {
     delete scannedData[dataKey];
     --scannedCount;
@@ -173,9 +174,12 @@ function uncompressDataList(dataList){
 function scanCamera(reader, id) {
   reader.decodeFromInputVideoDeviceContinuously(id, 'camera', (result, err) => {
     if (result) {
+      console.log(result.text);
       var dataList = JSON.parse(result.text);
+      console.log(dataList);
       console.log("scanCamera: dataList = "+dataList);
       if (validateQrList(dataList)) {
+        console.log('valid');
         var uncompressedList = uncompressDataList(dataList);
         alertSuccessfulScan();
 	      addQrData(uncompressedList);
