@@ -125,6 +125,7 @@ function clearData(){
   $("#verificationTableBody").html("");
   scannedCount = 0;
   scannedData = {};
+  $("#submitData").html(`Submit Data: ${scannedCount}`);
 }
 
 function submitData(){
@@ -132,7 +133,7 @@ function submitData(){
   for (const [key, value] of Object.entries(scannedData)){
     dataList.push(value);
   }
-  $.get('writeAPI.php', {
+  $.post('writeAPI.php', {
     'writeDataList': JSON.stringify(dataList)
   }, function(data){
     data = JSON.parse(data);
