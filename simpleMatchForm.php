@@ -512,6 +512,31 @@
     return data;
   }
 
+  function getQRCodeJSON(){
+    var originalJSON = getMatchFormData();
+    var data = [];
+    data.push(originalJSON['scout']);
+    data.push(originalJSON['matchNumber']);
+    data.push(originalJSON['teamNumber']);
+    data.push(originalJSON['autoMobility']);
+    data.push(originalJSON['autoConeLevel1']);
+    data.push(originalJSON['autoConeLevel2']);
+    data.push(originalJSON['autoConeLevel3']);
+    data.push(originalJSON['autoCubeLevel1']);
+    data.push(originalJSON['autoCubeLevel2']);
+    data.push(originalJSON['autoCubeLevel3']);
+    data.push(originalJSON['autoChargeStation']);
+    data.push(originalJSON['teleopConeLevel1']);
+    data.push(originalJSON['teleopConeLevel2']);
+    data.push(originalJSON['teleopConeLevel3']);
+    data.push(originalJSON['teleopCubeLevel1']);
+    data.push(originalJSON['teleopCubeLevel2']);
+    data.push(originalJSON['teleopCubeLevel3']);
+    data.push(originalJSON['teleopChargeStation']);
+    data.push(originalJSON['cannedComments']);
+    return data;
+  }
+
   function validateFormData(data) {
     /* Return false and send error if not valid form data.
     
@@ -576,8 +601,8 @@
       createInitialQR();
     }
     qrcode.clear();
-    var data = getMatchFormData();
-    var validData = validateFormData(data);
+    var data = getQRCodeJSON();
+    var validData = validateFormData(getMatchFormData());
     if (validData) {
       qrcode.makeCode(JSON.stringify(data));
     }

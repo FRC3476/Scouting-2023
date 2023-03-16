@@ -33,6 +33,26 @@ if (isset($_POST['writeSingleMatchData'])) {
   echo (json_encode($result));
 }
 
+if (isset($_POST['writeDataList'])){
+  $result = new stdClass();
+  $result->success = true;
+  $db = new dbHandler();
+
+  foreach($_POST['writeDataList'] as &$dataList){
+    try {
+      $matchData = json_decode($dataList, true);
+      $matchData['matchKey'] = $matchData['matchNumber'] . '-' . $matchData['teamNumber'];
+      $db->writeRowToTable('datatable', $matchData);
+    } catch (Exception $e) {
+      error_log($e);
+      $e = json_decode(json_encode($e));
+      $result->error = $e -> errorInfo;
+      $result->success = false;
+    }
+  }
+  echo (json_encode($result));
+}
+
 if (isset($_POST['writePitScoutData'])) {
   $result = new stdClass();
   $result -> success = true;

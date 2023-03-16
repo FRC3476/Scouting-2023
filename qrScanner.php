@@ -83,7 +83,7 @@ function getDefaultDeviceID(id) {
 
 function validateQrList(dataList) {
   /* Do more validation. */
-  return true;
+  return dataList.length == 19;
 }
 
 function qrListToKey(dataObj) {
@@ -145,14 +145,40 @@ function submitData(){
   })
 }
 
+function uncompressDataList(dataList){
+  var out = {};
+  out['scout'] = dataList[0];
+  out['matchNumber'] = dataList[1];
+  out['teamNumber'] = dataList[2];
+  out['autoMobility'] = dataList[3];
+  out['autoConeLevel1'] = dataList[4];
+  out['autoConeLevel2'] = dataList[5];
+  out['autoConeLevel3'] = dataList[6];
+  out['autoCubeLevel1'] = dataList[7];
+  out['autoCubeLevel2'] = dataList[8];
+  out['autoCubeLevel3'] = dataList[9];
+  out['autoChargeStation'] = dataList[10];
+  out['teleopConeLevel1'] = dataList[11];
+  out['teleopConeLevel2'] = dataList[12];
+  out['teleopConeLevel3'] = dataList[13];
+  out['teleopCubeLevel1'] = dataList[14];
+  out['teleopCubeLevel2'] = dataList[15];
+  out['teleopCubeLevel3'] = dataList[16];
+  out['teleopChargeStation'] = dataList[17];
+  out['cannedComments'] = dataList[18];
+  out['textComments'] = '';
+  return out;
+}
+
 function scanCamera(reader, id) {
   reader.decodeFromInputVideoDeviceContinuously(id, 'camera', (result, err) => {
     if (result) {
       var dataList = JSON.parse(result.text);
       console.log("scanCamera: dataList = "+dataList);
       if (validateQrList(dataList)) {
+        var uncompressedList = uncompressDataList(dataList);
         alertSuccessfulScan();
-	      addQrData(dataList);
+	      addQrData(uncompressedList);
       }
       else {
         alert("Error! Check QR code.");
