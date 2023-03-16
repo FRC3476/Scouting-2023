@@ -45,6 +45,20 @@ function getEngageAuto(row) {
 	return row['autoChargeStation'] == 'ENGAGED';
 }
 
+function getAutoChargeStationPoints(row){
+	var points = 0;
+	points += getDockAuto(row) ? 8 : 0;
+	points += getEngageAuto(row) ? 12 : 0;
+	return points;
+}
+
+function getTeleopChargeStationPoints(row){
+	var points = 0;
+	points += getDockTeleop(row) ? 6 : 0;
+	points += getEngageTeleop(row) ? 10 : 0;
+	return points;
+}
+
 function getTopAuto(row) {
 	return row['autoConeLevel3'] + row['autoCubeLevel3'];
 }

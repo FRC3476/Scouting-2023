@@ -73,8 +73,12 @@ if (getOrPost('getMatchData')){
   $matchLevel = getOrPost('level');
   $tba = new tbaHandler();
   $rawMatches = $tba->getSimpleMatches(getEventCode($tba));
+  $number_key = 'match_number';
+  if ($matchLevel == 'sf'){
+    $number_key = 'set_number';
+  }
   foreach($rawMatches as &$matchRow){
-    if ($matchRow['comp_level'] == $matchLevel && $matchRow['match_number'] == $matchNumber){
+    if ($matchRow['comp_level'] == $matchLevel && $matchRow[$number_key] == $matchNumber){
       echo(json_encode($matchRow));
       return;
     }
@@ -94,7 +98,11 @@ if (getOrPost('getUserMatches')){
         $matchRow['alliances']['blue']['team_keys'][0] == $team || 
         $matchRow['alliances']['blue']['team_keys'][1] == $team || 
         $matchRow['alliances']['blue']['team_keys'][2] == $team){
-      array_push($matches, array($matchRow['comp_level'], $matchRow['match_number']));
+      $matchNumber = $matchRow['match_number'];
+      if ($matchRow['comp_level'] == 'sf'){
+        $matchNumber = $matchRow['set_number'];
+      }
+      array_push($matches, array($matchRow['comp_level'], $matchNumber));
     }
   }
   usort($matches, function($a, $b){

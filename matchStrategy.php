@@ -18,7 +18,6 @@
                 <div class="input-group mb-3">
                   <select class="form-select" id="writeCompLevel" aria-label="Comp Level Select">
                     <option value="qm">QM</option>
-                    <option value="qf">QF</option>
                     <option value="sf">SF</option>
                     <option value="f">F</option>
                   </select>
@@ -42,15 +41,19 @@
           </div>
         </div>
       </div>
-      <div class="row pt-3 pb-3 mb-3">
-
+      <div class="row pt-3 pb-3 mb-3 gap-0 row-gap-3">
         <div class="col-lg-4 col-sm-12 col-xs-12 gx-3">
           <div class="card text-bg-danger">
             <div class="card-body">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingRed1">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#picRed1Accordian" aria-expanded="true" aria-controls="picRed1Accordian">
-                    <div id='teamHeadingRed1'>Team</div>
+                    <h4><div id='teamHeadingRed1'>Team</div></h4>
+                    <div class="">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                      </svg>
+                    </div>
                   </button>
                 </h2>
                 <div id="picRed1Accordian" class="accordion-collapse collapse" aria-labelledby="headingRed1">
@@ -66,9 +69,10 @@
                     <th scope="col">Avg Auto Pieces</th>
                     <th scope="col">Auto Engage OR Dock</th>
                     <th scope="col">Avg Telop Pieces</th>
-                    <th scope="col">Max Telop Cones</th>
-                    <th scope="col">Max Telop Cubes</th>
-                    <th scope="col">Telop Engage OR Dock</th>
+                    <th scope="col">Avg Telop Cones</th>
+                    <th scope="col">Avg Telop Cubes</th>
+                    <th scope="col">Telop Engage %</th>
+                    <th scope="col">Telop Dock %</th>
                   </thead>
                   <tbody id='dataRed1'></tbody>
                 </table>
@@ -83,7 +87,12 @@
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingRed2">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#picRed2Accordian" aria-expanded="true" aria-controls="picRed2Accordian">
-                    <div id='teamHeadingRed2'>Team</div>
+                    <h4><div id='teamHeadingRed2'>Team</div></h4>
+                    <div class="">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                      </svg>
+                    </div>
                   </button>
                 </h2>
                 <div id="picRed2Accordian" class="accordion-collapse collapse" aria-labelledby="headingRed2">
@@ -99,9 +108,10 @@
                     <th scope="col">Avg Auto Pieces</th>
                     <th scope="col">Auto Engage OR Dock</th>
                     <th scope="col">Avg Telop Pieces</th>
-                    <th scope="col">Max Telop Cones</th>
-                    <th scope="col">Max Telop Cubes</th>
-                    <th scope="col">Telop Engage OR Dock</th>
+                    <th scope="col">Avg Telop Cones</th>
+                    <th scope="col">Avg Telop Cubes</th>
+                    <th scope="col">Telop Engage %</th>
+                    <th scope="col">Telop Dock %</th>
                   </thead>
                   <tbody id='dataRed2'></tbody>
                 </table>
@@ -117,7 +127,12 @@
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingRed3">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#picRed3Accordian" aria-expanded="true" aria-controls="picRed3Accordian">
-                    <div id='teamHeadingRed3'>Team</div>
+                    <h4><div id='teamHeadingRed3'>Team</div></h4>
+                    <div class="">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                      </svg>
+                    </div>
                   </button>
                 </h2>
                 <div id="picRed3Accordian" class="accordion-collapse collapse" aria-labelledby="headingRed3">
@@ -133,9 +148,10 @@
                     <th scope="col">Avg Auto Pieces</th>
                     <th scope="col">Auto Engage OR Dock</th>
                     <th scope="col">Avg Telop Pieces</th>
-                    <th scope="col">Max Telop Cones</th>
-                    <th scope="col">Max Telop Cubes</th>
-                    <th scope="col">Telop Engage OR Dock</th>
+                    <th scope="col">Avg Telop Cones</th>
+                    <th scope="col">Avg Telop Cubes</th>
+                    <th scope="col">Telop Engage %</th>
+                    <th scope="col">Telop Dock %</th>
                   </thead>
                   <tbody id='dataRed3'></tbody>
                 </table>
@@ -145,7 +161,7 @@
         </div>
 
       </div>
-      <div class="row pt-3 pb-3 mb-3 justify-content-md-center">
+      <div class="row pt-3 pb-3 mb-3 justify-content-md-center gap-0 row-gap-3">
 
       <div class="col-lg-4 col-sm-12 col-xs-12 gx-3">
           <div class="card text-bg-primary">
@@ -153,12 +169,17 @@
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingBlue1">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#picBlue1Accordian" aria-expanded="true" aria-controls="picBlue1Accordian">
-                    <div id='teamHeadingBlue1'>Team</div>
+                    <h4><div id='teamHeadingBlue1'>Team</div></h4>
+                    <div class="">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                      </svg>
+                    </div>
                   </button>
                 </h2>
                 <div id="picBlue1Accordian" class="accordion-collapse collapse" aria-labelledby="headingBlue1">
                   <div id='picBlue1' class="accordion-body">
-
+                  
                   </div>
                 </div>
               </div>
@@ -169,9 +190,10 @@
                     <th scope="col">Avg Auto Pieces</th>
                     <th scope="col">Auto Engage OR Dock</th>
                     <th scope="col">Avg Telop Pieces</th>
-                    <th scope="col">Max Telop Cones</th>
-                    <th scope="col">Max Telop Cubes</th>
-                    <th scope="col">Telop Engage OR Dock</th>
+                    <th scope="col">Avg Telop Cones</th>
+                    <th scope="col">Avg Telop Cubes</th>
+                    <th scope="col">Telop Engage %</th>
+                    <th scope="col">Telop Dock %</th>
                   </thead>
                   <tbody id='dataBlue1'></tbody>
                 </table>
@@ -186,7 +208,12 @@
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingBlue2">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#picBlue2Accordian" aria-expanded="true" aria-controls="picBlue2Accordian">
-                    <div id='teamHeadingBlue2'>Team</div>
+                   <h4><div id='teamHeadingBlue2'>Team</div></h4>
+                    <div class="">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                      </svg>
+                    </div>
                   </button>
                 </h2>
                 <div id="picBlue2Accordian" class="accordion-collapse collapse" aria-labelledby="headingBlue2">
@@ -202,9 +229,10 @@
                     <th scope="col">Avg Auto Pieces</th>
                     <th scope="col">Auto Engage OR Dock</th>
                     <th scope="col">Avg Telop Pieces</th>
-                    <th scope="col">Max Telop Cones</th>
-                    <th scope="col">Max Telop Cubes</th>
-                    <th scope="col">Telop Engage OR Dock</th>
+                    <th scope="col">Avg Telop Cones</th>
+                    <th scope="col">Avg Telop Cubes</th>
+                    <th scope="col">Telop Engage %</th>
+                    <th scope="col">Telop Dock %</th>
                   </thead>
                   <tbody id='dataBlue2'></tbody>
                 </table>
@@ -220,7 +248,12 @@
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingBlue3">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#picBlue3Accordian" aria-expanded="true" aria-controls="picBlue3Accordian">
-                    <div id='teamHeadingBlue3'>Team</div>
+                    <h4><div id='teamHeadingBlue3'>Team</div></h4>
+                    <div class="">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                      </svg>
+                    </div>
                   </button>
                 </h2>
                 <div id="picBlue3Accordian" class="accordion-collapse collapse" aria-labelledby="headingBlue3">
@@ -236,9 +269,10 @@
                     <th scope="col">Avg Auto Pieces</th>
                     <th scope="col">Auto Engage OR Dock</th>
                     <th scope="col">Avg Telop Pieces</th>
-                    <th scope="col">Max Telop Cones</th>
-                    <th scope="col">Max Telop Cubes</th>
-                    <th scope="col">Telop Engage OR Dock</th>
+                    <th scope="col">Avg Telop Cones</th>
+                    <th scope="col">Avg Telop Cubes</th>
+                    <th scope="col">Telop Engage %</th>
+                    <th scope="col">Telop Dock %</th>
                   </thead>
                   <tbody id='dataBlue3'></tbody>
                 </table>
@@ -268,6 +302,11 @@ var avgRedPoints = 0;
 var avgBlueGamePieces = 0;
 var avgRedGamePieces = 0;
 
+var avgAutoBlueChargeStationPoints = 0;
+var avgTeleopBlueChargeStationPoints = 0;
+var avgAutoRedChargeStationPoints = 0;
+var avgTeleopRedChargeStationPoints = 0;
+
 
 function clearData(){
   $('dataRed1').html('')
@@ -288,6 +327,12 @@ function clearMainSummary(){
 
   avgBlueGamePieces = 0;
   avgRedGamePieces = 0;
+
+  avgAutoBlueChargeStationPoints = 0;
+  avgTeleopBlueChargeStationPoints = 0;
+  avgAutoRedChargeStationPoints = 0;
+  avgTeleopRedChargeStationPoints = 0;
+    
   updateSummaryTable();
 }
 
@@ -295,12 +340,16 @@ function augmentTotalMatchSummary(data, alliance){
 
   var avgPieces = 0;
   var avgPoints = 0;
+  var avgAutoChargeStationPoints = 0;
+  var avgTeleopChargeStationPoints = 0;
   var matchCount = 0;
 
   for (var i = 0; i != data.length; i++){
     matchCount++;
     avgPieces += getMatchGamePiece(data[i]);
     avgPoints += getMatchPoints(data[i]);
+    avgAutoChargeStationPoints += getAutoChargeStationPoints(data[i]);
+    avgTeleopChargeStationPoints += getTeleopChargeStationPoints(data[i]);
   }
 
   if (matchCount == 0){
@@ -309,16 +358,22 @@ function augmentTotalMatchSummary(data, alliance){
   
   avgPieces = roundInt(avgPieces/matchCount);
   avgPoints = roundInt(avgPoints/matchCount);
+  avgAutoChargeStationPoints = roundInt(avgAutoChargeStationPoints/matchCount);
+  avgTeleopChargeStationPoints = roundInt(avgTeleopChargeStationPoints/matchCount);
 
   if (alliance == 'Red'){
     validRedTeams++;
     avgRedPoints += avgPoints;
     avgRedGamePieces += avgPieces;
+    avgAutoRedChargeStationPoints += avgAutoChargeStationPoints;
+    avgTeleopRedChargeStationPoints += avgTeleopChargeStationPoints;
   }
   else {
     validBlueTeams++;
     avgBluePoints += avgPoints;
     avgBlueGamePieces += avgPieces;
+    avgAutoBlueChargeStationPoints += avgAutoChargeStationPoints;
+    avgTeleopBlueChargeStationPoints += avgTeleopChargeStationPoints;
   }
   updateSummaryTable();
 }
@@ -335,6 +390,11 @@ function updateSummaryTable(){
     `  <td scope='col' class="table-danger">${avgRedGamePieces}</td>`,
     `  <td scope='col' class="table-primary">${avgBlueGamePieces}</td>`,
     `</tr>`,
+    `<tr>`,
+    `  <th scope='col'>Avg Charge Station Points</th>`,
+    `  <td scope='col' class="table-danger">${Math.min(avgAutoRedChargeStationPoints, 12) + avgTeleopRedChargeStationPoints}</td>`,
+    `  <td scope='col' class="table-primary">${Math.min(avgAutoBlueChargeStationPoints, 12) + avgTeleopBlueChargeStationPoints}</td>`,
+    `</tr>`,
   ].join('');
   $('#summaryTable').html(row);
 }
@@ -344,34 +404,40 @@ function augmentTeamDataSummary(data, elementSuffix){
   var avgAutoPiece = 0;
   var avgAutoEngageOrDock = 0;
   var avgTelopPiece = 0;
-  var maxTeleopCones = 0;
-  var maxTeleopCubes = 0;
-  var avgTeleopEngageOrDock = 0;
+  var avgTeleopCones = 0;
+  var avgTeleopCubes = 0;
+  var avgTeleopEngage = 0;
+  var avgTeleopDock = 0;
   for (var i = 0; i != data.length; i++){
     var match = data[i];
     matchCount++;
     avgAutoPiece += getPiecesAuto(match);
     avgAutoEngageOrDock += getDockAuto(match) || getEngageAuto(match) ? 1 : 0;
     avgTelopPiece += getPiecesTeleop(match);
-    maxTeleopCones = Math.max(maxTeleopCones, getConesTeleop(match));
-    maxTeleopCubes = Math.max(maxTeleopCubes, getCubesTeleop(match));
-    avgTeleopEngageOrDock += getDockTeleop(match) || getEngageTeleop(match) ? 1 : 0;
+    avgTeleopCones += getConesTeleop(match);
+    avgTeleopCubes += getCubesTeleop(match);
+    avgTeleopEngage += getEngageTeleop(match) ? 1 : 0;
+    avgTeleopDock += getDockTeleop(match) ? 1 : 0;
   }
 
   if (matchCount > 0){
     avgAutoPiece = roundInt(avgAutoPiece / matchCount);
     avgAutoEngageOrDock = 100 * roundInt(avgAutoEngageOrDock / matchCount);
     avgTelopPiece = roundInt(avgTelopPiece / matchCount);
-    avgTeleopEngageOrDock = 100 * roundInt(avgTeleopEngageOrDock / matchCount);
+    avgTeleopCones = roundInt(avgTeleopCones / matchCount);
+    avgTeleopCubes = roundInt(avgTeleopCubes / matchCount);
+    avgTeleopEngage = 100 * roundInt(avgTeleopEngage / matchCount);
+    avgTeleopDock = 100 * roundInt(avgTeleopDock / matchCount);
 
     var rows = [
       `<tr>`,
       `  <td scope='col'>${avgAutoPiece}</td>`,
       `  <td scope='col'>${avgAutoEngageOrDock}%</td>`,
       `  <td scope='col'>${avgTelopPiece}</td>`,
-      `  <td scope='col'>${maxTeleopCones}</td>`,
-      `  <td scope='col'>${maxTeleopCubes}</td>`,
-      `  <td scope='col'>${avgTeleopEngageOrDock}%</td>`,
+      `  <td scope='col'>${avgTeleopCones}</td>`,
+      `  <td scope='col'>${avgTeleopCubes}</td>`,
+      `  <td scope='col'>${avgTeleopEngage}%</td>`,
+      `  <td scope='col'>${avgTeleopDock}%</td>`,
       `</tr>`
     ].join('');
     $(`#data${elementSuffix}`).html(rows);

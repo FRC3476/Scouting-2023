@@ -39,6 +39,9 @@
           <a class="nav-link" href="rankings.php">Rankings</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="qrScanner.php">QR Scanner</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="coprs.php">COPRS</a>
         </li>
         <li class="nav-item">

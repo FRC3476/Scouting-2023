@@ -95,7 +95,7 @@
                 </div>
 
                 <!--Teleop Scouting-->
-                <div class="tab-pane fade" id="teleop-tab-pane" role="tabpanel" aria-labelledby="teleop-tab" tabindex="0">
+                <div class="tab-pane fade" id="teleop-tab-pane" role="tabpanel" aria-labelledby="teleop-tab" tabindex="0" >
                   <br>
                   <br>
                   <div class="row">
@@ -158,6 +158,7 @@
                         <span class="badge rounded-pill text-bg-primary cannedComments">Can Balance in Auto</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Floor Pickup</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Human Player Pick</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Attempted Endgame</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">DNP</span>
                         <br><br>
                       </div>
