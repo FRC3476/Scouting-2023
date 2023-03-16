@@ -34,7 +34,7 @@ function getDockTeleop(row) {
 	return row['teleopChargeStation'] == 'DOCKED';
 }
 
-function getInCommunityTeleop(row) {
+function getParkTeleop(row) {
 	return row['teleopChargeStation'] == 'COMMUNITY';
 }
 
@@ -114,6 +114,9 @@ function getMatchPoints(row) {
 	}
 	if (getEngageTeleop(row)) {
 		points += 10;
+	}
+	if (getParkTeleop(row)){
+		points += 2;
 	}
 	points += 3 * getBottomAuto(row);
 	points += 4 * getMiddleAuto(row);
