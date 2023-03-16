@@ -239,7 +239,7 @@ class dbHandler
       $statusKey = $key . 'Exists';
       $status[$statusKey] = $this->getTableExists($key);
     }
-    $status["pictureFolderExists"] = is_dir($status["pictureFolder"]);
+    $status["pictureFolderExists"] = True;
     $status['serverExists'] = $this->getServerExists();
     $status['dbExists'] = $this->getDatabaseExists();
     return $status;

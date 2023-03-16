@@ -58,8 +58,8 @@ class siteSettings{
         fwrite($fp, $data);
         flock($fp, LOCK_UN);
       }
+      fclose($fp);
     }
-    fclose($fp);
   }
   
   function get($key){
