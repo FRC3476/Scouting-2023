@@ -7,8 +7,13 @@
 <body class="bg-body">
   <div class="container row-offcanvas row-offcanvas-left">
     <div class="well column col-lg-12 col-sm-12 col-xs-12" id="content">
-      <div class="row pt-3 pb-3 mb-3">
+      <div class="row pt-3">
+        <div class="float-right">
+          <button type="button" id="downloadTable" class="btn btn-primary">Download Table As CSV</button>
+        </div>
+      </div>
 
+      <div class="row pt-3 pb-3 mb-3">
         <div class='overflow-auto'>
           <table id='fullDataTable' class='table sortable'>
             <thead>
@@ -130,6 +135,46 @@
       reDrawTable();
     });
   }
+
+  function getTableAsCSVString(){
+    var table_array = [];
+    var rows = document.getElementsByTagName('tr');
+    for (var i = 0; i < rows.length; i++) {
+      var cols = rows[i].querySelectorAll('td,th');
+      var row_array = []
+      for (var j = 0; j < cols.length; j++){
+        if (j == 0){ // Strip link from team number in col 1
+          var team_link = cols[j].querySelectorAll('a');
+          if (team_link.length == 0){
+            row_array.push(cols[j].innerHTML);
+          }
+          else {
+            row_array.push(team_link[0].innerHTML);
+          }
+        }else {
+          row_array.push(cols[j].innerHTML);
+        }
+      }
+      table_array.push(row_array.join(','));
+    }
+    return table_array.join('\n');
+  }
+
+  function downloadTable(){
+    CSVFile = new Blob([getTableAsCSVString()], { type: "text/csv" });
+    var temp_link = document.createElement('a');
+    temp_link.download = "rankings.csv";
+    var url = window.URL.createObjectURL(CSVFile);
+    temp_link.href = url;
+    temp_link.style.display = "none";
+    document.body.appendChild(temp_link);
+    temp_link.click();
+    document.body.removeChild(temp_link);
+  }
+
+  $('#downloadTable').on('click', function(){
+    downloadTable();
+  });
 
   $(document).ready(function () {
     loadMatchData();
