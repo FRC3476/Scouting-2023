@@ -45,12 +45,12 @@
 							</select>
 
 							<div class="mb-3">
-								<br><text class="form-label">How many working batteries did you bring?</text>
+								<br><text class="form-label">How many robot batteries does the team have?</text>
 								<input type="text" class="form-control" id="numBatteries" name="numBatteries" placeholder=" ">
 							</div>
 
 							<div class="mb-3">
-								<text class="form-label">How many batteries can you charge at once?</text>
+								<text class="form-label">How many chargers does the team have for robot batteries?</text>
 								<input type="number" class="form-control" id="chargedBatteries" name="chargedBatteries" placeholder=" ">
 								<br>
 							</div>
@@ -66,13 +66,13 @@
 								<option value="Other">Other</option>
 							</select>
 
-							<div class="col-lg-2">
-								<br><text class="form-label">Do you have an auto path? What is it?</text>
+							<div class="col-lg-2" >
+								<br><text class="form-label">Robot Weight in Pounds (lb)</text>
 								<input type="text" class="form-control" id="autoPath" name="autoPath" placeholder=" ">
 								<br>
 							</div>
 
-							<div class="col-lg-2" style="width: 60%">
+							<div class="col-lg-2" style="width: 60%" style="display: none;" hidden>
 								<br><text class="form-label">What are your frame perimeter dimensions with your bumper
 									on?</text>
 								<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsLength" name="framePerimeterDimensionsLength" placeholder="Frame Length (inches)"></div>
