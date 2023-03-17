@@ -79,6 +79,44 @@ function getBottomTeleop(row) {
 	return row['teleopConeLevel1'] + row['teleopCubeLevel1'];
 }
 
+function getATopCone(row) {
+	return row['autoConeLevel3'];
+}
+function getAMiddleCone(row) {
+	return row['autoConeLevel2'];
+}
+function getABottomCone(row) {
+	return row['autoConeLevel1'];
+}
+function getTTopCone(row) {
+	return row['teleopConeLevel3'];
+}
+function getTMiddleCone(row) {
+	return row['teleopConeLevel2'];
+}
+function getTBottomCone(row) {
+	return row['teleopConeLevel1'];
+}
+
+function getATopCube(row) {
+	return row['autoConeLevel3'];
+}
+function getAMiddleCube(row) {
+	return row['autoConeLevel2'];
+}
+function getABottomCube(row) {
+	return row['autoConeLevel1'];
+}
+function getTTopCube(row) {
+	return row['teleopConeLevel3'];
+}
+function getTMiddleCube(row) {
+	return row['teleopConeLevel2'];
+}
+function getTBottomCube(row) {
+	return row['teleopConeLevel1'];
+}
+
 function getCubesAuto(row) {
 	return (
 		row['autoCubeLevel3'] + row['autoCubeLevel2'] + row['autoCubeLevel1']
