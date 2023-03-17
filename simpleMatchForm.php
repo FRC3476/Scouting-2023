@@ -160,15 +160,6 @@
                         <span class="badge rounded-pill text-bg-primary cannedComments">Human Player Pick</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Attempted Endgame</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">DNP</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">No show</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Slow Balance</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Fast Balance</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">No intake</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Hybrid Scoring Only</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Middle Scoring Only</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">High Scoring Only</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Disabled</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Attempted Endgame</span>
                         <br><br>
                       </div>
                       <br>

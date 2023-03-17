@@ -1,4 +1,4 @@
-<title>Team's Data</title>
+<title>Team Data</title>
 <html lang="en">
 
 <?php include('navbar.php');?>
@@ -192,14 +192,6 @@
     var tTopMax = 0;
     var tMiddleMax = 0;
     var tBottomMax = 0;
-
-    var coneTop = 0;
-    var coneMiddle = 0;
-    var coneBottom = 0;
-    var cubeTop = 0;
-    var cubeMiddle = 0;
-    var cubeBottom = 0;
-
     // Process summary data.
     for (var i = 0; i != data.length; i++){
       var row = data[i];
@@ -241,19 +233,6 @@
       tMiddleMax = Math.max(tMiddleMax, getMiddleTeleop(row));
       tBottomMax = Math.max(tBottomMax, getBottomTeleop(row));
       
-      coneATop += getATopCone(row);
-      coneAMiddle += getAMiddleCone(row);
-      coneABottom += getABottomCone(row);
-      coneTTop += getTTopCone(row);
-      coneTMiddle += getTMiddleCone(row);
-      coneTBottom += getTBottomCone(row);
-      
-      cubeATop += getATopCube(row);
-      cubeAMiddle += getAMiddleCube(row);
-      cubeABottom += getABottomCube(row);
-      cubeTTop += getTTopCube(row);
-      cubeTMiddle += getTMiddleCube(row);
-      cubeTBottom += getTBottomCube(row);
     }
 
     // Only add data if over 0.
@@ -378,131 +357,56 @@
     });
   }
 
-  /*function createPieceChart(data){
-    var matchList1 = [];
-
-    var autoCone1 = [];
-    var autoCone2 = [];
-    var autoCone3 = [];
-
-    var teleopCone1 = [];
-    var teleopCone2 = [];
-    var teleopCone3 = [];
-
-    var autoCube1 = [];
-    var autoCube2 = [];
-    var autoCube3 = [];
-
-    var teleopCone1 = [];
-    var teleopCone2 = [];
-    var teleopCone3 = [];
+  function createPieceChart(data){
+    var matchList = [];
+    var totalAConesTop = []
+    var totalAConesMiddle = []
+    var totalAConesBottom = []
 
     for (var i = 0; i != data.length; i++){
       var row = data[i];
-      matchList1.push(row['matchNumber']);  
-      
-      var autoCone1 = getATopCone(row);
-      var autoCone2 = getAMiddleCone(row);
-      var autoCone3 = getABottomCone(row);
-      var teleopCone1 = getTTopCone(row);
-      var teleopCone2 = getTMiddleCone(row);
-      var teleopCone3 = getTBottomCone(row);
+      matchList.push(row['matchNumber']);
 
-      var autoCube1 = getATopCube(row);
-      var autoCube2 = getAMiddleCube(row);
-      var autoCube3 = getABottomCube(row);
-      var teleopCube1 = getTTopCube(row);
-      var teleopCube2  = getTMiddleCube(row);
-      var teleopCube3 = getTBottomCube(row);
+      var matchPoints = getMatchPoints(row);
 
-      autoCone1.push(autoCone1);
-      autoCone2.push(autoCone2);
-      autoCone3.push(autoCone3);
-      teleopCone1.push(teleopCone1);
-      teleopCone2.push(teleopCone2);
-      teleopCone3.push(teleopCone3);
+      var cones = getConesAuto(row) + getConesTeleop(row);
+      var cubes = getCubesAuto(row) + getCubesTeleop(row);
 
-      autoCube1.push(autoCone1);
-      autoCube2.push(autoCone2);
-      autoCube3.push(autoCone3);
-      teleopCube1.push(teleopCube1);
-      teleopCube2.push(teleopCube2);
-      teleopCube3.push(teleopCube3)
+      totalPoints.push(matchPoints);
+      totalCones.push(cones);
+      totalCubes.push(cubes);
+      totalPieces.push(cones + cubes)
+
     }
 
-    var ctx = document.getElementById('pieceChart');
+    var ctx = document.getElementById('dataChart');
 
-    pieceChart = new Chart(ctx, {
+    dataChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: matchList1,
+        labels: matchList,
         datasets: [{
-          label: 'Total Top',
-          data: autoCone1,
+          label: 'Total Pieces',
+          data: totalPieces,
           fill: false,
           borderColor: 'rgb(75, 192, 192)'
         },{
-          label: 'Total ',
-          data: autoCone2,
+          label: 'Total Cubes',
+          data: totalCubes,
           fill: false,
           borderColor: 'rgb(75, 0, 130)'
         },{
-          label: 'Total ',
-          data: autoCone3,
+          label: 'Total Cones',
+          data: totalCones,
           fill: false,
-          borderColor: 'rgb(75, 0, 130)'
-        },{
-          label: 'Total Top',
-          data: teleopCone1,
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)'
-        },{
-          label: 'Total ',
-          data: teleopCone2,
-          fill: false,
-          borderColor: 'rgb(75, 0, 130)'
-        },{
-          label: 'Total ',
-          data: teleopCone3,
-          fill: false,
-          borderColor: 'rgb(75, 0, 130)'
-        },{
-          label: 'Total Top',
-          data: autoCube1,
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)'
-        },{
-          label: 'Total ',
-          data: autoCube2,
-          fill: false,
-          borderColor: 'rgb(75, 0, 130)'
-        },{
-          label: 'Total ',
-          data: autoCube3,
-          fill: false,
-          borderColor: 'rgb(75, 0, 130)'
-        },{
-          label: 'Total Top',
-          data: teleopCube1,
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)'
-        },{
-          label: 'Total ',
-          data: teleopCube2,
-          fill: false,
-          borderColor: 'rgb(75, 0, 130)'
-        },{
-          label: 'Total ',
-          data: teleopCube3,
-          fill: false,
-          borderColor: 'rgb(75, 0, 130)'
+          borderColor: 'rgb(212, 175, 55)'
         }]
       },
       options: {
 
       }
     });
-  } */
+  }
 
   function createCannedBadge(comment, count){
     var rows = [
