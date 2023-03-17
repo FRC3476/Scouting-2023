@@ -44,7 +44,7 @@
 </body>
 
 <?php include("footer.php"); ?>
-<script type="text/javascript" src="js/matchDataProcessor.js"></script>
+<script type="text/javascript" src="js/matchDataProcessor.js?v=0"></script>
 
 <script>
 
