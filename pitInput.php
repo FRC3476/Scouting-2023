@@ -60,7 +60,7 @@
 								<option value="Other">Other</option>
 								<br>
 							</select>
-							
+						 
 							<div class="mb-3">
 								<br><text class="form-label">What is your drivetrain type?</text>
 							</div>
@@ -72,15 +72,16 @@
 								<br>
 							</select>
 
-							<div class="mb-3">
+							<div class="col-lg-2" >
 								<br><text class="form-label">Robot Weight in Pounds (lb)</text>
 								<input type="text" class="form-control" id="autoPath" name="autoPath" placeholder=" ">
 							</div>
 
-							<div class="mb-3">
-								<br><text class="form-label">What are your frame perimeter dimensions without your bumper on?</text>
-									<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsLength" name="framePerimeterDimensionsLength" placeholder="Frame Length (inches)"></div>
-									<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsWidth" name="framePerimeterDimensionsWidth" placeholder="Frame Width (inches)"></div>
+							<div class="col-lg-2" style="width: 60%" style="display: none;" hidden>
+								<br><text class="form-label">What are your frame perimeter dimensions with your bumper
+									on?</text>
+								<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsLength" name="framePerimeterDimensionsLength" placeholder="Frame Length (inches)"></div>
+								<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsWidth" name="framePerimeterDimensionsWidth" placeholder="Frame Width (inches)"></div>
 								<br>
 							</div>
 
