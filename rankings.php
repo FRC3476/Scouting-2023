@@ -32,6 +32,13 @@
                 <th col='scope'>Teleop Park %</th>
                 <th col='scope'>Teleop Dock %</th>
                 <th col='scope'>Teleop Engage %</th>
+                <th col='scope'>Organization Level</th>
+                <th col='scope'># Batteries</th>
+                <th col='scope'># Chargers</th>
+                <th col='scope'>Language</th>
+                <th col='scope'>Auto Path</th>
+                <th col='scope'>Frame Dimensions</th>
+                <th col='scope'>Comments</th>
               </tr>
             </thead>
             <tbody id="dataTable">
@@ -48,7 +55,15 @@
 
 <script>
 
-  var dataLookUp = [];
+  var matchDataLookUp = {};
+  var pitDataLookUp = {};
+
+  function safeDataLookup(key, obj){
+    if (key in obj){
+      return obj[key];
+    }
+    return {};
+  }
 
   function safeLookup(key, obj){
     if (key in obj){
@@ -57,26 +72,42 @@
     return 0;
   }
 
+  function getTeamList(){
+    var matchTeamSet = new Set(Object.keys(matchDataLookUp));
+    var pitTeamSet = new Set(Object.keys(pitDataLookUp));
+    return Array.from(new Set([...matchTeamSet, ...pitTeamSet]));
+  }
+
   function reDrawTable(){
     $('#dataTable').html('');
-    for (var i = 0; i != dataLookUp.length; i++){
-      var teamData = dataLookUp[i];
+    var teams = getTeamList()
+    for (var i = 0; i != teams.length; i++){
+      var team = teams[i];
+      var matchData = safeDataLookup(team, matchDataLookUp);
+      var pitData = safeDataLookup(team, pitDataLookUp);
       var rows = [
         `<tr>`,
-        `  <td scope='row' sorttable_customkey='${safeLookup('team', teamData)}'><a href='./teamData.php?team=${safeLookup('team', teamData)}'>${safeLookup('team', teamData)}</a></td>`,
-        `  <td scope='row'>${safeLookup('avgPoints', teamData)}</td>`,
-        `  <td scope='row'>${safeLookup('maxPoints', teamData)}</td>`,
-        `  <td scope='row'>${safeLookup('avgAutoPieces', teamData)}</td>`,
-        `  <td scope='row'>${safeLookup('maxAutoPieces', teamData)}</td>`,
-        `  <td scope='row'>${safeLookup('avgAutoDock', teamData)}%</td>`,
-        `  <td scope='row'>${safeLookup('avgAutoEngage', teamData)}%</td>`,
-        `  <td scope='row'>${safeLookup('avgTeleopPieces', teamData)}</td>`,
-        `  <td scope='row'>${safeLookup('maxTeleopPieces', teamData)}</td>`,
-        `  <td scope='row'>${safeLookup('maxTeleopCones', teamData)}</td>`,
-        `  <td scope='row'>${safeLookup('maxTeleopCubes', teamData)}</td>`,
-        `  <td scope='row'>${safeLookup('avgTeleopPark', teamData)}%</td>`,
-        `  <td scope='row'>${safeLookup('avgTeleopDock', teamData)}%</td>`,
-        `  <td scope='row'>${safeLookup('avgTeleopEngage', teamData)}%</td>`,
+        `  <td scope='row' sorttable_customkey='${team}'><a href='./teamData.php?team=${team}'>${team}</a></td>`,
+        `  <td scope='row'>${safeLookup('avgPoints', matchData)}</td>`,
+        `  <td scope='row'>${safeLookup('maxPoints', matchData)}</td>`,
+        `  <td scope='row'>${safeLookup('avgAutoPieces', matchData)}</td>`,
+        `  <td scope='row'>${safeLookup('maxAutoPieces', matchData)}</td>`,
+        `  <td scope='row'>${safeLookup('avgAutoDock', matchData)}%</td>`,
+        `  <td scope='row'>${safeLookup('avgAutoEngage', matchData)}%</td>`,
+        `  <td scope='row'>${safeLookup('avgTeleopPieces', matchData)}</td>`,
+        `  <td scope='row'>${safeLookup('maxTeleopPieces', matchData)}</td>`,
+        `  <td scope='row'>${safeLookup('maxTeleopCones', matchData)}</td>`,
+        `  <td scope='row'>${safeLookup('maxTeleopCubes', matchData)}</td>`,
+        `  <td scope='row'>${safeLookup('avgTeleopPark', matchData)}%</td>`,
+        `  <td scope='row'>${safeLookup('avgTeleopDock', matchData)}%</td>`,
+        `  <td scope='row'>${safeLookup('avgTeleopEngage', matchData)}%</td>`,
+        `  <td scope='row'>${safeLookup('disorganized', pitData)}</td>`,
+        `  <td scope='row'>${safeLookup('numBatteries', pitData)}</td>`,
+        `  <td scope='row'>${safeLookup('chargedBatteries', pitData)}</td>`,
+        `  <td scope='row'>${safeLookup('codeLanguage', pitData)}</td>`,
+        `  <td scope='row'>${safeLookup('autoPath', pitData)}</td>`,
+        `  <td scope='row'>${safeLookup('framePerimeterDimensions', pitData)}</td>`,
+        `  <td scope='row'>${safeLookup('pitComments', pitData)}</td>`,
         `</tr>`
       ].join('');
       $('#dataTable').append(rows);
@@ -86,7 +117,15 @@
     sorttable.makeSortable(fullTable);
   }
 
-  function matchDataToDataLookup(data){
+  function pitDataToPitDataLookUp(data){
+    for (var i = 0; i != data.length; i++){
+      var pit = data[i];
+      var team = pit['pitTeamNumber'];
+      pitDataLookUp[team] = pit;
+    }
+  }
+
+  function matchDataTomatchDataLookUp(data){
     var teamToDataList = {};
     for (var i = 0; i != data.length; i++){
       var match = data[i];
@@ -130,9 +169,8 @@
         avgTeleopEngage += getEngageTeleop(match) ? 1 : 0;
       }
 
-      // Add to dataLookUp.
+      // Add to matchDataLookUp.
       var lookup = {};
-      lookup['team'] = team;
       lookup['avgPoints'] = roundInt(totalPoints / matchCount);
       lookup['maxPoints'] = roundInt(maxPoints);
       lookup['avgAutoPieces'] = roundInt(totalAutoPieces / matchCount);
@@ -147,7 +185,7 @@
       lookup['avgTeleopDock'] = roundInt((avgTeleopDock   / matchCount) * 100);
       lookup['avgTeleopEngage'] = roundInt((avgTeleopEngage / matchCount) * 100);
 
-      dataLookUp.push(lookup);
+      matchDataLookUp[team] = lookup;
     }
   }
 
@@ -156,10 +194,21 @@
       'readAllMatchData': 1
     }).done(function(data) { 
       var data = JSON.parse(data); 
-      matchDataToDataLookup(data);
+      matchDataTomatchDataLookUp(data);
       reDrawTable();
     });
   }
+
+  function loadPitData(){
+    $.get('readAPI.php', {
+      'readAllPitScoutData': 1
+    }).done(function(data) { 
+      var data = JSON.parse(data); 
+      pitDataToPitDataLookUp(data);
+      reDrawTable();
+    });
+  }
+
 
   function getTableAsCSVString(){
     var table_array = [];
@@ -203,6 +252,7 @@
 
   $(document).ready(function () {
     loadMatchData();
+    loadPitData();
   });
 
 </script>
