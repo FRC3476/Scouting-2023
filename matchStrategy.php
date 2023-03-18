@@ -422,12 +422,12 @@ function augmentTeamDataSummary(data, elementSuffix){
 
   if (matchCount > 0){
     avgAutoPiece = roundInt(avgAutoPiece / matchCount);
-    avgAutoEngageOrDock = 100 * roundInt(avgAutoEngageOrDock / matchCount);
+    avgAutoEngageOrDock = roundInt(100 * avgAutoEngageOrDock / matchCount);
     avgTelopPiece = roundInt(avgTelopPiece / matchCount);
     avgTeleopCones = roundInt(avgTeleopCones / matchCount);
     avgTeleopCubes = roundInt(avgTeleopCubes / matchCount);
-    avgTeleopEngage = 100 * roundInt(avgTeleopEngage / matchCount);
-    avgTeleopDock = 100 * roundInt(avgTeleopDock / matchCount);
+    avgTeleopEngage = roundInt(100 * avgTeleopEngage / matchCount);
+    avgTeleopDock = roundInt(100 * avgTeleopDock / matchCount);
 
     var rows = [
       `<tr>`,

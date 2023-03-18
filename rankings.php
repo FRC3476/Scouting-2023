@@ -178,7 +178,7 @@
       lookup['avgAutoDock'] = roundInt((totalAutoDock / matchCount) * 100);
       lookup['avgAutoEngage'] = roundInt((totalAutoEngage / matchCount) * 100);
       lookup['avgTeleopPieces'] = roundInt(totalTeleopPiece / matchCount);
-      lookup['macTeleopPieces'] = maxTeleopPieces;
+      lookup['maxTeleopPieces'] = maxTeleopPieces;
       lookup['maxTeleopCones'] = roundInt(maxTeleopCones);
       lookup['maxTeleopCubes'] = roundInt(maxTeleopCubes);
       lookup['avgTeleopPark'] = roundInt((avgTeleopPark   / matchCount) * 100);
