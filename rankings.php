@@ -1,7 +1,7 @@
 <title>Rankings</title>
 <html lang="en">
 
-<?php include('navbar.php');?>
+<?php include('navbar.php'); ?>
 
 
 <body class="bg-body">
@@ -18,6 +18,7 @@
           <table id='fullDataTable' class='table sortable'>
             <thead style="position: sticky;top: 0">
               <tr>
+                <th col='scope'>Rank</th>
                 <th col='scope'>Team</th>
                 <th col='scope'>Avg Points</th>
                 <th col='scope'>Max Points</th>
@@ -54,39 +55,39 @@
 <script type="text/javascript" src="js/matchDataProcessor.js?v=0"></script>
 
 <script>
-
   var matchDataLookUp = {};
   var pitDataLookUp = {};
 
-  function safeDataLookup(key, obj){
-    if (key in obj){
+  function safeDataLookup(key, obj) {
+    if (key in obj) {
       return obj[key];
     }
     return {};
   }
 
-  function safeLookup(key, obj){
-    if (key in obj){
+  function safeLookup(key, obj) {
+    if (key in obj) {
       return obj[key];
     }
     return 0;
   }
 
-  function getTeamList(){
+  function getTeamList() {
     var matchTeamSet = new Set(Object.keys(matchDataLookUp));
     var pitTeamSet = new Set(Object.keys(pitDataLookUp));
     return Array.from(new Set([...matchTeamSet, ...pitTeamSet]));
   }
 
-  function reDrawTable(){
+  function reDrawTable() {
     $('#dataTable').html('');
     var teams = getTeamList()
-    for (var i = 0; i != teams.length; i++){
+    for (var i = 0; i != teams.length; i++) {
       var team = teams[i];
       var matchData = safeDataLookup(team, matchDataLookUp);
       var pitData = safeDataLookup(team, pitDataLookUp);
       var rows = [
         `<tr>`,
+        `  <td scope='row'>${i + 1}</td>`,
         `  <td scope='row' sorttable_customkey='${team}'><a href='./teamData.php?team=${team}'>${team}</a></td>`,
         `  <td scope='row'>${safeLookup('avgPoints', matchData)}</td>`,
         `  <td scope='row'>${safeLookup('maxPoints', matchData)}</td>`,
@@ -117,26 +118,26 @@
     sorttable.makeSortable(fullTable);
   }
 
-  function pitDataToPitDataLookUp(data){
-    for (var i = 0; i != data.length; i++){
+  function pitDataToPitDataLookUp(data) {
+    for (var i = 0; i != data.length; i++) {
       var pit = data[i];
       var team = pit['pitTeamNumber'];
       pitDataLookUp[team] = pit;
     }
   }
 
-  function matchDataTomatchDataLookUp(data){
+  function matchDataTomatchDataLookUp(data) {
     var teamToDataList = {};
-    for (var i = 0; i != data.length; i++){
+    for (var i = 0; i != data.length; i++) {
       var match = data[i];
-      if (!(match['teamNumber'] in teamToDataList)){
+      if (!(match['teamNumber'] in teamToDataList)) {
         teamToDataList[match['teamNumber']] = [];
       }
       teamToDataList[match['teamNumber']].push(match);
     }
 
     // Process data for each team.
-    for (let team in teamToDataList){
+    for (let team in teamToDataList) {
       var matchCount = 0;
       var totalPoints = 0;
       var maxPoints = 0;
@@ -148,10 +149,10 @@
       var maxTeleopCones = 0;
       var maxTeleopCubes = 0;
       var maxTeleopPieces = 0;
-      var avgTeleopPark  = 0;
-      var avgTeleopDock  = 0;
+      var avgTeleopPark = 0;
+      var avgTeleopDock = 0;
       var avgTeleopEngage = 0;
-      for (var i = 0; i != teamToDataList[team].length; i++){
+      for (var i = 0; i != teamToDataList[team].length; i++) {
         var match = teamToDataList[team][i];
         matchCount++;
         totalPoints += getMatchPoints(match);
@@ -165,7 +166,7 @@
         maxTeleopCubes = Math.max(maxTeleopCubes, getCubesTeleop(match));
         maxTeleopPieces = Math.max(maxTeleopPieces, getPiecesTeleop(match));
         avgTeleopPark += getParkTeleop(match) ? 1 : 0;
-        avgTeleopDock += getDockTeleop(match) ? 1 : 0; 
+        avgTeleopDock += getDockTeleop(match) ? 1 : 0;
         avgTeleopEngage += getEngageTeleop(match) ? 1 : 0;
       }
 
@@ -181,51 +182,50 @@
       lookup['maxTeleopPieces'] = maxTeleopPieces;
       lookup['maxTeleopCones'] = roundInt(maxTeleopCones);
       lookup['maxTeleopCubes'] = roundInt(maxTeleopCubes);
-      lookup['avgTeleopPark'] = roundInt((avgTeleopPark   / matchCount) * 100);
-      lookup['avgTeleopDock'] = roundInt((avgTeleopDock   / matchCount) * 100);
+      lookup['avgTeleopPark'] = roundInt((avgTeleopPark / matchCount) * 100);
+      lookup['avgTeleopDock'] = roundInt((avgTeleopDock / matchCount) * 100);
       lookup['avgTeleopEngage'] = roundInt((avgTeleopEngage / matchCount) * 100);
 
       matchDataLookUp[team] = lookup;
     }
   }
 
-  function loadMatchData(){
+  function loadMatchData() {
     $.get('readAPI.php', {
       'readAllMatchData': 1
-    }).done(function(data) { 
-      var data = JSON.parse(data); 
+    }).done(function(data) {
+      var data = JSON.parse(data);
       matchDataTomatchDataLookUp(data);
       reDrawTable();
     });
   }
 
-  function loadPitData(){
+  function loadPitData() {
     $.get('readAPI.php', {
       'readAllPitScoutData': 1
-    }).done(function(data) { 
-      var data = JSON.parse(data); 
+    }).done(function(data) {
+      var data = JSON.parse(data);
       pitDataToPitDataLookUp(data);
       reDrawTable();
     });
   }
 
 
-  function getTableAsCSVString(){
+  function getTableAsCSVString() {
     var table_array = [];
     var rows = document.getElementsByTagName('tr');
     for (var i = 0; i < rows.length; i++) {
       var cols = rows[i].querySelectorAll('td,th');
       var row_array = []
-      for (var j = 0; j < cols.length; j++){
-        if (j == 0){ // Strip link from team number in col 1
+      for (var j = 0; j < cols.length; j++) {
+        if (j == 0) { // Strip link from team number in col 1
           var team_link = cols[j].querySelectorAll('a');
-          if (team_link.length == 0){
+          if (team_link.length == 0) {
             row_array.push(cols[j].innerHTML);
-          }
-          else {
+          } else {
             row_array.push(team_link[0].innerHTML);
           }
-        }else {
+        } else {
           row_array.push(cols[j].innerHTML);
         }
       }
@@ -234,8 +234,10 @@
     return table_array.join('\n');
   }
 
-  function downloadTable(){
-    CSVFile = new Blob([getTableAsCSVString()], { type: "text/csv" });
+  function downloadTable() {
+    CSVFile = new Blob([getTableAsCSVString()], {
+      type: "text/csv"
+    });
     var temp_link = document.createElement('a');
     temp_link.download = "rankings.csv";
     var url = window.URL.createObjectURL(CSVFile);
@@ -246,14 +248,14 @@
     document.body.removeChild(temp_link);
   }
 
-  $('#downloadTable').on('click', function(){
+  $('#downloadTable').on('click', function() {
     downloadTable();
   });
 
-  $(document).ready(function () {
+  $(document).ready(function() {
     loadMatchData();
     loadPitData();
   });
-
 </script>
+
 </html>
