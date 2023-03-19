@@ -577,7 +577,7 @@
     for (var i = 0; i < tba.red.length; i++) teams.push(tba.red[i].substring(3, tba.red[i].length));
     for (var i = 0; i < tba.blue.length; i++) teams.push(tba.blue[i].substring(3, tba.blue[i].length));
     var check = teams.indexOf(data["teamNumber"]+"");
-    if (check == -1) {
+    if (data["matchNumber"] < 5000 && check == -1) {
       createErrorAlert(`Team ${data["teamNumber"]} is not in match ${data["matchNumber"]}`);
       console.log(teams);
       console.log(check);

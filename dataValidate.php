@@ -169,7 +169,7 @@
                         let e = {};
                         e.key = keys[i];
                         e.text = " in TBA, but not in scouting data";
-                        errors.push(e);
+                        if ((e.key.split("-")[0]+0) < 5000) errors.push(e);
                     }
                 }
 
@@ -181,7 +181,7 @@
                         let e = {};
                         e.key = key;
                         e.text = " in scouting data, but not in TBA";
-                        errors.push(e);
+                        if ((e.key.split("-")[0]+0) < 5000) errors.push(e);
                     }
                 }
 
