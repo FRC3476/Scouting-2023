@@ -55,35 +55,6 @@
                     return a[orderBy] - b[orderBy]
                 });
 
-                //get all the matches that we have
-                let matches = {};
-                for (var r in data.rows) {
-                    matches[data.rows[r][orderBy]] = 6;
-                }
-                //subtract from each match number per row.
-                //should result in all rows in matches[] being 0,
-                //because all 6 teams per match were found.
-                for (var r in data.rows) {
-                    matches[data.rows[r][orderBy]]--;
-                }
-
-                //function which returns the row number for the first row with a matchNum
-                function getRow(matchNum) {
-                    var result = -1;
-                    for (var i in data.rows) {
-                        if (data.rows[i][orderBy] == matchNum) return i;
-                    }
-                    return result;
-                }
-
-                //add in the "MISSING" rows for data that is missing
-                for (var m in matches) {
-                    for (var i = 0; i < matches[m]; i++) {
-                        var temp = [m, "MISSING"];
-                        data.rows.splice(getRow(m), 0, temp);
-                    }
-                }
-
                 //create the table that shows the data (HTML)
                 function createTable() {
                     var table = document.createElement("table");
@@ -138,31 +109,91 @@
                     return xhttp.responseText;
                 }
 
-                //get the data from TBA
-                var teams = httpRequest("/tbaAPI.php?getTeamList=1");
-                if (!teams) createError("Error with TBA API");
-                teams = JSON.parse(teams);
+                //
+                // HANDLE ERRORS
+                // cross reference data from TBA and flag data as:
+                // true if checks out (exists in both TBA and scouting data)
+                // false if it exists in the scouting data, but not in the tba data, or vice versa
+                //
 
-                // handle errors found
-                for (var r in data.rows) {
-                    //if there are more than 6 rows for a match
-                    if (matches[data.rows[r][orderBy]] < 0) {
-                        createError(`Match #${data.rows[r][orderBy]} has more than 6 scouting inputs`);
-                    }
-
-                    //if a team is not found in the event at all
-                    var team = data.rows[r][3];
-                    var found = false;
-                    for (var t in teams) {
-                        if (teams[t] == team) {
-                            found = true;
-                            break;
+                //get the team numbers of teams in a match
+                function getTeamsInMatch(data) {
+                    data = data.response;
+                    var keys = [];
+                    //search through all rows of data
+                    for (var i = 0; i < data.length; i++) {
+                        //make sure to check if the comp_level is a qualifier
+                        if (data[i].comp_level == "qm") {
+                            //this might need some optimization lol
+                            function iterate(arr) {
+                                for (var j = 0; j < arr.length; j++) {
+                                    var temp = arr[j];
+                                    //convert the team number to the matchKey format
+                                    temp = temp.substring(3, temp.length);
+                                    temp = data[i].match_number + "-" + temp;
+                                    keys.push(temp);
+                                }
+                            }
+                            iterate(data[i].alliances.blue.dq_team_keys);
+                            iterate(data[i].alliances.blue.surrogate_team_keys);
+                            iterate(data[i].alliances.blue.team_keys);
+                            iterate(data[i].alliances.red.dq_team_keys);
+                            iterate(data[i].alliances.red.surrogate_team_keys);
+                            iterate(data[i].alliances.red.team_keys);
                         }
                     }
-                    //if(team not in event and row is not a "MISSING" row)
-                    if (!found && data.rows[r][1] != "MISSING") createError("Team " + team + " not in Event in match " + data.rows[r][orderBy]);
-
+                    return keys;
                 }
+
+                //get data for all matches of the current event
+                //the event code is set in the config file
+                var tba_data = httpRequest("/tbaAPI.php?getMatchList=1");
+                tba_data = JSON.parse(tba_data);
+                var keys = getTeamsInMatch(tba_data);
+
+                //find a row by its matchKey, by returning its index in data.rows
+                function getRowByMatchKey(matchKey) {
+                    var r = -1;
+                    var d = data.rows;
+                    for (var i = 0; i < d.length; i++) {
+                        if (d[i][0] == matchKey) return i;
+                    }
+                    return r;
+                }
+
+                //check for rows in tba, but not in scouting data
+                var errors = [];
+                for (var i = 0; i < keys.length; i++) {
+                    var check = getRowByMatchKey(keys[i]);
+                    if (check == -1) {
+                        let e = {};
+                        e.key = keys[i];
+                        e.text = " in TBA, but not in scouting data";
+                        errors.push(e);
+                    }
+                }
+
+                //check for rows in scouting data, but not in tba
+                for (var i = 0; i < data.rows.length; i++) {
+                    var key = data.rows[i][0];
+                    var check = keys.indexOf(key);
+                    if (check == -1) {
+                        let e = {};
+                        e.key = key;
+                        e.text = " in scouting data, but not in TBA";
+                        errors.push(e);
+                    }
+                }
+
+                //sort alphabetically by the matchKey.
+                //data that has the wrong match number will be indexed next to each other,
+                //which makes it easier to see in the errors
+                errors.sort(function (a, b) {
+                    return a.key.localeCompare(b.key);
+                });
+
+                //add error buttons
+                for (var i = 0; i < errors.length; i++) createError(errors[i].key + errors[i].text);
             });
     </script>
 </body>
