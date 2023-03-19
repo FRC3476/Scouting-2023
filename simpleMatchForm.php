@@ -95,7 +95,7 @@
                 </div>
 
                 <!--Teleop Scouting-->
-                <div class="tab-pane fade" id="teleop-tab-pane" role="tabpanel" aria-labelledby="teleop-tab" tabindex="0" >
+                <div class="tab-pane fade" id="teleop-tab-pane" role="tabpanel" aria-labelledby="teleop-tab" tabindex="0">
                   <br>
                   <br>
                   <div class="row">
@@ -513,7 +513,7 @@
     return data;
   }
 
-  function getQRCodeJSON(){
+  function getQRCodeJSON() {
     var originalJSON = getMatchFormData();
     var data = [];
     data.push(originalJSON['scout']);
@@ -536,6 +536,14 @@
     data.push(originalJSON['teleopChargeStation']);
     data.push(originalJSON['cannedComments']);
     return data;
+  }
+
+  //synchronous http request
+  function httpRequest(adr) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", adr, false);
+    xhttp.send();
+    return xhttp.responseText;
   }
 
   function validateFormData(data) {
@@ -561,6 +569,21 @@
       createErrorAlert('Team number not in TBA team list!');
       valid = false;
     }
+
+    //make sure the team being scouted is in the match
+    var tba = httpRequest("/tbaAPI.php?getTeamsInMatch=" + data["matchNumber"]);
+    tba = JSON.parse(tba);
+    var teams = [];
+    for (var i = 0; i < tba.red.length; i++) teams.push(tba.red[i].substring(3, tba.red[i].length));
+    for (var i = 0; i < tba.blue.length; i++) teams.push(tba.blue[i].substring(3, tba.blue[i].length));
+    var check = teams.indexOf(data["teamNumber"]+"");
+    if (check == -1) {
+      createErrorAlert(`Team ${data["teamNumber"]} is not in match ${data["matchNumber"]}`);
+      console.log(teams);
+      console.log(check);
+      valid = false;
+    }
+
     return valid;
   }
 
