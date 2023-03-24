@@ -117,6 +117,7 @@
 
     var fullTable = document.getElementById('fullDataTable');
     sorttable.makeSortable(fullTable);
+    sorttable.makeSortable(fullTable);
   }
 
   function pitDataToPitDataLookUp(data) {
