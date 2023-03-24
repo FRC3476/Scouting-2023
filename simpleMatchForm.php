@@ -37,7 +37,7 @@
                   <br>
                   <div class="mb-3">
                     <label for="scoutName" class="form-label">Scout Name</label>
-                    <input type="text" class="form-control" id="scoutName" aria-describedby="scoutName">
+                    <input type="text" name="nameForScout" class="form-control" id="scoutName" aria-describedby="scoutName">
                   </div>
 
                   <div class="mb-3">
@@ -571,17 +571,17 @@
     }
 
     //make sure the team being scouted is in the match
-    var tba = httpRequest("/tbaAPI.php?getTeamsInMatch=" + data["matchNumber"]);
+    var formattedTeam = `frc${data['teamNumber']}`;
+    var tba = httpRequest("./tbaAPI.php?getTeamsInMatch=" + data["matchNumber"]);
     tba = JSON.parse(tba);
     var teams = [];
-    for (var i = 0; i < tba.red.length; i++) teams.push(tba.red[i].substring(3, tba.red[i].length));
-    for (var i = 0; i < tba.blue.length; i++) teams.push(tba.blue[i].substring(3, tba.blue[i].length));
-    var check = teams.indexOf(data["teamNumber"]+"");
+    for (var i = 0; i < tba.red.length; i++) teams.push(tba.red[i]);
+    for (var i = 0; i < tba.blue.length; i++) teams.push(tba.blue[i]);
+    var check = teams.indexOf(formattedTeam);
     if (data["matchNumber"] < 5000 && check == -1) {
       createErrorAlert(`Team ${data["teamNumber"]} is not in match ${data["matchNumber"]}`);
-      console.log(teams);
-      console.log(check);
-      valid = false;
+      // Allow submit even if invalid.
+      // valid = false; 
     }
 
     return valid;

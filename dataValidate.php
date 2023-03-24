@@ -147,7 +147,7 @@
 
                 //get data for all matches of the current event
                 //the event code is set in the config file
-                var tba_data = httpRequest("/tbaAPI.php?getMatchList=1");
+                var tba_data = httpRequest("./tbaAPI.php?getMatchList=1");
                 tba_data = JSON.parse(tba_data);
                 var keys = getTeamsInMatch(tba_data);
 
