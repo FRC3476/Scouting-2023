@@ -115,4 +115,14 @@ if (getOrPost('getUserMatches')){
   echo(json_encode($matches));
 }
 
+if (getOrPost('getRankings')){
+  $tba = new tbaHandler();
+  $rawRankings = $tba->getRank(getEventCode($tba))['rankings'];
+  $rankings = array();
+  foreach($rawRankings as &$rankRow){
+    $rankings[$rankRow['team_key']] = $rankRow['rank'];
+  }
+  echo(json_encode($rankings));
+}
+
 ?>

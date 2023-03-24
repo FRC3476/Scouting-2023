@@ -57,6 +57,7 @@
 <script>
   var matchDataLookUp = {};
   var pitDataLookUp = {};
+  var rankingLookUp = {}
 
   function safeDataLookup(key, obj) {
     if (key in obj) {
@@ -87,7 +88,7 @@
       var pitData = safeDataLookup(team, pitDataLookUp);
       var rows = [
         `<tr>`,
-        `  <td scope='row'>${i + 1}</td>`,
+        `  <td scope='row'>${safeLookup(`frc${team}`, rankingLookUp)}</td>`,
         `  <td scope='row' sorttable_customkey='${team}'><a href='./teamData.php?team=${team}'>${team}</a></td>`,
         `  <td scope='row'>${safeLookup('avgPoints', matchData)}</td>`,
         `  <td scope='row'>${safeLookup('maxPoints', matchData)}</td>`,
@@ -210,6 +211,16 @@
     });
   }
 
+  function loadRankingData() {
+    $.get('tbaAPI.php', {
+      'getRankings': 1
+    }).done(function(data) {
+      var data = JSON.parse(data);
+      rankingLookUp = data;
+      reDrawTable();
+    });
+  }
+
 
   function getTableAsCSVString() {
     var table_array = [];
@@ -255,6 +266,7 @@
   $(document).ready(function() {
     loadMatchData();
     loadPitData();
+    loadRankingData();
   });
 </script>
 
