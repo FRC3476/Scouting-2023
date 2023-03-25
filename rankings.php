@@ -58,6 +58,7 @@
   var matchDataLookUp = {};
   var pitDataLookUp = {};
   var rankingLookUp = {}
+  var teamList = [];
 
   function safeDataLookup(key, obj) {
     if (key in obj) {
@@ -75,8 +76,8 @@
 
   function getTeamList() {
     var matchTeamSet = new Set(Object.keys(matchDataLookUp));
-    var pitTeamSet = new Set(Object.keys(pitDataLookUp));
-    return Array.from(new Set([...matchTeamSet, ...pitTeamSet]));
+    var teamListSet = new Set(teamList);
+    return Array.from(new Set([...matchTeamSet, ...teamListSet]));
   }
 
   function reDrawTable() {
@@ -222,6 +223,16 @@
     });
   }
 
+  function loadTeamList() {
+    $.get('tbaAPI.php', {
+      'getTeamList': 1
+    }).done(function(data) {
+      var data = JSON.parse(data);
+      teamList = data;
+      reDrawTable();
+    });
+  }
+
 
   function getTableAsCSVString() {
     var table_array = [];
@@ -267,6 +278,7 @@
   $(document).ready(function() {
     loadMatchData();
     loadPitData();
+    loadTeamList();
     loadRankingData();
   });
 </script>
