@@ -111,7 +111,6 @@
 
                           <div id='cannedComments' class='container'>
                           </div>
-
                         </div>
                     </div>
                 </div>
@@ -133,7 +132,7 @@
 
 <?php include("footer.php"); ?>
 <script type="text/javascript" src="js/charts.js"></script>
-<script type="text/javascript" src="js/matchDataProcessor.js"></script>
+<script type="text/javascript" src="js/matchDataProcessor.js?cache=1"></script>
 
 <script>
   var dataChart = null;
@@ -408,25 +407,31 @@
     });
   }
 
-  function createCannedBadge(comment, count){
+  function createCannedBadge(comment, matchList){
+    var matches = matchList.join(', ');
+    var count = matchList.length;
     var rows = [
-      `<button style="margin-right:10px; margin-bottom:10px;" type="button" class="btn btn-primary position-relative">`,
+      `<button style="margin-right:10px; margin-bottom:10px;" type="button" class="btn btn-primary position-relative" data-bs-container="#cannedComments" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="${matches}">`,
       `  ${comment}`,
       `  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">`,
       `    ${count}`,
-      `    <span class="visually-hidden">${comment}</span>`,
+     //  `    <span class="visually-hidden">${comment}</span>`,
       `  </span>`,
       `</button>`
     ].join('');
     $('#cannedComments').append(rows);
   }
 
-  function createCannedComments(data){
+  function createCannedComments(data) {
     var commentLookup = getCannedCommentsDictionary(data);
 
     for(let comment in commentLookup){
       createCannedBadge(comment, commentLookup[comment]);
     }
+
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
   }
 
   function loadTeamData(teamNumber){

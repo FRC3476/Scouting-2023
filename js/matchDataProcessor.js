@@ -3,7 +3,7 @@ function roundInt(val) {
 }
 
 function getCannedCommentsDictionary(data) {
-	/* Returns a mapping of comment to times appeared in input data. */
+	/* Returns a mapping of comment to list of matches */
 	var commentLookup = {};
 	for (var i = 0; i != data.length; i++) {
 		var row = data[i];
@@ -14,9 +14,9 @@ function getCannedCommentsDictionary(data) {
 		for (var j = 0; j != cannedSplit.length; j++) {
 			var comment = cannedSplit[j];
 			if (!(comment in commentLookup)) {
-				commentLookup[comment] = 0;
+				commentLookup[comment] = [];
 			}
-			commentLookup[comment]++;
+			commentLookup[comment].push(row['matchNumber']);
 		}
 	}
 	return commentLookup;
