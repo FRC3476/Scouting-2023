@@ -76,7 +76,7 @@
 
   function getTeamList() {
     var matchTeamSet = new Set(Object.keys(matchDataLookUp));
-    var teamListSet = new Set(teamList);
+    var teamListSet = new Set(Array.from(teamList, x => `${x}`));
     return Array.from(new Set([...matchTeamSet, ...teamListSet]));
   }
 
