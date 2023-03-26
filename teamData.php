@@ -1,4 +1,4 @@
-<title>Team Data</title>
+<title>One Team Data</title>
 <html lang="en">
 
 <?php include('navbar.php');?>
@@ -103,7 +103,7 @@
                 </div>
 
             
-                <!-- Pit Data -->
+                <!-- Comment Data -->
                 <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
                   <div class="card mb-3 mt-3">
                         <div class="card-header">Comments</div>
@@ -114,6 +114,23 @@
                         </div>
                     </div>
                 </div>
+
+
+                <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
+                  <div class="card mb-3 mt-3">
+                        <div class="card-header">Written Comments</div>
+                        <div class="card-body overflow-auto">
+                          <table class='table'>
+                            <thead>
+                              <th scope="col">Written Comments</th>
+                            </thead>
+                            <tbody id="writtenComments"></tbody>
+                          </table>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
 
                 <!-- Charts -->
                 <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
@@ -358,29 +375,23 @@
 
   function createPieceChart(data){
     var matchList = [];
-    var totalAConesTop = []
-    var totalAConesMiddle = []
-    var totalAConesBottom = []
+    var totalCubes = []
+    var totalCones = []
 
     for (var i = 0; i != data.length; i++){
       var row = data[i];
       matchList.push(row['matchNumber']);
 
-      var matchPoints = getMatchPoints(row);
-
       var cones = getConesAuto(row) + getConesTeleop(row);
       var cubes = getCubesAuto(row) + getCubesTeleop(row);
 
-      totalPoints.push(matchPoints);
       totalCones.push(cones);
       totalCubes.push(cubes);
-      totalPieces.push(cones + cubes)
-
     }
 
     var ctx = document.getElementById('dataChart');
 
-    dataChart = new Chart(ctx, {
+    pieceChart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: matchList,
@@ -441,6 +452,7 @@
       matchData = JSON.parse(data);
       createSummaryData(matchData);
       createDataChart(matchData);
+      createPieceChart(matchData);
       createCannedComments(matchData);
     });
   }
@@ -465,6 +477,24 @@
           `</tr>`
         ].join('');
         $('#pitData').append(row);
+      }
+    });
+  }
+
+  function loadCommentData(teamNumber){
+    $.get('readAPI.php', {
+      'readAllTeamMatchData': teamNumber
+    }).done(function(data) {
+      var writtenComments = JSON.parse(data);
+      if (writtenComments.length > 0){
+        writtenComments = writtenComments[0];
+        $('#teamHeading').html(`Team ${teamNumber} - ${writtenComments['teamNumber']}`);
+        var row = [
+          `<tr>`,
+          ` <td scope='row'>${pit['textComments']}</td>`,
+          `</tr>`
+        ].join('');
+        $('#writtenComments').append(row);
       }
     });
   }
