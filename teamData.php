@@ -337,6 +337,7 @@
     var lowCubes = [];
     var dock = [];
     var engage = [];
+    var totalPieces = [];
     for (var i = 0; i != data.length; i++){
       var row = data[i];
       matchList.push(row['matchNumber']);
@@ -357,60 +358,75 @@
       lowCubes.push(lCubesAuto);
       dock.push(getDockAuto(row));
       engage.push(getEngageAuto(row));
+      totalPieces.push(getPiecesAuto(row));
     }
 
     var ctx = document.getElementById('dataChart');
 
     dataChart = new Chart(ctx, {
-      type: 'line',
       data: {
-        labels: matchList,
         datasets: [{
-          label: 'High Cone',
-          data: highCones,
-          fill: false,
-          borderColor: 'rgb(237, 231, 40)'
-        },{
-          label: 'Mid Cone',
-          data: midCones,
-          fill: false,
-          borderColor: 'rgb(237, 161, 40)'
-        },{
-          label: 'Low Cone',
-          data: lowCones,
-          fill: false,
-          borderColor: 'rgb(237, 73, 40)'
-        },{
-          label: 'High Cube',
-          data: highCubes,
-          fill: false,
-          borderColor: 'rgb(184, 40, 237)'
-        },{
-          label: 'Mid Cube',
-          data: midCubes,
-          fill: false,
-          borderColor: 'rgb(73, 40, 237)'
-        },{
-          label: 'Low Cube',
+          type: 'bar',
+          label: 'Low Cubes',
           data: lowCubes,
-          fill: false,
-          borderColor: 'rgb(237, 40, 230)'
-        },{
+          stack: 'Stack 0',
+          backgroundColor: 'rgba(70, 40, 230, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'Mid Cubes',
+          data: midCubes,
+          stack: 'Stack 0',
+          backgroundColor: 'rgba(160, 40, 230, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'High Cubes',
+          data: highCubes,
+          stack: 'Stack 0',
+          backgroundColor: 'rgba(230, 40, 230, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'Low Cones',
+          data: lowCones,
+          stack: 'Stack 1',
+          backgroundColor: 'rgba(237, 70, 40, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'Mid Cones',
+          data: midCones,
+          stack: 'Stack 1',
+          backgroundColor: 'rgba(237, 160, 40, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'High Cones',
+          data: highCones,
+          stack: 'Stack 1',
+          backgroundColor: 'rgba(237, 230, 40, 0.5)'
+        }, {
+          type: 'line',
+          label: 'Total Pieces',
+          data: totalPieces,
+          borderColor: 'rgb(0, 0, 0)'
+        }, {
+          type: 'bar',
           label: 'Dock',
           data: dock,
           fill: false,
-          borderColor: 'rgb(40, 237, 230)'
-        },{
-          label: 'Engange',
+          stack: 'Stack 2',
+          backgroundColor: 'rgb(40, 237, 230)'
+        }, {
+          type: 'bar',
+          label: 'Engage',
           data: engage,
           fill: false,
-          borderColor: 'rgb(40, 237, 125)'
-        }]
-      },
-      options: {
+          stack: 'Stack 2',
+          backgroundColor: 'rgb(40, 237, 125)'
+        }
 
+        ],
+        labels: matchList
       }
     });
+
   }
 
   function createPieceChart(data){
@@ -421,6 +437,7 @@
     var highCubes = [];
     var midCubes = []
     var lowCubes = [];
+    var totalPieces = [];
     for (var i = 0; i != data.length; i++){
       var row = data[i];
       matchList.push(row['matchNumber']);
@@ -439,50 +456,62 @@
       highCubes.push(hCubes);
       midCubes.push(mCubes);
       lowCubes.push(lCubes);
+      totalPieces.push(getPiecesTeleop(row));
     }
 
     var ctx = document.getElementById('pieceChart');
 
     pieceChart = new Chart(ctx, {
-      type: 'line',
       data: {
-        labels: matchList,
         datasets: [{
-          label: 'High Cone',
-          data: highCones,
-          fill: false,
-          borderColor: 'rgb(237, 231, 40)'
-        },{
-          label: 'Mid Cone',
-          data: midCones,
-          fill: false,
-          borderColor: 'rgb(237, 161, 40)'
-        },{
-          label: 'Low Cone',
-          data: lowCones,
-          fill: false,
-          borderColor: 'rgb(237, 73, 40)'
-        },{
-          label: 'High Cube',
-          data: highCubes,
-          fill: false,
-          borderColor: 'rgb(184, 40, 237)'
-        },{
-          label: 'Mid Cube',
-          data: midCubes,
-          fill: false,
-          borderColor: 'rgb(73, 40, 237)'
-        },{
-          label: 'Low Cube',
+          type: 'bar',
+          label: 'Low Cubes',
           data: lowCubes,
-          fill: false,
-          borderColor: 'rgb(237, 40, 230)'
-        }]
-      },
-      options: {
+          stack: 'Stack 0',
+          backgroundColor: 'rgba(70, 40, 230, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'Mid Cubes',
+          data: midCubes,
+          stack: 'Stack 0',
+          backgroundColor: 'rgba(160, 40, 230, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'High Cubes',
+          data: highCubes,
+          stack: 'Stack 0',
+          backgroundColor: 'rgba(230, 40, 230, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'Low Cones',
+          data: lowCones,
+          stack: 'Stack 1',
+          backgroundColor: 'rgba(237, 70, 40, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'Mid Cones',
+          data: midCones,
+          stack: 'Stack 1',
+          backgroundColor: 'rgba(237, 160, 40, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'High Cones',
+          data: highCones,
+          stack: 'Stack 1',
+          backgroundColor: 'rgba(237, 230, 40, 0.5)'
+        }, {
+          type: 'line',
+          label: 'Total Pieces',
+          data: totalPieces,
+          borderColor: 'rgb(0, 0, 0)'
+        },
 
+        ],
+        labels: matchList
       }
     });
+
+
   }
 
 
@@ -531,11 +560,20 @@
 
   }
 
+  var ba = 0;
+
+  function sortMatchData(data){
+    return data.sort(function(a , b){
+      return a['matchNumber'] - b['matchNumber'];
+    });
+  }
+
   function loadTeamData(teamNumber){
     $.get('readAPI.php', {
       'readAllTeamMatchData': teamNumber
     }).done(function(data) {
       matchData = JSON.parse(data);
+      matchData = sortMatchData(matchData);
       createSummaryData(matchData);
       createDataChart(matchData);
       createPieceChart(matchData);
