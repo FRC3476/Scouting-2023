@@ -1,4 +1,4 @@
-<title>Scouting Team Data</title>
+<title>Team Data</title>
 <html lang="en">
 
 <?php include('navbar.php');?>
@@ -126,21 +126,21 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
-                    <div class="card mb-3 mt-3">
-                        <div class="card-header">Teleop Piece Chart</div>
-                        <div class="card-body">
-                          <canvas id="pieceChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Charts -->
                 <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
                     <div class="card mb-3 mt-3">
                         <div class="card-header">Auto Piece Chart</div>
                         <div class="card-body">
                           <canvas id="dataChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
+                    <div class="card mb-3 mt-3">
+                        <div class="card-header">Teleop Piece Chart</div>
+                        <div class="card-body">
+                          <canvas id="pieceChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -335,6 +335,8 @@
     var highCubes = [];
     var midCubes = []
     var lowCubes = [];
+    var dock = [];
+    var engage = [];
     for (var i = 0; i != data.length; i++){
       var row = data[i];
       matchList.push(row['matchNumber']);
@@ -353,6 +355,8 @@
       highCubes.push(hCubesAuto);
       midCubes.push(mCubesAuto);
       lowCubes.push(lCubesAuto);
+      dock.push(getDockAuto(row));
+      engage.push(getEngageAuto(row));
     }
 
     var ctx = document.getElementById('dataChart');
@@ -362,35 +366,45 @@
       data: {
         labels: matchList,
         datasets: [{
-          label: 'High Cones',
+          label: 'High Cone',
           data: highCones,
           fill: false,
-          borderColor: 'rgb(75, 192, 192)'
+          borderColor: 'rgb(237, 231, 40)'
         },{
-          label: 'Mid Cones',
+          label: 'Mid Cone',
           data: midCones,
           fill: false,
-          borderColor: 'rgb(75, 0, 130)'
+          borderColor: 'rgb(237, 161, 40)'
         },{
-          label: 'Low Cones',
+          label: 'Low Cone',
           data: lowCones,
           fill: false,
-          borderColor: 'rgb(212, 175, 55)'
+          borderColor: 'rgb(237, 73, 40)'
         },{
-          label: 'High Cubes',
+          label: 'High Cube',
           data: highCubes,
           fill: false,
-          borderColor: 'rgb(75, 192, 192)'
+          borderColor: 'rgb(184, 40, 237)'
         },{
-          label: 'Mid Cubes',
+          label: 'Mid Cube',
           data: midCubes,
           fill: false,
-          borderColor: 'rgb(75, 0, 130)'
+          borderColor: 'rgb(73, 40, 237)'
         },{
-          label: 'Low Cubes',
+          label: 'Low Cube',
           data: lowCubes,
           fill: false,
-          borderColor: 'rgb(212, 175, 55)'
+          borderColor: 'rgb(237, 40, 230)'
+        },{
+          label: 'Dock',
+          data: dock,
+          fill: false,
+          borderColor: 'rgb(40, 237, 230)'
+        },{
+          label: 'Engange',
+          data: engage,
+          fill: false,
+          borderColor: 'rgb(40, 237, 125)'
         }]
       },
       options: {
@@ -434,35 +448,35 @@
       data: {
         labels: matchList,
         datasets: [{
-          label: 'High Cones',
+          label: 'High Cone',
           data: highCones,
           fill: false,
-          borderColor: 'rgb(75, 192, 192)'
+          borderColor: 'rgb(237, 231, 40)'
         },{
-          label: 'Mid Cones',
+          label: 'Mid Cone',
           data: midCones,
           fill: false,
-          borderColor: 'rgb(75, 0, 130)'
+          borderColor: 'rgb(237, 161, 40)'
         },{
-          label: 'Low Cones',
+          label: 'Low Cone',
           data: lowCones,
           fill: false,
-          borderColor: 'rgb(212, 175, 55)'
+          borderColor: 'rgb(237, 73, 40)'
         },{
-          label: 'High Cubes',
+          label: 'High Cube',
           data: highCubes,
           fill: false,
-          borderColor: 'rgb(75, 192, 192)'
+          borderColor: 'rgb(184, 40, 237)'
         },{
-          label: 'Mid Cubes',
+          label: 'Mid Cube',
           data: midCubes,
           fill: false,
-          borderColor: 'rgb(75, 0, 130)'
+          borderColor: 'rgb(73, 40, 237)'
         },{
-          label: 'Low Cubes',
+          label: 'Low Cube',
           data: lowCubes,
           fill: false,
-          borderColor: 'rgb(212, 175, 55)'
+          borderColor: 'rgb(237, 40, 230)'
         }]
       },
       options: {

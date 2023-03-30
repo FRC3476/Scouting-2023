@@ -52,10 +52,19 @@ function getParkTeleop(row) {
 }
 
 function getDockAuto(row) {
-	return row['autoChargeStation'] == 'DOCKED';
+	if(row['autoChargeStation'] == 'DOCKED'){
+		return 1;
+	}else{
+		return 0;
+	}
 }
+
 function getEngageAuto(row) {
-	return row['autoChargeStation'] == 'ENGAGED';
+	if(row['autoChargeStation'] == 'ENGAGED'){
+		return 1;
+	}else{
+		return 0;
+	}
 }
 
 function getAutoChargeStationPoints(row){
