@@ -110,7 +110,7 @@
 			clearData();
 
 			$.get("tbaAPI.php", {
-				getTeamsInMatch: 1
+				getTeamsInMatch: number
 			}).done(function(data) {
 				$('#matchBanner').html(`Match: ${number}`);
 				data = JSON.parse(data);

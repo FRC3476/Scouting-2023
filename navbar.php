@@ -30,6 +30,9 @@
           </ul>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="leadScoutForm.php">LS Input</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="teamData.php">Team Data</a>
         </li>
         <li class="nav-item">
