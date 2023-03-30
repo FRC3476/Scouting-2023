@@ -22,6 +22,19 @@ function getCannedCommentsDictionary(data) {
 	return commentLookup;
 }
 
+function getWrittenComments(data) {
+	var comments = [];
+	for (var i = 0; i != data.length; i++) {
+		var row = data[i];
+		if (row['textComments'] === '') {
+			continue;
+		}
+		comments.push(row['textComments']);
+		comments.push("Match " + row['matchNumber'] + ": ");
+	}
+	return comments;
+}
+
 function getMobilityAuto(row) {
 	return row['autoMobility'] === 1;
 }
@@ -143,4 +156,45 @@ function getMatchPoints(row) {
 
 function getMatchGamePiece(row) {
 	return getPiecesAuto(row) + getPiecesTeleop(row);
+}
+
+function getTopConesAuto(row) {
+	return row['autoConeLevel3'];
+}
+function getMiddleConesAuto(row) {
+	return row['autoConeLevel2'];
+}
+function getBottomConesAuto(row) {
+	return row['autoConeLevel1'];
+}
+
+function getTopCubesAuto(row) {
+	return row['autoCubeLevel3'];
+}
+function getMiddleCubesAuto(row) {
+	return row['autoCubeLevel2'];
+}
+function getBottomCubesAuto(row) {
+	return row['autoCubeLevel1'];
+}
+
+//Teleop
+function getTopConesTeleop(row) {
+	return row['teleopConeLevel3'];
+}
+function getMiddleConesTeleop(row) {
+	return row['teleopConeLevel2'];
+}
+function getBottomConesTeleop(row) {
+	return row['teleopConeLevel1'];
+}
+
+function getTopCubesTeleop(row) {
+	return row['teleopCubeLevel3'];
+}
+function getMiddleCubesTeleop(row) {
+	return row['teleopCubeLevel2'];
+}
+function getBottomCubesTeleop(row) {
+	return row['teleopCubeLevel1'];
 }

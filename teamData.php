@@ -1,4 +1,4 @@
-<title>One Team Data</title>
+<title>Scouting Team Data</title>
 <html lang="en">
 
 <?php include('navbar.php');?>
@@ -40,7 +40,6 @@
                         </div>
                     </div>
 
-                    
 
                     <div class="card mb-3 mt-3">
                         <div class="card-header">Pit Data</div>
@@ -115,30 +114,33 @@
                     </div>
                 </div>
 
-
+                <!-- Comments -->
                 <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
                   <div class="card mb-3 mt-3">
                         <div class="card-header">Written Comments</div>
                         <div class="card-body overflow-auto">
-                          <table class='table'>
-                            <thead>
-                              <th scope="col">Written Comments</th>
-                            </thead>
-                            <tbody id="writtenComments"></tbody>
-                          </table>
+
+                          <div id='writtenComments' class='container'>
+                          </div>
                         </div>
                     </div>
-                  </div>
                 </div>
 
+                <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
+                    <div class="card mb-3 mt-3">
+                        <div class="card-header">Teleop Piece Chart</div>
+                        <div class="card-body">
+                          <canvas id="pieceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Charts -->
                 <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
                     <div class="card mb-3 mt-3">
-                        <div class="card-header">Charts</div>
+                        <div class="card-header">Auto Piece Chart</div>
                         <div class="card-body">
                           <canvas id="dataChart"></canvas>
-                          <canvas id="pieceChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -169,6 +171,8 @@
       pieceChart.destroy();
     }
     $('#cannedComments').html('');
+    $('#writtenComments').html('');
+
   }
 
   function createSummaryData(data){
@@ -208,6 +212,7 @@
     var tTopMax = 0;
     var tMiddleMax = 0;
     var tBottomMax = 0;
+
     // Process summary data.
     for (var i = 0; i != data.length; i++){
       var row = data[i];
@@ -324,24 +329,30 @@
 
   function createDataChart(data){
     var matchList = [];
-    var totalPoints = [];
-    var totalCones = []
-    var totalCubes = [];
-    var totalPieces = [];
+    var highCones = [];
+    var midCones = []
+    var lowCones = [];
+    var highCubes = [];
+    var midCubes = []
+    var lowCubes = [];
     for (var i = 0; i != data.length; i++){
       var row = data[i];
       matchList.push(row['matchNumber']);
 
-      var matchPoints = getMatchPoints(row);
+      var hConesAuto = getTopConesAuto(row);
+      var mConesAuto = getMiddleConesAuto(row);
+      var lConesAuto = getBottomConesAuto(row);
 
-      var cones = getConesAuto(row) + getConesTeleop(row);
-      var cubes = getCubesAuto(row) + getCubesTeleop(row);
+      var hCubesAuto = getTopCubesAuto(row);
+      var mCubesAuto = getMiddleCubesAuto(row);
+      var lCubesAuto = getBottomCubesAuto(row);
 
-      totalPoints.push(matchPoints);
-      totalCones.push(cones);
-      totalCubes.push(cubes);
-      totalPieces.push(cones + cubes)
-
+      highCones.push(hConesAuto);
+      midCones.push(mConesAuto);
+      lowCones.push(lConesAuto);
+      highCubes.push(hCubesAuto);
+      midCubes.push(mCubesAuto);
+      lowCubes.push(lCubesAuto);
     }
 
     var ctx = document.getElementById('dataChart');
@@ -351,18 +362,33 @@
       data: {
         labels: matchList,
         datasets: [{
-          label: 'Total Pieces',
-          data: totalPieces,
+          label: 'High Cones',
+          data: highCones,
           fill: false,
           borderColor: 'rgb(75, 192, 192)'
         },{
-          label: 'Total Cubes',
-          data: totalCubes,
+          label: 'Mid Cones',
+          data: midCones,
           fill: false,
           borderColor: 'rgb(75, 0, 130)'
         },{
-          label: 'Total Cones',
-          data: totalCones,
+          label: 'Low Cones',
+          data: lowCones,
+          fill: false,
+          borderColor: 'rgb(212, 175, 55)'
+        },{
+          label: 'High Cubes',
+          data: highCubes,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)'
+        },{
+          label: 'Mid Cubes',
+          data: midCubes,
+          fill: false,
+          borderColor: 'rgb(75, 0, 130)'
+        },{
+          label: 'Low Cubes',
+          data: lowCubes,
           fill: false,
           borderColor: 'rgb(212, 175, 55)'
         }]
@@ -375,39 +401,66 @@
 
   function createPieceChart(data){
     var matchList = [];
-    var totalCubes = []
-    var totalCones = []
-
+    var highCones = [];
+    var midCones = []
+    var lowCones = [];
+    var highCubes = [];
+    var midCubes = []
+    var lowCubes = [];
     for (var i = 0; i != data.length; i++){
       var row = data[i];
       matchList.push(row['matchNumber']);
 
-      var cones = getConesAuto(row) + getConesTeleop(row);
-      var cubes = getCubesAuto(row) + getCubesTeleop(row);
+      var hCones = getTopConesTeleop(row);
+      var mCones = getMiddleConesTeleop(row);
+      var lCones = getBottomConesTeleop(row);
 
-      totalCones.push(cones);
-      totalCubes.push(cubes);
+      var hCubes = getTopCubesTeleop(row);
+      var mCubes = getMiddleCubesTeleop(row);
+      var lCubes = getBottomCubesTeleop(row);
+
+      highCones.push(hCones);
+      midCones.push(mCones);
+      lowCones.push(lCones);
+      highCubes.push(hCubes);
+      midCubes.push(mCubes);
+      lowCubes.push(lCubes);
     }
 
-    var ctx = document.getElementById('dataChart');
+    var ctx = document.getElementById('pieceChart');
 
     pieceChart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: matchList,
         datasets: [{
-          label: 'Total Pieces',
-          data: totalPieces,
+          label: 'High Cones',
+          data: highCones,
           fill: false,
           borderColor: 'rgb(75, 192, 192)'
         },{
-          label: 'Total Cubes',
-          data: totalCubes,
+          label: 'Mid Cones',
+          data: midCones,
           fill: false,
           borderColor: 'rgb(75, 0, 130)'
         },{
-          label: 'Total Cones',
-          data: totalCones,
+          label: 'Low Cones',
+          data: lowCones,
+          fill: false,
+          borderColor: 'rgb(212, 175, 55)'
+        },{
+          label: 'High Cubes',
+          data: highCubes,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)'
+        },{
+          label: 'Mid Cubes',
+          data: midCubes,
+          fill: false,
+          borderColor: 'rgb(75, 0, 130)'
+        },{
+          label: 'Low Cubes',
+          data: lowCubes,
           fill: false,
           borderColor: 'rgb(212, 175, 55)'
         }]
@@ -417,6 +470,9 @@
       }
     });
   }
+
+
+
 
   function createCannedBadge(comment, matchList){
     var matches = matchList.join(', ');
@@ -445,6 +501,22 @@
 
   }
 
+  function createWrittenComments(data) {
+    var writtenComments = []
+    writtenComments = getWrittenComments(data);
+
+    for(var i = 0; i != writtenComments.length; i+=2){
+      var row = [
+        `<button style="margin-right:10px; margin-bottom:10px;" type="button" class="btn btn-primary position-relative">`,
+        `${writtenComments[i+1]}` + `${writtenComments[i]}`,
+        `</button>`
+      
+      ].join('');
+      $('#writtenComments').append(row);
+    }
+
+  }
+
   function loadTeamData(teamNumber){
     $.get('readAPI.php', {
       'readAllTeamMatchData': teamNumber
@@ -453,6 +525,7 @@
       createSummaryData(matchData);
       createDataChart(matchData);
       createPieceChart(matchData);
+      createWrittenComments(matchData)
       createCannedComments(matchData);
     });
   }
@@ -477,24 +550,6 @@
           `</tr>`
         ].join('');
         $('#pitData').append(row);
-      }
-    });
-  }
-
-  function loadCommentData(teamNumber){
-    $.get('readAPI.php', {
-      'readAllTeamMatchData': teamNumber
-    }).done(function(data) {
-      var writtenComments = JSON.parse(data);
-      if (writtenComments.length > 0){
-        writtenComments = writtenComments[0];
-        $('#teamHeading').html(`Team ${teamNumber} - ${writtenComments['teamNumber']}`);
-        var row = [
-          `<tr>`,
-          ` <td scope='row'>${pit['textComments']}</td>`,
-          `</tr>`
-        ].join('');
-        $('#writtenComments').append(row);
       }
     });
   }
