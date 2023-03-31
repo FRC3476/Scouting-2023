@@ -18,11 +18,11 @@
                 <thead>
                   <tr>
                     <th scope="col">Number</th>
-                    <th scope="col">Name</th>
                     <th scope="col">Organization</th>
                     <th scope="col">Batteries</th>
                     <th scope="col">Chargers</th>
                     <th scope="col">Language</th>
+					<th scope="col">Drivetrain Type</th>
                     <th scope="col">Auto Path</th>
                     <th scope="col">Frame Perimeter</th>
                     <th scope="col">Comments</th>
@@ -57,11 +57,11 @@ function createRow(rowData){
   */
   var list_row = [`<tr>`,
                   `  <th scope="row">${rowData['pitTeamNumber']}</th>`,
-                  `  <td>${rowData['pitTeamName']}</td>`,
                   `  <td>${rowData['disorganized']}</td>`,
                   `  <td>${rowData['numBatteries']}</td>`,
                   `  <td>${rowData['chargedBatteries']}</td>`,
                   `  <td>${rowData['codeLanguage']}</td>`,
+				  `  <td>${rowData['drivetrainType']}</td>`,
                   `  <td>${rowData['autoPath']}</td>`,
                   `  <td>${rowData['framePerimeterDimensions']}</td>`,
                   `  <td>${rowData['pitComments']}</td>`,
