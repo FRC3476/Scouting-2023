@@ -79,7 +79,8 @@
 
 							<div class="mb-3">
 								<br><text class="form-label">What are your frame perimeter dimensions with your bumper on?</text>
-								<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensions" name="framePerimeterDimensions" placeholder="Length x Width (inches)"></div>
+									<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsLength" name="framePerimeterDimensionsLength" placeholder="Frame Length (inches)"></div>
+									<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsWidth" name="framePerimeterDimensionsWidth" placeholder="Frame Width (inches)"></div>
 								<br>
 							</div>
 
@@ -188,20 +189,16 @@
 					createErrorAlert('Team number not valid.');
 					valid = false;
 				}
-				if (!data['pitTeamName']) {
-					createErrorAlert('Team name not valid.');
-					valid = false;
-				}
 
 				return valid;
 			}
 
 			function clearForm() {
 				$('#pitTeamName').val('');
-				$('#pitTeamNumber').val('');
 				$('#numBatteries').val('');
 				$('#chargedBatteries').val('');
 				$('#codeLanguage').val('Java');
+				$('#drivetrainType').val('Swerve');
 				$('#autoPath').val('');
 				$('#framePerimeterDimensions').val('');
 				$('#framePerimeterDimensionsLength').val('');
@@ -219,6 +216,7 @@
 				data['numBatteries'] = parseInt($('#numBatteries').val()) || 0;
 				data['chargedBatteries'] = parseInt($('#chargedBatteries').val()) || 0; // Either form input or 0 if no form input
 				data['codeLanguage'] = $('#codeLanguage').val(); // Either form input or 0 if no form input
+				data['drivetrainType'] = $('#drivetrainType').val(); // Either form input or 0 if no form input
 				data['autoPath'] = $('#autoPath').val(); // Either form input or 0 if no form input
 				var frame = "";
 				var frameLength = $('#framePerimeterDimensionsLength').val();
