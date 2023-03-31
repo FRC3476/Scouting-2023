@@ -79,7 +79,8 @@
 
 							<div class="mb-3">
 								<br><text class="form-label">What are your frame perimeter dimensions with your bumper on?</text>
-								<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensions" name="framePerimeterDimensions" placeholder="Length x Width (inches)"></div>
+									<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsLength" name="framePerimeterDimensionsLength" placeholder="Frame Length (inches)"></div>
+									<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsWidth" name="framePerimeterDimensionsWidth" placeholder="Frame Width (inches)"></div>
 								<br>
 							</div>
 
