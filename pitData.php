@@ -22,7 +22,11 @@
                     <th scope="col">Batteries</th>
                     <th scope="col">Chargers</th>
                     <th scope="col">Language</th>
+<<<<<<< HEAD
 					          <th scope="col">Drivetrain Type</th>
+=======
+					<th scope="col">Drivetrain Type</th>
+>>>>>>> fixed pit scout page kinks
                     <th scope="col">Robot Weight</th>
                     <th scope="col">Frame Perimeter</th>
                     <th scope="col">Comments</th>
