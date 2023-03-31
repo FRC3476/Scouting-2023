@@ -31,11 +31,6 @@
 							</div>
 
 							<div class="mb-3">
-								<text class="form-label">Team Name: </text>
-								<input type="text" class="form-control" id="pitTeamName" name="pitTeamName" placeholder=" ">
-							</div>
-
-							<div class="mb-3">
 								<text class="form-label">Pit organization</text>
 							</div>
 							<select name="organized" id="disorganized">
@@ -52,11 +47,10 @@
 							<div class="mb-3">
 								<text class="form-label">How many chargers does the team have for robot batteries?</text>
 								<input type="number" class="form-control" id="chargedBatteries" name="chargedBatteries" placeholder=" ">
-								<br>
 							</div>
 
 							<div class="mb-3">
-								<text class="form-label">What is your coding language?</text>
+								<br><text class="form-label">What is your coding language?</text>
 							</div>
 							<select name="codeLanguage" id="codeLanguage">
 								<option value="Java">Java</option>
@@ -64,24 +58,33 @@
 								<option value="LabvVIEW">LabVIEW</option>
 								<option value="Python">Python</option>
 								<option value="Other">Other</option>
+								<br>
+							</select>
+							
+							<div class="mb-3">
+								<br><text class="form-label">What is your drivetrain type?</text>
+							</div>
+							<select name="drivetrainType" id="drivetrainType">
+								<option value="Swerve">Swerve</option>
+								<option value="Tank">Tank</option>
+								<option value="Mecanum">Mecanum</option>
+								<option value="Other">Other</option>
+								<br>
 							</select>
 
-							<div class="col-lg-2" >
+							<div class="mb-3">
 								<br><text class="form-label">Robot Weight in Pounds (lb)</text>
 								<input type="text" class="form-control" id="autoPath" name="autoPath" placeholder=" ">
+							</div>
+
+							<div class="mb-3">
+								<br><text class="form-label">What are your frame perimeter dimensions with your bumper on?</text>
+								<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensions" name="framePerimeterDimensions" placeholder="Length x Width (inches)"></div>
 								<br>
 							</div>
 
-							<div class="col-lg-2" style="width: 60%" style="display: none;" hidden>
-								<br><text class="form-label">What are your frame perimeter dimensions with your bumper
-									on?</text>
-								<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsLength" name="framePerimeterDimensionsLength" placeholder="Frame Length (inches)"></div>
-								<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsWidth" name="framePerimeterDimensionsWidth" placeholder="Frame Width (inches)"></div>
-								<br>
-							</div>
-
-							<div class="col-lg-2">
-								<br><text class="form-label">Other Comments:</text>
+							<div class="mb-3">
+								<text class="form-label">Other Comments:</text>
 								<input type="text" class="form-control" id="pitComments" name="pitComments" placeholder="Comments">
 								<br>
 							</div>
