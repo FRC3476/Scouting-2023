@@ -142,23 +142,20 @@
                       <div class="well column  col-lg-12  col-sm-12 col-xs-12" id="cannedComments">
                         <span class="badge rounded-pill text-bg-primary cannedComments">Slow Drive</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Fast Drive</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Good Defense</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Bad Defense</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Fast Cycle</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Slow Cycle</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Tipped</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Drops Game Pieces</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Bad Driving</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Good Driving</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Stuck on Charge Station</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Can Pick Up Fallen Cones</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Bad Driving</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Good Defense</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Lots of Fouls</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Bad Defense</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Can Balance in Auto</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Attempted Endgame</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Can Pick Up Fallen Cones</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Floor Pickup</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Human Player Pick</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Attempted Endgame</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Drops Game Pieces</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Lots of Fouls</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Tipped</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Stuck on Charge Station</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Didn't Move</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Broken</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">DNP</span>
                         <br><br>
                       </div>

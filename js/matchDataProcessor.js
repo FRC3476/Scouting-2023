@@ -7,7 +7,7 @@ function getCannedCommentsDictionary(data) {
 	var commentLookup = {};
 	for (var i = 0; i != data.length; i++) {
 		var row = data[i];
-		if (row['cannedComments'] === '') {
+		if (row['cannedComments'] === '' || row['cannedComments'] == 0) {
 			continue;
 		}
 		var cannedSplit = row['cannedComments'].split(',');

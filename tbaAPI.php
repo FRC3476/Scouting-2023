@@ -86,6 +86,86 @@ if (getOrPost('getMatchData')){
   echo(json_encode(array()));
 }
 
+if (getOrPost('getUserMatchDicts')){
+  $tba = new tbaHandler();
+  $firstUnplayed = true;
+  $nextUnplayedMatch = array();
+  $nextUnplayedMatch['match_number'] = 0;
+  $nextUnplayedMatch['match_time'] = '0';
+  $matches = array();
+  $team = 'frc' . $tba->db->settings->get('teamnumber');
+  $rawMatches = $tba->getSimpleMatches(getEventCode($tba));
+  foreach($rawMatches as &$matchRow){
+    # Check if first unplayed match.
+    if ($firstUnplayed  && $matchRow['actual_time'] == null){
+      $firstUnplayed = false;
+      if ($matchData['comp_level'] == 'sf'){
+        $nextUnplayedMatch['match_number'] = $matchRow['set_number'];
+      } else {
+        $nextUnplayedMatch['match_number'] = $matchRow['match_number'];
+      }
+      $nextUnplayedMatch['match_time'] = $matchRow['predicted_time'];
+    }
+
+    # Check if team played in match.
+    if ($matchRow['alliances']['red']['team_keys'][0] == $team || 
+        $matchRow['alliances']['red']['team_keys'][1] == $team ||
+        $matchRow['alliances']['red']['team_keys'][2] == $team || 
+        $matchRow['alliances']['blue']['team_keys'][0] == $team || 
+        $matchRow['alliances']['blue']['team_keys'][1] == $team || 
+        $matchRow['alliances']['blue']['team_keys'][2] == $team){
+    
+      $matchData = array();
+      $matchData['comp_level'] = $matchRow['comp_level'];
+      if ($matchData['comp_level'] == 'sf'){
+        $matchData['match_number'] = $matchRow['set_number'];
+      } else {
+        $matchData['match_number'] = $matchRow['match_number'];
+      }
+
+      if ($matchRow['alliances']['red']['team_keys'][0] == $team || 
+          $matchRow['alliances']['red']['team_keys'][1] == $team ||
+          $matchRow['alliances']['red']['team_keys'][2] == $team ) {
+        $matchData['is_red_alliance'] = true;
+        $matchData['alliance'] = array(
+          $matchRow['alliances']['red']['team_keys'][0],
+          $matchRow['alliances']['red']['team_keys'][1],
+          $matchRow['alliances']['red']['team_keys'][2]
+        );
+      } else {
+        $matchData['is_red_alliance'] = false;
+        $matchData['alliance'] = array(
+          $matchRow['alliances']['blue']['team_keys'][0],
+          $matchRow['alliances']['blue']['team_keys'][1],
+          $matchRow['alliances']['blue']['team_keys'][2]
+        );
+      }
+
+      $matchData['actual_time'] = $matchRow['actual_time'];
+      $matchData['predicted_time'] = $matchRow['predicted_time'];
+
+      array_push($matches, $matchData);
+    }
+  }
+  usort($matches, function($a, $b){
+    $aLevel = $a['comp_level'];
+    $aNumber = $a['match_number'];
+
+    $bLevel = $b['comp_level'];
+    $bNumber = $b['match_number'];
+    
+    if ($aLevel == $bLevel){
+      return $aMatch <=> $bMatch;
+    }
+    $lookup = array('p' => 0, 'qm' => 1, 'qf' => 2, 'sf' => 3, 'f' => 4);
+    return $lookup[$aLevel] <=> $lookup[$bLevel];
+  });
+  $output = array();
+  $output['current_match'] = $nextUnplayedMatch;
+  $output['future_team_matches'] = $matches;
+  echo(json_encode($output));
+}
+
 if (getOrPost('getUserMatches')){
   $tba = new tbaHandler();
   $matches = array();

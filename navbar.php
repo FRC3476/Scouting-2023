@@ -42,6 +42,9 @@
           <a class="nav-link" href="rankings.php">Rankings</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="strikeView.php">Strike View</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="qrScanner.php">QR Scanner</a>
         </li>
         <li class="nav-item">
