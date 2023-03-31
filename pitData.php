@@ -61,7 +61,7 @@ function createRow(rowData){
                   `  <td>${rowData['numBatteries']}</td>`,
                   `  <td>${rowData['chargedBatteries']}</td>`,
                   `  <td>${rowData['codeLanguage']}</td>`,
-				  `  <td>${rowData['drivetrainType']}</td>`,
+                  `  <td>${rowData['drivetrainType']}</td>`,
                   `  <td>${rowData['autoPath']}</td>`,
                   `  <td>${rowData['framePerimeterDimensions']}</td>`,
                   `  <td>${rowData['pitComments']}</td>`,
