@@ -22,8 +22,8 @@
                     <th scope="col">Batteries</th>
                     <th scope="col">Chargers</th>
                     <th scope="col">Language</th>
-					          <th scope="col">Drivetrain Type</th>
-                    <th scope="col">Robot Weight</th>
+					<th scope="col">Drivetrain Type</th>
+                    <th scope="col">Auto Path</th>
                     <th scope="col">Frame Perimeter</th>
                     <th scope="col">Comments</th>
                   </tr>
@@ -61,7 +61,7 @@ function createRow(rowData){
                   `  <td>${rowData['numBatteries']}</td>`,
                   `  <td>${rowData['chargedBatteries']}</td>`,
                   `  <td>${rowData['codeLanguage']}</td>`,
-                  `  <td>${rowData['drivetrainType']}</td>`,
+				  `  <td>${rowData['drivetrainType']}</td>`,
                   `  <td>${rowData['autoPath']}</td>`,
                   `  <td>${rowData['framePerimeterDimensions']}</td>`,
                   `  <td>${rowData['pitComments']}</td>`,
