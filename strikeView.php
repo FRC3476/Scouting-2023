@@ -71,7 +71,7 @@ function getTeamIssues(team, container){
     return '';
   }
   var out = '';
-  var baseRobotIssues = ["Lots of Fouls", "Tipped", "Stuck on Charge Station", "Didn't Move", "Broken", "DNP"];
+  var baseRobotIssues = ["Lots of Fouls", "Tipped", "Stuck on Charge Station", "Didn't Move", "Broken", "DNP", "Bumpers Fell Off", "Did Not Show Up"];
   var teamIssues = teamCannedLookup[team];
   for (const issue of baseRobotIssues){
     if (issue in teamIssues){
