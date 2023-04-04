@@ -134,6 +134,40 @@ function getPiecesTeleop(row) {
 	return getConesTeleop(row) + getCubesTeleop(row);
 }
 
+function getMatchPointsAuto(row) {
+	var points = 0;
+	if (getMobilityAuto(row)) {
+		points += 3;
+	}
+	if (getDockAuto(row)) {
+		points += 8;
+	}
+	if (getEngageAuto(row)) {
+		points += 12;
+	}
+	points += 3 * getBottomAuto(row);
+	points += 4 * getMiddleAuto(row);
+	points += 6 * getTopAuto(row);
+	return points;
+}
+
+function getMatchPointsTeleop(row) {
+	var points = 0;
+	if (getDockTeleop(row)) {
+		points += 6;
+	}
+	if (getEngageTeleop(row)) {
+		points += 10;
+	}
+	if (getParkTeleop(row)){
+		points += 2;
+	}
+	points += 2 * getBottomTeleop(row);
+	points += 3 * getMiddleTeleop(row);
+	points += 5 * getTopTeleop(row);
+	return points;
+}
+
 function getMatchPoints(row) {
 	var points = 0;
 	if (getMobilityAuto(row)) {

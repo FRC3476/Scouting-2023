@@ -73,6 +73,7 @@
                               <th scope="col"></th>
                               <th scope="col">Auto</th>
                               <th scope="col">Teleop</th>
+							  <th scope="col">Total</th>
                             </thead>
                             <tbody id='totalSummary'></tbody>
                           </table>
@@ -151,7 +152,7 @@
 
 <?php include("footer.php"); ?>
 <script type="text/javascript" src="js/charts.js"></script>
-<script type="text/javascript" src="js/matchDataProcessor.js?cache=1"></script>
+<script type="text/javascript" src="js/matchDataProcessor.js"></script>
 
 <script>
   var dataChart = null;
@@ -176,8 +177,10 @@
   }
 
   function createSummaryData(data){
-    var points = 0;
-    var pieces = 0;
+    var pointsAuto = 0;
+    var pointsTeleop = 0;
+	var pointsTotal = 0;
+	var piecesTotal = 0;
     var pointsMax = 0;
     var piecesMax = 0;
 
@@ -218,9 +221,11 @@
       var row = data[i];
       matchCount++;
       
-      points += getMatchPoints(row);
-      pieces += getMatchGamePiece(row);
-      pointsMax = Math.max(pointsMax, getMatchPoints(row));
+      pointsAuto += getMatchPointsAuto(row);
+      pointsTeleop += getMatchPointsTeleop(row);
+	  pointsTotal += getMatchPoints(row);
+	  piecesTotal += getMatchGamePiece(row);
+      pointsMax = Math.max(pointsMax, getMatchPointsAuto(row));
       piecesMax = Math.max(piecesMax, getMatchGamePiece(row));
 
       aTotal += getPiecesAuto(row);
@@ -259,8 +264,10 @@
     // Only add data if over 0.
     if (matchCount > 0){
       // Calculate avg.
-      pieces = roundInt(pieces / matchCount);
-      points = roundInt(points / matchCount);
+      pointsAuto = roundInt(pointsAuto / matchCount);
+      pointsTeleop = roundInt(pointsTeleop / matchCount);
+	  pointsTotal = roundInt(pointsTotal / matchCount);
+	  piecesTotal = roundInt(piecesTotal / matchCount);
       aTotal = roundInt(aTotal / matchCount);
       aCones /= matchCount;
       aCubes /= matchCount;
@@ -300,9 +307,9 @@
         ` <tr><th scope='row'>Top</th><td scope='row'>${aTop}</td><td scope='row'>${aTopMax}</td></tr>`,
         ` <tr><th scope='row'>Middle</th><td scope='row'>${aMiddle}</td><td scope='row'>${aMiddleMax}</td></tr>`,
         ` <tr><th scope='row'>Bottom</th><td scope='row'>${aBottom}</td><td scope='row'>${aBottomMax}</td></tr>`,
-        ` <tr><th scope='row'>Engage</th><td scope='row'>${aEngage}%</td><td scope='row'>NA</td></tr>`,
-        ` <tr><th scope='row'>Dock</th><td scope='row'>${aDock}%</td><td scope='row'>NA</td></tr>`,
-        ` <tr><th scope='row'>Mobility</th><td scope='row'>${aMobility}%</td><td scope='row'>NA</td></tr>`,
+        ` <tr><th scope='row'>Engage</th><td scope='row'>${aEngage}%</td><td scope='row'>N/A</td></tr>`,
+        ` <tr><th scope='row'>Dock</th><td scope='row'>${aDock}%</td><td scope='row'>N/A</td></tr>`,
+        ` <tr><th scope='row'>Mobility</th><td scope='row'>${aMobility}%</td><td scope='row'>N/A</td></tr>`,
       ].join('');
       $('#autoSummaryData').append(autoSummaryRows);
 
@@ -314,14 +321,14 @@
         ` <tr><th scope='row'>Top</th><td scope='row'>${tTop}</td><td scope='row'>${tTopMax}</td></tr>`,
         ` <tr><th scope='row'>Middle</th><td scope='row'>${tMiddle}</td><td scope='row'>${tMiddleMax}</td></tr>`,
         ` <tr><th scope='row'>Bottom</th><td scope='row'>${tBottom}</td><td scope='row'>${tBottomMax}</td></tr>`,
-        ` <tr><th scope='row'>Engage</th><td scope='row'>${tEngage}%</td><td scope='row'>NA</td></tr>`,
-        ` <tr><th scope='row'>Dock</th><td scope='row'>${tDock}%</td><td scope='row'>NA</td></tr>`,
+        ` <tr><th scope='row'>Engage</th><td scope='row'>${tEngage}%</td><td scope='row'>N/A</td></tr>`,
+        ` <tr><th scope='row'>Dock</th><td scope='row'>${tDock}%</td><td scope='row'>N/A</td></tr>`,
       ].join('');
       $('#teleopSummaryData').append(teleopSummaryRows);
 
       var totalSummaryRows = [
-        ` <tr><th scope='row'>Points</th><td scope='row'>${points}</td><td scope='row'>${pointsMax}</td></tr>`,
-        ` <tr><th scope='row'>Game Pieces</th><td scope='row'>${pieces}</td><td scope='row'>${piecesMax}</td></tr>`,
+        ` <tr><th scope='row'>Average Points</th><td scope='row'>${pointsAuto}</td><td scope='row'>${pointsTeleop}</td><td scope='row'>${pointsTotal}</td></tr>`,
+        ` <tr><th scope='row'>Average Game Pieces</th><td scope='row'>${aTotal}</td><td scope='row'>${tTotal}</td><td scope='row'>${piecesTotal}</td></tr>`,
       ].join('');
       $('#totalSummary').append(totalSummaryRows);
     }
@@ -589,7 +596,7 @@
       var pit = JSON.parse(data);
       if (pit.length > 0){
         pit = pit[0];
-        $('#teamHeading').html(`Team ${teamNumber} - ${pit['pitTeamName']}`);
+        $('#teamHeading').html(`Team ${teamNumber}`);
         var row = [
           `<tr>`,
           ` <td scope='row'>${pit['disorganized']}</td>`,
