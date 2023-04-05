@@ -2,6 +2,20 @@ function roundInt(val) {
 	return Math.round((val + Number.EPSILON) * 100) / 100;
 }
 
+function getProblematicCannedCommentMatchCount(data){
+	var problematicComments = ['Tipped', 'Stuck on Charge Station', 'Didn\'t Move', 'Broken', 'Did Not Show Up', 'Bumpers Fell Off'];
+	var commentDict = getCannedCommentsDictionary(data);
+	var matchList = [];
+	for (var i = 0; i != problematicComments.length; i++){
+		var comment = problematicComments[i];
+		if (comment in commentDict){
+			matchList = [...matchList, ...commentDict[comment]];
+		}
+	}
+	var matchSet = new Set(matchList);
+	return matchSet.size;
+}
+
 function getCannedCommentsDictionary(data) {
 	/* Returns a mapping of comment to list of matches */
 	var commentLookup = {};
