@@ -74,6 +74,28 @@ if (isset($_POST['writePitScoutData'])) {
   echo (json_encode($result));
 }
 
+if (isset($_POST['writeStrikeScoutData'])) {
+  $result = new stdClass();
+  $result -> success = true;
+  $db = new dbHandler();
+  //create strikeScouttable if it doesn't exist
+  if (!$db->getTableExists("strikeScouttable")) {
+    $db->createTable("strikeScouttable");
+  }
+  $matchData = json_decode($_POST['writeStrikeScoutData'], true);
+  $success = true;
+  try {
+    $db->writeRowToTable('strikeScouttable', $matchData);
+  } catch (Exception $e) {
+    error_log($e);
+    $e = json_decode(json_encode($e));
+    $result->error = $e -> errorInfo;
+    $result -> success = false;
+  }
+
+  echo (json_encode($result));
+}
+
 if (isset($_GET['saveAllianceRank'])){
   $db = new dbHandler();
   $teamList = json_decode($_GET['saveAllianceRank'], true);
