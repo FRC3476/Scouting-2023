@@ -45,7 +45,7 @@
                         <div class="card-header">Pit Data</div>
                         <div class="card-body overflow-auto">
 
-                          <table class='table'>
+                          <table class='table table-striped'>
                             <thead>
                               <th scope="col">Pit Org</th>
                               <th scope="col">Batteries</th>
@@ -65,7 +65,7 @@
                         <div class="card-header">Strike Data</div>
                         <div class="card-body overflow-auto">
 
-                          <table class='table'>
+                          <table class='table table-striped'>
                             <thead>
                               <th scope="col">Vibe Check</th>
                               <th scope="col">Bumper Check</th>
@@ -86,7 +86,7 @@
                         <div class="card-header">Summary</div>
                         <div class="card-body">
 
-                          <table class='table'>
+                          <table class='table table-striped'>
                             <thead>
                               <th scope="col"></th>
                               <th scope="col">Auto</th>
@@ -97,7 +97,7 @@
                           </table>
 
                           <h5>Auto Table</h5>
-                          <table class='table'>
+                          <table class='table table-striped'>
                             <thead>
                               <th scope="col"></th>
                               <th scope="col">Average</th>
@@ -107,7 +107,7 @@
                           </table>
 
                           <h5>Teleop Table</h5>
-                          <table class='table'>
+                          <table class='table table-striped'>
                             <thead>
                               <th scope="col"></th>
                               <th scope="col">Average</th>
