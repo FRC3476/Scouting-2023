@@ -1,6 +1,16 @@
 <title>Rankings</title>
 <html lang="en">
 
+<style>
+  th:first-child, td:first-child
+{
+  position:sticky;
+  left:0px;
+  background-color:grey;
+}
+
+</style>
+
 <?php include('navbar.php'); ?>
 
 
@@ -15,11 +25,11 @@
 
       <div class="row pt-3 pb-3 mb-3">
         <div class='overflow-auto'>
-          <table id='fullDataTable' class='table sortable'>
+          <table id='fullDataTable' class='table sortable table-striped'>
             <thead style="position: sticky;top: 0">
               <tr>
+                <th col='scope' style='z-index:2' class='table-secondary' >Team</th>
                 <th col='scope'>Rank</th>
-                <th col='scope'>Team</th>
                 <th col='scope'>Avg Points</th>
                 <th col='scope'>Max Points</th>
                 <th col='scope'>Avg Auto Pieces</th>
@@ -40,8 +50,11 @@
                 <th col='scope'>Drive Train</th>
                 <th col='scope'>Weight</th>
                 <th col='scope'>Frame Dimensions</th>
-                <th col='scope'>Comments</th>
+                <th col='scope'>Pit Comments</th>
                 <th col='scope'>Scout Flagged Matches</th>
+                <th col='scope'>Avg Strike Rating (0-5)</th>
+                <th col='scope'>Strike Comments</th>
+                <th col='scope'>Strike Vibes</th>
               </tr>
             </thead>
             <tbody id="dataTable">
@@ -60,6 +73,7 @@
   var matchDataLookUp = {};
   var pitDataLookUp = {};
   var rankingLookUp = {}
+  var strikeLookup = {};
   var teamList = [];
 
   function safeDataLookup(key, obj) {
@@ -89,10 +103,11 @@
       var team = teams[i];
       var matchData = safeDataLookup(team, matchDataLookUp);
       var pitData = safeDataLookup(team, pitDataLookUp);
+      var strikeData = safeDataLookup(team, strikeLookup);
       var rows = [
         `<tr>`,
+        `  <td style='z-index:2' class='table-secondary' scope='row' sorttable_customkey='${team}'><a href='./teamData.php?team=${team}'>${team}</a></td>`,
         `  <td scope='row'>${safeLookup(`frc${team}`, rankingLookUp)}</td>`,
-        `  <td scope='row' sorttable_customkey='${team}'><a href='./teamData.php?team=${team}'>${team}</a></td>`,
         `  <td scope='row'>${safeLookup('avgPoints', matchData)}</td>`,
         `  <td scope='row'>${safeLookup('maxPoints', matchData)}</td>`,
         `  <td scope='row'>${safeLookup('avgAutoPieces', matchData)}</td>`,
@@ -115,6 +130,9 @@
         `  <td scope='row'>${safeLookup('framePerimeterDimensions', pitData)}</td>`,
         `  <td scope='row'>${safeLookup('pitComments', pitData)}</td>`,
         `  <td scope='row'>${safeLookup('problematicMatchCount', matchData)}</td>`,
+        `  <td scope='row'>${safeLookup('rating', strikeData)}</td>`,
+        `  <td scope='row'>${safeLookup('strikeComments', strikeData)}</td>`,
+        `  <td scope='row'>${safeLookup('vibes', strikeData)}</td>`,
         `</tr>`
       ].join('');
       $('#dataTable').append(rows);
@@ -123,6 +141,27 @@
     var fullTable = document.getElementById('fullDataTable');
     sorttable.makeSortable(fullTable);
     sorttable.makeSortable(fullTable);
+  }
+
+  function strikeDataToStrikeLookup(data){
+    for (var i = 0; i != data.length; i++){
+      var strike = data[i];
+      var team = strike['strikeTeamNumber'];
+      strikeLookup[team] = strike
+      var rating = 0;
+
+      if (strike['bumpers'] == 'average') {rating += 3}
+      if (strike['bumpers'] == 'great') {rating += 5}
+
+      if (strike['mechRobustness'] == 'average') {rating += 3}
+      if (strike['mechRobustness'] == 'good') {rating += 5}
+
+      if (strike['elecRobustness'] == 'average') {rating += 3}
+      if (strike['elecRobustness'] == 'good') {rating += 5}
+
+
+      strikeLookup[team]['rating'] = roundInt(rating/3);
+    }
   }
 
   function pitDataToPitDataLookUp(data) {
@@ -238,6 +277,16 @@
     });
   }
 
+  function loadStrikeData(){
+    $.post("readAPI.php", {
+      "readAllStrikeScoutData": true
+    }, function(data) {
+      var data = JSON.parse(data);
+      strikeDataToStrikeLookup(data);
+      reDrawTable();
+    });
+  }
+
 
   function getTableAsCSVString() {
     var table_array = [];
@@ -246,7 +295,7 @@
       var cols = rows[i].querySelectorAll('td,th');
       var row_array = []
       for (var j = 0; j < cols.length; j++) {
-        if (j == 1) { // Strip link from team number in col 1
+        if (j == 0) { // Strip link from team number in col 1
           var team_link = cols[j].querySelectorAll('a');
           if (team_link.length == 0) {
             row_array.push(cols[j].innerHTML);
@@ -285,6 +334,7 @@
     loadPitData();
     loadTeamList();
     loadRankingData();
+    loadStrikeData();
   });
 </script>
 
