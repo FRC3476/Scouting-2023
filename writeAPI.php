@@ -85,7 +85,7 @@ if (isset($_POST['writeStrikeScoutData'])) {
   $matchData = json_decode($_POST['writeStrikeScoutData'], true);
   $success = true;
   try {
-    $db->writeRowToTable('strikeScouttable', $matchData);
+    $db->replaceRowInTable('strikeScouttable', $matchData);
   } catch (Exception $e) {
     error_log($e);
     $e = json_decode(json_encode($e));
