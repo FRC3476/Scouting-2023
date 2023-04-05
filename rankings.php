@@ -37,7 +37,8 @@
                 <th col='scope'># Batteries</th>
                 <th col='scope'># Chargers</th>
                 <th col='scope'>Language</th>
-                <th col='scope'>Auto Path</th>
+                <th col='scope'>Drive Train</th>
+                <th col='scope'>Weight</th>
                 <th col='scope'>Frame Dimensions</th>
                 <th col='scope'>Comments</th>
                 <th col='scope'>Scout Flagged Matches</th>
@@ -109,6 +110,7 @@
         `  <td scope='row'>${safeLookup('numBatteries', pitData)}</td>`,
         `  <td scope='row'>${safeLookup('chargedBatteries', pitData)}</td>`,
         `  <td scope='row'>${safeLookup('codeLanguage', pitData)}</td>`,
+        `  <td scope='row'>${safeLookup('drivetrainType', pitData)}</td>`,
         `  <td scope='row'>${safeLookup('autoPath', pitData)}</td>`,
         `  <td scope='row'>${safeLookup('framePerimeterDimensions', pitData)}</td>`,
         `  <td scope='row'>${safeLookup('pitComments', pitData)}</td>`,
