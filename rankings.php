@@ -244,7 +244,7 @@
       var cols = rows[i].querySelectorAll('td,th');
       var row_array = []
       for (var j = 0; j < cols.length; j++) {
-        if (j == 0) { // Strip link from team number in col 1
+        if (j == 1) { // Strip link from team number in col 1
           var team_link = cols[j].querySelectorAll('a');
           if (team_link.length == 0) {
             row_array.push(cols[j].innerHTML);
