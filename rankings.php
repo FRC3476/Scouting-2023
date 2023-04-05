@@ -40,6 +40,7 @@
                 <th col='scope'>Auto Path</th>
                 <th col='scope'>Frame Dimensions</th>
                 <th col='scope'>Comments</th>
+                <th col='scope'>Scout Flagged Matches</th>
               </tr>
             </thead>
             <tbody id="dataTable">
@@ -52,7 +53,7 @@
 </body>
 
 <?php include("footer.php"); ?>
-<script type="text/javascript" src="js/matchDataProcessor.js?v=0"></script>
+<script type="text/javascript" src="js/matchDataProcessor.js?cache=5"></script>
 
 <script>
   var matchDataLookUp = {};
@@ -111,6 +112,7 @@
         `  <td scope='row'>${safeLookup('autoPath', pitData)}</td>`,
         `  <td scope='row'>${safeLookup('framePerimeterDimensions', pitData)}</td>`,
         `  <td scope='row'>${safeLookup('pitComments', pitData)}</td>`,
+        `  <td scope='row'>${safeLookup('problematicMatchCount', matchData)}</td>`,
         `</tr>`
       ].join('');
       $('#dataTable').append(rows);
@@ -188,6 +190,7 @@
       lookup['avgTeleopPark'] = roundInt((avgTeleopPark / matchCount) * 100);
       lookup['avgTeleopDock'] = roundInt((avgTeleopDock / matchCount) * 100);
       lookup['avgTeleopEngage'] = roundInt((avgTeleopEngage / matchCount) * 100);
+      lookup['problematicMatchCount'] = getProblematicCannedCommentMatchCount(teamToDataList[team]);
 
       matchDataLookUp[team] = lookup;
     }
