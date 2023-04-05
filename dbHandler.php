@@ -62,6 +62,16 @@ class dbHandler
         'pitComments' => 'TEXT NULL'
       )
     ),
+	'strikeScouttable' => array(
+      'keys' => array(
+        'strikeTeamNumber' => 'VARCHAR(5) NOT NULL PRIMARY KEY',
+        'vibes' => 'VARCHAR(60) NOT NULL',
+        'bumpers' => 'VARCHAR(60) NOT NULL',
+        'mechRobustness' => 'VARCHAR(60) NOT NULL',
+        'elecRobustness' => 'VARCHAR(60) NOT NULL',
+        'strikeComments' => 'TEXT NULL'
+      )
+    ),
     'tbatable' => array(
       'keys' => array(
         'requestURI' => 'VARCHAR(100) NOT NULL PRIMARY KEY',

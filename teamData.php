@@ -60,6 +60,24 @@
 
                         </div>
                     </div>
+					
+					<div class="card mb-3 mt-3">
+                        <div class="card-header">Strike Data</div>
+                        <div class="card-body overflow-auto">
+
+                          <table class='table'>
+                            <thead>
+                              <th scope="col">Vibe Check</th>
+                              <th scope="col">Bumper Check</th>
+                              <th scope="col">Mechanical Robustness</th>
+                              <th scope="col">Electrical Robustness</th>
+                              <th scope="col">Comments</th>
+                            </thead>
+                            <tbody id='strikeData'></tbody>
+                          </table>
+
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Summary -->
@@ -612,6 +630,28 @@
       }
     });
   }
+  
+  function loadStrikeData(teamNumber){
+    $.get('readAPI.php', {
+      'readAllTeamStrikeData': teamNumber
+    }).done(function(data) {
+      var strike = JSON.parse(data);
+      if (strike.length > 0){
+        strike = strike[0];
+        $('#teamHeading').html(`Team ${teamNumber}`);
+        var row = [
+          `<tr>`,
+          ` <td scope='row'>${strike['vibes']}</td>`,
+          ` <td scope='row'>${strike['bumpers']}</td>`,
+          ` <td scope='row'>${strike['mechRobustness']}</td>`,
+          ` <td scope='row'>${strike['elecRobustness']}</td>`,
+          ` <td scope='row'>${strike['strikeComments']}</td>`,
+          `</tr>`
+        ].join('');
+        $('#strikeData').append(row);
+      }
+    });
+  }
 
   function loadTeamPictures(teamNumber){
     $.get('readAPI.php', {
@@ -641,6 +681,7 @@
 
     loadTeamPictures(teamNumber);
     loadPitData(teamNumber);
+	loadStrikeData(teamNumber);
     loadTeamData(teamNumber);
   }
 
