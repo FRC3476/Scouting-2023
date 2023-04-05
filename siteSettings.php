@@ -6,7 +6,7 @@ class siteSettings{
   private $configKeys = array(
     'server', 'db', 'username', 'password',
     'teamnumber', 'eventcode', 'tbakey',
-    'datatable', 'tbatable', 'pitScouttable', 'LSTable'
+    'datatable', 'tbatable', 'pitScouttable', 'strikeScouttable', 'LSTable'
   );
   public $settings;
   
@@ -68,16 +68,17 @@ class siteSettings{
   
   function getSanitizedConfig(){
     $out = array();
-    $out['server']          = $this->settings['server'];
-    $out['db']              = $this->settings['db'];
-    $out['username']        = $this->settings['username'];
-    $out['teamnumber']      = $this->settings['teamnumber'];
-    $out['eventcode']       = $this->settings['eventcode'];
-    $out['tbakey']          = substr($this->settings['tbakey'], 0, 3) . '******';
-    $out['datatable']       = $this->settings['datatable'];
-    $out['tbatable']        = $this->settings['tbatable'];
-    $out['pitScouttable']   = $this->settings['pitScouttable'];
-    $out['LSTable']        = $this->settings['LSTable'];
+    $out['server']          	= $this->settings['server'];
+    $out['db']              	= $this->settings['db'];
+    $out['username']        	= $this->settings['username'];
+    $out['teamnumber']      	= $this->settings['teamnumber'];
+    $out['eventcode']       	= $this->settings['eventcode'];
+    $out['tbakey']          	= substr($this->settings['tbakey'], 0, 3) . '******';
+    $out['datatable']       	= $this->settings['datatable'];
+    $out['tbatable']        	= $this->settings['tbatable'];
+    $out['pitScouttable']   	= $this->settings['pitScouttable'];
+	$out['strikeScouttable']   	= $this->settings['strikeScouttable'];
+    $out['LSTable']        	   	= $this->settings['LSTable'];
     return $out;
   }
 }
