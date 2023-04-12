@@ -5,7 +5,7 @@ class siteSettings{
   private $dbIniFile = './db_config.ini';
   private $configKeys = array(
     'server', 'db', 'username', 'password',
-    'eventcode', 'tbakey',
+    'teamnumber', 'eventcode', 'tbakey',
     'datatable', 'tbatable', 'pitScouttable', 'LSTable'
   );
   public $settings;
@@ -58,8 +58,8 @@ class siteSettings{
         fwrite($fp, $data);
         flock($fp, LOCK_UN);
       }
+      fclose($fp);
     }
-    fclose($fp);
   }
   
   function get($key){
@@ -71,6 +71,7 @@ class siteSettings{
     $out['server']          = $this->settings['server'];
     $out['db']              = $this->settings['db'];
     $out['username']        = $this->settings['username'];
+    $out['teamnumber']      = $this->settings['teamnumber'];
     $out['eventcode']       = $this->settings['eventcode'];
     $out['tbakey']          = substr($this->settings['tbakey'], 0, 3) . '******';
     $out['datatable']       = $this->settings['datatable'];

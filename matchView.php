@@ -4,11 +4,11 @@
 <?php include('navbar.php'); ?>
 
 <body class="bg-body">
-    <div class="container bg-light" style="margin-top: 25px; padding: 10px">
-        <div class="header">Match View</div>
-        <div class="header">Match: 1</div>
+    <div class="card bg-light" style="margin: 25px; padding: 10px">
+        <div class="card-header">Match View</div>
+        <div class="card-header">Match: 1</div>
 
-        <div class="container">
+        <div class="card-body">
             <div style="display: flex; align-items: center; justify-content: space-around;">
                 <div>
                     <label for="teamSelection" class="form-label">Team</label>

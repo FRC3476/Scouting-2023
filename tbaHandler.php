@@ -161,6 +161,11 @@ class tbaHandler {
 
   /* Match Data Operations */
 
+  function getRank($eventCode){
+    $requestURI = "/event/" . $eventCode . "/rankings";
+    return $this->_makeCachedDBCall($requestURI)['response'];
+  }
+
   function getMatches($eventCode)
   {
     $requestURI = "/event/" . $eventCode . "/matches";

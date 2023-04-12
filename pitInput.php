@@ -1,6 +1,5 @@
 <html>
-<?php include("navBar.php"); ?>
-
+<?php include("navbar.php"); ?>
 
 <body class="bg-body">
 	<div class="container row-offcanvas row-offcanvas-left">
@@ -13,7 +12,7 @@
 						<div class="card-header">Pit Scout Form</div>
 						<div class="card-body">
 
-						<div id="alertPlaceholder"></div>
+							<div id="alertPlaceholder"></div>
 
 							<a href='pitCheck.php'>
 								<button class="btn btn-primary">
@@ -60,10 +59,11 @@
 								<text class="form-label">What is your coding language?</text>
 							</div>
 							<select name="codeLanguage" id="codeLanguage">
-								<option value="javascript">Java</option>
-								<option value="python">C++</option>
-								<option value="c++">LabVIEW</option>
-								<option value="java">Other</option>
+								<option value="Java">Java</option>
+								<option value="C++">C++</option>
+								<option value="LabvVIEW">LabVIEW</option>
+								<option value="Python">Python</option>
+								<option value="Other">Other</option>
 							</select>
 
 							<div class="col-lg-2">
@@ -72,22 +72,22 @@
 								<br>
 							</div>
 
-							<div class="col-lg-2">
+							<div class="col-lg-2" style="width: 60%">
 								<br><text class="form-label">What are your frame perimeter dimensions with your bumper
 									on?</text>
-								<input type="text" class="form-control" id="framePerimeterDimensions" name="framePerimeterDimensions" placeholder=" ">
+								<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsLength" name="framePerimeterDimensionsLength" placeholder="Frame Length (inches)"></div>
+								<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsWidth" name="framePerimeterDimensionsWidth" placeholder="Frame Width (inches)"></div>
 								<br>
 							</div>
 
 							<div class="col-lg-2">
 								<br><text class="form-label">Other Comments:</text>
-								<input type="text" class="form-control" id="pitComments" name="pitComments" placeholder=" ">
+								<input type="text" class="form-control" id="pitComments" name="pitComments" placeholder="Comments">
 								<br>
 							</div>
 
 							<div class="col-lg-12 col-sm-12 col-xs-12">
 								<input id="submit" type="submit" class="btn btn-primary" value="Submit Data" onclick="">
-
 							</div>
 							<br>
 						</div>
@@ -100,7 +100,7 @@
 		<?php include("footer.php"); ?>
 
 		<script>
-			function submitData(){
+			function submitData() {
 				/* Gets data from form, validates it, and creates appropriate error messages. 
 
 				Returns:
@@ -110,31 +110,42 @@
 				var data = getpitInputData();
 				console.log(data);
 				var validData = validateFormData(data);
-				if (validData){
+				if (validData) {
 					// Create POST request.
 					$.post("writeAPI.php", {
-						"writePitScoutData": JSON.stringify(data)
-					}, function(success) {
-						success = JSON.parse(success);
-						if (success){
-						createSuccessAlert('Form Submitted. Clearing form.');
-						location.reload();
-						}
-						else {
-						createErrorAlert('Form submitted to server but failed to process. Please try again or contact admin.');
-						}
-					})
-					.fail(function (){
-						createErrorAlert('Form submitted but failure on server side. Please try again or contact admin.');
-					});
+							"writePitScoutData": JSON.stringify(data)
+						}, function(data) {
+							data = JSON.parse(data);
+							console.log(data);
+							if (data["success"]) {
+								createSuccessAlert('Form Submitted. Clearing form.');
+								clearForm();
+							} else {
+								createErrorAlert('Form submitted to server but failed to process. Please try again or contact admin.');
+								createErrorAlert(JSON.stringify(data["error"]));
+							}
+						})
+						.fail(function() {
+							createErrorAlert('Form submitted but failure on server side. Please try again or contact admin.');
+						});
 				}
+			}
+			function createAlert(p) {
+				var template = document.getElementById("alert-template");
+				if (p.className == "error") template.style = "background-color: #ff6e6e;";
+				else template.style = "background-color: #6eff70;";
+				template.hidden = false;
+				template.appendChild(p);
+				error.innerText = "";  
+				error.appendChild(template);
+				error.style.display = "block";
 			}
 
 			function createErrorAlert(errorMessage) {
 				/* Creats a Error alert. 
 				
 				Args:
-				  successMessage: String of message to send.
+					successMessage: String of message to send.
 				*/
 				var alertValue = [`<div class="alert alert-danger alert-dismissible" role="alert">`,
 					`  <div>${errorMessage}</div>`,
@@ -148,7 +159,7 @@
 				/* Creats a success alert. 
 				
 				Args:
-				  successMessage: String of message to send.
+					successMessage: String of message to send.
 				*/
 				var alertValue = [`<div class="alert alert-success alert-dismissible" role="alert">`,
 					`  <div>${successMessage}</div>`,
@@ -190,6 +201,8 @@
 				$('#codeLanguage').val('Java');
 				$('#autoPath').val('');
 				$('#framePerimeterDimensions').val('');
+				$('#framePerimeterDimensionsLength').val('');
+				$('#framePerimeterDimensionsWidth').val('');
 				$('#pitComments').val('');
 				$('#disorganized').val('');
 			}
@@ -200,22 +213,27 @@
 				data['pitTeamNumber'] = $('#pitTeamNumber').val();
 				data['pitTeamName'] = $('#pitTeamName').val();
 				data['disorganized'] = $('#disorganized').val();
-				data['numBatteries'] = parseInt($('#numBatteries').val())  || 0;
+				data['numBatteries'] = parseInt($('#numBatteries').val()) || 0;
 				data['chargedBatteries'] = parseInt($('#chargedBatteries').val()) || 0; // Either form input or 0 if no form input
 				data['codeLanguage'] = $('#codeLanguage').val(); // Either form input or 0 if no form input
 				data['autoPath'] = $('#autoPath').val(); // Either form input or 0 if no form input
-				data['framePerimeterDimensions'] = $('#framePerimeterDimensions').val(); // Either form input or 0 if no form input
+				var frame = "";
+				var frameLength = $('#framePerimeterDimensionsLength').val();
+				var frameWidth = $('#framePerimeterDimensionsWidth').val();
+				if (frameLength || frameWidth) frame = `${frameLength} X ${frameWidth}`;
+				data['framePerimeterDimensions'] = frame;
+				//data['framePerimeterDimensions'] = $('#framePerimeterDimensions').val(); // Either form input or 0 if no form input
 				data['pitComments'] = $('#pitComments').val() || ""; // Either form input or 0 if no form input
 				return data;
 			}
 
 			$("#submit").on('click', function(event) {
-    		submitData();
-  			});
+				submitData();
+			});
 		</script>
 
 
-<style>
+		<style>
 			/* The container */
 			.container2 {
 				display: inline-block;
@@ -283,5 +301,52 @@
 				-ms-transform: rotate(45deg);
 				transform: rotate(45deg);
 			}
+			.modal {
+				display: none;
+				/* Hidden by default */
+				position: fixed;
+				/* Stay in place */
+				z-index: 1;
+				/* Sit on top */
+				padding-top: 100px;
+				/* Location of the box */
+				left: 0;
+				top: 0;
+				width: 100%;
+				/* Full width */
+				height: 100%;
+				/* Full height */
+				overflow: auto;
+				/* Enable scroll if needed */
+				background-color: rgb(0, 0, 0);
+				/* Fallback color */
+				background-color: rgba(0, 0, 0, 0.4);
+				/* Black w/ opacity */
+			}
+
+			/* Modal Content */
+			.modal-content {
+				background-color: #fefefe;
+				margin: auto;
+				padding: 20px;
+				border: 1px solid #888;
+				width: 80%;
+			}
+
+			/* The Close Button */
+			.close {
+				color: #aaaaaa;
+				float: right;
+				font-size: 28px;
+				font-weight: bold;
+			}
+
+			.close:hover,
+			.close:focus {
+				color: #000;
+				text-decoration: none;
+				cursor: pointer;
+			}
 		</style>
+
 </html>

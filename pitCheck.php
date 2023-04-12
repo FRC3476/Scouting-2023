@@ -1,16 +1,18 @@
 <html>
-<?php include("navBar.php"); ?>
+<?php include("navbar.php"); ?>
 
 <head>
 
-	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="bootstrap-material-design-master/dist/css/ripples.min.css" rel="stylesheet">
-	<link href="bootstrap-material-design-master/dist/css/material-wfont.min.css" rel="stylesheet">
-	<script src="jquery-1.11.2.min.js"></script>
-	<script src="sorttable.js"></script>
-
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		.red {
+			background-color: #ff6969;
+		}
 
+		.green {
+			background-color: #92f763;
+		}
+	</style>
 
 </head>
 
@@ -35,25 +37,124 @@
 								</button>
 							</a>
 
-			<table class="sortable table table-hover" id="RawData">
-				<tr>
-					<th>Team Number</th>
-					<th>Pit Scouted?</th>
-					<th>Picture Taken?</th>		
-				</tr>
-				<tr>
-					<td>team number</td>
-					<td><select name="pitScoutedDropDown" id="pitScoutedDropDown">
-								<option value="yes">Yes</option>
-								<option value="no">No</option>
-							</select></td>
-							<td><select name="pictureTakenDropDown" id="pictureTakenDropDown">
-								<option value="yes">Yes</option>
-								<option value="no">No</option>
-							</select></td>
-				</tr>
-        
-		</div>
-	</div>
+							<table class="sortable table table-hover" id="RawData">
+								<tr>
+									<th>Team Number</th>
+									<th>Pit Scouted?</th>
+									<th>Picture Taken?</th>
+								</tr>
+						</div>
+					</div>
+					<div id="script"></div>
 </body>
+
 <?php include("footer.php") ?>
+
+<script>
+	var tba = false;
+	var scoutData = false;
+	var picData = false;
+	var tbaTeams;
+	var pitTeams;
+	var pictures;
+	
+	
+	$(document).ready(function () {
+		//get team list from TBA
+		fetch('./tbaAPI.php?getTeamList=1')
+			.then(response => response.json())
+			.then((teams) => {
+				teams.sort(function(a, b) {
+					return a - b;
+				});
+				tbaTeams = teams;
+				tba = true;
+			});
+	
+		//get pit scout data
+		fetch('./readAPI.php?readAllPitScoutData=1')
+			.then(response => response.json())
+			.then((teams) => {
+				pitTeams = teams;
+				scoutData = true;
+			});
+			
+		//get pit scout pictures
+		fetch('./readAPI.php?getAllPictureFilenames=1')
+			.then(response => response.json())
+			.then((data) => {
+				console.log(data);
+				if (data.success) {
+					pictures = data.files;
+					picData = true;
+				} else {
+					alert(data.error);
+				}
+			});
+	});
+
+	//start loop which handles data after both fetch requests are completed
+	var loop = setInterval(() => {
+		if (tba && scoutData && picData) {
+			clearInterval(loop);
+			buildHTML();
+		}
+	}, 500)
+
+	//function to check if a team has pit scout data
+	function isScouted(id) {
+		for (var i in pitTeams) {
+			if (pitTeams[i].pitTeamNumber == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	//function to check if a team has had pit scout pictures taken
+	function tookPictures(id) {
+		var list = [];
+		for (var i in pictures) {
+			list.push(pictures[i].split("-")[0]);
+		}
+		for (var i in list) {
+			if (list[i] == id) return true;
+		}
+		return false;
+	}
+
+	//build the html table to display data
+	function buildHTML() {
+		for (var i in tbaTeams) {
+			addRow(tbaTeams[i]);
+
+		}
+	}
+
+	function addRow(team){
+		var pitString = 'Yes';
+		var pitColor = 'text-bg-success';
+		if (!isScouted(team)){
+			pitString = 'No';
+			pitColor = '';
+		}
+
+		var picString = 'Yes';
+		var picColor = 'text-bg-success';
+		if (!tookPictures(team)){
+			picString = 'No';
+			picColor = '';
+		}
+
+		var row = [
+			`<tr>`,
+			`	<th><a href='./teamData.php?team=${team}'>${team}</a></th>`,
+			`	<td scope='row' class='${pitColor}'>${pitString}</td>`,
+			`	<td scope='row' class='${picColor}'>${picString}</td>`,
+			`</tr>`
+		].join('');
+		$('#RawData').append(row);
+	}
+
+</script>
+

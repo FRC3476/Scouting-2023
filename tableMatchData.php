@@ -1,4 +1,4 @@
-<title>Simple Match Form</title>
+<title>Match Data</title>
 <html lang="en">
 
 <?php include('navbar.php'); ?>
@@ -14,7 +14,7 @@
             <div class="card-body">
 
             <div class="table-responsive">
-              <table class="table table-striped-columns table-hover">
+              <table id='datatable' class="table table-striped-columns table-hover sortable">
                 <thead>
                   <tr>
                     <th scope="col">Team</th>
@@ -40,23 +40,7 @@
                   </tr>
                 </thead>
                 <tbody id='tableBody'>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
+                 
                 </tbody>
               </table>
             </div>
@@ -128,6 +112,8 @@ function loadData(){
     data = JSON.parse(data);
     console.log(data);
     updateTable(data);
+    var newTableObject = document.getElementById('datatable');
+    sorttable.makeSortable(newTableObject);
   });
 }
 
