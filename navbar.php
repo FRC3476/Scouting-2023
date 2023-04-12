@@ -36,6 +36,9 @@
           <a class="nav-link" href="teamData.php">Team Data</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="teamData.php">Comparison</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="matchStrategy.php">Match Strategy</a>
         </li>
         <li class="nav-item">
