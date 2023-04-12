@@ -586,6 +586,34 @@
     return valid;
   }
 
+  function validateFormDataQR(data) {
+    /* Return false and send error if not valid form data.
+      This does not do a TBA check because QR will likely be used without internet
+    
+    Args:
+      data: dictionary of values from form.
+    */
+    var valid = true;
+    if (data['scout'] == '') {
+      createErrorAlert('Scout name empty.');
+      valid = false;
+    }
+    if (!data['matchNumber']) {
+      createErrorAlert('Match number not valid.');
+      valid = false;
+    }
+    if (!data['teamNumber']) {
+      createErrorAlert('Team number not valid.');
+      valid = false;
+    }
+    if ((teamList.size > 0) && !teamList.has(data['teamNumber'])) {
+      createErrorAlert('Team number not in TBA team list!');
+      valid = false;
+    }
+
+    return valid;
+  }
+
   function clearForm() {
     $('#matchNumber').val('');
     $('#teamNumber').val('');
@@ -625,7 +653,7 @@
     }
     qrcode.clear();
     var data = getQRCodeJSON();
-    var validData = validateFormData(getMatchFormData());
+    var validData = validateFormDataQR(getMatchFormData());
     if (validData) {
       qrcode.makeCode(JSON.stringify(data));
     }
