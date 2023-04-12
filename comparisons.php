@@ -1,122 +1,8 @@
-<title>Comparison</title>
+<title>Comparisons</title>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<nav class="navbar navbar-expand-lg custom-nav">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.php">
-      <img src="images/Logo.png" height="40" class="d-inline-block align-top" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="simpleMatchForm.php">Match Form</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Pit Scout Pages
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="pitInput.php">Pit Input</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="pictureUpload.php">Picture Upload</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="pitCheck.php">Pit Check</a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="leadScoutForm.php">LS Input</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="teamData.php">Team Data</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="teamData.php">Comparison</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="matchStrategy.php">Match Strategy</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="rankings.php">Rankings</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="strikeView.php">Strike View</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="qrScanner.php">QR Scanner</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="coprs.php">COPRS</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="admin.php">Admin</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Raw Data
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="tableMatchData.php">Match Data</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="pitData.php">Pit Data</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="leadScoutData.php">Lead Scout Data</a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-             Checks
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="dataValidate.php">Data Validation</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<?php include('navbar.php');?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- START OF TEAM DATA -->
 
 <body class="bg-body">
     <div class="container row-offcanvas row-offcanvas-left">
@@ -263,45 +149,6 @@
     </div>
 </body>
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/custom_style.css" rel="stylesheet">
-<script type="text/javascript" src="js/popper.min.js"></script>
-<script type="text/javascript" src="js/jquery-3.6.3.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/sorttable.js"></script><script type="text/javascript" src="js/charts.js"></script>
-<script type="text/javascript" src="js/matchDataProcessor.js?cache=1"></script>
-
-<script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- START OF TEAM DATA 2 -->
-
 <body class="bg-body">
     <div class="container row-offcanvas row-offcanvas-left">
         <div class="well column col-lg-12 col-sm-12 col-xs-12" id="content">
@@ -447,43 +294,11 @@
     </div>
 </body>
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/custom_style.css" rel="stylesheet">
-<script type="text/javascript" src="js/popper.min.js"></script>
-<script type="text/javascript" src="js/jquery-3.6.3.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/sorttable.js"></script><script type="text/javascript" src="js/charts.js"></script>
+<?php include("footer.php"); ?>
+<script type="text/javascript" src="js/charts.js"></script>
 <script type="text/javascript" src="js/matchDataProcessor.js?cache=1"></script>
 
 <script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- START OF TEAM DATA FUNCTIONS -->
-
-
   var dataChart = null;
   var pieceChart = null;
 
