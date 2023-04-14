@@ -29,6 +29,19 @@
             </li>
           </ul>
         </li>
+		<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Strike Pages
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="strikeInput.php">Strike Scout</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="strikeView.php">Strike View</a>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="leadScoutForm.php">LS Input</a>
         </li>
@@ -43,9 +56,6 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="rankings.php">Rankings</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="strikeView.php">Strike View</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="qrScanner.php">QR Scanner</a>
@@ -66,6 +76,9 @@
             </li>
             <li>
               <a class="dropdown-item" href="pitData.php">Pit Data</a>
+            </li>
+			<li>
+              <a class="dropdown-item" href="strikeData.php">Strike Data</a>
             </li>
             <li>
               <a class="dropdown-item" href="leadScoutData.php">Lead Scout Data</a>

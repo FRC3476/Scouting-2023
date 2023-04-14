@@ -9,84 +9,55 @@
 
 				<div class="col-lg-12 col-sm-12 col-xs-12 gx-3">
 					<div class="card">
-						<div class="card-header">Pit Scout Form</div>
+						<div class="card-header">Strike Scout Form</div>
 						<div class="card-body">
 
 							<div id="alertPlaceholder"></div>
 
-							<a href='pitCheck.php'>
-								<button class="btn btn-primary">
-									Pit Check
-								</button>
-							</a>
-							<a href='pictureUpload.php'>
-								<button class="btn btn-primary">
-									Picture Upload
-								</button>
-							</a>
-
 							<div class="mb-3">
 								<text class="form-label">Team Number: </text>
-								<input type="text" class="form-control" id="pitTeamNumber" name="pitTeamNumber" placeholder=" ">
+								<input type="text" class="form-control" id="strikeTeamNumber" name="strikeTeamNumber" placeholder=" ">
 							</div>
 
 							<div class="mb-3">
-								<text class="form-label">Pit organization</text>
+								<br><text class="form-label">Vibe Check:</text>
 							</div>
-							<select name="organized" id="disorganized">
-								<option value="disorganized">1- Disorganized</option>
+							<select name="vibes" id="vibes">
+								<option value="bad">1- Bad Vibes</option>
+								<option value="neutral">3 - Neutral Vibes</option>
+								<option value="great">5 - Great Vibes</option>
+							</select>
+							
+							<div class="mb-3">
+								<br><text class="form-label">Bumper Check:</text>
+							</div>
+							<select name="bumpers" id="bumpers">
+								<option value="bad">1- Bad Quality/Mounting</option>
+								<option value="average">3 - Average Quality/Mounting</option>
+								<option value="great">5 - Great Quality/Mounting</option>
+							</select>
+							
+							<div class="mb-3">
+								<br><text class="form-label">Mechanical Robustness:</text>
+							</div>
+							<select name="mechRobustness" id="mechRobustness">
+								<option value="poor">1- Poor</option>
 								<option value="average">3 - Average</option>
-								<option value="pristine">5 - Pristine</option>
+								<option value="good">5 - Good</option>
+							</select>
+							
+							<div class="mb-3">
+								<br><text class="form-label">Electrical Robustness:</text>
+							</div>
+							<select name="elecRobustness" id="elecRobustness">
+								<option value="poor">1- Poor</option>
+								<option value="average">3 - Average</option>
+								<option value="good">5 - Good</option>
 							</select>
 
 							<div class="mb-3">
-								<br><text class="form-label">How many robot batteries does the team have?</text>
-								<input type="text" class="form-control" id="numBatteries" name="numBatteries" placeholder=" ">
-							</div>
-
-							<div class="mb-3">
-								<text class="form-label">How many chargers does the team have for robot batteries?</text>
-								<input type="number" class="form-control" id="chargedBatteries" name="chargedBatteries" placeholder=" ">
-							</div>
-
-							<div class="mb-3">
-								<br><text class="form-label">What is your coding language?</text>
-							</div>
-							<select name="codeLanguage" id="codeLanguage">
-								<option value="Java">Java</option>
-								<option value="C++">C++</option>
-								<option value="LabvVIEW">LabVIEW</option>
-								<option value="Python">Python</option>
-								<option value="Other">Other</option>
-								<br>
-							</select>
-							  
-							<div class="mb-3">
-								<br><text class="form-label">What is your drivetrain type?</text>
-							</div>
-							<select name="drivetrainType" id="drivetrainType">
-								<option value="Swerve">Swerve</option>
-								<option value="Tank">Tank</option>
-								<option value="Mecanum">Mecanum</option>
-								<option value="Other">Other</option>
-								<br>
-							</select>
-
-							<div class="mb-3">
-								<br><text class="form-label">Auto Path</text>
-								<input type="text" class="form-control" id="autoPath" name="autoPath" placeholder=" ">
-							</div>
-
-							<div class="mb-3">
-								<br><text class="form-label">What are your frame perimeter dimensions without your bumper on?</text>
-									<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsLength" name="framePerimeterDimensionsLength" placeholder="Frame Length (inches)"></div>
-									<div style="display: table-cell"><input type="text" class="form-control" id="framePerimeterDimensionsWidth" name="framePerimeterDimensionsWidth" placeholder="Frame Width (inches)"></div>
-								<br>
-							</div>
-
-							<div class="mb-3">
-								<text class="form-label">Other Comments:</text>
-								<input type="text" class="form-control" id="pitComments" name="pitComments" placeholder="Comments">
+								<br><text class="form-label">Other Comments:</text>
+								<input type="text" class="form-control" id="strikeComments" name="strikeComments" placeholder="Comments">
 								<br>
 							</div>
 
@@ -111,13 +82,13 @@
 				True if successful, false if not.
 				*/
 				clearAlerts();
-				var data = getpitInputData();
+				var data = getstrikeInputData();
 				console.log(data);
 				var validData = validateFormData(data);
 				if (validData) {
 					// Create POST request.
 					$.post("writeAPI.php", {
-							"writePitScoutData": JSON.stringify(data)
+							"writeStrikeScoutData": JSON.stringify(data)
 						}, function(data) {
 							data = JSON.parse(data);
 							console.log(data);
@@ -185,7 +156,7 @@
 				  data: dictionary of values from form.
 				*/
 				var valid = true;
-				if (!data['pitTeamNumber']) {
+				if (!data['strikeTeamNumber']) {
 					createErrorAlert('Team number not valid.');
 					valid = false;
 				}
@@ -194,37 +165,23 @@
 			}
 
 			function clearForm() {
-				$('#pitTeamName').val('');
-				$('#numBatteries').val('');
-				$('#chargedBatteries').val('');
-				$('#codeLanguage').val('Java');
-				$('#drivetrainType').val('Swerve');
-				$('#autoPath').val('');
-				$('#framePerimeterDimensions').val('');
-				$('#framePerimeterDimensionsLength').val('');
-				$('#framePerimeterDimensionsWidth').val('');
-				$('#pitComments').val('');
-				$('#disorganized').val('');
+				$('#strikeTeamNumber').val('');
+				$('#vibes').val('bad');
+				$('#bumpers').val('bad');
+				$('#mechRobustness').val('poor');
+				$('#elecRobustness').val('poor');
+				$('#strikeComments').val('');
 			}
 
-			function getpitInputData() {
+			function getstrikeInputData() {
 				/* Gets values from HTML form and formats as dictionary. */
 				var data = {};
-				data['pitTeamNumber'] = $('#pitTeamNumber').val();
-				data['pitTeamName'] = $('#pitTeamName').val();
-				data['disorganized'] = $('#disorganized').val();
-				data['numBatteries'] = parseInt($('#numBatteries').val()) || 0;
-				data['chargedBatteries'] = parseInt($('#chargedBatteries').val()) || 0; // Either form input or 0 if no form input
-				data['codeLanguage'] = $('#codeLanguage').val(); // Either form input or 0 if no form input
-				data['drivetrainType'] = $('#drivetrainType').val(); // Either form input or 0 if no form input
-				data['autoPath'] = $('#autoPath').val(); // Either form input or 0 if no form input
-				var frame = "";
-				var frameLength = $('#framePerimeterDimensionsLength').val();
-				var frameWidth = $('#framePerimeterDimensionsWidth').val();
-				if (frameLength || frameWidth) frame = `${frameLength} X ${frameWidth}`;
-				data['framePerimeterDimensions'] = frame;
-				//data['framePerimeterDimensions'] = $('#framePerimeterDimensions').val(); // Either form input or 0 if no form input
-				data['pitComments'] = $('#pitComments').val() || ""; // Either form input or 0 if no form input
+				data['strikeTeamNumber'] = $('#strikeTeamNumber').val();
+				data['vibes'] = $('#vibes').val();
+				data['bumpers'] = $('#bumpers').val();
+				data['mechRobustness'] = $('#mechRobustness').val(); // Either form input or 0 if no form input
+				data['elecRobustness'] = $('#elecRobustness').val(); // Either form input or 0 if no form input
+				data['strikeComments'] = $('#strikeComments').val() || ""; // Either form input or 0 if no form input
 				return data;
 			}
 

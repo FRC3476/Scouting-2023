@@ -49,6 +49,19 @@ if (getOrPost('readAllPitScoutData')){
   echo(json_encode($match_data, JSON_NUMERIC_CHECK));
 }
 
+if (getOrPost('readAllTeamStrikeData')){
+  $db = new dbHandler();
+  $sql = 'strikeTeamNumber = "' . getOrPost("readAllTeamStrikeData") .'"';
+  $team_strike_data = $db->readSomeData('strikeScouttable', $sql);
+  echo(json_encode($team_strike_data, JSON_NUMERIC_CHECK));
+}
+
+if (getOrPost('readAllStrikeScoutData')){
+  $db = new dbHandler();
+  $match_data = $db->readAllData('strikeScouttable');
+  echo(json_encode($match_data, JSON_NUMERIC_CHECK));
+}
+
 if (getOrPost('readAllLSData')){
   $db = new dbHandler();
   $match_data = $db->readAllData('LSTable');

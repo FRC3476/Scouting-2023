@@ -149,7 +149,8 @@
                         <span class="badge rounded-pill text-bg-primary cannedComments">Attempted Endgame</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Can Pick Up Fallen Cones</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Floor Pickup</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Human Player Pick</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Double Substation</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Single Substation</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Drops Game Pieces</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Lots of Fouls</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Tipped</span>
@@ -167,9 +168,6 @@
                         <label for="miscComments">Comments</label>
                       </div>
                       <br>
-                      <div class="col-md-3">
-                        <button id="submit" class="btn btn-primary">Submit</button>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -178,6 +176,9 @@
                 <div class="tab-pane fade" id="qrcode-tab-pane" role="tabpanel" aria-labelledby="qrcode-tab" tabindex="0">
                   <br>
                   <div id="data-qr-code"></div>
+				  <div class="col-md-3">
+                    <button id="submit" class="btn btn-primary">Submit</button>
+                  </div>
                 </div>
               </div>
             </div>

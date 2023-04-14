@@ -1,4 +1,4 @@
-  <title>Pit Data</title>
+  <title>Strike Data</title>
 <html lang="en">
 
 <?php include('navbar.php'); ?>
@@ -18,13 +18,10 @@
                 <thead>
                   <tr>
                     <th scope="col">Number</th>
-                    <th scope="col">Organization</th>
-                    <th scope="col">Batteries</th>
-                    <th scope="col">Chargers</th>
-                    <th scope="col">Language</th>
-					<th scope="col">Drivetrain Type</th>
-                    <th scope="col">Robot Weight</th>
-                    <th scope="col">Frame Perimeter</th>
+                    <th scope="col">Vibe Check</th>
+                    <th scope="col">Bumper Check</th>
+                    <th scope="col">Mechanical Robustness</th>
+                    <th scope="col">Electrical Robustness</th>
                     <th scope="col">Comments</th>
                   </tr>
                 </thead>
@@ -56,15 +53,12 @@ function createRow(rowData){
       HTML row for table.
   */
   var list_row = [`<tr>`,
-                  `  <th scope="row">${rowData['pitTeamNumber']}</th>`,
-                  `  <td>${rowData['disorganized']}</td>`,
-                  `  <td>${rowData['numBatteries']}</td>`,
-                  `  <td>${rowData['chargedBatteries']}</td>`,
-                  `  <td>${rowData['codeLanguage']}</td>`,
-                  `  <td>${rowData['drivetrainType']}</td>`,
-                  `  <td>${rowData['autoPath']}</td>`,
-                  `  <td>${rowData['framePerimeterDimensions']}</td>`,
-                  `  <td>${rowData['pitComments']}</td>`,
+                  `  <th scope="row">${rowData['strikeTeamNumber']}</th>`,
+                  `  <td>${rowData['vibes']}</td>`,
+                  `  <td>${rowData['bumpers']}</td>`,
+                  `  <td>${rowData['mechRobustness']}</td>`,
+                  `  <td>${rowData['elecRobustness']}</td>`,
+                  `  <td>${rowData['strikeComments']}</td>`,
                   `</tr>`];
   return list_row.join('')
 }
@@ -85,7 +79,7 @@ function updateTable(data){
 function loadData(){
   /* Loads data and populates table. */
   $.post("readAPI.php", {
-    "readAllPitScoutData": true
+    "readAllStrikeScoutData": true
   }, function(data) {
     data = JSON.parse(data);
     console.log(data);

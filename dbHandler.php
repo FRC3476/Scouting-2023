@@ -52,14 +52,24 @@ class dbHandler
     'pitScouttable' => array(
       'keys' => array(
         'pitTeamNumber' => 'VARCHAR(5) NOT NULL PRIMARY KEY',
-        'pitTeamName' => 'VARCHAR(60) NOT NULL',
         'disorganized' => 'VARCHAR(60) NOT NULL',
         'numBatteries' => 'SMALLINT NOT NULL',
         'chargedBatteries' => 'SMALLINT NOT NULL',
         'codeLanguage' => 'VARCHAR(10) NOT NULL',
+		'drivetrainType' => 'VARCHAR(60) NOT NULL',
         'autoPath' => 'VARCHAR(60) NOT NULL',
         'framePerimeterDimensions' => 'VARCHAR(60) NOT NULL',
         'pitComments' => 'TEXT NULL'
+      )
+    ),
+	'strikeScouttable' => array(
+      'keys' => array(
+        'strikeTeamNumber' => 'VARCHAR(5) NOT NULL PRIMARY KEY',
+        'vibes' => 'VARCHAR(60) NOT NULL',
+        'bumpers' => 'VARCHAR(60) NOT NULL',
+        'mechRobustness' => 'VARCHAR(60) NOT NULL',
+        'elecRobustness' => 'VARCHAR(60) NOT NULL',
+        'strikeComments' => 'TEXT NULL'
       )
     ),
     'tbatable' => array(
