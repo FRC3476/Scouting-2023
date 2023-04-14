@@ -73,7 +73,7 @@
 							</select>
 
 							<div class="mb-3">
-								<br><text class="form-label">Robot Weight in Pounds (lb)</text>
+								<br><text class="form-label">Auto Path</text>
 								<input type="text" class="form-control" id="autoPath" name="autoPath" placeholder=" ">
 							</div>
 

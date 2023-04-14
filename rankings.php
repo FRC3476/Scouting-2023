@@ -48,7 +48,7 @@
                 <th col='scope'># Chargers</th>
                 <th col='scope'>Language</th>
                 <th col='scope'>Drive Train</th>
-                <th col='scope'>Weight</th>
+                <th col='scope'>Auto Path</th>
                 <th col='scope'>Frame Dimensions</th>
                 <th col='scope'>Pit Comments</th>
                 <th col='scope'>Scout Flagged Matches</th>
