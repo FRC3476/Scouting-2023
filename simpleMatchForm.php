@@ -28,7 +28,7 @@
                 </li>
 
                 <li class="nav-item" role="presentation">
-                <button class="nav-link" id="qrcode-tab" data-bs-toggle="tab" data-bs-target="#qrcode-tab-pane" type="button" role="tab" aria-controls="qrcode-tab-pane" aria-selected="false">QR Code</button>
+                <button class="nav-link" id="qrcode-tab" data-bs-toggle="tab" data-bs-target="#qrcode-tab-pane" type="button" role="tab" aria-controls="qrcode-tab-pane" aria-selected="false">Submit</button>
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
