@@ -197,8 +197,8 @@
   function createSummaryData(data){
     var pointsAuto = 0;
     var pointsTeleop = 0;
-	var pointsTotal = 0;
-	var piecesTotal = 0;
+	  var pointsTotal = 0;
+	  var piecesTotal = 0;
     var pointsMax = 0;
     var piecesMax = 0;
 
@@ -241,8 +241,8 @@
       
       pointsAuto += getMatchPointsAuto(row);
       pointsTeleop += getMatchPointsTeleop(row);
-	  pointsTotal += getMatchPoints(row);
-	  piecesTotal += getMatchGamePiece(row);
+	    pointsTotal += getMatchPoints(row);
+	    piecesTotal += getMatchGamePiece(row);
       pointsMax = Math.max(pointsMax, getMatchPointsAuto(row));
       piecesMax = Math.max(piecesMax, getMatchGamePiece(row));
 
@@ -284,8 +284,8 @@
       // Calculate avg.
       pointsAuto = roundInt(pointsAuto / matchCount);
       pointsTeleop = roundInt(pointsTeleop / matchCount);
-	  pointsTotal = roundInt(pointsTotal / matchCount);
-	  piecesTotal = roundInt(piecesTotal / matchCount);
+	    pointsTotal = roundInt(pointsTotal / matchCount);
+	    piecesTotal = roundInt(piecesTotal / matchCount);
       aTotal = roundInt(aTotal / matchCount);
       aCones /= matchCount;
       aCubes /= matchCount;
