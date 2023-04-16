@@ -29,7 +29,7 @@
             </li>
           </ul>
         </li>
-		<li class="nav-item dropdown">
+		    <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Strike Pages
           </a>
@@ -46,26 +46,36 @@
           <a class="nav-link" href="leadScoutForm.php">LS Input</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="teamData.php">Team Data</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="teamData.php">Comparison</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="matchStrategy.php">Match Strategy</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="rankings.php">Rankings</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="qrScanner.php">QR Scanner</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="coprs.php">COPRS</a>
+        
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Data Views
+          </a>
+          <ul class="dropdown-menu">
+            <li class="nav-item">
+              <a class="nav-link" href="rankings.php">Rankings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="teamData.php">Team Data</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="matchStrategy.php">Match Strategy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="graphView.php">Graph View</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="comparisons.php">Comparison</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="coprs.php">COPRS</a>
+            </li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="admin.php">Admin</a>
-        </li>
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Raw Data
@@ -94,6 +104,9 @@
               <a class="dropdown-item" href="dataValidate.php">Data Validation</a>
             </li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="admin.php">Admin</a>
         </li>
       </ul>
     </div>

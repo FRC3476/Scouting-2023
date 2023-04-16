@@ -141,6 +141,14 @@ function getConesTeleop(row) {
 	);
 }
 
+function getCones(row){
+	return getConesAuto(row) + getConesTeleop(row);
+}
+
+function getCubes(row){
+	return getCubesAuto(row) + getCubesTeleop(row);
+}
+
 function getPiecesAuto(row) {
 	return getConesAuto(row) + getCubesAuto(row);
 }

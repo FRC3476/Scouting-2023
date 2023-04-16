@@ -289,7 +289,7 @@
 <?php include("footer.php"); ?>
 
 <script type="text/javascript" src="js/charts.js"></script>
-<script type="text/javascript" src="js/matchDataProcessor.js"></script>
+<script type="text/javascript" src="js/matchDataProcessor.js?cache=6"></script>
 
 <script>
 

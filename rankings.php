@@ -67,7 +67,7 @@
 </body>
 
 <?php include("footer.php"); ?>
-<script type="text/javascript" src="js/matchDataProcessor.js?cache=5"></script>
+<script type="text/javascript" src="js/matchDataProcessor.js?cache=6"></script>
 
 <script>
   var matchDataLookUp = {};
