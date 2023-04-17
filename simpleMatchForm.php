@@ -160,6 +160,7 @@
                         <span class="badge rounded-pill text-bg-primary cannedComments">Did Not Show Up</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Bumpers Fell Off</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">DNP</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Strategic Piece Placement</span>
                         <br><br>
                       </div>
                       <br>
