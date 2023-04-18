@@ -10,7 +10,7 @@
 
         <!-- Left column -->
         <div class="col-lg-12 col-sm-12 col-xs-12 gx-3">
-          <div class="card">
+          <div class="card" id="inputCard" class="card-border-width=10px" style="border-width: 5px;">
             <div class="card-header">Match Form</div>
             <div class="card-body">
 
@@ -18,17 +18,17 @@
 
               <ul class="nav nav-tabs" id="matchTabs" role="tablist">
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-tab-pane" type="button" role="tab" aria-controls="login-tab-pane" aria-selected="true">Log-in</button>
+                  <button class="nav-link active cardTabSel" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-tab-pane" type="button" role="tab" aria-controls="login-tab-pane" aria-selected="true">Log-in</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="auto-tab" data-bs-toggle="tab" data-bs-target="#auto-tab-pane" type="button" role="tab" aria-controls="auto-tab-pane" aria-selected="false">Auto Scouting</button>
+                  <button class="nav-link cardTabSel" id="auto-tab" data-bs-toggle="tab" data-bs-target="#auto-tab-pane" type="button" role="tab" aria-controls="auto-tab-pane" aria-selected="false">Auto Scouting</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="teleop-tab" data-bs-toggle="tab" data-bs-target="#teleop-tab-pane" type="button" role="tab" aria-controls="teleop-tab-pane" aria-selected="false">Teleop Scouting</button>
+                  <button class="nav-link cardTabSel" id="teleop-tab" data-bs-toggle="tab" data-bs-target="#teleop-tab-pane" type="button" role="tab" aria-controls="teleop-tab-pane" aria-selected="false">Teleop Scouting</button>
                 </li>
 
                 <li class="nav-item" role="presentation">
-                <button class="nav-link" id="qrcode-tab" data-bs-toggle="tab" data-bs-target="#qrcode-tab-pane" type="button" role="tab" aria-controls="qrcode-tab-pane" aria-selected="false">QR Code</button>
+                <button class="nav-link cardTabSel" id="qrcode-tab" data-bs-toggle="tab" data-bs-target="#qrcode-tab-pane" type="button" role="tab" aria-controls="qrcode-tab-pane" aria-selected="false">QR Code</button>
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
@@ -700,6 +700,22 @@
   $('#qrcode-tab').on('click', function(event) {
     updateQRCode();
   });
+
+  $('.cardTabSel').click(function(){
+    var tabID = $(this).attr('id');
+    if (tabID == 'auto-tab'){
+      $('#inputCard').addClass('border-warning');
+      $('#inputCard').removeClass('border-info');
+    }
+    else if (tabID == 'teleop-tab'){
+      $('#inputCard').removeClass('border-warning');
+      $('#inputCard').addClass('border-info');
+    }
+    else {
+      $('#inputCard').removeClass('border-warning');
+      $('#inputCard').removeClass('border-info');
+    }
+  })
 
   $(document).ready(function() {
     loadTeamList();
