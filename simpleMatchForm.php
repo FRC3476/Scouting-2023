@@ -151,6 +151,9 @@
                         <span class="badge rounded-pill text-bg-primary cannedComments">Floor Pickup</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Double Substation</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Single Substation</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Strategic Placement</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Supercharge Cones</span>
+                        <span class="badge rounded-pill text-bg-primary cannedComments">Supercharge Cubes</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Drops Game Pieces</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Lots of Fouls</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Tipped</span>
@@ -160,7 +163,6 @@
                         <span class="badge rounded-pill text-bg-primary cannedComments">Did Not Show Up</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">Bumpers Fell Off</span>
                         <span class="badge rounded-pill text-bg-primary cannedComments">DNP</span>
-                        <span class="badge rounded-pill text-bg-primary cannedComments">Strategic Piece Placement</span>
                         <br><br>
                       </div>
                       <br>
