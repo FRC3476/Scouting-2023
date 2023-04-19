@@ -89,9 +89,9 @@
                           <table class='table table-striped'>
                             <thead>
                               <th scope="col"></th>
-                              <th scope="col">Auto</th>
-                              <th scope="col">Teleop</th>
-							  <th scope="col">Total</th>
+                              <th scope="col">Average</th>
+                              <th scope="col">Max</th>
+							                <th scope="col">Total</th>
                             </thead>
                             <tbody id='totalSummary'></tbody>
                           </table>
