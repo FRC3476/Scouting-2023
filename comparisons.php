@@ -1,4 +1,4 @@
-<title>Comparison</title>
+<title>Cosffsmparison</title>
 <html lang="en">
 
 <?php include('navbar.php');?>
@@ -300,8 +300,8 @@
 
 <!--Team 1 Script-->
 <script>
-  var dataChart = null;
-  var pieceChart = null;
+  var dataChart1 = null;
+  var pieceChart1 = null;
 
   function clearData(){
     $('#teamHeading1').html('');
@@ -310,11 +310,11 @@
     $('#autoSummaryData1').html('');
     $('#teleopSummaryData1').html('');
     $('#totalSummary1').html('');
-    if(dataChart != null){
-      dataChart.destroy();
+    if(dataChart1 != null){
+      dataChart1.destroy();
     }
-    if(pieceChart != null){
-      pieceChart.destroy();
+    if(pieceChart1 != null){
+      pieceChart1.destroy();
     }
     $('#cannedComments1').html('');
     $('#writtenComments1').html('');
@@ -322,194 +322,194 @@
   }
 
   function createSummaryData(data){
-    var points = 0;
-    var pieces = 0;
-    var pointsMax = 0;
-    var piecesMax = 0;
+    var points1 = 0;
+    var pieces1 = 0;
+    var pointsMax1 = 0;
+    var piecesMax1 = 0;
 
-    var matchCount = 0;
-    var aTotal = 0;
-    var aCones = 0;
-    var aCubes = 0;
-    var aTop = 0;
-    var aMiddle = 0;
-    var aBottom = 0;
-    var aEngage = 0;
-    var aDock = 0;
-    var aMobility = 0;
-    var aTotalMax = 0;
-    var aConesMax = 0;
-    var aCubesMax = 0;
-    var aTopMax = 0;
-    var aMiddleMax = 0;
-    var aBottomMax = 0;
+    var matchCount1 = 0;
+    var aTotal1 = 0;
+    var aCones1 = 0;
+    var aCubes1 = 0;
+    var aTop1 = 0;
+    var aMiddle1 = 0;
+    var aBottom1 = 0;
+    var aEngage1 = 0;
+    var aDock1 = 0;
+    var aMobility1 = 0;
+    var aTotalMax1 = 0;
+    var aConesMax1 = 0;
+    var aCubesMax1 = 0;
+    var aTopMax1 = 0;
+    var aMiddleMax1 = 0;
+    var aBottomMax1 = 0;
 
-    var tTotal = 0;
-    var tCones = 0;
-    var tCubes = 0;
-    var tTop = 0;
-    var tMiddle = 0;
-    var tBottom = 0;
-    var tEngage = 0;
-    var tDock = 0;
-    var tTotalMax = 0;
-    var tConesMax = 0;
-    var tCubesMax = 0;
-    var tTopMax = 0;
-    var tMiddleMax = 0;
-    var tBottomMax = 0;
+    var tTotal1 = 0;
+    var tCones1 = 0;
+    var tCubes1 = 0;
+    var tTop1 = 0;
+    var tMiddle1 = 0;
+    var tBottom1 = 0;
+    var tEngage1 = 0;
+    var tDock1 = 0;
+    var tTotalMax1 = 0;
+    var tConesMax1 = 0;
+    var tCubesMax1 = 0;
+    var tTopMax1 = 0;
+    var tMiddleMax1 = 0;
+    var tBottomMax1 = 0;
 
     // Process summary data.
     for (var i = 0; i != data.length; i++){
       var row = data[i];
-      matchCount++;
+      matchCount1++;
       
-      points += getMatchPoints(row);
-      pieces += getMatchGamePiece(row);
-      pointsMax = Math.max(pointsMax, getMatchPoints(row));
-      piecesMax = Math.max(piecesMax, getMatchGamePiece(row));
+      points1 += getMatchPoints(row);
+      pieces1 += getMatchGamePiece(row);
+      pointsMax1 = Math.max(pointsMax, getMatchPoints(row));
+      piecesMax1 = Math.max(piecesMax, getMatchGamePiece(row));
 
-      aTotal += getPiecesAuto(row);
-      aCones += getConesAuto(row);
-      aCubes += getCubesAuto(row)
-      aTop += getTopAuto(row);
-      aMiddle += getMiddleAuto(row);
-      aBottom += getBottomAuto(row);
-      aEngage += getEngageAuto(row) ? 1 : 0;
-      aDock += getDockAuto(row) ? 1 : 0;
-      aMobility += getMobilityAuto(row) ? 1 : 0;
-      aTotalMax = Math.max(aTotalMax, getPiecesAuto(row));
-      aConesMax = Math.max(aConesMax, getConesAuto(row));
-      aCubesMax = Math.max(aCubesMax, getCubesAuto(row));
-      aTopMax = Math.max(aTopMax, getTopAuto(row));
-      aMiddleMax = Math.max(aMiddleMax, getMiddleAuto(row));
-      aBottomMax = Math.max(aBottomMax, getBottomAuto(row));
+      aTotal1 += getPiecesAuto(row);
+      aCones1 += getConesAuto(row);
+      aCubes1 += getCubesAuto(row)
+      aTop1 += getTopAuto(row);
+      aMiddle1 += getMiddleAuto(row);
+      aBottom1 += getBottomAuto(row);
+      aEngage1 += getEngageAuto(row) ? 1 : 0;
+      aDock1 += getDockAuto(row) ? 1 : 0;
+      aMobility1 += getMobilityAuto(row) ? 1 : 0;
+      aTotalMax1 = Math.max(aTotalMax1, getPiecesAuto(row));
+      aConesMax1 = Math.max(aConesMax1, getConesAuto(row));
+      aCubesMax1 = Math.max(aCubesMax1, getCubesAuto(row));
+      aTopMax1 = Math.max(aTopMax1, getTopAuto(row));
+      aMiddleMax1 = Math.max(aMiddleMax1, getMiddleAuto(row));
+      aBottomMax1 = Math.max(aBottomMax1, getBottomAuto(row));
 
-      tTotal += getPiecesTeleop(row);
-      tCones += getConesTeleop(row);
-      tCubes += getCubesTeleop(row)
-      tTop += getTopTeleop(row);
-      tMiddle += getMiddleTeleop(row);
-      tBottom += getBottomTeleop(row);
-      tEngage += getEngageTeleop(row) ? 1 : 0;
-      tDock += getDockTeleop(row) ? 1 : 0;
-      tTotalMax = Math.max(tTotalMax, getPiecesTeleop(row));
-      tConesMax = Math.max(tConesMax, getConesTeleop(row));
-      tCubesMax = Math.max(tCubesMax, getCubesTeleop(row));
-      tTopMax = Math.max(tTopMax, getTopTeleop(row));
-      tMiddleMax = Math.max(tMiddleMax, getMiddleTeleop(row));
-      tBottomMax = Math.max(tBottomMax, getBottomTeleop(row));
+      tTotal1 += getPiecesTeleop(row);
+      tCones1 += getConesTeleop(row);
+      tCubes1 += getCubesTeleop(row)
+      tTop1 += getTopTeleop(row);
+      tMiddle1 += getMiddleTeleop(row);
+      tBottom1 += getBottomTeleop(row);
+      tEngage1 += getEngageTeleop(row) ? 1 : 0;
+      tDock1 += getDockTeleop(row) ? 1 : 0;
+      tTotalMax1 = Math.max(tTotalMax1, getPiecesTeleop(row));
+      tConesMax1 = Math.max(tConesMax1, getConesTeleop(row));
+      tCubesMax1 = Math.max(tCubesMax1, getCubesTeleop(row));
+      tTopMax1 = Math.max(tTopMax1, getTopTeleop(row));
+      tMiddleMax1 = Math.max(tMiddleMax1, getMiddleTeleop(row));
+      tBottomMax1 = Math.max(tBottomMax1, getBottomTeleop(row));
       
     }
 
     // Only add data if over 0.
     if (matchCount > 0){
       // Calculate avg.
-      pieces = roundInt(pieces / matchCount);
-      points = roundInt(points / matchCount);
-      aTotal = roundInt(aTotal / matchCount);
-      aCones /= matchCount;
-      aCubes /= matchCount;
-      aTop /= matchCount;
-      aMiddle /= matchCount;
-      aBottom /= matchCount;
-      aDock = 100 * roundInt(aDock/matchCount);
-      aEngage = 100 * roundInt(aEngage/matchCount);
-      aMobility = 100 * roundInt(aMobility/matchCount);
+      pieces1 = roundInt(pieces / matchCount);
+      points1 = roundInt(points / matchCount);
+      aTotal1 = roundInt(aTotal / matchCount);
+      aCones1 /= matchCount;
+      aCubes1 /= matchCount;
+      aTop1 /= matchCount;
+      aMiddle1 /= matchCount;
+      aBottom1 /= matchCount;
+      aDock1 = 100 * roundInt(aDock/matchCount);
+      aEngage1 = 100 * roundInt(aEngage/matchCount);
+      aMobility1 = 100 * roundInt(aMobility/matchCount);
 
-      tTotal = roundInt(tTotal / matchCount);
-      tCones /= matchCount;
-      tCubes /= matchCount;
-      tTop /= matchCount;
-      tMiddle /= matchCount;
-      tBottom /= matchCount;
-      tDock = 100 * roundInt(tDock/matchCount);
-      tEngage = 100 * roundInt(tEngage/matchCount);
+      tTotal1 = roundInt(tTotal / matchCount);
+      tCones1 /= matchCount;
+      tCubes1 /= matchCount;
+      tTop1 /= matchCount;
+      tMiddle1 /= matchCount;
+      tBottom1 /= matchCount;
+      tDock1 = 100 * roundInt(tDock/matchCount);
+      tEngage1 = 100 * roundInt(tEngage/matchCount);
 
-      aCones = roundInt(aCones);
-      aCubes = roundInt(aCubes);
-      aTop = roundInt(aTop);
-      aMiddle = roundInt(aMiddle);
-      aBottom = roundInt(aBottom);
+      aCones1 = roundInt(aCones);
+      aCubes1 = roundInt(aCubes);
+      aTop1 = roundInt(aTop);
+      aMiddle1 = roundInt(aMiddle);
+      aBottom1 = roundInt(aBottom);
 
-      tCones = roundInt(tCones);
-      tCubes = roundInt(tCubes);
-      tTop = roundInt(tTop);
-      tMiddle = roundInt(tMiddle);
-      tBottom = roundInt(tBottom);
+      tCones1 = roundInt(tCones);
+      tCubes1 = roundInt(tCubes);
+      tTop1 = roundInt(tTop);
+      tMiddle1 = roundInt(tMiddle);
+      tBottom1 = roundInt(tBottom);
 
       // Auto summary.
-      var autoSummaryRows = [
-        ` <tr><th scope='row'>Total Pieces</th><td scope='row'>${aTotal}</td><td scope='row'>${aTotalMax}</td></tr>`,
-        ` <tr><th scope='row'>Cones</th><td scope='row'>${aCones}</td><td scope='row'>${aConesMax}</td></tr>`,
-        ` <tr><th scope='row'>Cubes</th><td scope='row'>${aCubes}</td><td scope='row'>${aCubesMax}</td></tr>`,
-        ` <tr><th scope='row'>Top</th><td scope='row'>${aTop}</td><td scope='row'>${aTopMax}</td></tr>`,
-        ` <tr><th scope='row'>Middle</th><td scope='row'>${aMiddle}</td><td scope='row'>${aMiddleMax}</td></tr>`,
-        ` <tr><th scope='row'>Bottom</th><td scope='row'>${aBottom}</td><td scope='row'>${aBottomMax}</td></tr>`,
-        ` <tr><th scope='row'>Engage</th><td scope='row'>${aEngage}%</td><td scope='row'>NA</td></tr>`,
-        ` <tr><th scope='row'>Dock</th><td scope='row'>${aDock}%</td><td scope='row'>NA</td></tr>`,
-        ` <tr><th scope='row'>Mobility</th><td scope='row'>${aMobility}%</td><td scope='row'>NA</td></tr>`,
+      var autoSummaryRows1 = [
+        ` <tr><th scope='row'>Total Pieces</th><td scope='row'>${aTotal1}</td><td scope='row'>${aTotalMax1}</td></tr>`,
+        ` <tr><th scope='row'>Cones</th><td scope='row'>${aCones1}</td><td scope='row'>${aConesMax1}</td></tr>`,
+        ` <tr><th scope='row'>Cubes</th><td scope='row'>${aCubes1}</td><td scope='row'>${aCubesMax1}</td></tr>`,
+        ` <tr><th scope='row'>Top</th><td scope='row'>${aTop1}</td><td scope='row'>${aTopMax1}</td></tr>`,
+        ` <tr><th scope='row'>Middle</th><td scope='row'>${aMiddle1}</td><td scope='row'>${aMiddleMax1}</td></tr>`,
+        ` <tr><th scope='row'>Bottom</th><td scope='row'>${aBottom1}</td><td scope='row'>${aBottomMax1}</td></tr>`,
+        ` <tr><th scope='row'>Engage</th><td scope='row'>${aEngage1}%</td><td scope='row'>NA</td></tr>`,
+        ` <tr><th scope='row'>Dock</th><td scope='row'>${aDock1}%</td><td scope='row'>NA</td></tr>`,
+        ` <tr><th scope='row'>Mobility</th><td scope='row'>${aMobility1}%</td><td scope='row'>NA</td></tr>`,
       ].join('');
-      $('#autoSummaryData1').append(autoSummaryRows);
+      $('#autoSummaryData1').append(autoSummaryRows1);
 
       // Teleop summary.
-      var teleopSummaryRows = [
-        ` <tr><th scope='row'>Total Pieces</th><td scope='row'>${tTotal}</td><td scope='row'>${tTotalMax}</td></tr>`,
-        ` <tr><th scope='row'>Cones</th><td scope='row'>${tCones}</td><td scope='row'>${tConesMax}</td></tr>`,
-        ` <tr><th scope='row'>Cubes</th><td scope='row'>${tCubes}</td><td scope='row'>${tCubesMax}</td></tr>`,
-        ` <tr><th scope='row'>Top</th><td scope='row'>${tTop}</td><td scope='row'>${tTopMax}</td></tr>`,
-        ` <tr><th scope='row'>Middle</th><td scope='row'>${tMiddle}</td><td scope='row'>${tMiddleMax}</td></tr>`,
-        ` <tr><th scope='row'>Bottom</th><td scope='row'>${tBottom}</td><td scope='row'>${tBottomMax}</td></tr>`,
-        ` <tr><th scope='row'>Engage</th><td scope='row'>${tEngage}%</td><td scope='row'>NA</td></tr>`,
-        ` <tr><th scope='row'>Dock</th><td scope='row'>${tDock}%</td><td scope='row'>NA</td></tr>`,
+      var teleopSummaryRows1 = [
+        ` <tr><th scope='row'>Total Pieces</th><td scope='row'>${tTotal1}</td><td scope='row'>${tTotalMax1}</td></tr>`,
+        ` <tr><th scope='row'>Cones</th><td scope='row'>${tCones1}</td><td scope='row'>${tConesMax1}</td></tr>`,
+        ` <tr><th scope='row'>Cubes</th><td scope='row'>${tCubes1}</td><td scope='row'>${tCubesMax1}</td></tr>`,
+        ` <tr><th scope='row'>Top</th><td scope='row'>${tTop1}</td><td scope='row'>${tTopMax1}</td></tr>`,
+        ` <tr><th scope='row'>Middle</th><td scope='row'>${tMiddle1}</td><td scope='row'>${tMiddleMax1}</td></tr>`,
+        ` <tr><th scope='row'>Bottom</th><td scope='row'>${tBottom1}</td><td scope='row'>${tBottomMax1}</td></tr>`,
+        ` <tr><th scope='row'>Engage</th><td scope='row'>${tEngage1}%</td><td scope='row'>NA</td></tr>`,
+        ` <tr><th scope='row'>Dock</th><td scope='row'>${tDock1}%</td><td scope='row'>NA</td></tr>`,
       ].join('');
-      $('#teleopSummaryData1').append(teleopSummaryRows);
+      $('#teleopSummaryData1').append(teleopSummaryRows1);
 
-      var totalSummaryRows = [
-        ` <tr><th scope='row'>Points</th><td scope='row'>${points}</td><td scope='row'>${pointsMax}</td></tr>`,
-        ` <tr><th scope='row'>Game Pieces</th><td scope='row'>${pieces}</td><td scope='row'>${piecesMax}</td></tr>`,
+      var totalSummaryRows1 = [
+        ` <tr><th scope='row'>Points</th><td scope='row'>${points1}</td><td scope='row'>${pointsMax1}</td></tr>`,
+        ` <tr><th scope='row'>Game Pieces</th><td scope='row'>${pieces1}</td><td scope='row'>${piecesMax1}</td></tr>`,
       ].join('');
-      $('#totalSummary1').append(totalSummaryRows);
+      $('#totalSummary1').append(totalSummaryRows1);
     }
   }
 
   function createDataChart(data){
-    var matchList = [];
-    var highCones = [];
-    var midCones = []
-    var lowCones = [];
-    var highCubes = [];
-    var midCubes = []
-    var lowCubes = [];
-    var dock = [];
-    var engage = [];
-    var totalPieces = [];
+    var matchList1 = [];
+    var highCones1 = [];
+    var midCones1 = []
+    var lowCones1 = [];
+    var highCubes1 = [];
+    var midCubes1 = []
+    var lowCubes1 = [];
+    var dock1 = [];
+    var engage1 = [];
+    var totalPieces1 = [];
     for (var i = 0; i != data.length; i++){
-      var row = data[i];
-      matchList.push(row['matchNumber']);
+      var row1 = data[i];
+      matchList1.push(row['matchNumber']);
 
-      var hConesAuto = getTopConesAuto(row);
-      var mConesAuto = getMiddleConesAuto(row);
-      var lConesAuto = getBottomConesAuto(row);
+      var hConesAuto1 = getTopConesAuto(row);
+      var mConesAuto1 = getMiddleConesAuto(row);
+      var lConesAuto1 = getBottomConesAuto(row);
 
-      var hCubesAuto = getTopCubesAuto(row);
-      var mCubesAuto = getMiddleCubesAuto(row);
-      var lCubesAuto = getBottomCubesAuto(row);
+      var hCubesAuto1 = getTopCubesAuto(row);
+      var mCubesAuto1 = getMiddleCubesAuto(row);
+      var lCubesAuto1 = getBottomCubesAuto(row);
 
-      highCones.push(hConesAuto);
-      midCones.push(mConesAuto);
-      lowCones.push(lConesAuto);
-      highCubes.push(hCubesAuto);
-      midCubes.push(mCubesAuto);
-      lowCubes.push(lCubesAuto);
-      dock.push(getDockAuto(row));
-      engage.push(getEngageAuto(row));
-      totalPieces.push(getPiecesAuto(row));
+      highCones1.push(hConesAuto1);
+      midCones1.push(mConesAuto1);
+      lowCones1.push(lConesAuto1);
+      highCubes1.push(hCubesAuto1);
+      midCubes1.push(mCubesAuto1);
+      lowCubes1.push(lCubesAuto1);
+      dock1.push(getDockAuto(row));
+      engage1.push(getEngageAuto(row));
+      totalPieces1.push(getPiecesAuto(row));
     }
 
-    var ctx = document.getElementById('dataChart1');
+    var ctx11 = document.getElementById('dataChart1');
 
-    dataChart = new Chart(ctx, {
+    dataChart1 = new Chart(ctx, {
       data: {
         datasets: [{
           type: 'bar',
@@ -576,42 +576,42 @@
   }
 
   function createPieceChart(data){
-    var matchList = [];
-    var highCones = [];
-    var midCones = []
-    var lowCones = [];
-    var highCubes = [];
-    var midCubes = []
-    var lowCubes = [];
-    var tDock = [];
-    var tEngage = [];
-    var totalPieces = [];
+    var matchList1 = [];
+    var highCones1 = [];
+    var midCones1 = []
+    var lowCones1 = [];
+    var highCubes1 = [];
+    var midCube1s = []
+    var lowCube1s = [];
+    var tDock1 = [];
+    var tEngage1 = [];
+    var totalPieces1 = [];
     for (var i = 0; i != data.length; i++){
-      var row = data[i];
-      matchList.push(row['matchNumber']);
+      var row1 = data[i];
+      matchList1.push(row['matchNumber']);
 
-      var hCones = getTopConesTeleop(row);
-      var mCones = getMiddleConesTeleop(row);
-      var lCones = getBottomConesTeleop(row);
+      var hCones1 = getTopConesTeleop(row);
+      var mCones1 = getMiddleConesTeleop(row);
+      var lCones1 = getBottomConesTeleop(row);
 
-      var hCubes = getTopCubesTeleop(row);
-      var mCubes = getMiddleCubesTeleop(row);
-      var lCubes = getBottomCubesTeleop(row);
+      var hCubes1 = getTopCubesTeleop(row);
+      var mCubes1 = getMiddleCubesTeleop(row);
+      var lCubes1 = getBottomCubesTeleop(row);
 
-      highCones.push(hCones);
-      midCones.push(mCones);
-      lowCones.push(lCones);
-      highCubes.push(hCubes);
-      midCubes.push(mCubes);
-      lowCubes.push(lCubes);
-      tDock.push(getDockTeleop(row));
-      tEngage.push(getEngageTeleop(row));
-      totalPieces.push(getPiecesTeleop(row));
+      highCones1.push(hCones1);
+      midCones1.push(mCones1);
+      lowCones1.push(lCones1);
+      highCubes1.push(hCubes1);
+      midCubes1.push(mCubes1);
+      lowCubes1.push(lCubes1);
+      tDock1.push(getDockTeleop(row));
+      tEngage1.push(getEngageTeleop(row));
+      totalPieces1.push(getPiecesTeleop(row));
     }
 
-    var ctx = document.getElementById('pieceChart1');
+    var ctx1 = document.getElementById('pieceChart1');
 
-    pieceChart = new Chart(ctx, {
+    pieceChart1 = new Chart(ctx, {
       data: {
         datasets: [{
           type: 'bar',
@@ -774,18 +774,18 @@
     $.get('readAPI.php', {
       'getTeamPictureFilenames': teamNumber
     }).done(function(data) {
-      var images = JSON.parse(data);
+      var images1 = JSON.parse(data);
       for(var i = 0; i != images.length; i++){
-        var classElement = 'carousel-item'
+        var classElement1 = 'carousel-item'
         if (i == 0){
-          classElement = 'carousel-item active';
+          classElement1 = 'carousel-item active';
         }
-        var element = [
-          `<div class='${classElement}'>`,
-          ` <img src='${images[i]}' class='d-block w-100'>`,
+        var element1 = [
+          `<div class='${classElement1}'>`,
+          ` <img src='${images1[i]}' class='d-block w-100'>`,
           `</div>`
         ].join('');
-        $('#robotPics1').append(element);
+        $('#robotPics1').append(element1);
       }
     });
   }
