@@ -74,7 +74,7 @@ thead th
 </body>
 
 <?php include("footer.php"); ?>
-<script type="text/javascript" src="js/matchDataProcessor.js?cache=6"></script>
+<script type="text/javascript" src="js/matchDataProcessor.js?cache=10"></script>
 
 <script>
   var matchDataLookUp = {};
