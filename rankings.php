@@ -115,8 +115,8 @@ thead th
         `<tr>`,
         `  <td style='z-index:2' class='table-secondary' scope='row' sorttable_customkey='${team}'><a href='./teamData.php?team=${team}'>${team}</a></td>`,
         `  <td scope='row'>${safeLookup(`frc${team}`, rankingLookUp)}</td>`,
-        `  <td scope='row'>${safeLookup('avgPoints', matchData)}</td>`,
         `  <td scope='row'>${safeLookup('weightedScore', matchData)}</td>`,
+        `  <td scope='row'>${safeLookup('avgPoints', matchData)}</td>`,
         `  <td scope='row'>${safeLookup('maxPoints', matchData)}</td>`,
         `  <td scope='row'>${safeLookup('avgAutoPieces', matchData)}</td>`,
         `  <td scope='row'>${safeLookup('maxAutoPieces', matchData)}</td>`,
@@ -228,7 +228,7 @@ thead th
 
       // Add to matchDataLookUp.
       var lookup = {};
-      lookup['weighedScore'] = roundInt(weightedScore / matchCount);
+      lookup['weightedScore'] = roundInt(weightedScore / matchCount);
       lookup['avgPoints'] = roundInt(totalPoints / matchCount);
       lookup['maxPoints'] = roundInt(maxPoints);
       lookup['avgAutoPieces'] = roundInt(totalAutoPieces / matchCount);
