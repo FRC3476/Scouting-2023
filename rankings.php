@@ -1,4 +1,4 @@
-<title>Rankings</title>
+<title>rankings</title>
 <html lang="en">
 
 <style>
@@ -9,6 +9,12 @@
   background-color:grey;
 }
 
+thead th
+{
+  position:sticky;
+  top:0;
+  background-color:grey;
+}
 </style>
 
 <?php include('navbar.php'); ?>
@@ -30,6 +36,7 @@
               <tr>
                 <th col='scope' style='z-index:2' class='table-secondary' >Team</th>
                 <th col='scope'>Rank</th>
+                <th col='scope'>Weighted Score</th>
                 <th col='scope'>Avg Points</th>
                 <th col='scope'>Max Points</th>
                 <th col='scope'>Avg Auto Pieces</th>
@@ -109,6 +116,7 @@
         `  <td style='z-index:2' class='table-secondary' scope='row' sorttable_customkey='${team}'><a href='./teamData.php?team=${team}'>${team}</a></td>`,
         `  <td scope='row'>${safeLookup(`frc${team}`, rankingLookUp)}</td>`,
         `  <td scope='row'>${safeLookup('avgPoints', matchData)}</td>`,
+        `  <td scope='row'>${safeLookup('weightedScore', matchData)}</td>`,
         `  <td scope='row'>${safeLookup('maxPoints', matchData)}</td>`,
         `  <td scope='row'>${safeLookup('avgAutoPieces', matchData)}</td>`,
         `  <td scope='row'>${safeLookup('maxAutoPieces', matchData)}</td>`,
@@ -185,6 +193,7 @@
     // Process data for each team.
     for (let team in teamToDataList) {
       var matchCount = 0;
+      var weightedScore = 0;
       var totalPoints = 0;
       var maxPoints = 0;
       var totalAutoPieces = 0;
@@ -201,6 +210,7 @@
       for (var i = 0; i != teamToDataList[team].length; i++) {
         var match = teamToDataList[team][i];
         matchCount++;
+        weightedScore += getWeightedScore(match);
         totalPoints += getMatchPoints(match);
         maxPoints = Math.max(maxPoints, getMatchPoints(match));
         totalAutoPieces += getPiecesAuto(match);
@@ -218,6 +228,7 @@
 
       // Add to matchDataLookUp.
       var lookup = {};
+      lookup['weighedScore'] = roundInt(weightedScore / matchCount);
       lookup['avgPoints'] = roundInt(totalPoints / matchCount);
       lookup['maxPoints'] = roundInt(maxPoints);
       lookup['avgAutoPieces'] = roundInt(totalAutoPieces / matchCount);

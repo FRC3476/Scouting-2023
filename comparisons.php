@@ -1,4 +1,4 @@
-<title>Comparisons</title>
+<title>Comparison</title>
 <html lang="en">
 
 <?php include('navbar.php');?>
@@ -9,8 +9,8 @@
         <div class="well column col-lg-12 col-sm-12 col-xs-12" id="content">
             <br>
             <div class="input-group mb-3">
-                <input id="inputTeamNumber" type="text" class="form-control" placeholder="Enter Team Number">
-                <button id="readAllTeamMatchData" type="button" class="btn btn-primary">Load Team Data</button>
+                <input id="inputTeamNumber1" type="text" class="form-control" placeholder="Enter Team Number">
+                <button id="loadTeamData1" type="button" class="btn btn-primary">Load Team Data 1</button>
             </div>
   
             <div class="row">
@@ -19,12 +19,12 @@
                 <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
                     <div class="card mb-3 mt-3">
                         <div class="card-header">
-                          <h2 id='teamHeading'></h2>
+                          <h2 id='teamHeading1'></h2>
                         </div>
                         <div class="card-body">
 
                           <div id="robotPicsCarousel" class="carousel slide" data-interval="false">
-                            <div id="robotPics" class="carousel-inner">
+                            <div id="robotPics1" class="carousel-inner">
 
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#robotPicsCarousel" data-bs-slide="prev">
@@ -55,7 +55,7 @@
                               <th scope="col">Perimeter</th>
                               <th scope="col">Comments</th>
                             </thead>
-                            <tbody id='pitData'></tbody>
+                            <tbody id='pitData1'></tbody>
                           </table>
 
                         </div>
@@ -74,7 +74,7 @@
                               <th scope="col">Auto</th>
                               <th scope="col">Teleop</th>
                             </thead>
-                            <tbody id='totalSummary'></tbody>
+                            <tbody id='totalSummary1'></tbody>
                           </table>
 
                           <h5>Auto Table</h5>
@@ -84,7 +84,7 @@
                               <th scope="col">Average</th>
                               <th scope="col">Max</th>
                             </thead>
-                            <tbody id='autoSummaryData'></tbody>
+                            <tbody id='autoSummaryData1'></tbody>
                           </table>
 
                           <h5>Teleop Table</h5>
@@ -94,7 +94,7 @@
                               <th scope="col">Average</th>
                               <th scope="col">Max</th>
                             </thead>
-                            <tbody id='teleopSummaryData'></tbody>
+                            <tbody id='teleopSummaryData1'></tbody>
                           </table>
                             
                         </div>
@@ -108,7 +108,7 @@
                         <div class="card-header">Comments</div>
                         <div class="card-body overflow-auto">
 
-                          <div id='cannedComments' class='container'>
+                          <div id='cannedComments1' class='container'>
                           </div>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                         <div class="card-header">Written Comments</div>
                         <div class="card-body overflow-auto">
 
-                          <div id='writtenComments' class='container'>
+                          <div id='writtenComments1' class='container'>
                           </div>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                     <div class="card mb-3 mt-3">
                         <div class="card-header">Auto Piece Chart</div>
                         <div class="card-body">
-                          <canvas id="dataChart"></canvas>
+                          <canvas id="dataChart1"></canvas>
                         </div>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                     <div class="card mb-3 mt-3">
                         <div class="card-header">Teleop Piece Chart</div>
                         <div class="card-body">
-                          <canvas id="pieceChart"></canvas>
+                          <canvas id="pieceChart1"></canvas>
                         </div>
                     </div>
                 </div>
@@ -154,8 +154,8 @@
         <div class="well column col-lg-12 col-sm-12 col-xs-12" id="content">
             <br>
             <div class="input-group mb-3">
-                <input id="inputTeamNumber" type="text" class="form-control" placeholder="Enter Team Number">
-                <button id="readAllTeamMatchData" type="button" class="btn btn-primary">Load Team Data</button>
+                <input id="inputTeamNumber2" type="text" class="form-control" placeholder="Enter Team Number">
+                <button id="loadTeamData2" type="button" class="btn btn-primary">Load Team Data 2</button>
             </div>
   
             <div class="row">
@@ -164,12 +164,12 @@
                 <div class="col-lg-6 col-sm-12 col-xs-12 gx-3">
                     <div class="card mb-3 mt-3">
                         <div class="card-header">
-                          <h2 id='teamHeading'></h2>
+                          <h2 id='teamHeading2'></h2>
                         </div>
                         <div class="card-body">
 
                           <div id="robotPicsCarousel" class="carousel slide" data-interval="false">
-                            <div id="robotPics" class="carousel-inner">
+                            <div id="robotPics2" class="carousel-inner">
 
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#robotPicsCarousel" data-bs-slide="prev">
@@ -200,7 +200,7 @@
                               <th scope="col">Perimeter</th>
                               <th scope="col">Comments</th>
                             </thead>
-                            <tbody id='pitData'></tbody>
+                            <tbody id='pitData2'></tbody>
                           </table>
 
                         </div>
@@ -219,7 +219,7 @@
                               <th scope="col">Auto</th>
                               <th scope="col">Teleop</th>
                             </thead>
-                            <tbody id='totalSummary'></tbody>
+                            <tbody id='totalSummary2'></tbody>
                           </table>
 
                           <h5>Auto Table</h5>
@@ -229,7 +229,7 @@
                               <th scope="col">Average</th>
                               <th scope="col">Max</th>
                             </thead>
-                            <tbody id='autoSummaryData'></tbody>
+                            <tbody id='autoSummaryData2'></tbody>
                           </table>
 
                           <h5>Teleop Table</h5>
@@ -239,7 +239,7 @@
                               <th scope="col">Average</th>
                               <th scope="col">Max</th>
                             </thead>
-                            <tbody id='teleopSummaryData'></tbody>
+                            <tbody id='teleopSummaryData2'></tbody>
                           </table>
                             
                         </div>
@@ -253,7 +253,7 @@
                         <div class="card-header">Comments</div>
                         <div class="card-body overflow-auto">
 
-                          <div id='cannedComments' class='container'>
+                          <div id='cannedComments2' class='container'>
                           </div>
                         </div>
                     </div>
@@ -265,7 +265,7 @@
                         <div class="card-header">Written Comments</div>
                         <div class="card-body overflow-auto">
 
-                          <div id='writtenComments' class='container'>
+                          <div id='writtenComments2' class='container'>
                           </div>
                         </div>
                     </div>
@@ -276,7 +276,7 @@
                     <div class="card mb-3 mt-3">
                         <div class="card-header">Auto Piece Chart</div>
                         <div class="card-body">
-                          <canvas id="dataChart"></canvas>
+                          <canvas id="dataChart2"></canvas>
                         </div>
                     </div>
                 </div>
@@ -285,7 +285,7 @@
                     <div class="card mb-3 mt-3">
                         <div class="card-header">Teleop Piece Chart</div>
                         <div class="card-body">
-                          <canvas id="pieceChart"></canvas>
+                          <canvas id="pieceChart2"></canvas>
                         </div>
                     </div>
                 </div>
@@ -298,25 +298,26 @@
 <script type="text/javascript" src="js/charts.js"></script>
 <script type="text/javascript" src="js/matchDataProcessor.js?cache=1"></script>
 
+<!--Team 1 Script-->
 <script>
   var dataChart = null;
   var pieceChart = null;
 
   function clearData(){
-    $('#teamHeading').html('');
-    $('#robotPics').html('');
-    $('#pitData').html('');
-    $('#autoSummaryData').html('');
-    $('#teleopSummaryData').html('');
-    $('#totalSummary').html('');
+    $('#teamHeading1').html('');
+    $('#robotPics1').html('');
+    $('#pitData1').html('');
+    $('#autoSummaryData1').html('');
+    $('#teleopSummaryData1').html('');
+    $('#totalSummary1').html('');
     if(dataChart != null){
       dataChart.destroy();
     }
     if(pieceChart != null){
       pieceChart.destroy();
     }
-    $('#cannedComments').html('');
-    $('#writtenComments').html('');
+    $('#cannedComments1').html('');
+    $('#writtenComments1').html('');
 
   }
 
@@ -449,7 +450,7 @@
         ` <tr><th scope='row'>Dock</th><td scope='row'>${aDock}%</td><td scope='row'>NA</td></tr>`,
         ` <tr><th scope='row'>Mobility</th><td scope='row'>${aMobility}%</td><td scope='row'>NA</td></tr>`,
       ].join('');
-      $('#autoSummaryData').append(autoSummaryRows);
+      $('#autoSummaryData1').append(autoSummaryRows);
 
       // Teleop summary.
       var teleopSummaryRows = [
@@ -462,13 +463,13 @@
         ` <tr><th scope='row'>Engage</th><td scope='row'>${tEngage}%</td><td scope='row'>NA</td></tr>`,
         ` <tr><th scope='row'>Dock</th><td scope='row'>${tDock}%</td><td scope='row'>NA</td></tr>`,
       ].join('');
-      $('#teleopSummaryData').append(teleopSummaryRows);
+      $('#teleopSummaryData1').append(teleopSummaryRows);
 
       var totalSummaryRows = [
         ` <tr><th scope='row'>Points</th><td scope='row'>${points}</td><td scope='row'>${pointsMax}</td></tr>`,
         ` <tr><th scope='row'>Game Pieces</th><td scope='row'>${pieces}</td><td scope='row'>${piecesMax}</td></tr>`,
       ].join('');
-      $('#totalSummary').append(totalSummaryRows);
+      $('#totalSummary1').append(totalSummaryRows);
     }
   }
 
@@ -506,7 +507,7 @@
       totalPieces.push(getPiecesAuto(row));
     }
 
-    var ctx = document.getElementById('dataChart');
+    var ctx = document.getElementById('dataChart1');
 
     dataChart = new Chart(ctx, {
       data: {
@@ -565,7 +566,7 @@
           fill: false,
           stack: 'Stack 2',
           backgroundColor: 'rgb(40, 237, 125)'
-        }
+        },
 
         ],
         labels: matchList
@@ -582,6 +583,8 @@
     var highCubes = [];
     var midCubes = []
     var lowCubes = [];
+    var tDock = [];
+    var tEngage = [];
     var totalPieces = [];
     for (var i = 0; i != data.length; i++){
       var row = data[i];
@@ -601,10 +604,12 @@
       highCubes.push(hCubes);
       midCubes.push(mCubes);
       lowCubes.push(lCubes);
+      tDock.push(getDockTeleop(row));
+      tEngage.push(getEngageTeleop(row));
       totalPieces.push(getPiecesTeleop(row));
     }
 
-    var ctx = document.getElementById('pieceChart');
+    var ctx = document.getElementById('pieceChart1');
 
     pieceChart = new Chart(ctx, {
       data: {
@@ -649,7 +654,21 @@
           label: 'Total Pieces',
           data: totalPieces,
           borderColor: 'rgb(0, 0, 0)'
-        },
+        },{
+          type: 'bar',
+          label: 'Teleop Dock',
+          data: tDock,
+          fill: false,
+          stack: 'Stack 2',
+          backgroundColor: 'rgb(40, 237, 230)'
+        }, {
+          type: 'bar',
+          label: 'Teleop Engage',
+          data: tEngage,
+          fill: false,
+          stack: 'Stack 2',
+          backgroundColor: 'rgb(40, 237, 125)'
+        }
 
         ],
         labels: matchList
@@ -674,7 +693,7 @@
       `  </span>`,
       `</button>`
     ].join('');
-    $('#cannedComments').append(rows);
+    $('#cannedComments1').append(rows);
   }
 
   function createCannedComments(data) {
@@ -700,7 +719,7 @@
         `</button>`
       
       ].join('');
-      $('#writtenComments').append(row);
+      $('#writtenComments1').append(row);
     }
 
   }
@@ -734,7 +753,7 @@
       var pit = JSON.parse(data);
       if (pit.length > 0){
         pit = pit[0];
-        $('#teamHeading').html(`Team ${teamNumber} - ${pit['pitTeamName']}`);
+        $('#teamHeading1').html(`Team ${teamNumber} - ${pit['pitTeamName']}`);
         var row = [
           `<tr>`,
           ` <td scope='row'>${pit['disorganized']}</td>`,
@@ -746,7 +765,7 @@
           ` <td scope='row'>${pit['pitComments']}</td>`,
           `</tr>`
         ].join('');
-        $('#pitData').append(row);
+        $('#pitData1').append(row);
       }
     });
   }
@@ -766,7 +785,7 @@
           ` <img src='${images[i]}' class='d-block w-100'>`,
           `</div>`
         ].join('');
-        $('#robotPics').append(element);
+        $('#robotPics1').append(element);
       }
     });
   }
@@ -775,7 +794,7 @@
     clearData();
 
     // Set Team Number
-    $('#teamHeading').html('Team ' + teamNumber);
+    $('#teamHeading1').html('Team ' + teamNumber);
 
     loadTeamPictures(teamNumber);
     loadPitData(teamNumber);
@@ -789,8 +808,524 @@
     }
   });
 
-  $('#readAllTeamMatchData').on('click', function(){
-    loadTeam($('#inputTeamNumber').val());
+  $('#loadTeamData1').on('click', function(){
+    loadTeam($('#inputTeamNumber1').val());
+  });
+</script>
+
+
+<!--Team 2 Script-->
+<script>
+  var dataChart2 = null;
+  var pieceChart2 = null;
+
+  function clearData(){
+    $('#teamHeading2').html('');
+    $('#robotPics2').html('');
+    $('#pitData2').html('');
+    $('#autoSummaryData2').html('');
+    $('#teleopSummaryData2').html('');
+    $('#totalSummary2').html('');
+    if(dataChart2 != null){
+      dataChart2.destroy();
+    }
+    if(pieceChart2 != null){
+      pieceChart2.destroy();
+    }
+    $('#cannedComments2').html('');
+    $('#writtenComments2').html('');
+
+  }
+
+  function createSummaryData(data){
+    var points2 = 0;
+    var pieces2 = 0;
+    var pointsMax2 = 0;
+    var piecesMax2 = 0;
+
+    var matchCount2 = 0;
+    var aTotal2 = 0;
+    var aCones2 = 0;
+    var aCubes2 = 0;
+    var aTop2 = 0;
+    var aMiddle2 = 0;
+    var aBottom2 = 0;
+    var aEngage2 = 0;
+    var aDock2 = 0;
+    var aMobility2 = 0;
+    var aTotalMax2 = 0;
+    var aConesMax2 = 0;
+    var aCubesMax2 = 0;
+    var aTopMax2 = 0;
+    var aMiddleMax2 = 0;
+    var aBottomMax2 = 0;
+
+    var tTotal2 = 0;
+    var tCones2 = 0;
+    var tCubes2 = 0;
+    var tTop2 = 0;
+    var tMiddle2 = 0;
+    var tBottom2 = 0;
+    var tEngage2 = 0;
+    var tDock2 = 0;
+    var tTotalMax2 = 0;
+    var tConesMax2 = 0;
+    var tCubesMax2 = 0;
+    var tTopMax2 = 0;
+    var tMiddleMax2 = 0;
+    var tBottomMax2 = 0;
+
+    // Process summary data.
+    for (var i = 0; i != data.length; i++){
+      var row2 = data[i];
+      matchCount++;
+      
+      points2 += getMatchPoints(row);
+      pieces2 += getMatchGamePiece(row);
+      pointsMax2 = Math.max(pointsMax, getMatchPoints(row));
+      piecesMax = Math.max(piecesMax, getMatchGamePiece(row));
+
+      aTotal += getPiecesAuto(row);
+      aCones += getConesAuto(row);
+      aCubes += getCubesAuto(row)
+      aTop += getTopAuto(row);
+      aMiddle += getMiddleAuto(row);
+      aBottom += getBottomAuto(row);
+      aEngage += getEngageAuto(row) ? 1 : 0;
+      aDock += getDockAuto(row) ? 1 : 0;
+      aMobility += getMobilityAuto(row) ? 1 : 0;
+      aTotalMax = Math.max(aTotalMax, getPiecesAuto(row));
+      aConesMax = Math.max(aConesMax, getConesAuto(row));
+      aCubesMax = Math.max(aCubesMax, getCubesAuto(row));
+      aTopMax = Math.max(aTopMax, getTopAuto(row));
+      aMiddleMax = Math.max(aMiddleMax, getMiddleAuto(row));
+      aBottomMax = Math.max(aBottomMax, getBottomAuto(row));
+
+      tTotal += getPiecesTeleop(row);
+      tCones += getConesTeleop(row);
+      tCubes += getCubesTeleop(row)
+      tTop += getTopTeleop(row);
+      tMiddle += getMiddleTeleop(row);
+      tBottom += getBottomTeleop(row);
+      tEngage += getEngageTeleop(row) ? 1 : 0;
+      tDock += getDockTeleop(row) ? 1 : 0;
+      tTotalMax = Math.max(tTotalMax, getPiecesTeleop(row));
+      tConesMax = Math.max(tConesMax, getConesTeleop(row));
+      tCubesMax = Math.max(tCubesMax, getCubesTeleop(row));
+      tTopMax = Math.max(tTopMax, getTopTeleop(row));
+      tMiddleMax = Math.max(tMiddleMax, getMiddleTeleop(row));
+      tBottomMax = Math.max(tBottomMax, getBottomTeleop(row));
+      
+    }
+
+    // Only add data if over 0.
+    if (matchCount > 0){
+      // Calculate avg.
+      pieces = roundInt(pieces / matchCount);
+      points = roundInt(points / matchCount);
+      aTotal = roundInt(aTotal / matchCount);
+      aCones /= matchCount;
+      aCubes /= matchCount;
+      aTop /= matchCount;
+      aMiddle /= matchCount;
+      aBottom /= matchCount;
+      aDock = 100 * roundInt(aDock/matchCount);
+      aEngage = 100 * roundInt(aEngage/matchCount);
+      aMobility = 100 * roundInt(aMobility/matchCount);
+
+      tTotal = roundInt(tTotal / matchCount);
+      tCones /= matchCount;
+      tCubes /= matchCount;
+      tTop /= matchCount;
+      tMiddle /= matchCount;
+      tBottom /= matchCount;
+      tDock = 100 * roundInt(tDock/matchCount);
+      tEngage = 100 * roundInt(tEngage/matchCount);
+
+      aCones = roundInt(aCones);
+      aCubes = roundInt(aCubes);
+      aTop = roundInt(aTop);
+      aMiddle = roundInt(aMiddle);
+      aBottom = roundInt(aBottom);
+
+      tCones = roundInt(tCones);
+      tCubes = roundInt(tCubes);
+      tTop = roundInt(tTop);
+      tMiddle = roundInt(tMiddle);
+      tBottom = roundInt(tBottom);
+
+      // Auto summary.
+      var autoSummaryRows = [
+        ` <tr><th scope='row'>Total Pieces</th><td scope='row'>${aTotal}</td><td scope='row'>${aTotalMax}</td></tr>`,
+        ` <tr><th scope='row'>Cones</th><td scope='row'>${aCones}</td><td scope='row'>${aConesMax}</td></tr>`,
+        ` <tr><th scope='row'>Cubes</th><td scope='row'>${aCubes}</td><td scope='row'>${aCubesMax}</td></tr>`,
+        ` <tr><th scope='row'>Top</th><td scope='row'>${aTop}</td><td scope='row'>${aTopMax}</td></tr>`,
+        ` <tr><th scope='row'>Middle</th><td scope='row'>${aMiddle}</td><td scope='row'>${aMiddleMax}</td></tr>`,
+        ` <tr><th scope='row'>Bottom</th><td scope='row'>${aBottom}</td><td scope='row'>${aBottomMax}</td></tr>`,
+        ` <tr><th scope='row'>Engage</th><td scope='row'>${aEngage}%</td><td scope='row'>NA</td></tr>`,
+        ` <tr><th scope='row'>Dock</th><td scope='row'>${aDock}%</td><td scope='row'>NA</td></tr>`,
+        ` <tr><th scope='row'>Mobility</th><td scope='row'>${aMobility}%</td><td scope='row'>NA</td></tr>`,
+      ].join('');
+      $('#autoSummaryData2').append(autoSummaryRows);
+
+      // Teleop summary.
+      var teleopSummaryRows = [
+        ` <tr><th scope='row'>Total Pieces</th><td scope='row'>${tTotal}</td><td scope='row'>${tTotalMax}</td></tr>`,
+        ` <tr><th scope='row'>Cones</th><td scope='row'>${tCones}</td><td scope='row'>${tConesMax}</td></tr>`,
+        ` <tr><th scope='row'>Cubes</th><td scope='row'>${tCubes}</td><td scope='row'>${tCubesMax}</td></tr>`,
+        ` <tr><th scope='row'>Top</th><td scope='row'>${tTop}</td><td scope='row'>${tTopMax}</td></tr>`,
+        ` <tr><th scope='row'>Middle</th><td scope='row'>${tMiddle}</td><td scope='row'>${tMiddleMax}</td></tr>`,
+        ` <tr><th scope='row'>Bottom</th><td scope='row'>${tBottom}</td><td scope='row'>${tBottomMax}</td></tr>`,
+        ` <tr><th scope='row'>Engage</th><td scope='row'>${tEngage}%</td><td scope='row'>NA</td></tr>`,
+        ` <tr><th scope='row'>Dock</th><td scope='row'>${tDock}%</td><td scope='row'>NA</td></tr>`,
+      ].join('');
+      $('#teleopSummaryData2').append(teleopSummaryRows);
+
+      var totalSummaryRows = [
+        ` <tr><th scope='row'>Points</th><td scope='row'>${points}</td><td scope='row'>${pointsMax}</td></tr>`,
+        ` <tr><th scope='row'>Game Pieces</th><td scope='row'>${pieces}</td><td scope='row'>${piecesMax}</td></tr>`,
+      ].join('');
+      $('#totalSummary2').append(totalSummaryRows);
+    }
+  }
+
+  function createDataChart(data){
+    var matchList = [];
+    var highCones = [];
+    var midCones = []
+    var lowCones = [];
+    var highCubes = [];
+    var midCubes = []
+    var lowCubes = [];
+    var dock = [];
+    var engage = [];
+    var totalPieces = [];
+    for (var i = 0; i != data.length; i++){
+      var row = data[i];
+      matchList.push(row['matchNumber']);
+
+      var hConesAuto = getTopConesAuto(row);
+      var mConesAuto = getMiddleConesAuto(row);
+      var lConesAuto = getBottomConesAuto(row);
+
+      var hCubesAuto = getTopCubesAuto(row);
+      var mCubesAuto = getMiddleCubesAuto(row);
+      var lCubesAuto = getBottomCubesAuto(row);
+
+      highCones.push(hConesAuto);
+      midCones.push(mConesAuto);
+      lowCones.push(lConesAuto);
+      highCubes.push(hCubesAuto);
+      midCubes.push(mCubesAuto);
+      lowCubes.push(lCubesAuto);
+      dock.push(getDockAuto(row));
+      engage.push(getEngageAuto(row));
+      totalPieces.push(getPiecesAuto(row));
+    }
+
+    var ctx = document.getElementById('dataChart2');
+
+    dataChart = new Chart(ctx, {
+      data: {
+        datasets: [{
+          type: 'bar',
+          label: 'Low Cubes',
+          data: lowCubes,
+          stack: 'Stack 0',
+          backgroundColor: 'rgba(70, 40, 230, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'Mid Cubes',
+          data: midCubes,
+          stack: 'Stack 0',
+          backgroundColor: 'rgba(160, 40, 230, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'High Cubes',
+          data: highCubes,
+          stack: 'Stack 0',
+          backgroundColor: 'rgba(230, 40, 230, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'Low Cones',
+          data: lowCones,
+          stack: 'Stack 1',
+          backgroundColor: 'rgba(237, 70, 40, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'Mid Cones',
+          data: midCones,
+          stack: 'Stack 1',
+          backgroundColor: 'rgba(237, 160, 40, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'High Cones',
+          data: highCones,
+          stack: 'Stack 1',
+          backgroundColor: 'rgba(237, 230, 40, 0.5)'
+        }, {
+          type: 'line',
+          label: 'Total Pieces',
+          data: totalPieces,
+          borderColor: 'rgb(0, 0, 0)'
+        }, {
+          type: 'bar',
+          label: 'Dock',
+          data: dock,
+          fill: false,
+          stack: 'Stack 2',
+          backgroundColor: 'rgb(40, 237, 230)'
+        }, {
+          type: 'bar',
+          label: 'Engage',
+          data: engage,
+          fill: false,
+          stack: 'Stack 2',
+          backgroundColor: 'rgb(40, 237, 125)'
+        },
+
+        ],
+        labels: matchList
+      }
+    });
+
+  }
+
+  function createPieceChart(data){
+    var matchList = [];
+    var highCones = [];
+    var midCones = []
+    var lowCones = [];
+    var highCubes = [];
+    var midCubes = []
+    var lowCubes = [];
+    var tDock = [];
+    var tEngage = [];
+    var totalPieces = [];
+    for (var i = 0; i != data.length; i++){
+      var row = data[i];
+      matchList.push(row['matchNumber']);
+
+      var hCones = getTopConesTeleop(row);
+      var mCones = getMiddleConesTeleop(row);
+      var lCones = getBottomConesTeleop(row);
+
+      var hCubes = getTopCubesTeleop(row);
+      var mCubes = getMiddleCubesTeleop(row);
+      var lCubes = getBottomCubesTeleop(row);
+
+      highCones.push(hCones);
+      midCones.push(mCones);
+      lowCones.push(lCones);
+      highCubes.push(hCubes);
+      midCubes.push(mCubes);
+      lowCubes.push(lCubes);
+      tDock.push(getDockTeleop(row));
+      tEngage.push(getEngageTeleop(row));
+      totalPieces.push(getPiecesTeleop(row));
+    }
+
+    var ctx = document.getElementById('pieceChart2');
+
+    pieceChart = new Chart(ctx, {
+      data: {
+        datasets: [{
+          type: 'bar',
+          label: 'Low Cubes',
+          data: lowCubes,
+          stack: 'Stack 0',
+          backgroundColor: 'rgba(70, 40, 230, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'Mid Cubes',
+          data: midCubes,
+          stack: 'Stack 0',
+          backgroundColor: 'rgba(160, 40, 230, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'High Cubes',
+          data: highCubes,
+          stack: 'Stack 0',
+          backgroundColor: 'rgba(230, 40, 230, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'Low Cones',
+          data: lowCones,
+          stack: 'Stack 1',
+          backgroundColor: 'rgba(237, 70, 40, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'Mid Cones',
+          data: midCones,
+          stack: 'Stack 1',
+          backgroundColor: 'rgba(237, 160, 40, 0.5)'
+        }, {
+          type: 'bar',
+          label: 'High Cones',
+          data: highCones,
+          stack: 'Stack 1',
+          backgroundColor: 'rgba(237, 230, 40, 0.5)'
+        }, {
+          type: 'line',
+          label: 'Total Pieces',
+          data: totalPieces,
+          borderColor: 'rgb(0, 0, 0)'
+        },{
+          type: 'bar',
+          label: 'Teleop Dock',
+          data: tDock,
+          fill: false,
+          stack: 'Stack 2',
+          backgroundColor: 'rgb(40, 237, 230)'
+        }, {
+          type: 'bar',
+          label: 'Teleop Engage',
+          data: tEngage,
+          fill: false,
+          stack: 'Stack 2',
+          backgroundColor: 'rgb(40, 237, 125)'
+        }
+
+        ],
+        labels: matchList
+      }
+    });
+
+
+  }
+
+
+
+
+  function createCannedBadge(comment, matchList){
+    var matches = matchList.join(', ');
+    var count = matchList.length;
+    var rows = [
+      `<button style="margin-right:10px; margin-bottom:10px;" type="button" class="btn btn-primary position-relative" data-bs-container="#cannedComments" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="${matches}">`,
+      `  ${comment}`,
+      `  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">`,
+      `    ${count}`,
+     //  `    <span class="visually-hidden">${comment}</span>`,
+      `  </span>`,
+      `</button>`
+    ].join('');
+    $('#cannedComments2').append(rows);
+  }
+
+  function createCannedComments(data) {
+    var commentLookup = getCannedCommentsDictionary(data);
+
+    for(let comment in commentLookup){
+      createCannedBadge(comment, commentLookup[comment]);
+    }
+
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+  }
+
+  function createWrittenComments(data) {
+    var writtenComments = []
+    writtenComments = getWrittenComments(data);
+
+    for(var i = 0; i != writtenComments.length; i+=2){
+      var row = [
+        `<button style="margin-right:10px; margin-bottom:10px;" type="button" class="btn btn-primary position-relative">`,
+        `${writtenComments[i+1]}` + `${writtenComments[i]}`,
+        `</button>`
+      
+      ].join('');
+      $('#writtenComments2').append(row);
+    }
+
+  }
+
+  var ba = 0;
+
+  function sortMatchData(data){
+    return data.sort(function(a , b){
+      return a['matchNumber'] - b['matchNumber'];
+    });
+  }
+
+  function loadTeamData(teamNumber){
+    $.get('readAPI.php', {
+      'readAllTeamMatchData': teamNumber
+    }).done(function(data) {
+      matchData = JSON.parse(data);
+      matchData = sortMatchData(matchData);
+      createSummaryData(matchData);
+      createDataChart(matchData);
+      createPieceChart(matchData);
+      createWrittenComments(matchData)
+      createCannedComments(matchData);
+    });
+  }
+
+  function loadPitData(teamNumber){
+    $.get('readAPI.php', {
+      'readAllTeamPitData': teamNumber
+    }).done(function(data) {
+      var pit = JSON.parse(data);
+      if (pit.length > 0){
+        pit = pit[0];
+        $('#teamHeading2').html(`Team ${teamNumber} - ${pit['pitTeamName']}`);
+        var row = [
+          `<tr>`,
+          ` <td scope='row'>${pit['disorganized']}</td>`,
+          ` <td scope='row'>${pit['numBatteries']}</td>`,
+          ` <td scope='row'>${pit['chargedBatteries']}</td>`,
+          ` <td scope='row'>${pit['codeLanguage']}</td>`,
+          ` <td scope='row'>${pit['autoPath']}</td>`,
+          ` <td scope='row'>${pit['framePerimeterDimensions']}</td>`,
+          ` <td scope='row'>${pit['pitComments']}</td>`,
+          `</tr>`
+        ].join('');
+        $('#pitData2').append(row);
+      }
+    });
+  }
+
+  function loadTeamPictures(teamNumber){
+    $.get('readAPI.php', {
+      'getTeamPictureFilenames': teamNumber
+    }).done(function(data) {
+      var images = JSON.parse(data);
+      for(var i = 0; i != images.length; i++){
+        var classElement = 'carousel-item'
+        if (i == 0){
+          classElement = 'carousel-item active';
+        }
+        var element = [
+          `<div class='${classElement}'>`,
+          ` <img src='${images[i]}' class='d-block w-100'>`,
+          `</div>`
+        ].join('');
+        $('#robotPics2').append(element);
+      }
+    });
+  }
+
+  function loadTeam(teamNumber){
+    clearData();
+
+    // Set Team Number
+    $('#teamHeading2').html('Team ' + teamNumber);
+
+    loadTeamPictures(teamNumber);
+    loadPitData(teamNumber);
+    loadTeamData(teamNumber);
+  }
+
+  $(document).ready(function () {
+    const url = new URLSearchParams(window.location.search);
+    if (url.has('team')){
+      loadTeam(url.get('team'));
+    }
+  });
+
+  $('#loadTeamData2').on('click', function(){
+    loadTeam($('#inputTeamNumber2').val());
   });
 </script>
 </html>

@@ -219,6 +219,59 @@ function getMatchPoints(row) {
 	return points;
 }
 
+function getWeightedScore(row) {
+	var weightedScore = 0;
+	if (getTopAuto(row)) {
+		weightedScore += 6;
+	}
+	if (getMiddleAuto(row)) {
+		weightedScore += 4;
+	}
+	if (getBottomAuto(row)) {
+		weightedScore += 3;
+	}
+	if (getTopTeleop(row)) {
+		weightedScore += 5;
+	}
+	if (getMiddleTeleop(row)) {
+		weightedScore += 3;
+	}
+	if (getBottomTeleop(row)){
+		weightedScore += 2;
+	}
+	if (getEngageTeleop(row)) {
+		weightedScore += 10;
+	}
+	if (getDockTeleop(row)) {
+		weightedScore += 6;
+	}
+	if (getParkTeleop(row)) {
+		weightedScore += 2;
+	}
+	if (getEngageAuto(row)) {
+		weightedScore += 12;
+	}
+	if (getDockAuto(row)) {
+		weightedScore += 8;
+	}
+	if (getMobilityAuto(row)){
+		weightedScore += 3;
+	}
+	weightedScore += 4 * getTopAuto(row);
+	weightedScore += 3 * getMiddleAuto(row);
+	weightedScore += 2 * getBottomAuto(row);
+	weightedScore += 2.5 * getTopTeleop(row);
+	weightedScore += 1.75 * getMiddleTeleop(row);
+	weightedScore += 1 * getBottomTeleop(row);
+	weightedScore += 3 * getEngageTeleop(row);
+	weightedScore += 2 * getDockTeleop(row);
+	weightedScore += 0.5 * getParkTeleop(row);
+	weightedScore += 4 * getEngageAuto(row);
+	weightedScore += 2 * getDockAuto(row);
+	weightedScore += 2 * getMobilityAuto(row);
+	return weightedScore;
+}
+
 function getMatchGamePiece(row) {
 	return getPiecesAuto(row) + getPiecesTeleop(row);
 }
