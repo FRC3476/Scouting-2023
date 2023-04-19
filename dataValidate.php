@@ -35,12 +35,64 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="matchNumber" class="form-label">Match Number</label>
-                                <input autocomplete="off" type="number" name="matchNumber" class="form-control" id="matchNumber" aria-describedby="matchNumber" onchange="getByMatch()" value=0>
+                                <input autocomplete="off" type="number" min="0" name="matchNumber" class="form-control" id="matchNumber" aria-describedby="matchNumber" onchange="getByMatch()" value=0>
                             </div>
                             <div id="errors"></div><br>
                             <div id="table"></div>
                             <div id="display"></div>
                             <script>
+                                var robots;
+                                var newData;
+
+                                function getByKey(matchKey) {
+                                    for (var i = 0; i < robots.length; i++) {
+                                        if (robots[i].key == matchKey) return i;
+                                    }
+                                    return -1;
+                                }
+
+                                function getTotal() {
+                                    var match = document.getElementById("matchNumber").value;
+                                    var display = document.getElementById("display").getElementsByTagName("table")[0];
+
+                                    var rows = display.getElementsByTagName("tr");
+
+                                    var blueAuto = 0;
+                                    var blueTele = 0;
+                                    var redAuto = 0;
+                                    var redTele = 0;
+
+                                    for (var i = 1; i < rows.length; i++) {
+                                        var col = rows[i].getElementsByTagName("td");
+                                        if (col[i].bgColor == "blue") {
+                                            var r = getByKey(col[0].innerText);
+                                            if (r > -1) {
+                                                r = robots[r];
+                                                blueAuto += r.auto.total;
+                                                blueTele += r.tele.total;
+                                            }
+                                        }
+                                        if (col[i].bgColor == "red") {
+                                            var r = getByKey(col[0].innerText);
+                                            if (r > -1) {
+                                                r = robots[r];
+                                                redAuto += r.auto.total;
+                                                redTele += r.tele.total;
+                                            }
+                                        }
+                                    }
+                                    var actualBlue = sortTable(newData, match, "blue");
+                                    var actualRed = sortTable(newData, match, "red");
+                                    blueAutoDif = actualBlue.auto.total - blueAuto;
+                                    blueTeleDif = actualBlue.tele.total - blueTele;
+                                    redAutoDif = actualRed.auto.total - redAuto;
+                                    redTeleDif = actualRed.tele.total - redTele;
+                                    if (blueAutoDif != 0) createError(`blueAutoDif tba/scouting = ${actualBlue.auto.total}/${blueAuto}`);
+                                    if (blueTeleDif != 0) createError(`blueTeleDif tba/scouting = ${actualBlue.tele.total}/${blueTele}`);
+                                    if (redAutoDif != 0) createError(`redAutoDif tba/scouting = ${actualRed.auto.total}/${redAuto}`);
+                                    if (redTeleDif != 0) createError(`redTeleDif tba/scouting = ${actualRed.tele.total}/${redTele}`);
+                                }
+
                                 function getByMatch() {
                                     var match = document.getElementById("matchNumber").value;
                                     var display = document.getElementById("display");
@@ -52,7 +104,9 @@
                                         display.hidden = true;
                                         errors.innerText = "";
                                     }
-                                    if (match < 0) return;
+                                    if (match < 0) {
+                                        return;
+                                    }
                                     table.hidden = true;
                                     var data = table.getElementsByTagName("table")[0].getElementsByTagName("tr");
                                     var result = document.createElement("table");
@@ -73,6 +127,7 @@
                                     display.hidden = false;
                                     display.innerText = "";
                                     display.appendChild(result);
+                                    getTotal();
                                 }
 
                                 //function which adds an error button
@@ -305,6 +360,8 @@
                                             if (row > -1) {
                                                 var table = document.getElementsByTagName("table")[0].getElementsByTagName("tr")[row + 1].getElementsByTagName("td");
                                                 var local = data.rows[row];
+                                                if (robot.alliance == "blue") table[3].bgColor = "blue";
+                                                if (robot.alliance == "red") table[3].bgColor = "red";
                                                 var autoMobile = (robot.autoMobile) == (local[4] == 1);
                                                 var autoCharge = (robot.autoCharge) == (local[11] != "NONE");
                                                 var teleCharge = (robot.teleCharge) == (local[18] != "NONE");
@@ -323,12 +380,91 @@
                                                     table[18].innerText += " $TCE";
                                                     teleErrors++;
                                                 }
+                                                //collect data for the game pieces comparison later
+                                                var auto = {};
+
+                                                auto.B = {};
+                                                auto.B.cubes = local[8];
+                                                auto.B.cones = local[5];
+
+                                                auto.M = {};
+                                                auto.M.cubes = local[9];
+                                                auto.M.cones = local[6];
+
+                                                auto.T = {};
+                                                auto.T.cubes = local[10];
+                                                auto.T.cones = local[7];
+
+                                                var tele = {};
+
+                                                tele.B = {};
+                                                tele.B.cubes = local[15];
+                                                tele.B.cones = local[12];
+
+                                                tele.M = {};
+                                                tele.M.cubes = local[16];
+                                                tele.M.cones = local[13];
+
+                                                tele.T = {};
+                                                tele.T.cubes = local[17];
+                                                tele.T.cones = local[14];
+
+                                                auto.total = 0;
+                                                for (var x = 5; x < 11; x++) auto.total += local[x];
+
+                                                tele.total = 0;
+                                                for (var x = 12; x < 18; x++) tele.total += local[x];
+
+                                                robot.auto = auto;
+                                                robot.tele = tele;
                                             }
                                         }
                                         createError(`${autoErrors} autoMobility Errors`);
                                         createError(`${chargeErrors} autoChargeStation Errors`);
                                         createError(`${teleErrors} teleopChargeStation Errors`);
+                                        createError(`Game piece errors only work for individual matches`);
+
+                                        //check game pieces
+                                        console.log(data.rows);
+                                        console.log(matchData);
+                                        console.log(tbaRobots);
+
+                                        //console.log(tbaRobots[0].auto);
+                                        //console.log(sortTable(1, "blue").auto);
+                                        robots = tbaRobots;
+                                        newData = matchData;
                                     });
+
+                                function sortTable(matchData, matchNum, alliance) {
+                                    var result = {};
+                                    var data = matchData[matchNum - 1].score_breakdown[alliance];
+
+                                    function totals(arr) {
+                                        var cubes = 0;
+                                        var cones = 0;
+                                        for (var i = 0; i < arr.length; i++) {
+                                            if (arr[i] == "Cone") cones++;
+                                            else if (arr[i] == "Cube") cubes++;
+                                        }
+                                        var result = {};
+                                        result.cubes = cubes;
+                                        result.cones = cones;
+                                        return result;
+                                    }
+
+                                    function levels(obj) {
+                                        var result = {};
+                                        result.B = totals(obj.B);
+                                        result.M = totals(obj.M);
+                                        result.T = totals(obj.T);
+                                        result.total = result.B.cones + result.M.cones + result.T.cones;
+                                        result.total += result.B.cubes + result.M.cubes + result.T.cubes;
+                                        return result;
+                                    }
+                                    result.auto = levels(data.autoCommunity);
+                                    result.tele = levels(data.teleopCommunity);
+                                    return result;
+                                }
                             </script>
                         </div>
                     </div>
