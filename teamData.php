@@ -180,6 +180,7 @@
     $('#teamHeading').html('');
     $('#robotPics').html('');
     $('#pitData').html('');
+    $('#strikeData').html('');
     $('#autoSummaryData').html('');
     $('#teleopSummaryData').html('');
     $('#totalSummary').html('');
