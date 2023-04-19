@@ -33,20 +33,64 @@
                     <div class="card">
                         <div class="card-header">Data Validation Page</div>
                         <div class="card-body">
-
+                            <div class="mb-3">
+                                <label for="matchNumber" class="form-label">Match Number</label>
+                                <input autocomplete="off" type="number" name="matchNumber" class="form-control" id="matchNumber" aria-describedby="matchNumber" onchange="getByMatch()" value=0>
+                            </div>
                             <div id="errors"></div><br>
-                            <h4>How to find errors</h4>
-                            <p>Fields in the table that have an error code and are highlighted in a color</p>
-                            <p>means that the scouting data did not match The Blue Alliance data.</p>
-                            <p>Use ctrl+f in your browser to search for error codes.</p>
-                            <h5>Error Codes</h5>
-                            <p>$AME - Auto Mobility Error</p>
-                            <p>$ACE - Auto Charge Station Error</p>
-                            <p>$TCE - Teleop Charge Station Error</p>
-                            <h5>Highlight Colors</h5>
-                            <p>Red - Scouting data is wrong</p>
                             <div id="table"></div>
+                            <div id="display"></div>
                             <script>
+                                function getByMatch() {
+                                    var match = document.getElementById("matchNumber").value;
+                                    var display = document.getElementById("display");
+                                    var table = document.getElementById("table");
+                                    var errors = document.getElementById("errors");
+
+                                    if (match == 0) {
+                                        table.hidden = false;
+                                        display.hidden = true;
+                                        errors.innerText = "";
+                                    }
+                                    if (match < 0) return;
+                                    table.hidden = true;
+                                    var data = table.getElementsByTagName("table")[0].getElementsByTagName("tr");
+                                    var result = document.createElement("table");
+                                    result.innerHTML += data[0].outerHTML;
+                                    errors.innerText = "";
+                                    for (var i = 1; i < data.length; i++) {
+                                        if (match == 0 || data[i].getElementsByTagName("td")[2].innerText == match) {
+                                            var text = data[i].outerHTML;
+                                            var rows = data[i].getElementsByTagName("td");
+                                            if (text.indexOf("$AME") > -1) createError(`AutoMobility Error for Team ${rows[0].textContent}`);
+                                            if (text.indexOf("$ACE") > -1) createError(`AutoChargeStation Error for Team${rows[0].textContent}`);
+                                            if (text.indexOf("$TCE") > -1) createError(`TeleopChargeStation Error for Team ${rows[0].textContent}`);
+                                            result.innerHTML += text;
+                                        }
+                                    }
+                                    var rows = result.getElementsByTagName("tr").length;
+                                    if (match != 0 && rows != 7) createError(`Row Number Error: There are ${rows-1} rows instead of 6`);
+                                    display.hidden = false;
+                                    display.innerText = "";
+                                    display.appendChild(result);
+                                }
+
+                                //function which adds an error button
+                                //(clicking the button deletes itself)
+                                //they are appended to the "error" <div> at the top of the page
+                                function createError(str) {
+                                    var div = document.createElement("div");
+                                    var box = document.getElementById("errors");
+                                    var button = document.createElement("button");
+                                    button.innerText = str;
+                                    button.onclick = function() {
+                                        this.parentElement.remove();
+                                    }
+                                    div.appendChild(button);
+                                    div.appendChild(document.createElement("br"));
+                                    box.appendChild(div);
+                                }
+
                                 //get JSON data from ./readAPI.php
                                 fetch('./readAPI.php', {
                                         method: 'POST',
@@ -104,22 +148,6 @@
                                         }
                                         //execute the function
                                         document.getElementById("table").appendChild(createTable());
-
-                                        //function which adds an error button
-                                        //(clicking the button deletes itself)
-                                        //they are appended to the "error" <div> at the top of the page
-                                        function createError(str) {
-                                            var div = document.createElement("div");
-                                            var box = document.getElementById("errors");
-                                            var button = document.createElement("button");
-                                            button.innerText = str;
-                                            button.onclick = function() {
-                                                this.parentElement.remove();
-                                            }
-                                            div.appendChild(button);
-                                            div.appendChild(document.createElement("br"));
-                                            box.appendChild(div);
-                                        }
 
                                         //http request function (sync)
                                         function httpRequest(adr) {
@@ -212,8 +240,8 @@
                                         });
 
                                         //add error buttons
-                                        for (var i = 0; i < errors.length; i++) createError(errors[i].key + errors[i].text);
-
+                                        //for (var i = 0; i < errors.length; i++) createError(errors[i].key + errors[i].text);
+                                        createError(`${errors.length} data discrepancy errors`);
                                         //
                                         // VERIFY MATCH DATA
                                         //
@@ -246,7 +274,7 @@
                                                 var r = {};
                                                 r.team = blue[b].substring(3, blue[b].length);
                                                 r.match = i;
-                                                r.num = parseInt(b)+1;
+                                                r.num = parseInt(b) + 1;
                                                 r.alliance = "blue";
                                                 tbaRobots.push(r);
                                             }
@@ -254,7 +282,7 @@
                                                 var r = {};
                                                 r.team = red[re].substring(3, red[re].length);
                                                 r.match = i;
-                                                r.num = parseInt(re)+1;
+                                                r.num = parseInt(re) + 1;
                                                 r.alliance = "red";
                                                 tbaRobots.push(r);
                                             }
@@ -275,7 +303,7 @@
 
                                             var row = getRowByMatchKey(robot.key);
                                             if (row > -1) {
-                                                var table = document.getElementsByTagName("table")[0].getElementsByTagName("tr")[row+1].getElementsByTagName("td");
+                                                var table = document.getElementsByTagName("table")[0].getElementsByTagName("tr")[row + 1].getElementsByTagName("td");
                                                 var local = data.rows[row];
                                                 var autoMobile = (robot.autoMobile) == (local[4] == 1);
                                                 var autoCharge = (robot.autoCharge) == (local[11] != "NONE");
