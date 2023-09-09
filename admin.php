@@ -18,7 +18,7 @@
               <h4>Data Table Status: <span id="dataTableStatus" class="badge bg-warning">Not Connected</span></h4>
               <h4>TBA Table Status: <span id="tbaTableStatus" class="badge bg-warning">Not Connected</span></h4>
               <h4>Pit Table Status: <span id="pitScoutTableStatus" class="badge bg-warning">Not Connected</span></h4>
-			  <h4>Strike Table Status: <span id="strikeScoutTableStatus" class="badge bg-warning">Not Connected</span></h4>
+			        <h4>Strike Table Status: <span id="strikeScoutTableStatus" class="badge bg-warning">Not Connected</span></h4>
               <h4>LS Table Status: <span id="LSTableStatus" class="badge bg-warning">Not Connected</span></h4>
               <h4>Server: <span id="serverName" class="badge bg-primary">????</span></h4>
               <h4>Database: <span id="databaseName" class="badge bg-primary">????</span></h4>
@@ -60,7 +60,7 @@
                 <label for="writePitScoutTable" class="form-label">Pit Scout Table Name</label>
                 <input type="text" class="form-control" id="writePitScoutTable" aria-describedby="writePitScoutTable">
               </div>
-			  <div class="mb-3">
+			        <div class="mb-3">
                 <label for="writeStrikeScoutTable" class="form-label">Strike Scout Table Name</label>
                 <input type="text" class="form-control" id="writeStrikeScoutTable" aria-describedby="writeStrikeScoutTable">
               </div>
@@ -151,7 +151,7 @@
                         'datatable' : $('#writeDataTable').val(),
                         'tbatable' : $('#writeTBATable').val(),
                         'pitScouttable' : $('#writePitScoutTable').val(),
-						'strikeScouttable' : $('#writeStrikeScoutTable').val(),
+						            'strikeScouttable' : $('#writeStrikeScoutTable').val(),
                         'LSTable' : $('#writeLSTable').val()};
     var writeData = {};
     for (const prop in allWriteData){
