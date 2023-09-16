@@ -117,7 +117,7 @@
                                             var text = data[i].outerHTML;
                                             var rows = data[i].getElementsByTagName("td");
                                             if (text.indexOf("$AME") > -1) createError(`AutoMobility Error for Team ${rows[0].textContent}`);
-                                            if (text.indexOf("$ACE") > -1) createError(`AutoChargeStation Error for Team${rows[0].textContent}`);
+                                            if (text.indexOf("$ACE") > -1) createError(`AutoChargeStation Error for Team ${rows[0].textContent}`);
                                             if (text.indexOf("$TCE") > -1) createError(`TeleopChargeStation Error for Team ${rows[0].textContent}`);
                                             result.innerHTML += text;
                                         }
@@ -367,7 +367,7 @@
                                                 var teleCharge = (robot.teleCharge) == (local[18] != "NONE");
                                                 if (!autoMobile) {
                                                     table[4].bgColor = "red";
-                                                    table[4].innerText += " $AME";
+                                                    table[4].innerText += " - " + (robot.autoMobile ? 1:0);
                                                     autoErrors++;
                                                 }
                                                 if (!autoCharge) {
