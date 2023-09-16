@@ -153,12 +153,24 @@ if (getOrPost('getUserMatchDicts')){
 
     $bLevel = $b['comp_level'];
     $bNumber = $b['match_number'];
-    
+
     if ($aLevel == $bLevel){
-      return $aMatch <=> $bMatch;
+      if ($aNumber == $bNumber)
+          return 0;
+      elseif ($aNumber > $bNumber)
+          return -1;
+      else
+          return 1;
+#   return $aNumber <=> $bNumber;
     }
     $lookup = array('p' => 0, 'qm' => 1, 'qf' => 2, 'sf' => 3, 'f' => 4);
-    return $lookup[$aLevel] <=> $lookup[$bLevel];
+    if ($lookup[$aLevel] == $lookup[$bLevel])
+        return 0;
+    elseif ($lookup[$aLevel] > $lookup[$bLevel])
+        return -1;
+    else
+        return 0;
+#    return $lookup[$aLevel] <=> $lookup[$bLevel];
   });
   $output = array();
   $output['current_match'] = $nextUnplayedMatch;
@@ -187,10 +199,23 @@ if (getOrPost('getUserMatches')){
   }
   usort($matches, function($a, $b){
     if ($a[0] == $b[0]){
-      return $a[1] <=> $b[1];
+      if ($a[1] == $b[1])
+          return 0;
+      elseif ($a[1] > $b[1])
+          return -1;
+      else
+          return 1;
+  #      return $a[1] <=> $b[1];
     }
     $lookup = array('p' => 0, 'qm' => 1, 'qf' => 2, 'sf' => 3, 'f' => 4);
-    return $lookup[$a[0]] <=> $lookup[$b[0]];
+
+    if ($lookup[$a[0]] == $lookup[$b[0]])
+        return 0;
+    elseif ($lookup[$a[0]] > $lookup[$b[0]])
+        return -1;
+    else
+        return 1;
+  #    return $lookup[$a[0]] <=> $lookup[$b[0]];
   });
   echo(json_encode($matches));
 }
