@@ -44,54 +44,54 @@
                                 var robots;
                                 var newData;
 
-                                function getByKey(matchKey) {
-                                    for (var i = 0; i < robots.length; i++) {
-                                        if (robots[i].key == matchKey) return i;
-                                    }
-                                    return -1;
-                                }
+                                // function getByKey(matchKey) {
+                                //     for (var i = 0; i < robots.length; i++) {
+                                //         if (robots[i].key == matchKey) return i;
+                                //     }
+                                //     return -1;
+                                // }
 
-                                function getTotal() {
-                                    var match = document.getElementById("matchNumber").value;
-                                    var display = document.getElementById("display").getElementsByTagName("table")[0];
+                                // function getTotal() {
+                                //     var match = document.getElementById("matchNumber").value;
+                                //     var display = document.getElementById("display").getElementsByTagName("table")[0];
 
-                                    var rows = display.getElementsByTagName("tr");
+                                //     var rows = display.getElementsByTagName("tr");
 
-                                    var blueAuto = 0;
-                                    var blueTele = 0;
-                                    var redAuto = 0;
-                                    var redTele = 0;
+                                //     var blueAuto = 0;
+                                //     var blueTele = 0;
+                                //     var redAuto = 0;
+                                //     var redTele = 0;
 
-                                    for (var i = 1; i < rows.length; i++) {
-                                        var col = rows[i].getElementsByTagName("td");
-                                        if (col[i].bgColor == "blue") {
-                                            var r = getByKey(col[0].innerText);
-                                            if (r > -1) {
-                                                r = robots[r];
-                                                blueAuto += r.auto.total;
-                                                blueTele += r.tele.total;
-                                            }
-                                        }
-                                        if (col[i].bgColor == "red") {
-                                            var r = getByKey(col[0].innerText);
-                                            if (r > -1) {
-                                                r = robots[r];
-                                                redAuto += r.auto.total;
-                                                redTele += r.tele.total;
-                                            }
-                                        }
-                                    }
-                                    var actualBlue = sortTable(newData, match, "blue");
-                                    var actualRed = sortTable(newData, match, "red");
-                                    blueAutoDif = actualBlue.auto.total - blueAuto;
-                                    blueTeleDif = actualBlue.tele.total - blueTele;
-                                    redAutoDif = actualRed.auto.total - redAuto;
-                                    redTeleDif = actualRed.tele.total - redTele;
-                                    if (blueAutoDif != 0) createError(`blueAutoDif tba/scouting = ${actualBlue.auto.total}/${blueAuto}`);
-                                    if (blueTeleDif != 0) createError(`blueTeleDif tba/scouting = ${actualBlue.tele.total}/${blueTele}`);
-                                    if (redAutoDif != 0) createError(`redAutoDif tba/scouting = ${actualRed.auto.total}/${redAuto}`);
-                                    if (redTeleDif != 0) createError(`redTeleDif tba/scouting = ${actualRed.tele.total}/${redTele}`);
-                                }
+                                //     for (var i = 1; i < rows.length; i++) {
+                                //         var col = rows[i].getElementsByTagName("td");
+                                //         if (col[i].bgColor == "blue") {
+                                //             var r = getByKey(col[0].innerText);
+                                //             if (r > -1) {
+                                //                 r = robots[r];
+                                //                 blueAuto += r.auto.total;
+                                //                 blueTele += r.tele.total;
+                                //             }
+                                //         }
+                                //         if (col[i].bgColor == "red") {
+                                //             var r = getByKey(col[0].innerText);
+                                //             if (r > -1) {
+                                //                 r = robots[r];
+                                //                 redAuto += r.auto.total;
+                                //                 redTele += r.tele.total;
+                                //             }
+                                //         }
+                                //     }
+                                //     var actualBlue = sortTable(newData, match, "blue");
+                                //     var actualRed = sortTable(newData, match, "red");
+                                //     blueAutoDif = actualBlue.auto.total - blueAuto;
+                                //     blueTeleDif = actualBlue.tele.total - blueTele;
+                                //     redAutoDif = actualRed.auto.total - redAuto;
+                                //     redTeleDif = actualRed.tele.total - redTele;
+                                //     if (blueAutoDif != 0) createError(`blueAutoDif tba/scouting = ${actualBlue.auto.total}/${blueAuto}`);
+                                //     if (blueTeleDif != 0) createError(`blueTeleDif tba/scouting = ${actualBlue.tele.total}/${blueTele}`);
+                                //     if (redAutoDif != 0) createError(`redAutoDif tba/scouting = ${actualRed.auto.total}/${redAuto}`);
+                                //     if (redTeleDif != 0) createError(`redTeleDif tba/scouting = ${actualRed.tele.total}/${redTele}`);
+                                // }
 
                                 function getByMatch() {
                                     var match = document.getElementById("matchNumber").value;
@@ -112,14 +112,124 @@
                                     var result = document.createElement("table");
                                     result.innerHTML += data[0].outerHTML;
                                     errors.innerText = "";
+
+                                    redAutoConeB = 0;
+                                    redAutoConeBAct = 0;
+                                    redAutoConeM = 0;
+                                    redAutoConeMAct = 0;
+                                    redAutoConeT = 0;
+                                    redAutoConeTAct = 0;
+                                    redAutoCubeB = 0;
+                                    redAutoCubeBAct = 0;
+                                    redAutoCubeM = 0;
+                                    redAutoCubeMAct = 0;
+                                    redAutoCubeT = 0;
+                                    redAutoCubeTAct = 0;
+
+                                    redTeleConeB = 0;
+                                    redTeleConeBAct = 0;
+                                    redTeleConeM = 0;
+                                    redTeleConeMAct = 0;
+                                    redTeleConeT = 0;
+                                    redTeleConeTAct = 0;
+                                    redTeleCubeB = 0;
+                                    redTeleCubeBAct = 0;
+                                    redTeleCubeM = 0;
+                                    redTeleCubeMAct = 0;
+                                    redTeleCubeT = 0;
+                                    redTeleCubeTAct = 0;
+
+                                    blueAutoConeB = 0;
+                                    blueAutoConeBAct = 0;
+                                    blueAutoConeM = 0;
+                                    blueAutoConeMAct = 0;
+                                    blueAutoConeT = 0;
+                                    blueAutoConeTAct = 0;
+                                    blueAutoCubeB = 0;
+                                    blueAutoCubeBAct = 0;
+                                    blueAutoCubeM = 0;
+                                    blueAutoCubeMAct = 0;
+                                    blueAutoCubeT = 0;
+                                    blueAutoCubeTAct = 0;
+
+                                    blueTeleConeB = 0;
+                                    blueTeleConeBAct = 0;
+                                    blueTeleConeM = 0;
+                                    blueTeleConeMAct = 0;
+                                    blueTeleConeT = 0;
+                                    blueTeleConeTAct = 0;
+                                    blueTeleCubeB = 0;
+                                    blueTeleCubeBAct = 0;
+                                    blueTeleCubeM = 0;
+                                    blueTeleCubeMAct = 0;
+                                    blueTeleCubeT = 0;
+                                    blueTeleCubeTAct = 0;
+
                                     for (var i = 1; i < data.length; i++) {
                                         if (match == 0 || data[i].getElementsByTagName("td")[2].innerText == match) {
                                             var text = data[i].outerHTML;
                                             var rows = data[i].getElementsByTagName("td");
-                                            if (text.indexOf("$AME") > -1) createError(`AutoMobility Error for Team ${rows[0].textContent}`);
-                                            if (text.indexOf("$ACE") > -1) createError(`AutoChargeStation Error for Team ${rows[0].textContent}`);
-                                            if (text.indexOf("$TCE") > -1) createError(`TeleopChargeStation Error for Team ${rows[0].textContent}`);
                                             result.innerHTML += text;
+
+                                            if(data[i].getElementsByTagName("td")[3].bgColor == "red"){
+                                                redAutoConeB += parseInt(data[i].getElementsByTagName("td")[5].innerText.split("-")[0]);
+                                                redAutoConeM += parseInt(data[i].getElementsByTagName("td")[6].innerText.split("-")[0]);
+                                                redAutoConeT += parseInt(data[i].getElementsByTagName("td")[7].innerText.split("-")[0]);
+                                                redAutoCubeB += parseInt(data[i].getElementsByTagName("td")[8].innerText.split("-")[0]);
+                                                redAutoCubeM += parseInt(data[i].getElementsByTagName("td")[9].innerText.split("-")[0]);
+                                                redAutoCubeT += parseInt(data[i].getElementsByTagName("td")[10].innerText.split("-")[0]);
+
+                                                redAutoConeBAct = parseInt(data[i].getElementsByTagName("td")[5].innerText.split("-")[1]);
+                                                redAutoConeMAct = parseInt(data[i].getElementsByTagName("td")[6].innerText.split("-")[1]);
+                                                redAutoConeTAct = parseInt(data[i].getElementsByTagName("td")[7].innerText.split("-")[1]);
+                                                redAutoCubeBAct = parseInt(data[i].getElementsByTagName("td")[8].innerText.split("-")[1]);
+                                                redAutoCubeMAct = parseInt(data[i].getElementsByTagName("td")[9].innerText.split("-")[1]);
+                                                redAutoCubeTAct = parseInt(data[i].getElementsByTagName("td")[10].innerText.split("-")[1]);
+
+                                                redTeleConeB += parseInt(data[i].getElementsByTagName("td")[12].innerText.split("-")[0]);
+                                                redTeleConeM += parseInt(data[i].getElementsByTagName("td")[13].innerText.split("-")[0]);
+                                                redTeleConeT += parseInt(data[i].getElementsByTagName("td")[14].innerText.split("-")[0]);
+                                                redTeleCubeB += parseInt(data[i].getElementsByTagName("td")[15].innerText.split("-")[0]);
+                                                redTeleCubeM += parseInt(data[i].getElementsByTagName("td")[16].innerText.split("-")[0]);
+                                                redTeleCubeT += parseInt(data[i].getElementsByTagName("td")[17].innerText.split("-")[0]);
+
+                                                redTeleConeBAct = parseInt(data[i].getElementsByTagName("td")[12].innerText.split("-")[1]);
+                                                redTeleConeMAct = parseInt(data[i].getElementsByTagName("td")[13].innerText.split("-")[1]);
+                                                redTeleConeTAct = parseInt(data[i].getElementsByTagName("td")[14].innerText.split("-")[1]);
+                                                redTeleCubeBAct = parseInt(data[i].getElementsByTagName("td")[15].innerText.split("-")[1]);
+                                                redTeleCubeMAct = parseInt(data[i].getElementsByTagName("td")[16].innerText.split("-")[1]);
+                                                redTeleCubeTAct = parseInt(data[i].getElementsByTagName("td")[17].innerText.split("-")[1]);
+                                            }
+
+                                            if(data[i].getElementsByTagName("td")[3].bgColor == "blue"){
+                                                blueAutoConeB += parseInt(data[i].getElementsByTagName("td")[5].innerText.split("-")[0]);
+                                                blueAutoConeM += parseInt(data[i].getElementsByTagName("td")[6].innerText.split("-")[0]);
+                                                blueAutoConeT += parseInt(data[i].getElementsByTagName("td")[7].innerText.split("-")[0]);
+                                                blueAutoCubeB += parseInt(data[i].getElementsByTagName("td")[8].innerText.split("-")[0]);
+                                                blueAutoCubeM += parseInt(data[i].getElementsByTagName("td")[9].innerText.split("-")[0]);
+                                                blueAutoCubeT += parseInt(data[i].getElementsByTagName("td")[10].innerText.split("-")[0]);
+
+                                                blueAutoConeBAct = parseInt(data[i].getElementsByTagName("td")[5].innerText.split("-")[1]);
+                                                blueAutoConeMAct = parseInt(data[i].getElementsByTagName("td")[6].innerText.split("-")[1]);
+                                                blueAutoConeTAct = parseInt(data[i].getElementsByTagName("td")[7].innerText.split("-")[1]);
+                                                blueAutoCubeBAct = parseInt(data[i].getElementsByTagName("td")[8].innerText.split("-")[1]);
+                                                blueAutoCubeMAct = parseInt(data[i].getElementsByTagName("td")[9].innerText.split("-")[1]);
+                                                blueAutoCubeTAct = parseInt(data[i].getElementsByTagName("td")[10].innerText.split("-")[1]);
+
+                                                blueTeleConeB += parseInt(data[i].getElementsByTagName("td")[12].innerText.split("-")[0]);
+                                                blueTeleConeM += parseInt(data[i].getElementsByTagName("td")[13].innerText.split("-")[0]);
+                                                blueTeleConeT += parseInt(data[i].getElementsByTagName("td")[14].innerText.split("-")[0]);
+                                                blueTeleCubeB += parseInt(data[i].getElementsByTagName("td")[15].innerText.split("-")[0]);
+                                                blueTeleCubeM += parseInt(data[i].getElementsByTagName("td")[16].innerText.split("-")[0]);
+                                                blueTeleCubeT += parseInt(data[i].getElementsByTagName("td")[17].innerText.split("-")[0]);
+
+                                                blueTeleConeBAct = parseInt(data[i].getElementsByTagName("td")[12].innerText.split("-")[1]);
+                                                blueTeleConeMAct = parseInt(data[i].getElementsByTagName("td")[13].innerText.split("-")[1]);
+                                                blueTeleConeTAct = parseInt(data[i].getElementsByTagName("td")[14].innerText.split("-")[1]);
+                                                blueTeleCubeBAct = parseInt(data[i].getElementsByTagName("td")[15].innerText.split("-")[1]);
+                                                blueTeleCubeMAct = parseInt(data[i].getElementsByTagName("td")[16].innerText.split("-")[1]);
+                                                blueTeleCubeTAct = parseInt(data[i].getElementsByTagName("td")[17].innerText.split("-")[1]);
+                                            }
                                         }
                                     }
                                     var rows = result.getElementsByTagName("tr").length;
@@ -127,7 +237,82 @@
                                     display.hidden = false;
                                     display.innerText = "";
                                     display.appendChild(result);
-                                    getTotal();
+
+                                    if(redAutoConeB != redAutoConeBAct){
+                                        createError(`Red Auto Cone B Error, Over by ${redAutoConeB - redAutoConeBAct}`);
+                                    }
+                                    if(redAutoConeM != redAutoConeMAct){
+                                        createError(`Red Auto Cone M Error, Over by ${redAutoConeM - redAutoConeMAct}`);
+                                    }
+                                    if(redAutoConeT != redAutoConeTAct){
+                                        createError(`Red Auto Cone T Error, Over by ${redAutoConeT - redAutoConeTAct}`);
+                                    }
+                                    if(redAutoCubeB != redAutoCubeBAct){
+                                        createError(`Red Auto Cube B Error, Over by ${redAutoCubeB - redAutoCubeBAct}`);
+                                    }
+                                    if(redAutoCubeM != redAutoCubeMAct){
+                                        createError(`Red Auto Cube M Error, Over by ${redAutoCubeM - redAutoCubeMAct}`);
+                                    }
+                                    if(redAutoCubeT != redAutoCubeTAct){
+                                        createError(`Red Auto Cube T Error, Over by ${redAutoCubeT - redAutoCubeTAct}`);
+                                    }
+                                    
+                                    if(redTeleConeB != redTeleConeBAct){
+                                        createError(`Red Tele Cone B Error, Over by ${redTeleConeB - redTeleConeBAct}`);
+                                    }
+                                    if(redTeleConeM != redTeleConeMAct){
+                                        createError(`Red Tele Cone M Error, Over by ${redTeleConeM - redTeleConeMAct}`);
+                                    }
+                                    if(redTeleConeT != redTeleConeTAct){
+                                        createError(`Red Tele Cone T Error, Over by ${redTeleConeT - redTeleConeTAct}`);
+                                    }
+                                    if(redTeleCubeB != redTeleCubeBAct){
+                                        createError(`Red Tele Cube B Error, Over by ${redTeleCubeB - redTeleCubeBAct}`);
+                                    }
+                                    if(redTeleCubeM != redTeleCubeMAct){
+                                        createError(`Red Tele Cube M Error, Over by ${redTeleCubeM - redTeleCubeMAct}`);
+                                    }
+                                    if(redTeleCubeT != redTeleCubeTAct){
+                                        createError(`Red Tele Cube T Error, Over by ${redTeleCubeT - redTeleCubeTAct}`);
+                                    }
+
+                                    if(blueAutoConeB != blueAutoConeBAct){
+                                        createError(`Blue Auto Cone B Error, Over by ${blueAutoConeB - blueAutoConeBAct}`);
+                                    }
+                                    if(blueAutoConeM != blueAutoConeMAct){
+                                        createError(`Blue Auto Cone M Error, Over by ${blueAutoConeM - blueAutoConeMAct}`);
+                                    }
+                                    if(blueAutoConeT != blueAutoConeTAct){
+                                        createError(`Blue Auto Cone T Error, Over by ${blueAutoConeT - blueAutoConeTAct}`);
+                                    }
+                                    if(blueAutoCubeB != blueAutoCubeBAct){
+                                        createError(`Blue Auto Cube B Error, Over by ${blueAutoCubeB - blueAutoCubeBAct}`);
+                                    }
+                                    if(blueAutoCubeM != blueAutoCubeMAct){
+                                        createError(`Blue Auto Cube M Error, Over by ${blueAutoCubeM - blueAutoCubeMAct}`);
+                                    }
+                                    if(blueAutoCubeT != blueAutoCubeTAct){
+                                        createError(`Blue Auto Cube T Error, Over by ${blueAutoCubeT - blueAutoCubeTAct}`);
+                                    }
+                                    
+                                    if(blueTeleConeB != blueTeleConeBAct){
+                                        createError(`Blue Tele Cone B Error, Over by ${blueTeleConeB - blueTeleConeBAct}`);
+                                    }
+                                    if(blueTeleConeM != blueTeleConeMAct){
+                                        createError(`Blue Tele Cone M Error, Over by ${blueTeleConeM - blueTeleConeMAct}`);
+                                    }
+                                    if(blueTeleConeT != blueTeleConeTAct){
+                                        createError(`Blue Tele Cone T Error, Over by ${blueTeleConeT - blueTeleConeTAct}`);
+                                    }
+                                    if(blueTeleCubeB != blueTeleCubeBAct){
+                                        createError(`Blue Tele Cube B Error, Over by ${blueTeleCubeB - blueTeleCubeBAct}`);
+                                    }
+                                    if(blueTeleCubeM != blueTeleCubeMAct){
+                                        createError(`Blue Tele Cube M Error, Over by ${blueTeleCubeM - blueTeleCubeMAct}`);
+                                    }
+                                    if(blueTeleCubeT != blueTeleCubeTAct){
+                                        createError(`Blue Tele Cube T Error, Over by ${blueTeleCubeT - blueTeleCubeTAct}`);
+                                    }
                                 }
 
                                 //function which adds an error button
@@ -139,7 +324,7 @@
                                     var button = document.createElement("button");
                                     button.innerText = str;
                                     button.onclick = function() {
-                                        this.parentElement.remove();
+                                        //this.parentElement.remove();
                                     }
                                     div.appendChild(button);
                                     div.appendChild(document.createElement("br"));
@@ -360,69 +545,100 @@
                                             if (row > -1) {
                                                 var table = document.getElementsByTagName("table")[0].getElementsByTagName("tr")[row + 1].getElementsByTagName("td");
                                                 var local = data.rows[row];
-                                                if (robot.alliance == "blue") table[3].bgColor = "blue";
-                                                if (robot.alliance == "red") table[3].bgColor = "red";
+                                                
+                                                if (robot.alliance == "blue"){
+                                                    table[3].bgColor = "blue";
+                                                    table[5].innerText += "-" + matchData[robot.match].score_breakdown["blue"][`autoCommunity`].B.filter(x => x === "Cone").length
+                                                    table[6].innerText += "-" + matchData[robot.match].score_breakdown["blue"][`autoCommunity`].M.filter(x => x === "Cone").length
+                                                    table[7].innerText += "-" + matchData[robot.match].score_breakdown["blue"][`autoCommunity`].T.filter(x => x === "Cone").length
+                                                    table[8].innerText += "-" + matchData[robot.match].score_breakdown["blue"][`autoCommunity`].B.filter(x => x === "Cube").length
+                                                    table[9].innerText += "-" + matchData[robot.match].score_breakdown["blue"][`autoCommunity`].M.filter(x => x === "Cube").length
+                                                    table[10].innerText += "-" + matchData[robot.match].score_breakdown["blue"][`autoCommunity`].T.filter(x => x === "Cube").length
+
+                                                    table[12].innerText += "-" + matchData[robot.match].score_breakdown["blue"][`teleopCommunity`].B.filter(x => x === "Cone").length
+                                                    table[13].innerText += "-" + matchData[robot.match].score_breakdown["blue"][`teleopCommunity`].M.filter(x => x === "Cone").length
+                                                    table[14].innerText += "-" + matchData[robot.match].score_breakdown["blue"][`teleopCommunity`].T.filter(x => x === "Cone").length
+                                                    table[15].innerText += "-" + matchData[robot.match].score_breakdown["blue"][`teleopCommunity`].B.filter(x => x === "Cube").length
+                                                    table[16].innerText += "-" + matchData[robot.match].score_breakdown["blue"][`teleopCommunity`].M.filter(x => x === "Cube").length
+                                                    table[17].innerText += "-" + matchData[robot.match].score_breakdown["blue"][`teleopCommunity`].T.filter(x => x === "Cube").length
+                                                }
+                                                if (robot.alliance == "red"){
+                                                    table[3].bgColor = "red";
+                                                    table[5].innerText += "-" + matchData[robot.match].score_breakdown["red"][`autoCommunity`].B.filter(x => x === "Cone").length
+                                                    table[6].innerText += "-" + matchData[robot.match].score_breakdown["red"][`autoCommunity`].M.filter(x => x === "Cone").length
+                                                    table[7].innerText += "-" + matchData[robot.match].score_breakdown["red"][`autoCommunity`].T.filter(x => x === "Cone").length
+                                                    table[8].innerText += "-" + matchData[robot.match].score_breakdown["red"][`autoCommunity`].B.filter(x => x === "Cube").length
+                                                    table[9].innerText += "-" + matchData[robot.match].score_breakdown["red"][`autoCommunity`].M.filter(x => x === "Cube").length
+                                                    table[10].innerText += "-" + matchData[robot.match].score_breakdown["red"][`autoCommunity`].T.filter(x => x === "Cube").length
+
+                                                    table[12].innerText += "-" + matchData[robot.match].score_breakdown["red"][`teleopCommunity`].B.filter(x => x === "Cone").length
+                                                    table[13].innerText += "-" + matchData[robot.match].score_breakdown["red"][`teleopCommunity`].M.filter(x => x === "Cone").length
+                                                    table[14].innerText += "-" + matchData[robot.match].score_breakdown["red"][`teleopCommunity`].T.filter(x => x === "Cone").length
+                                                    table[15].innerText += "-" + matchData[robot.match].score_breakdown["red"][`teleopCommunity`].B.filter(x => x === "Cube").length
+                                                    table[16].innerText += "-" + matchData[robot.match].score_breakdown["red"][`teleopCommunity`].M.filter(x => x === "Cube").length
+                                                    table[17].innerText += "-" + matchData[robot.match].score_breakdown["red"][`teleopCommunity`].T.filter(x => x === "Cube").length
+                                                }
+
                                                 var autoMobile = (robot.autoMobile) == (local[4] == 1);
                                                 var autoCharge = (robot.autoCharge) == (local[11] != "NONE");
                                                 var teleCharge = (robot.teleCharge) == (local[18] != "NONE");
                                                 if (!autoMobile) {
-                                                    table[4].bgColor = "red";
-                                                    table[4].innerText += " - " + (robot.autoMobile ? 1:0);
+                                                    table[4].bgColor = "orange";
+                                                    table[4].innerText += "-" + (robot.autoMobile ? 1:0);
                                                     autoErrors++;
                                                 }
                                                 if (!autoCharge) {
-                                                    table[11].bgColor = "red";
-                                                    table[11].innerText += " $ACE";
+                                                    table[11].bgColor = "orange";
+                                                    table[11].innerText += " - ERROR";
                                                     chargeErrors++;
                                                 }
                                                 if (!teleCharge) {
-                                                    table[18].bgColor = "red";
-                                                    table[18].innerText += " $TCE";
+                                                    table[18].bgColor = "orange";
+                                                    table[18].innerText += " - ERROR";
                                                     teleErrors++;
                                                 }
                                                 //collect data for the game pieces comparison later
-                                                var auto = {};
+                                                // var auto = {};
 
-                                                auto.B = {};
-                                                auto.B.cubes = local[8];
-                                                auto.B.cones = local[5];
+                                                // auto.B = {};
+                                                // auto.B.cubes = local[8];
+                                                // auto.B.cones = local[5];
 
-                                                auto.M = {};
-                                                auto.M.cubes = local[9];
-                                                auto.M.cones = local[6];
+                                                // auto.M = {};
+                                                // auto.M.cubes = local[9];
+                                                // auto.M.cones = local[6];
 
-                                                auto.T = {};
-                                                auto.T.cubes = local[10];
-                                                auto.T.cones = local[7];
+                                                // auto.T = {};
+                                                // auto.T.cubes = local[10];
+                                                // auto.T.cones = local[7];
 
-                                                var tele = {};
+                                                // var tele = {};
 
-                                                tele.B = {};
-                                                tele.B.cubes = local[15];
-                                                tele.B.cones = local[12];
+                                                // tele.B = {};
+                                                // tele.B.cubes = local[15];
+                                                // tele.B.cones = local[12];
 
-                                                tele.M = {};
-                                                tele.M.cubes = local[16];
-                                                tele.M.cones = local[13];
+                                                // tele.M = {};
+                                                // tele.M.cubes = local[16];
+                                                // tele.M.cones = local[13];
 
-                                                tele.T = {};
-                                                tele.T.cubes = local[17];
-                                                tele.T.cones = local[14];
+                                                // tele.T = {};
+                                                // tele.T.cubes = local[17];
+                                                // tele.T.cones = local[14];
 
-                                                auto.total = 0;
-                                                for (var x = 5; x < 11; x++) auto.total += local[x];
+                                                // auto.total = 0;
+                                                // for (var x = 5; x < 11; x++) auto.total += local[x];
 
-                                                tele.total = 0;
-                                                for (var x = 12; x < 18; x++) tele.total += local[x];
+                                                // tele.total = 0;
+                                                // for (var x = 12; x < 18; x++) tele.total += local[x];
 
-                                                robot.auto = auto;
-                                                robot.tele = tele;
+                                                // robot.auto = auto;
+                                                // robot.tele = tele;
                                             }
                                         }
                                         createError(`${autoErrors} autoMobility Errors`);
                                         createError(`${chargeErrors} autoChargeStation Errors`);
                                         createError(`${teleErrors} teleopChargeStation Errors`);
-                                        createError(`Game piece errors only work for individual matches`);
 
                                         //check game pieces
                                         console.log(data.rows);
@@ -435,36 +651,36 @@
                                         newData = matchData;
                                     });
 
-                                function sortTable(matchData, matchNum, alliance) {
-                                    var result = {};
-                                    var data = matchData[matchNum - 1].score_breakdown[alliance];
+                                // function sortTable(matchData, matchNum, alliance) {
+                                //     var result = {};
+                                //     var data = matchData[matchNum - 1].score_breakdown[alliance];
 
-                                    function totals(arr) {
-                                        var cubes = 0;
-                                        var cones = 0;
-                                        for (var i = 0; i < arr.length; i++) {
-                                            if (arr[i] == "Cone") cones++;
-                                            else if (arr[i] == "Cube") cubes++;
-                                        }
-                                        var result = {};
-                                        result.cubes = cubes;
-                                        result.cones = cones;
-                                        return result;
-                                    }
+                                //     function totals(arr) {
+                                //         var cubes = 0;
+                                //         var cones = 0;
+                                //         for (var i = 0; i < arr.length; i++) {
+                                //             if (arr[i] == "Cone") cones++;
+                                //             else if (arr[i] == "Cube") cubes++;
+                                //         }
+                                //         var result = {};
+                                //         result.cubes = cubes;
+                                //         result.cones = cones;
+                                //         return result;
+                                //     }
 
-                                    function levels(obj) {
-                                        var result = {};
-                                        result.B = totals(obj.B);
-                                        result.M = totals(obj.M);
-                                        result.T = totals(obj.T);
-                                        result.total = result.B.cones + result.M.cones + result.T.cones;
-                                        result.total += result.B.cubes + result.M.cubes + result.T.cubes;
-                                        return result;
-                                    }
-                                    result.auto = levels(data.autoCommunity);
-                                    result.tele = levels(data.teleopCommunity);
-                                    return result;
-                                }
+                                //     function levels(obj) {
+                                //         var result = {};
+                                //         result.B = totals(obj.B);
+                                //         result.M = totals(obj.M);
+                                //         result.T = totals(obj.T);
+                                //         result.total = result.B.cones + result.M.cones + result.T.cones;
+                                //         result.total += result.B.cubes + result.M.cubes + result.T.cubes;
+                                //         return result;
+                                //     }
+                                //     result.auto = levels(data.autoCommunity);
+                                //     result.tele = levels(data.teleopCommunity);
+                                //     return result;
+                                // }
                             </script>
                         </div>
                     </div>
