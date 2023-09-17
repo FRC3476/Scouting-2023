@@ -583,7 +583,7 @@
     var check = teams.indexOf(formattedTeam);
     if (data["matchNumber"] < 5000 && check == -1) {
       createErrorAlert(`Team ${data["teamNumber"]} is not in match ${data["matchNumber"]}`);
-      valid = false; 
+      valid = true; 
     }
 
     return valid;
